@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ead813sw1ljy"
+path="res://.godot/imported/Anh Vui - Phạm Kỳ (Duzme Remix)  Anh Vui Đến Nỗi Nghẹn Ngào...Remix Tik Tok - Duzme Music (youtube).mp3-f4e23429904e85e561bb158a645bf6c3.mp3str"
+
+[deps]
+
+source_file="res://soundtrack/Anh Vui - Phạm Kỳ (Duzme Remix)  Anh Vui Đến Nỗi Nghẹn Ngào...Remix Tik Tok - Duzme Music (youtube).mp3"
+dest_files=["res://.godot/imported/Anh Vui - Phạm Kỳ (Duzme Remix)  Anh Vui Đến Nỗi Nghẹn Ngào...Remix Tik Tok - Duzme Music (youtube).mp3-f4e23429904e85e561bb158a645bf6c3.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

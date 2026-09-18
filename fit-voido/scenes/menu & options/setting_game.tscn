@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://b658cepusftuf"]
+
+[ext_resource type="Script" uid="uid://bgkn50km84u16" path="res://scenes/menu & options/setting_game.gd" id="1_f7dxp"]
+[ext_resource type="Script" uid="uid://ci85wyadcd2fi" path="res://scripts/h_slider.gd" id="1_nf50l"]
+[ext_resource type="AudioStream" uid="uid://ead813sw1ljy" path="res://soundtrack/Anh Vui - Phạm Kỳ (Duzme Remix)  Anh Vui Đến Nỗi Nghẹn Ngào...Remix Tik Tok - Duzme Music (youtube).mp3" id="2_0d63n"]
+
+[node name="Setting game" type="Control" unique_id=1183533026]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_f7dxp")
+
+[node name="Label" type="Label" parent="." unique_id=1566910263]
+layout_mode = 0
+offset_left = 77.0
+offset_top = 312.0
+offset_right = 512.0
+offset_bottom = 418.0
+theme_override_font_sizes/font_size = 60
+text = "Master volume"
+
+[node name="HSlider" type="HSlider" parent="Label" unique_id=1037563489]
+texture_filter = 1
+layout_mode = 0
+offset_left = 500.0
+offset_top = -22.0
+offset_right = 1035.0
+offset_bottom = 130.0
+max_value = 1.0
+step = 0.01
+script = ExtResource("1_nf50l")
+
+[node name="AnhVuiPhạmKỳ(duzmeRemix)AnhVuiĐếnNỗiNghẹnNgào___remixTikTokDuzmeMusic(youtube)" type="AudioStreamPlayer" parent="." unique_id=1869875471]
+stream = ExtResource("2_0d63n")
+autoplay = true
+
+[node name="Button" type="Button" parent="." unique_id=1380875411]
+layout_mode = 0
+offset_right = 68.0
+offset_bottom = 66.0
+theme_override_font_sizes/font_size = 45
+text = "béo"
+
+[connection signal="value_changed" from="Label/HSlider" to="Label/HSlider" method="_on_value_changed"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
