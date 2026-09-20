@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b658cepusftuf"]
 
-[ext_resource type="Script" uid="uid://bgkn50km84u16" path="res://scenes/menu & options/setting_game.gd" id="1_f7dxp"]
+[ext_resource type="Script" uid="uid://bgkn50km84u16" path="res://scripts/setting_game.gd" id="1_f7dxp"]
 [ext_resource type="Script" uid="uid://ci85wyadcd2fi" path="res://scripts/h_slider.gd" id="1_nf50l"]
 [ext_resource type="AudioStream" uid="uid://ead813sw1ljy" path="res://soundtrack/Anh Vui - Phạm Kỳ (Duzme Remix)  Anh Vui Đến Nỗi Nghẹn Ngào...Remix Tik Tok - Duzme Music (youtube).mp3" id="2_0d63n"]
 
