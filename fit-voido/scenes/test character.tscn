@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://drji0nr53g0ea"]
 
 [ext_resource type="Texture2D" uid="uid://qryph81efuux" path="res://textures/characters/Modern_Exteriors_Characters_Scout_48x48_1.png" id="1_bngte"]
+[ext_resource type="Script" uid="uid://6nlx1022cka1" path="res://scripts/test_character.gd" id="1_nytvd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5h11f"]
 size = Vector2(26, 46)
@@ -97,7 +98,8 @@ animations = [{
 "speed": 12.0
 }]
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=208504857]
+[node name="Mạnh béo" type="CharacterBody2D" unique_id=208504857]
+script = ExtResource("1_nytvd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1499236277]
 shape = SubResource("RectangleShape2D_5h11f")
