@@ -22,11 +22,20 @@ buses/default_bus_layout="uid://d0tl51dhmhb4f"
 [autoload]
 
 Setting="*uid://cbrthw1rnxkr2"
+DialogueManager="*uid://c3rodes2l3gxb"
+
+[dialogue_manager]
+
+runtime/balloon_path="res://Dialogues/Bubbles/balloon.tscn"
 
 [display]
 
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
 
 [physics]
 
