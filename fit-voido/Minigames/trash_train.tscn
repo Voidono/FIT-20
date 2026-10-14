@@ -1,0 +1,6 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" uid="uid://ckloccrfy24le" path="res://Minigames/trash_train.gd" id="1_tt"]
+
+[node name="TrashTrain" type="Node2D"]
+script = ExtResource("1_tt")
