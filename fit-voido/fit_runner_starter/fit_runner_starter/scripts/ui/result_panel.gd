@@ -9,14 +9,14 @@ signal quit_pressed
 @export var star_full: Texture2D
 @export var star_empty: Texture2D
 
-@onready var _title: Label = %TitleLabel
-@onready var _star_row: Control = %Stars
-@onready var _time: Label = %TimeLabel
-@onready var _par: Label = %ParLabel
-@onready var _walls: Label = %WallsLabel
-@onready var _stone_row: Control = %StoneRow
-@onready var _hint: Label = %HintLabel
-@onready var _continue: Button = %ContinueButton
+@onready var _title: Label = $VBox/TitleLabel
+@onready var _star_row: Control = $VBox/Stars
+@onready var _time: Label = $VBox/TimeLabel
+@onready var _par: Label = $VBox/ParLabel
+@onready var _walls: Label = $VBox/WallsLabel
+@onready var _stone_row: Control =$VBox/StoneRow
+@onready var _hint: Label = $VBox/HintLabel
+@onready var _continue: Button = $VBox/Buttons/ContinueButton
 
 
 func show_result(r: RunResult) -> void:

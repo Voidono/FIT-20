@@ -3,8 +3,8 @@ extends TextureProgressBar
 ## Stamina bar. Frame, fill, pattern and the exit notch are textures in stamina_bar.tscn. This script only sets
 ## the fill amount, the zone colour and pattern, and where the notch sits (where the wall lets go).
 
-@onready var _pattern: TextureRect = %Pattern
-@onready var _exit_mark: Control = %ExitMark
+@onready var _pattern: TextureRect = $Pattern
+@onready var _exit_mark: Control = $ExitMark
 
 
 func apply(fraction: float, style: ZoneStyle, walled: bool, exit_fraction: float, blink: float) -> void:

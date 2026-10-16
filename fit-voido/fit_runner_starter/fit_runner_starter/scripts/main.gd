@@ -7,7 +7,7 @@ const BASE_HEIGHT: int = 360
 const MIN_WIDTH: int = 640
 const MAX_ASPECT: float = 2.05  ## about 18.4:9; wider screens get side bars so nobody sees much further ahead
 
-@onready var _status: Label = %Status
+@onready var _status: Label = $StatusLayer/Status
 
 
 func _enter_tree() -> void:

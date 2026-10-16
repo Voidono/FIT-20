@@ -1,30 +1,34 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene format=3 uid="uid://bwjid0syovyaf"]
 
-[ext_resource type="Script" path="res://scripts/debug/debug_overlay.gd" id="1_debug_over"]
+[ext_resource type="Script" uid="uid://beepes8ds1nei" path="res://scripts/debug/debug_overlay.gd" id="1_debug_over"]
 [ext_resource type="PackedScene" path="res://scenes/debug/tuning_slider.tscn" id="2_tuning_sli"]
 
-[node name="DebugOverlay" type="CanvasLayer"]
+[node name="DebugOverlay" type="CanvasLayer" unique_id=15864595]
 layer = 20
 script = ExtResource("1_debug_over")
 
-[node name="Root" type="Control" parent="."]
+[node name="Root" type="Control" parent="." unique_id=473341384]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="ToggleButton" type="Button" parent="Root" unique_name_in_owner=true]
+[node name="ToggleButton" type="Button" parent="Root" unique_id=794086897]
+layout_mode = 0
 offset_left = 4.0
 offset_top = 4.0
 offset_right = 44.0
 offset_bottom = 26.0
 focus_mode = 0
-text = "DBG"
 theme_override_font_sizes/font_size = 11
+text = "DBG"
 
-[node name="Panel" type="PanelContainer" parent="Root" unique_name_in_owner=true]
+[node name="Panel" type="PanelContainer" parent="Root" unique_id=1789310033]
 visible = false
+layout_mode = 0
 anchor_left = 0.58
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -34,264 +38,288 @@ offset_bottom = -4.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="Scroll" type="ScrollContainer" parent="Root/Panel"]
+[node name="Scroll" type="ScrollContainer" parent="Root/Panel" unique_id=857696112]
+layout_mode = 2
 horizontal_scroll_mode = 0
 
-[node name="Box" type="VBoxContainer" parent="Root/Panel/Scroll"]
+[node name="Box" type="VBoxContainer" parent="Root/Panel/Scroll" unique_id=1034711814]
+layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 3
 
-[node name="Readout" type="Label" parent="Root/Panel/Scroll/Box" unique_name_in_owner=true]
-text = ""
-theme_override_font_sizes/font_size = 11
+[node name="Readout" type="Label" parent="Root/Panel/Scroll/Box" unique_id=1548531866]
+layout_mode = 2
 theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 11
 
-[node name="Buttons" type="HBoxContainer" parent="Root/Panel/Scroll/Box"]
+[node name="Buttons" type="HBoxContainer" parent="Root/Panel/Scroll/Box" unique_id=966251406]
+layout_mode = 2
 
-[node name="RestartButton" type="Button" parent="Root/Panel/Scroll/Box/Buttons"]
+[node name="RestartButton" type="Button" parent="Root/Panel/Scroll/Box/Buttons" unique_id=1641291622]
+layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
+theme_override_font_sizes/font_size = 11
 text = "Restart"
-theme_override_font_sizes/font_size = 11
 
-[node name="CopyLogButton" type="Button" parent="Root/Panel/Scroll/Box/Buttons"]
+[node name="CopyLogButton" type="Button" parent="Root/Panel/Scroll/Box/Buttons" unique_id=339756625]
+layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
+theme_override_font_sizes/font_size = 11
 text = "Copy log"
-theme_override_font_sizes/font_size = 11
 
-[node name="Presets" type="HBoxContainer" parent="Root/Panel/Scroll/Box"]
+[node name="Presets" type="HBoxContainer" parent="Root/Panel/Scroll/Box" unique_id=80087827]
+layout_mode = 2
 
-[node name="OriginalButton" type="Button" parent="Root/Panel/Scroll/Box/Presets"]
+[node name="OriginalButton" type="Button" parent="Root/Panel/Scroll/Box/Presets" unique_id=136145663]
+layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
+theme_override_font_sizes/font_size = 11
 text = "Your numbers"
-theme_override_font_sizes/font_size = 11
 
-[node name="CalibratedButton" type="Button" parent="Root/Panel/Scroll/Box/Presets"]
+[node name="CalibratedButton" type="Button" parent="Root/Panel/Scroll/Box/Presets" unique_id=1384231841]
+layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
-text = "Calibrated"
 theme_override_font_sizes/font_size = 11
+text = "Calibrated"
 
-[node name="ModeOption" type="OptionButton" parent="Root/Panel/Scroll/Box" unique_name_in_owner=true]
+[node name="ModeOption" type="OptionButton" parent="Root/Panel/Scroll/Box" unique_id=137419734]
+layout_mode = 2
 focus_mode = 0
 theme_override_font_sizes/font_size = 11
-item_count = 2
 selected = 0
+item_count = 2
 popup/item_0/text = "A  hold / release"
 popup/item_0/id = 0
 popup/item_1/text = "B  hold-time tiers"
 popup/item_1/id = 1
 
-[node name="LanguageOption" type="OptionButton" parent="Root/Panel/Scroll/Box" unique_name_in_owner=true]
+[node name="LanguageOption" type="OptionButton" parent="Root/Panel/Scroll/Box" unique_id=1704787132]
+layout_mode = 2
 focus_mode = 0
 theme_override_font_sizes/font_size = 11
-item_count = 2
 selected = 0
+item_count = 2
 popup/item_0/text = "vi  Tiếng Việt"
 popup/item_0/id = 0
 popup/item_1/text = "en  English"
 popup/item_1/id = 1
 
-[node name="Sliders" type="VBoxContainer" parent="Root/Panel/Scroll/Box" unique_name_in_owner=true]
+[node name="Sliders" type="VBoxContainer" parent="Root/Panel/Scroll/Box" unique_id=1350597052]
+layout_mode = 2
 theme_override_constants/separation = 2
 
-[node name="Slider_max_speed" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("2_tuning_sli")]
+[node name="Slider_max_speed" parent="Root/Panel/Scroll/Box/Sliders" unique_id=1172753551 instance=ExtResource("2_tuning_sli")]
+layout_mode = 2
 property = &"max_speed"
 label_text = "max speed px/s"
 min_value = 80.0
 max_value = 260.0
 step = 1.0
 
-[node name="Slider_track_length" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("2_tuning_sli")]
+[node name="Slider_track_length" parent="Root/Panel/Scroll/Box/Sliders" unique_id=942893637 instance=ExtResource("2_tuning_sli")]
+layout_mode = 2
 property = &"track_length"
 label_text = "track length px"
 min_value = 4000.0
 max_value = 16000.0
 step = 100.0
 
-[node name="Slider_rise_rate" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("2_tuning_sli")]
+[node name="Slider_rise_rate" parent="Root/Panel/Scroll/Box/Sliders" unique_id=250359901 instance=ExtResource("2_tuning_sli")]
+layout_mode = 2
 property = &"rise_rate"
 label_text = "A rise /s"
 min_value = 0.1
 max_value = 2.0
 step = 0.05
 
-[node name="Slider_fall_rate" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("2_tuning_sli")]
+[node name="Slider_fall_rate" parent="Root/Panel/Scroll/Box/Sliders" unique_id=451308322 instance=ExtResource("2_tuning_sli")]
+layout_mode = 2
 property = &"fall_rate"
 label_text = "A fall /s"
 min_value = 0.1
 max_value = 2.5
 step = 0.05
 
-[node name="Slider_rest_floor" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("2_tuning_sli")]
+[node name="Slider_rest_floor" parent="Root/Panel/Scroll/Box/Sliders" unique_id=1572651232 instance=ExtResource("2_tuning_sli")]
+layout_mode = 2
 property = &"rest_floor"
 label_text = "A rest floor"
-min_value = 0.0
 max_value = 0.5
-step = 0.01
 
-[node name="Slider_stick_start" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("2_tuning_sli")]
+[node name="Slider_stick_start" parent="Root/Panel/Scroll/Box/Sliders" unique_id=158285304 instance=ExtResource("2_tuning_sli")]
+layout_mode = 2
 property = &"stick_start"
 label_text = "A stick start"
 min_value = 0.1
-max_value = 1.0
 step = 0.05
 
-[node name="Slider_stick_end" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("2_tuning_sli")]
+[node name="Slider_stick_end" parent="Root/Panel/Scroll/Box/Sliders" unique_id=1203196991 instance=ExtResource("2_tuning_sli")]
+layout_mode = 2
 property = &"stick_end"
 label_text = "A stick end"
 min_value = 0.1
-max_value = 1.0
 step = 0.05
 
-[node name="Slider_tier_up_time" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("2_tuning_sli")]
+[node name="Slider_tier_up_time" parent="Root/Panel/Scroll/Box/Sliders" unique_id=413578955 instance=ExtResource("2_tuning_sli")]
+layout_mode = 2
 property = &"tier_up_time"
 label_text = "B up time s"
 min_value = 0.2
 max_value = 1.5
 step = 0.05
 
-[node name="Slider_tier_down_time" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("2_tuning_sli")]
+[node name="Slider_tier_down_time" parent="Root/Panel/Scroll/Box/Sliders" unique_id=705145000 instance=ExtResource("2_tuning_sli")]
+layout_mode = 2
 property = &"tier_down_time"
 label_text = "B down time s"
 min_value = 0.2
 max_value = 1.5
 step = 0.05
 
-[node name="Slider_speed_accel" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("2_tuning_sli")]
+[node name="Slider_speed_accel" parent="Root/Panel/Scroll/Box/Sliders" unique_id=550450849 instance=ExtResource("2_tuning_sli")]
+layout_mode = 2
 property = &"speed_accel"
 label_text = "pace accel /s"
 min_value = 0.3
 max_value = 4.0
 step = 0.05
 
-[node name="Slider_speed_decel" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("2_tuning_sli")]
+[node name="Slider_speed_decel" parent="Root/Panel/Scroll/Box/Sliders" unique_id=864446779 instance=ExtResource("2_tuning_sli")]
+layout_mode = 2
 property = &"speed_decel"
 label_text = "pace decel /s"
 min_value = 0.3
 max_value = 4.0
 step = 0.05
 
-[node name="Slider_rate_recover" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("2_tuning_sli")]
+[node name="Slider_rate_recover" parent="Root/Panel/Scroll/Box/Sliders" unique_id=480751046 instance=ExtResource("2_tuning_sli")]
+layout_mode = 2
 property = &"rate_recover"
 label_text = "drain recover"
 min_value = 0.5
 max_value = 8.0
 step = 0.1
 
-[node name="Slider_rate_cruise" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("2_tuning_sli")]
+[node name="Slider_rate_cruise" parent="Root/Panel/Scroll/Box/Sliders" unique_id=1306252999 instance=ExtResource("2_tuning_sli")]
+layout_mode = 2
 property = &"rate_cruise"
 label_text = "drain cruise"
 min_value = -3.0
 max_value = 0.0
 step = 0.05
 
-[node name="Slider_rate_push" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("2_tuning_sli")]
+[node name="Slider_rate_push" parent="Root/Panel/Scroll/Box/Sliders" unique_id=733323105 instance=ExtResource("2_tuning_sli")]
+layout_mode = 2
 property = &"rate_push"
 label_text = "drain push"
 min_value = -6.0
 max_value = 0.0
 step = 0.05
 
-[node name="Slider_rate_sprint" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("2_tuning_sli")]
+[node name="Slider_rate_sprint" parent="Root/Panel/Scroll/Box/Sliders" unique_id=1420946256 instance=ExtResource("2_tuning_sli")]
+layout_mode = 2
 property = &"rate_sprint"
 label_text = "drain sprint"
 min_value = -14.0
 max_value = 0.0
 step = 0.1
 
-[node name="Slider_wall_speed_cap" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("2_tuning_sli")]
+[node name="Slider_wall_speed_cap" parent="Root/Panel/Scroll/Box/Sliders" unique_id=2146838414 instance=ExtResource("2_tuning_sli")]
+layout_mode = 2
 property = &"wall_speed_cap"
 label_text = "wall pace cap"
 min_value = 0.2
 max_value = 0.7
-step = 0.01
 
-[node name="Slider_wall_release" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("2_tuning_sli")]
+[node name="Slider_wall_release" parent="Root/Panel/Scroll/Box/Sliders" unique_id=1520879367 instance=ExtResource("2_tuning_sli")]
+layout_mode = 2
 property = &"wall_release"
 label_text = "wall exit"
 min_value = 10.0
 max_value = 70.0
 step = 1.0
 
-[node name="Slider_water_amount" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("2_tuning_sli")]
+[node name="Slider_water_amount" parent="Root/Panel/Scroll/Box/Sliders" unique_id=1506379922 instance=ExtResource("2_tuning_sli")]
+layout_mode = 2
 property = &"water_amount"
 label_text = "water +"
-min_value = 0.0
 max_value = 40.0
 step = 1.0
 
-[node name="Slider_water_duration" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("2_tuning_sli")]
+[node name="Slider_water_duration" parent="Root/Panel/Scroll/Box/Sliders" unique_id=2056357061 instance=ExtResource("2_tuning_sli")]
+layout_mode = 2
 property = &"water_duration"
 label_text = "water time s"
 min_value = 0.5
 max_value = 4.0
 step = 0.1
 
-[node name="Slider_spurt_speed_cap" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("2_tuning_sli")]
+[node name="Slider_spurt_speed_cap" parent="Root/Panel/Scroll/Box/Sliders" unique_id=1582250269 instance=ExtResource("2_tuning_sli")]
+layout_mode = 2
 property = &"spurt_speed_cap"
 label_text = "spurt cap"
 min_value = 1.0
 max_value = 1.3
-step = 0.01
 
-[node name="Slider_spurt_drain_mult" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("2_tuning_sli")]
+[node name="Slider_spurt_drain_mult" parent="Root/Panel/Scroll/Box/Sliders" unique_id=903230887 instance=ExtResource("2_tuning_sli")]
+layout_mode = 2
 property = &"spurt_drain_mult"
 label_text = "spurt drain x"
 min_value = 0.2
-max_value = 1.0
 step = 0.05
 
-[node name="Slider_uphill_drain_extra" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("2_tuning_sli")]
+[node name="Slider_uphill_drain_extra" parent="Root/Panel/Scroll/Box/Sliders" unique_id=1673394216 instance=ExtResource("2_tuning_sli")]
+layout_mode = 2
 property = &"uphill_drain_extra"
 label_text = "uphill drain +"
-min_value = 0.0
 max_value = 3.0
 step = 0.1
 
-[node name="Slider_uphill_speed_penalty" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("2_tuning_sli")]
+[node name="Slider_uphill_speed_penalty" parent="Root/Panel/Scroll/Box/Sliders" unique_id=764702906 instance=ExtResource("2_tuning_sli")]
+layout_mode = 2
 property = &"uphill_speed_penalty"
 label_text = "uphill speed -"
-min_value = 0.0
 max_value = 0.6
-step = 0.01
 
-[node name="Slider_downhill_speed_bonus" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("2_tuning_sli")]
+[node name="Slider_downhill_speed_bonus" parent="Root/Panel/Scroll/Box/Sliders" unique_id=1182672232 instance=ExtResource("2_tuning_sli")]
+layout_mode = 2
 property = &"downhill_speed_bonus"
 label_text = "downhill speed +"
-min_value = 0.0
 max_value = 0.6
-step = 0.01
 
-[node name="Slider_cutoff_mult" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("2_tuning_sli")]
+[node name="Slider_cutoff_mult" parent="Root/Panel/Scroll/Box/Sliders" unique_id=990702963 instance=ExtResource("2_tuning_sli")]
+layout_mode = 2
 property = &"cutoff_mult"
 label_text = "cutoff x par"
 min_value = 1.1
 max_value = 2.5
 step = 0.05
 
-[node name="Slider_star3_mult" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("2_tuning_sli")]
+[node name="Slider_star3_mult" parent="Root/Panel/Scroll/Box/Sliders" unique_id=2091306334 instance=ExtResource("2_tuning_sli")]
+layout_mode = 2
 property = &"star3_mult"
 label_text = "3 star x par"
 min_value = 1.0
 max_value = 1.3
-step = 0.01
 
-[node name="Slider_star2_mult" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("2_tuning_sli")]
+[node name="Slider_star2_mult" parent="Root/Panel/Scroll/Box/Sliders" unique_id=1174362246 instance=ExtResource("2_tuning_sli")]
+layout_mode = 2
 property = &"star2_mult"
 label_text = "2 star x par"
 min_value = 1.0
 max_value = 1.6
-step = 0.01
 
-[node name="TestLabel" type="Label" parent="Root/Panel/Scroll/Box"]
+[node name="TestLabel" type="Label" parent="Root/Panel/Scroll/Box" unique_id=1440696007]
+auto_translate_mode = 2
+layout_mode = 2
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 11
 text = "Tiếng Việt: ắ ằ ẳ ẵ ặ ề ể ễ ệ ổ ỗ ộ ờ ở ỡ ợ ừ ử ữ ự ỳ ỷ ỹ ỵ"
 autowrap_mode = 3
-theme_override_font_sizes/font_size = 11
-auto_translate_mode = 2
-theme_override_constants/outline_size = 0
 
 [connection signal="pressed" from="Root/ToggleButton" to="." method="toggle_panel"]
 [connection signal="pressed" from="Root/Panel/Scroll/Box/Buttons/RestartButton" to="." method="_on_restart_pressed"]

@@ -9,9 +9,9 @@ extends HBoxContainer
 @export var max_value: float = 1.0
 @export var step: float = 0.01
 
-@onready var _name_label: Label = %NameLabel
-@onready var _slider: HSlider = %Slider
-@onready var _value_label: Label = %ValueLabel
+@onready var _name_label: Label =$NameLabel
+@onready var _slider: HSlider = $Slider
+@onready var _value_label: Label = $ValueLabel
 
 var _tuning: RunnerTuning
 var _syncing: bool = false

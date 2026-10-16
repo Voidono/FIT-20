@@ -12,11 +12,11 @@ const GROUND_Y: float = 250.0  ## world y of flat ground; terrain height is subt
 @export var post_scene: PackedScene
 @export var post_every: float = 1000.0  ## px between distance posts (10 px = 1 m)
 
-@onready var _ground: Polygon2D = %Ground
-@onready var _track: Line2D = %Track
-@onready var _lane: Line2D = %LaneLine
-@onready var _props: Node2D = %Props
-@onready var _posts: Node2D = %Posts
+@onready var _ground: Polygon2D = $Ground
+@onready var _track: Line2D = $Track
+@onready var _lane: Line2D = $LaneLine
+@onready var _props: Node2D = $Props
+@onready var _posts: Node2D = $Posts
 
 var _tuning: RunnerTuning
 var _profile: CourseProfile

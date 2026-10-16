@@ -1,14 +1,13 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene format=3 uid="uid://bq2ugmni0jajy"]
 
-[ext_resource type="Texture2D" path="res://assets/ui/bar_under.png" id="1_bar_under"]
-[ext_resource type="Texture2D" path="res://assets/ui/bar_over.png" id="2_bar_over"]
-[ext_resource type="Texture2D" path="res://assets/ui/bar_fill.png" id="3_bar_fill"]
-[ext_resource type="Script" path="res://scripts/ui/stamina_bar.gd" id="4_stamina_ba"]
-[ext_resource type="Texture2D" path="res://assets/ui/exit_mark.png" id="5_exit_mark"]
+[ext_resource type="Texture2D" uid="uid://db0y1qn1htfd2" path="res://assets/ui/bar_under.png" id="1_bar_under"]
+[ext_resource type="Texture2D" uid="uid://y2xbnv3bbmwk" path="res://assets/ui/bar_over.png" id="2_bar_over"]
+[ext_resource type="Texture2D" uid="uid://bpbbwsh1xn087" path="res://assets/ui/bar_fill.png" id="3_bar_fill"]
+[ext_resource type="Script" uid="uid://bpqtsdalmhues" path="res://scripts/ui/stamina_bar.gd" id="4_stamina_ba"]
+[ext_resource type="Texture2D" uid="uid://d3ac3gujxh61a" path="res://assets/ui/exit_mark.png" id="5_exit_mark"]
 
-[node name="StaminaBar" type="TextureProgressBar"]
+[node name="StaminaBar" type="TextureProgressBar" unique_id=1380565548]
 custom_minimum_size = Vector2(0, 16)
-max_value = 100.0
 value = 100.0
 nine_patch_stretch = true
 stretch_margin_left = 3
@@ -20,7 +19,8 @@ texture_over = ExtResource("2_bar_over")
 texture_progress = ExtResource("3_bar_fill")
 script = ExtResource("4_stamina_ba")
 
-[node name="Pattern" type="TextureRect" parent="." unique_name_in_owner=true]
+[node name="Pattern" type="TextureRect" parent="." unique_id=54442747]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 2.0
@@ -31,7 +31,8 @@ mouse_filter = 2
 expand_mode = 1
 stretch_mode = 1
 
-[node name="ExitMark" type="TextureRect" parent="." unique_name_in_owner=true]
+[node name="ExitMark" type="TextureRect" parent="." unique_id=1856107671]
+layout_mode = 0
 anchor_left = 0.35
 anchor_right = 0.35
 anchor_bottom = 1.0
@@ -40,4 +41,3 @@ offset_right = 1.0
 mouse_filter = 2
 texture = ExtResource("5_exit_mark")
 expand_mode = 1
-stretch_mode = 0

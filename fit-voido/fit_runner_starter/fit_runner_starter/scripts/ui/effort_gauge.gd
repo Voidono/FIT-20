@@ -4,10 +4,10 @@ extends Control
 ## Scheme A shows the cruise band, scheme B shows its tier ticks. Every part is a node with a texture in the scene;
 ## positions are anchors (0..1 across the gauge), so it scales with the screen.
 
-@onready var _band: Control = %CruiseBand
-@onready var _ticks: Control = %Ticks
-@onready var _pace: Control = %PaceMarker
-@onready var _effort: Control = %EffortMarker
+@onready var _band: Control = $CruiseBand
+@onready var _ticks: Control = $Ticks
+@onready var _pace: Control = $PaceMarker
+@onready var _effort: Control = $EffortMarker
 
 
 func apply(effort: float, pace: float, band_lo: float, band_hi: float, tiers_mode: bool, tier_values: PackedFloat32Array) -> void:

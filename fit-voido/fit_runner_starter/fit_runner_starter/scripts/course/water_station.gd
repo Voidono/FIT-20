@@ -2,8 +2,7 @@ class_name WaterStation
 extends CourseProp
 ## Water station: spreads the tables under %Tables along span_fraction of the track and keeps them on the ground.
 
-@onready var _tables: Node2D = %Tables
-
+@onready var _tables: Node2D = $Tables
 
 func _on_placed(tuning: RunnerTuning, profile: CourseProfile, ground_y: float) -> void:
 	var span: float = span_fraction * tuning.track_length

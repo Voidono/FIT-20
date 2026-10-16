@@ -19,11 +19,11 @@ extends Node2D
 @export var status_wall_texture: Texture2D
 @export var status_drink_texture: Texture2D
 
-@onready var _body: Node2D = %Body
-@onready var _sprite: AnimatedSprite2D = %Sprite
-@onready var _dust: CPUParticles2D = %Dust
-@onready var _splash: CPUParticles2D = %Splash
-@onready var _status: Sprite2D = %StatusIcon
+@onready var _body: Node2D = $Body
+@onready var _sprite: AnimatedSprite2D = $Body/Sprite
+@onready var _dust: CPUParticles2D = $Body/Dust
+@onready var _splash: CPUParticles2D = $Splash
+@onready var _status: Sprite2D =$Body/StatusIcon
 
 var _was_drinking: bool = false
 

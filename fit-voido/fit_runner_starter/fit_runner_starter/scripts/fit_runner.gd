@@ -28,12 +28,12 @@ const EFFORT_AVG_TIME: float = 1.5
 @export_range(0.3, 0.9, 0.01) var camera_runner_y: float = 0.62  ## and 62% of the way down
 @export_range(0.0, 5.0, 0.5) var countdown_seconds: float = 3.0
 
-@onready var _camera: Camera2D = %Camera
-@onready var _course: Course = %Course
-@onready var _ghost: RunnerCharacter = %Ghost
-@onready var _runner: RunnerCharacter = %Runner
-@onready var _hud: Hud = %Hud
-@onready var _debug: DebugOverlay = %DebugOverlay
+@onready var _camera: Camera2D = $Camera
+@onready var _course: Course = $Course
+@onready var _ghost: RunnerCharacter = $Ghost
+@onready var _runner: RunnerCharacter = $Runner
+@onready var _hud: Hud = $Hud
+@onready var _debug: DebugOverlay = $DebugOverlay
 
 var phase: int = RunState.Phase.READY
 var model: RunnerModel

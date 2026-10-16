@@ -3,12 +3,12 @@ extends Control
 ## Whole-course strip: elevation profile (a Line2D), water station and final spurt (TextureRects), you and the ghost
 ## (dots). The camera only shows about 400 px ahead, so this is how the player plans hills and the spurt.
 
-@onready var _profile: Line2D = %Profile
-@onready var _bar: TextureProgressBar = %Bar
-@onready var _water: Control = %WaterZone
-@onready var _spurt: Control = %SpurtZone
-@onready var _player: Control = %PlayerDot
-@onready var _ghost: Control = %GhostDot
+@onready var _profile: Line2D = $Profile
+@onready var _bar: TextureProgressBar = $Bar
+@onready var _water: Control = $Bar/WaterZone
+@onready var _spurt: Control = $Bar/SpurtZone
+@onready var _player: Control = $Bar/PlayerDot
+@onready var _ghost: Control = $Bar/GhostDot
 
 var _tuning: RunnerTuning
 var _course: CourseProfile

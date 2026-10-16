@@ -1,85 +1,95 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene format=3 uid="uid://cdvs60acl5syu"]
 
-[ext_resource type="Script" path="res://scripts/ui/result_panel.gd" id="1_result_pan"]
-[ext_resource type="Texture2D" path="res://assets/ui/star_full.png" id="2_star_full"]
-[ext_resource type="Texture2D" path="res://assets/ui/star_empty.png" id="3_star_empty"]
-[ext_resource type="Texture2D" path="res://assets/ui/time_stone.png" id="4_time_stone"]
+[ext_resource type="Script" uid="uid://ciesxouogqepp" path="res://scripts/ui/result_panel.gd" id="1_result_pan"]
+[ext_resource type="Texture2D" uid="uid://bpj7d5okbhnqc" path="res://assets/ui/star_full.png" id="2_star_full"]
+[ext_resource type="Texture2D" uid="uid://cwhi84wr4qx86" path="res://assets/ui/star_empty.png" id="3_star_empty"]
+[ext_resource type="Texture2D" uid="uid://dqkyvgjqqya10" path="res://assets/ui/time_stone.png" id="4_time_stone"]
 
-[node name="ResultPanel" type="PanelContainer"]
+[node name="ResultPanel" type="PanelContainer" unique_id=1678067506]
 script = ExtResource("1_result_pan")
 star_full = ExtResource("2_star_full")
 star_empty = ExtResource("3_star_empty")
 
-[node name="VBox" type="VBoxContainer" parent="."]
+[node name="VBox" type="VBoxContainer" parent="." unique_id=219890285]
+layout_mode = 2
 theme_override_constants/separation = 6
 
-[node name="TitleLabel" type="Label" parent="VBox" unique_name_in_owner=true]
-text = ""
-horizontal_alignment = 1
+[node name="TitleLabel" type="Label" parent="VBox" unique_id=2020953388]
+layout_mode = 2
 theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
 
-[node name="Stars" type="HBoxContainer" parent="VBox" unique_name_in_owner=true]
-alignment = 1
+[node name="Stars" type="HBoxContainer" parent="VBox" unique_id=485370969]
+layout_mode = 2
 theme_override_constants/separation = 4
+alignment = 1
 
-[node name="Star1" type="TextureRect" parent="VBox/Stars"]
+[node name="Star1" type="TextureRect" parent="VBox/Stars" unique_id=1025943495]
 custom_minimum_size = Vector2(26, 26)
+layout_mode = 2
 texture = ExtResource("3_star_empty")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Star2" type="TextureRect" parent="VBox/Stars"]
+[node name="Star2" type="TextureRect" parent="VBox/Stars" unique_id=439906763]
 custom_minimum_size = Vector2(26, 26)
+layout_mode = 2
 texture = ExtResource("3_star_empty")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Star3" type="TextureRect" parent="VBox/Stars"]
+[node name="Star3" type="TextureRect" parent="VBox/Stars" unique_id=1715636180]
 custom_minimum_size = Vector2(26, 26)
+layout_mode = 2
 texture = ExtResource("3_star_empty")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="TimeLabel" type="Label" parent="VBox" unique_name_in_owner=true]
-text = ""
-horizontal_alignment = 1
+[node name="TimeLabel" type="Label" parent="VBox" unique_id=2098458243]
+layout_mode = 2
 theme_override_font_sizes/font_size = 14
-
-[node name="ParLabel" type="Label" parent="VBox" unique_name_in_owner=true]
-text = ""
 horizontal_alignment = 1
-theme_override_font_sizes/font_size = 14
 
-[node name="WallsLabel" type="Label" parent="VBox" unique_name_in_owner=true]
-text = ""
+[node name="ParLabel" type="Label" parent="VBox" unique_id=25628220]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
 horizontal_alignment = 1
+
+[node name="WallsLabel" type="Label" parent="VBox" unique_id=246766348]
+layout_mode = 2
 theme_override_font_sizes/font_size = 14
+horizontal_alignment = 1
 
-[node name="StoneRow" type="CenterContainer" parent="VBox" unique_name_in_owner=true]
+[node name="StoneRow" type="CenterContainer" parent="VBox" unique_id=251250044]
+layout_mode = 2
 
-[node name="Stone" type="TextureRect" parent="VBox/StoneRow"]
+[node name="Stone" type="TextureRect" parent="VBox/StoneRow" unique_id=281386046]
 custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
 texture = ExtResource("4_time_stone")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="HintLabel" type="Label" parent="VBox" unique_name_in_owner=true]
-text = ""
+[node name="HintLabel" type="Label" parent="VBox" unique_id=1899657012]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
 horizontal_alignment = 1
 autowrap_mode = 3
-theme_override_font_sizes/font_size = 12
 
-[node name="Buttons" type="HBoxContainer" parent="VBox"]
+[node name="Buttons" type="HBoxContainer" parent="VBox" unique_id=1791211925]
+layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="RetryButton" type="Button" parent="VBox/Buttons"]
+[node name="RetryButton" type="Button" parent="VBox/Buttons" unique_id=51735850]
 custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
 text = "BTN_RESTART"
 
-[node name="ContinueButton" type="Button" parent="VBox/Buttons" unique_name_in_owner=true]
+[node name="ContinueButton" type="Button" parent="VBox/Buttons" unique_id=1475339237]
 custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
 text = "BTN_CONTINUE"

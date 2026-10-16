@@ -7,12 +7,12 @@ extends CanvasLayer
 signal restart_requested
 signal copy_log_requested
 
-@onready var _toggle: Button = %ToggleButton
-@onready var _panel: PanelContainer = %Panel
-@onready var _readout: Label = %Readout
-@onready var _mode_option: OptionButton = %ModeOption
-@onready var _language_option: OptionButton = %LanguageOption
-@onready var _sliders: Control = %Sliders
+@onready var _toggle: Button = $Root/ToggleButton
+@onready var _panel: PanelContainer = $Root/Panel
+@onready var _readout: Label = $Root/Panel/Scroll/Box/Readout
+@onready var _mode_option: OptionButton = $Root/Panel/Scroll/Box/ModeOption
+@onready var _language_option: OptionButton = $Root/Panel/Scroll/Box/LanguageOption
+@onready var _sliders: Control = $Root/Panel/Scroll/Box/Sliders
 
 var _tuning: RunnerTuning
 

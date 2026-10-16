@@ -9,22 +9,22 @@ signal resume_pressed
 signal retry_pressed
 signal quit_pressed
 
-@onready var _time_label: Label = %TimeLabel
-@onready var _zone_icon: TextureRect = %ZoneIcon
-@onready var _zone_label: Label = %ZoneLabel
-@onready var _delta_label: Label = %DeltaLabel
-@onready var _stamina_bar: StaminaBar = %StaminaBar
-@onready var _effort_gauge: EffortGauge = %EffortGauge
-@onready var _outlook_label: Label = %OutlookLabel
-@onready var _progress: ProgressStrip = %ProgressStrip
-@onready var _prompt: Label = %PromptLabel
-@onready var _ready_overlay: Control = %ReadyOverlay
-@onready var _countdown: Label = %CountdownLabel
-@onready var _pause_button: Button = %PauseButton
-@onready var _pause_menu: PauseMenu = %PauseMenu
-@onready var _result_panel: ResultPanel = %ResultPanel
-@onready var _rotate_overlay: Control = %RotateOverlay
-@onready var _zones: Node = %Zones
+@onready var _time_label: Label = $Root/Margin/Row/Center/Top/InfoRow/TimeLabel
+@onready var _zone_icon: TextureRect = $Root/Margin/Row/Center/Top/InfoRow/ZoneBox/ZoneIcon
+@onready var _zone_label: Label = $Root/Margin/Row/Center/Top/InfoRow/ZoneBox/ZoneLabel
+@onready var _delta_label: Label = $Root/Margin/Row/Center/Top/InfoRow/DeltaLabel
+@onready var _stamina_bar: StaminaBar = $Root/Margin/Row/Center/Top/StaminaBar
+@onready var _effort_gauge: EffortGauge = $Root/Margin/Row/Center/Top/EffortGauge
+@onready var _outlook_label: Label = $Root/Margin/Row/Center/Top/OutlookLabel
+@onready var _progress: ProgressStrip = $Root/Margin/Row/Center/ProgressStrip
+@onready var _prompt: Label = $Root/Margin/Row/Center/Middle/PromptLabel
+@onready var _ready_overlay: Control = $Root/Margin/Row/Center/Middle/Overlays/ReadyOverlay
+@onready var _countdown: Label = $Root/Margin/Row/Center/Middle/Overlays/CountdownLabel
+@onready var _pause_button: Button = $Root/PauseButton
+@onready var _pause_menu: PauseMenu = $Root/PauseMenu
+@onready var _result_panel: ResultPanel = $Root/ResultPanel
+@onready var _rotate_overlay: Control = $Root/RotateOverlay
+@onready var _zones: Node = $Root/Zones
 
 var _blink: float = 0.0
 var _last_zone: int = -1
