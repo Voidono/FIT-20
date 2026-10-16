@@ -5,6 +5,9 @@ extends CanvasLayer
 ## response choices and pop-in / pop-out animations. The flow follows the
 ## example balloon that ships with Dialogue Manager.
 ##
+## Laid out for a fixed 640x360 canvas. To move or resize the box, edit the
+## Dock node's offsets in the scene.
+##
 ## Show it with:
 ##   DialogueManager.show_dialogue_balloon_scene("res://dialogue/pixel_balloon.tscn", resource, "start")
 
@@ -44,8 +47,12 @@ var resource: DialogueResource
 ## Temporary game states
 var temporary_game_states: Array = []
 
-## See if we are waiting for the player
-var is_waiting_for_input: bool = false
+## See if we are waiting for the player (this also shows / hides the continue arrow)
+var is_waiting_for_input: bool = false:
+	set(value):
+		is_waiting_for_input = value
+		if is_node_ready():
+			_set_continue_arrow(value)
 
 ## See if we are running a long mutation and should hide the balloon
 var will_hide_balloon: bool = false
@@ -72,6 +79,7 @@ var dialogue_line: DialogueLine:
 var mutation_cooldown: Timer = Timer.new()
 
 var _tween: Tween
+var _arrow_tween: Tween
 var _portrait_cache: Dictionary = {}
 
 ## Full-screen control that catches clicks and the "next" action
@@ -81,14 +89,18 @@ var _portrait_cache: Dictionary = {}
 @onready var name_tag: Control = %NameTag
 @onready var character_label: Label = %CharacterLabel
 @onready var portrait: TextureRect = %Portrait
+@onready var portrait_frame: Control = %PortraitFrame
 @onready var text_column: Control = %TextColumn
 @onready var dialogue_label: DialogueLabel = %DialogueLabel
 @onready var responses_panel: Control = %ResponsesPanel
 @onready var responses_menu: DialogueResponsesMenu = %ResponsesMenu
+## The little arrow that hops when the player can press next
+@onready var continue_arrow: Polygon2D = %ContinueArrow
 
 
 func _ready() -> void:
 	dock.hide()
+	_set_continue_arrow(false)
 
 	var manager = _get_dialogue_manager()
 	if is_instance_valid(manager):
@@ -143,7 +155,7 @@ func apply_dialogue_line() -> void:
 
 	# Portrait (looked up by the untranslated character name)
 	portrait.texture = _find_portrait(dialogue_line.character, dialogue_line.get_tag_value(mood_tag))
-	portrait.visible = portrait.texture != null
+	portrait_frame.visible = portrait.texture != null
 
 	# Text and responses
 	dialogue_label.hide()
@@ -227,6 +239,23 @@ func _kill_tween() -> void:
 		_tween.kill()
 
 
+## Show or hide the "press to continue" arrow
+func _set_continue_arrow(is_shown: bool) -> void:
+	if _arrow_tween and _arrow_tween.is_valid():
+		_arrow_tween.kill()
+	continue_arrow.visible = is_shown
+	continue_arrow.position.y = 0.0
+	if not is_shown:
+		return
+
+	# A two-frame hop (instead of a smooth slide) keeps it looking like pixel art
+	_arrow_tween = create_tween().set_loops()
+	_arrow_tween.tween_callback(func(): continue_arrow.position.y = 3.0)
+	_arrow_tween.tween_interval(0.4)
+	_arrow_tween.tween_callback(func(): continue_arrow.position.y = 0.0)
+	_arrow_tween.tween_interval(0.4)
+
+
 ## Pop the box up from the bottom centre of the screen
 func _pop_in() -> void:
 	if is_open:
@@ -268,6 +297,7 @@ func _pop_out() -> void:
 
 ## The dialogue is over: pop out, then remove the balloon
 func _close() -> void:
+	is_waiting_for_input = false
 	await _pop_out()
 	if owner == null:
 		queue_free()
