@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://5ow5faothwr0"
-path="res://.godot/imported/DejaVuSans-Bold-vi.ttf-a6a36f8d4537ddd675b696996adcfe10.fontdata"
+uid="uid://bmjtdi4bf7ri1"
+path="res://.godot/imported/CyberpunkCraftpixPixel.otf-a035f8126cf8abba2c2894b91bc9317e.fontdata"
 
 [deps]
 
-source_file="res://assets/fonts/DejaVuSans-Bold-vi.ttf"
-dest_files=["res://.godot/imported/DejaVuSans-Bold-vi.ttf-a6a36f8d4537ddd675b696996adcfe10.fontdata"]
+source_file="res://assets/10 Font/CyberpunkCraftpixPixel.otf"
+dest_files=["res://.godot/imported/CyberpunkCraftpixPixel.otf-a035f8126cf8abba2c2894b91bc9317e.fontdata"]
 
 [params]
 
