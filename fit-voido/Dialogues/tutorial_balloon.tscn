@@ -1,8 +1,8 @@
-[gd_scene load_steps=10 format=3]
+[gd_scene format=3]
 
-[ext_resource type="Script" path="res://dialogue/tutorial_balloon.gd" id="1_tut"]
-[ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_label.gd" id="2_label"]
-[ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_responses_menu.gd" id="3_menu"]
+[ext_resource type="Script" uid="uid://dnh3j20sh5xg" path="res://Dialogues/tutorial_balloon.gd" id="1_tut"]
+[ext_resource type="Script" uid="uid://g32um0mltv5d" path="res://addons/dialogue_manager/nodes/dialogue_label/dialogue_label.gd" id="2_label"]
+[ext_resource type="Script" uid="uid://cm0xpfeywpqid" path="res://addons/dialogue_manager/dialogue_response.gd" id="3_menu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_header"]
 content_margin_left = 14.0
