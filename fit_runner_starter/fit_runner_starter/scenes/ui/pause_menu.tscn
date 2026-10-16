@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/pause_menu.gd" id="1_pause_menu"]
+
+[node name="PauseMenu" type="PanelContainer"]
+script = ExtResource("1_pause_menu")
+
+[node name="VBox" type="VBoxContainer" parent="."]
+theme_override_constants/separation = 8
+
+[node name="Title" type="Label" parent="VBox"]
+text = "PAUSE_TITLE"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 20
+
+[node name="ResumeButton" type="Button" parent="VBox"]
+custom_minimum_size = Vector2(0, 36)
+focus_mode = 0
+text = "BTN_RESUME"
+
+[node name="RetryButton" type="Button" parent="VBox"]
+custom_minimum_size = Vector2(0, 36)
+focus_mode = 0
+text = "BTN_RESTART"
+
+[node name="QuitButton" type="Button" parent="VBox"]
+custom_minimum_size = Vector2(0, 36)
+focus_mode = 0
+text = "BTN_QUIT"
+
+[connection signal="pressed" from="VBox/ResumeButton" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="VBox/RetryButton" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="VBox/QuitButton" to="." method="_on_quit_pressed"]

@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_main"]
+[ext_resource type="PackedScene" path="res://scenes/fit_runner.tscn" id="2_fit_runner"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_main")
+
+[node name="FitRunner" parent="." unique_name_in_owner=true instance=ExtResource("2_fit_runner")]
+
+[node name="StatusLayer" type="CanvasLayer" parent="."]
+layer = 30
+
+[node name="Status" type="Label" parent="StatusLayer" unique_name_in_owner=true]
+text = ""
+theme_override_font_sizes/font_size = 10
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = -14.0
+grow_vertical = 0
+auto_translate_mode = 2
+
+[connection signal="run_finished" from="FitRunner" to="." method="_on_run_finished"]
+[connection signal="quit_requested" from="FitRunner" to="." method="_on_quit_requested"]

@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Texture2D" path="res://assets/branding/fit_logo.png" id="1_fit_logo"]
+
+[node name="ReadyOverlay" type="VBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+mouse_filter = 2
+theme_override_constants/separation = 6
+
+[node name="Logo" type="TextureRect" parent="." unique_name_in_owner=true]
+custom_minimum_size = Vector2(0, 28)
+texture = ExtResource("1_fit_logo")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="StoryLabel" type="Label" parent="."]
+text = "STORY_READY"
+horizontal_alignment = 1
+autowrap_mode = 3
+theme_override_font_sizes/font_size = 16
+
+[node name="HowLabel" type="Label" parent="."]
+text = "PROMPT_HOW"
+horizontal_alignment = 1
+autowrap_mode = 3
+theme_override_font_sizes/font_size = 16
+theme_override_colors/font_color = Color(0.651, 0.8471, 0.2902, 1.0)
+
+[node name="TapLabel" type="Label" parent="."]
+text = "PROMPT_READY"
+horizontal_alignment = 1
+autowrap_mode = 3
+theme_override_font_sizes/font_size = 14
