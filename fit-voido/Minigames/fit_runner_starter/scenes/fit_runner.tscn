@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/fit_runner.gd" id="1_runner"]
+[ext_resource type="Script" path="res://scripts/course_view.gd" id="2_course"]
+[ext_resource type="Script" path="res://scripts/runner_view.gd" id="3_view"]
+[ext_resource type="Script" path="res://scripts/hud.gd" id="4_hud"]
+[ext_resource type="Script" path="res://scripts/debug_overlay.gd" id="5_debug"]
+
+[node name="FitRunner" type="Node2D"]
+script = ExtResource("1_runner")
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="CourseView" type="Node2D" parent="World"]
+script = ExtResource("2_course")
+
+[node name="GhostView" type="Node2D" parent="World"]
+script = ExtResource("3_view")
+is_ghost = true
+
+[node name="RunnerView" type="Node2D" parent="World"]
+script = ExtResource("3_view")
+
+[node name="Hud" type="CanvasLayer" parent="."]
+layer = 10
+script = ExtResource("4_hud")
+
+[node name="DebugOverlay" type="CanvasLayer" parent="."]
+layer = 20
+script = ExtResource("5_debug")

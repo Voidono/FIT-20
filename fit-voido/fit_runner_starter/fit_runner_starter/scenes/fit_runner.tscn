@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://dxgsbk33dyy6u"]
+
+[ext_resource type="Script" uid="uid://cj7kpiqfg2smp" path="res://scripts/fit_runner.gd" id="1_fit_runner"]
+[ext_resource type="Texture2D" uid="uid://bl082gbylancx" path="res://assets/world/sky.png" id="2_sky"]
+[ext_resource type="Texture2D" uid="uid://rxhavlrqnqey" path="res://assets/world/hills_far.png" id="3_hills_far"]
+[ext_resource type="Texture2D" uid="uid://c8w4pyesbjqqt" path="res://assets/world/hills_near.png" id="4_hills_near"]
+[ext_resource type="PackedScene" uid="uid://bmv5y4vt00mfa" path="res://scenes/course/course.tscn" id="5_course"]
+[ext_resource type="PackedScene" uid="uid://dkmbjj8gns40c" path="res://scenes/character/runner_character.tscn" id="6_runner_cha"]
+[ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="7_hud"]
+[ext_resource type="PackedScene" uid="uid://bwjid0syovyaf" path="res://scenes/debug/debug_overlay.tscn" id="8_debug_over"]
+
+[node name="FitRunner" type="Node2D" unique_id=1006708415]
+script = ExtResource("1_fit_runner")
+
+[node name="SkyLayer" type="CanvasLayer" parent="." unique_id=329945840]
+layer = -10
+
+[node name="Sky" type="TextureRect" parent="SkyLayer" unique_id=1343117410]
+texture_filter = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_sky")
+expand_mode = 1
+
+[node name="Background" type="Node2D" parent="." unique_id=61215565]
+z_index = -10
+
+[node name="FarHills" type="Parallax2D" parent="Background" unique_id=76029720]
+scroll_scale = Vector2(0.35, 1)
+repeat_size = Vector2(640, 0)
+repeat_times = 3
+
+[node name="Sprite" type="Sprite2D" parent="Background/FarHills" unique_id=1292297697]
+position = Vector2(0, 130)
+texture = ExtResource("3_hills_far")
+centered = false
+
+[node name="NearHills" type="Parallax2D" parent="Background" unique_id=1559461968]
+scroll_scale = Vector2(0.6, 1)
+repeat_size = Vector2(640, 0)
+repeat_times = 3
+
+[node name="Sprite" type="Sprite2D" parent="Background/NearHills" unique_id=1509388463]
+position = Vector2(0, 160)
+texture = ExtResource("4_hills_near")
+centered = false
+
+[node name="Camera" type="Camera2D" parent="." unique_id=77724071]
+
+[node name="Course" parent="." unique_id=2088759889 instance=ExtResource("5_course")]
+
+[node name="Ghost" parent="." unique_id=1414929695 instance=ExtResource("6_runner_cha")]
+modulate = Color(0.55, 0.9, 1, 0.45)
+
+[node name="Runner" parent="." unique_id=1304113636 instance=ExtResource("6_runner_cha")]
+
+[node name="Hud" parent="." unique_id=952084011 instance=ExtResource("7_hud")]
+
+[node name="DebugOverlay" parent="." unique_id=1413552632 instance=ExtResource("8_debug_over")]
+
+[connection signal="pause_pressed" from="Hud" to="." method="toggle_pause"]
+[connection signal="quit_pressed" from="Hud" to="." method="_on_quit_pressed"]
+[connection signal="resume_pressed" from="Hud" to="." method="toggle_pause"]
+[connection signal="retry_pressed" from="Hud" to="." method="retry"]
+[connection signal="copy_log_requested" from="DebugOverlay" to="." method="_copy_log"]
+[connection signal="restart_requested" from="DebugOverlay" to="." method="restart"]

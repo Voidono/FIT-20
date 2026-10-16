@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://83rvn7aqrhlg"]
+
+[ext_resource type="Script" uid="uid://64w4bbsqlfqp" path="res://scripts/course/water_station.gd" id="1_water_stat"]
+[ext_resource type="Texture2D" uid="uid://mgyjafqm7xcd" path="res://assets/world/flag_pole.png" id="2_flag_pole"]
+[ext_resource type="Texture2D" uid="uid://cgbsin165riyo" path="res://assets/world/banner.png" id="3_banner"]
+[ext_resource type="Texture2D" uid="uid://dflgk8q8c2woc" path="res://assets/world/table.png" id="4_table"]
+
+[node name="WaterStation" type="Node2D" unique_id=1941643473]
+script = ExtResource("1_water_stat")
+label_key = "SIGN_WATER"
+banner_color = Color(0.2902, 0.6392, 0.8745, 1)
+
+[node name="Pole" type="Sprite2D" parent="." unique_id=1170838686]
+texture = ExtResource("2_flag_pole")
+centered = false
+offset = Vector2(-1.5, -46)
+
+[node name="Banner" type="Sprite2D" parent="." unique_id=1696677067]
+texture = ExtResource("3_banner")
+centered = false
+offset = Vector2(0, -46)
+
+[node name="Label" type="Label" parent="." unique_id=610671648]
+offset_top = -46.0
+offset_right = 78.0
+offset_bottom = -28.0
+theme_override_colors/font_color = Color(0.0902, 0.1373, 0.2275, 1)
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 11
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Tables" type="Node2D" parent="." unique_id=269801062]
+
+[node name="Table1" type="Sprite2D" parent="Tables" unique_id=1375006528]
+texture = ExtResource("4_table")
+centered = false
+offset = Vector2(-14, -14)
+
+[node name="Table2" type="Sprite2D" parent="Tables" unique_id=470835027]
+texture = ExtResource("4_table")
+centered = false
+offset = Vector2(-14, -14)
+
+[node name="Table3" type="Sprite2D" parent="Tables" unique_id=656372274]
+texture = ExtResource("4_table")
+centered = false
+offset = Vector2(-14, -14)
