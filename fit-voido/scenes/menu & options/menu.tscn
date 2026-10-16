@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dw1ulc2rv40b1"]
 
 [ext_resource type="Script" uid="uid://cwlk3syuqhavw" path="res://scripts/menu.gd" id="1_4sgyv"]
+[ext_resource type="Texture2D" uid="uid://6rt0oab5h4ox" path="res://assets/Screenshot_2026-02-21-23-10-12-12_965bbf4d18d205f782c6b8409c5773a4.jpg" id="2_s4k3q"]
 
 [node name="Menu" type="Control" unique_id=848678902]
 layout_mode = 3
@@ -12,33 +13,38 @@ grow_vertical = 2
 script = ExtResource("1_4sgyv")
 metadata/_edit_vertical_guides_ = [550.0]
 
+[node name="Screenshot2026022123101212965Bbf4d18d205f782c6b8409c5773a4" type="Sprite2D" parent="." unique_id=45752845]
+position = Vector2(585.00006, 319)
+scale = Vector2(1.6222222, 0.41250002)
+texture = ExtResource("2_s4k3q")
+
 [node name="Play Button" type="Button" parent="." unique_id=361870528]
 texture_filter = 1
 layout_mode = 0
-offset_left = 433.0
-offset_top = 236.0
-offset_right = 668.0
-offset_bottom = 334.0
+offset_left = 72.0
+offset_top = 221.0
+offset_right = 307.0
+offset_bottom = 319.0
 theme_override_font_sizes/font_size = 45
 text = "Play"
 
 [node name="Setting Button" type="Button" parent="." unique_id=705487470]
 texture_filter = 1
 layout_mode = 0
-offset_left = 433.0
-offset_top = 376.0
-offset_right = 668.0
-offset_bottom = 474.0
+offset_left = 72.0
+offset_top = 361.0
+offset_right = 307.0
+offset_bottom = 459.0
 theme_override_font_sizes/font_size = 45
 text = "Setting"
 
 [node name="Quit Button" type="Button" parent="." unique_id=1437491712]
 texture_filter = 1
 layout_mode = 0
-offset_left = 433.0
-offset_top = 520.0
-offset_right = 668.0
-offset_bottom = 618.0
+offset_left = 72.0
+offset_top = 505.0
+offset_right = 307.0
+offset_bottom = 603.0
 theme_override_font_sizes/font_size = 45
 text = "Quit"
 
