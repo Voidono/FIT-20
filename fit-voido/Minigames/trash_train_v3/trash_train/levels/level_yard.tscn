@@ -1,0 +1,315 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" uid="uid://dmsfk4cid47on" path="res://Minigames/trash_train_v3/trash_train/level.gd" id="1_kpni0"]
+[ext_resource type="Resource" path="res://Minigames/trash_train_v3/trash_train/items/catalog.tres" id="2_awxhf"]
+[ext_resource type="Script" uid="uid://bsawjc3dvqugr" path="res://Minigames/trash_train_v3/trash_train/ground_grid.gd" id="3_8ysal"]
+[ext_resource type="Script" uid="uid://bxou2h2kaqs76" path="res://Minigames/trash_train_v3/trash_train/bin.gd" id="4_pusc5"]
+[ext_resource type="Script" uid="uid://c7fuwrldd508s" path="res://Minigames/trash_train_v3/trash_train/spawn_zone.gd" id="5_l6avy"]
+[ext_resource type="Script" uid="uid://khryaotpb0x1" path="res://Minigames/trash_train_v3/trash_train/item_def.gd" id="6_sufhm"]
+[ext_resource type="Resource" path="res://Minigames/trash_train_v3/trash_train/items/crt.tres" id="7_4mi60"]
+[ext_resource type="Resource" path="res://Minigames/trash_train_v3/trash_train/items/glitch.tres" id="8_u4ju6"]
+[ext_resource type="Resource" path="res://Minigames/trash_train_v3/trash_train/items/floppy.tres" id="9_4hh2e"]
+[ext_resource type="Script" uid="uid://bh7m24sof4267" path="res://Minigames/trash_train_v3/trash_train/npc_route.gd" id="10_0xeo8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3ecsy"]
+radius = 70.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0x5i8"]
+size = Vector2(280, 120)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vq5cl"]
+size = Vector2(130, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gmig5"]
+size = Vector2(130, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1wi7t"]
+size = Vector2(28, 180)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m7wbk"]
+size = Vector2(28, 180)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kbg7j"]
+radius = 32.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4f2xa"]
+radius = 26.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dnqwg"]
+radius = 32.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g6p1p"]
+radius = 26.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_15ihq"]
+size = Vector2(150, 280)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6rmno"]
+size = Vector2(150, 280)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2laux"]
+size = Vector2(270, 410)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6os7p"]
+size = Vector2(270, 450)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r0yjk"]
+size = Vector2(440, 60)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_65mu2"]
+radius = 80.0
+
+[sub_resource type="Curve2D" id="Curve2D_7p322"]
+_data = {
+"points": PackedVector2Array(0, -82.845, 0, 82.845, 950, 405, 127.029, -5.07279e-15, -127.029, 5.07279e-15, 720, 555, 1.55566e-14, 82.845, -1.55566e-14, -82.845, 490, 405, -127.029, 1.52184e-14, 127.029, -1.52184e-14, 720, 255, -3.11131e-14, -82.845, 3.11131e-14, 82.845, 950, 405)
+}
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_1a4pn"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 250, 120, 0, 0, 0, 0, 250, 690)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_5v8p1"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1210, 690, 0, 0, 0, 0, 1210, 120)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_j2dir"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 470, 730, 0, 0, 0, 0, 1010, 730)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_4hx2j"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 230, 90, 0, 0, 0, 0, 520, 90)
+}
+point_count = 2
+
+[node name="LevelYard" type="Node2D"]
+script = ExtResource("1_kpni0")
+catalog = ExtResource("2_awxhf")
+
+[node name="Ground" type="Node2D" parent="."]
+script = ExtResource("3_8ysal")
+
+[node name="Bounds" type="ReferenceRect" parent="."]
+offset_right = 1440.0
+offset_bottom = 810.0
+
+[node name="PlayerStart" type="Marker2D" parent="."]
+position = Vector2(720, 600)
+
+[node name="Obstacles" type="Node2D" parent="."]
+
+[node name="Fountain" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(720, 405)
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/Fountain"]
+shape = SubResource("CircleShape2D_3ecsy")
+
+[node name="Sprite" type="Polygon2D" parent="Obstacles/Fountain"]
+color = Color(0.541176, 0.643137, 0.721569, 1)
+polygon = PackedVector2Array(70, 0, 67.6148, 18.1173, 60.6218, 35, 49.4975, 49.4975, 35, 60.6218, 18.1173, 67.6148, -3.0598e-06, 70, -18.1173, 67.6148, -35, 60.6218, -49.4975, 49.4975, -60.6218, 35, -67.6148, 18.1173, -70, -6.11959e-06, -67.6148, -18.1173, -60.6218, -35, -49.4975, -49.4975, -35, -60.6218, -18.1173, -67.6148, 8.34742e-07, -70, 18.1173, -67.6148, 35, -60.6218, 49.4975, -49.4975, 60.6218, -35, 67.6148, -18.1173)
+
+[node name="Building" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(720, 120)
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/Building"]
+shape = SubResource("RectangleShape2D_0x5i8")
+
+[node name="Sprite" type="Polygon2D" parent="Obstacles/Building"]
+color = Color(0.545098, 0.435294, 0.352941, 1)
+polygon = PackedVector2Array(-140, -60, 140, -60, 140, 60, -140, 60)
+
+[node name="BenchWest" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(400, 290)
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/BenchWest"]
+shape = SubResource("RectangleShape2D_vq5cl")
+
+[node name="Sprite" type="Polygon2D" parent="Obstacles/BenchWest"]
+color = Color(0.419608, 0.290196, 0.168627, 1)
+polygon = PackedVector2Array(-65, -15, 65, -15, 65, 15, -65, 15)
+
+[node name="BenchEast" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(1040, 520)
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/BenchEast"]
+shape = SubResource("RectangleShape2D_gmig5")
+
+[node name="Sprite" type="Polygon2D" parent="Obstacles/BenchEast"]
+color = Color(0.419608, 0.290196, 0.168627, 1)
+polygon = PackedVector2Array(-65, -15, 65, -15, 65, 15, -65, 15)
+
+[node name="HedgeSouthWest" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(500, 600)
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/HedgeSouthWest"]
+shape = SubResource("RectangleShape2D_1wi7t")
+
+[node name="Sprite" type="Polygon2D" parent="Obstacles/HedgeSouthWest"]
+color = Color(0.184314, 0.419608, 0.227451, 1)
+polygon = PackedVector2Array(-14, -90, 14, -90, 14, 90, -14, 90)
+
+[node name="HedgeNorthEast" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(940, 210)
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/HedgeNorthEast"]
+shape = SubResource("RectangleShape2D_m7wbk")
+
+[node name="Sprite" type="Polygon2D" parent="Obstacles/HedgeNorthEast"]
+color = Color(0.184314, 0.419608, 0.227451, 1)
+polygon = PackedVector2Array(-14, -90, 14, -90, 14, 90, -14, 90)
+
+[node name="TreeA" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(330, 650)
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/TreeA"]
+shape = SubResource("CircleShape2D_kbg7j")
+
+[node name="Sprite" type="Polygon2D" parent="Obstacles/TreeA"]
+color = Color(0.141176, 0.360784, 0.184314, 1)
+polygon = PackedVector2Array(32, 0, 30.9096, 8.28221, 27.7128, 16, 22.6274, 22.6274, 16, 27.7128, 8.28221, 30.9096, -1.39876e-06, 32, -8.28221, 30.9096, -16, 27.7128, -22.6274, 22.6274, -27.7128, 16, -30.9096, 8.28221, -32, -2.79753e-06, -30.9096, -8.28221, -27.7128, -16, -22.6274, -22.6274, -16, -27.7128, -8.28221, -30.9096, 3.81596e-07, -32, 8.28221, -30.9096, 16, -27.7128, 22.6274, -22.6274, 27.7128, -16, 30.9096, -8.2822)
+
+[node name="TreeB" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(395, 695)
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/TreeB"]
+shape = SubResource("CircleShape2D_4f2xa")
+
+[node name="Sprite" type="Polygon2D" parent="Obstacles/TreeB"]
+color = Color(0.141176, 0.360784, 0.184314, 1)
+polygon = PackedVector2Array(26, 0, 25.1141, 6.7293, 22.5167, 13, 18.3848, 18.3848, 13, 22.5167, 6.7293, 25.1141, -1.1365e-06, 26, -6.7293, 25.1141, -13, 22.5167, -18.3848, 18.3848, -22.5167, 13, -25.1141, 6.7293, -26, -2.27299e-06, -25.1141, -6.7293, -22.5167, -13, -18.3848, -18.3848, -13, -22.5167, -6.72929, -25.1141, 3.10047e-07, -26, 6.72929, -25.1141, 13, -22.5167, 18.3848, -18.3848, 22.5167, -13, 25.1141, -6.72929)
+
+[node name="TreeC" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(1140, 160)
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/TreeC"]
+shape = SubResource("CircleShape2D_dnqwg")
+
+[node name="Sprite" type="Polygon2D" parent="Obstacles/TreeC"]
+color = Color(0.141176, 0.360784, 0.184314, 1)
+polygon = PackedVector2Array(32, 0, 30.9096, 8.28221, 27.7128, 16, 22.6274, 22.6274, 16, 27.7128, 8.28221, 30.9096, -1.39876e-06, 32, -8.28221, 30.9096, -16, 27.7128, -22.6274, 22.6274, -27.7128, 16, -30.9096, 8.28221, -32, -2.79753e-06, -30.9096, -8.28221, -27.7128, -16, -22.6274, -22.6274, -16, -27.7128, -8.28221, -30.9096, 3.81596e-07, -32, 8.28221, -30.9096, 16, -27.7128, 22.6274, -22.6274, 27.7128, -16, 30.9096, -8.2822)
+
+[node name="TreeD" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(1075, 118)
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/TreeD"]
+shape = SubResource("CircleShape2D_g6p1p")
+
+[node name="Sprite" type="Polygon2D" parent="Obstacles/TreeD"]
+color = Color(0.141176, 0.360784, 0.184314, 1)
+polygon = PackedVector2Array(26, 0, 25.1141, 6.7293, 22.5167, 13, 18.3848, 18.3848, 13, 22.5167, 6.7293, 25.1141, -1.1365e-06, 26, -6.7293, 25.1141, -13, 22.5167, -18.3848, 18.3848, -22.5167, 13, -25.1141, 6.7293, -26, -2.27299e-06, -25.1141, -6.7293, -22.5167, -13, -18.3848, -18.3848, -13, -22.5167, -6.72929, -25.1141, 3.10047e-07, -26, 6.72929, -25.1141, 13, -22.5167, 18.3848, -18.3848, 22.5167, -13, 25.1141, -6.72929)
+
+[node name="Bins" type="Node2D" parent="."]
+
+[node name="BinEwaste" type="Area2D" parent="Bins"]
+position = Vector2(75, 405)
+script = ExtResource("4_pusc5")
+accepts = Array[StringName]([&"ewaste"])
+label_key = &"bin_ewaste"
+
+[node name="Zone" type="CollisionShape2D" parent="Bins/BinEwaste"]
+shape = SubResource("RectangleShape2D_15ihq")
+
+[node name="BinGeneral" type="Area2D" parent="Bins"]
+position = Vector2(1365, 405)
+script = ExtResource("4_pusc5")
+accepts = Array[StringName]([&"general"])
+label_key = &"bin_general"
+color = Color(0.941176, 0.627451, 0.188235, 1)
+
+[node name="Zone" type="CollisionShape2D" parent="Bins/BinGeneral"]
+shape = SubResource("RectangleShape2D_6rmno")
+
+[node name="SpawnZones" type="Node2D" parent="."]
+
+[node name="ZoneWest" type="Area2D" parent="SpawnZones"]
+position = Vector2(335, 535)
+script = ExtResource("5_l6avy")
+
+[node name="Shape0" type="CollisionShape2D" parent="SpawnZones/ZoneWest"]
+shape = SubResource("RectangleShape2D_2laux")
+
+[node name="ZoneEast" type="Area2D" parent="SpawnZones"]
+position = Vector2(1105, 295)
+script = ExtResource("5_l6avy")
+
+[node name="Shape0" type="CollisionShape2D" parent="SpawnZones/ZoneEast"]
+shape = SubResource("RectangleShape2D_6os7p")
+
+[node name="ZoneSouth" type="Area2D" parent="SpawnZones"]
+script = ExtResource("5_l6avy")
+weight = 1.2
+
+[node name="Polygon0" type="CollisionPolygon2D" parent="SpawnZones/ZoneSouth"]
+polygon = PackedVector2Array(560, 640, 880, 640, 980, 760, 460, 760)
+
+[node name="ZoneNorthStrip" type="Area2D" parent="SpawnZones"]
+position = Vector2(720, 235)
+script = ExtResource("5_l6avy")
+weight = 0.5
+kinds = Array[ExtResource("6_sufhm")]([ExtResource("7_4mi60"), ExtResource("8_u4ju6"), ExtResource("9_4hh2e")])
+
+[node name="Shape0" type="CollisionShape2D" parent="SpawnZones/ZoneNorthStrip"]
+shape = SubResource("RectangleShape2D_r0yjk")
+
+[node name="ZonePicnic" type="Area2D" parent="SpawnZones"]
+position = Vector2(720, 700)
+script = ExtResource("5_l6avy")
+weight = 0.8
+
+[node name="Shape0" type="CollisionShape2D" parent="SpawnZones/ZonePicnic"]
+shape = SubResource("CircleShape2D_65mu2")
+
+[node name="Routes" type="Node2D" parent="."]
+
+[node name="FountainLoop" type="Path2D" parent="Routes"]
+curve = SubResource("Curve2D_7p322")
+script = ExtResource("10_0xeo8")
+mode = 0
+speed_scale = 0.9
+
+[node name="WestGuard" type="Path2D" parent="Routes"]
+curve = SubResource("Curve2D_1a4pn")
+script = ExtResource("10_0xeo8")
+speed_scale = 0.8
+
+[node name="EastGuard" type="Path2D" parent="Routes"]
+curve = SubResource("Curve2D_5v8p1")
+script = ExtResource("10_0xeo8")
+speed_scale = 0.8
+
+[node name="SouthSweep" type="Path2D" parent="Routes"]
+curve = SubResource("Curve2D_j2dir")
+script = ExtResource("10_0xeo8")
+count = 2
+
+[node name="NorthSweep" type="Path2D" parent="Routes"]
+curve = SubResource("Curve2D_4hx2j")
+script = ExtResource("10_0xeo8")
+speed_scale = 1.1

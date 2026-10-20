@@ -1,6 +1,6 @@
 extends SceneTree
 ## Headless check of the stamina model and the par bot, no window needed:
-##   godot --headless --path . --script res://tools/strategy_sim.gd
+##   godot --headless --path . --script res://Minigames/fit_runner_starter/fit_runner_starter/tools/strategy_sim.gd
 ## Open the project in the editor once first so the class names are registered.
 ## Compare with the table in README.md: if par is far off, something differs from the model I calibrated.
 

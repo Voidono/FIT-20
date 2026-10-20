@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="TrashItemCatalog" format=3 uid="uid://o7xstfhx3lw1"]
+
+[ext_resource type="Script" uid="uid://khryaotpb0x1" path="res://Minigames/trash_train_v3/trash_train/item_def.gd" id="1_dg63e"]
+[ext_resource type="Resource" uid="uid://cirgw13atdl5h" path="res://Minigames/trash_train_v3/trash_train/items/floppy.tres" id="2_67v05"]
+[ext_resource type="Resource" uid="uid://btkkokfg7sthi" path="res://Minigames/trash_train_v3/trash_train/items/nokia.tres" id="3_flcex"]
+[ext_resource type="Resource" uid="uid://u42ahsy340gb" path="res://Minigames/trash_train_v3/trash_train/items/crt.tres" id="4_sr214"]
+[ext_resource type="Resource" uid="uid://ces51gxvpk4um" path="res://Minigames/trash_train_v3/trash_train/items/glitch.tres" id="5_w6oho"]
+[ext_resource type="Resource" uid="uid://ce0mfcrobi0iv" path="res://Minigames/trash_train_v3/trash_train/items/cup.tres" id="6_1rvqr"]
+[ext_resource type="Resource" uid="uid://wk3n2egqbvll" path="res://Minigames/trash_train_v3/trash_train/items/noodle.tres" id="7_tl17q"]
+[ext_resource type="Resource" uid="uid://cgahoufgaxgk1" path="res://Minigames/trash_train_v3/trash_train/items/paper.tres" id="8_4huj2"]
+[ext_resource type="Script" uid="uid://ckk60g55o8wd8" path="res://Minigames/trash_train_v3/trash_train/item_catalog.gd" id="9_7rivn"]
+
+[resource]
+script = ExtResource("9_7rivn")
+items = Array[ExtResource("1_dg63e")]([ExtResource("2_67v05"), ExtResource("3_flcex"), ExtResource("4_sr214"), ExtResource("5_w6oho"), ExtResource("6_1rvqr"), ExtResource("7_tl17q"), ExtResource("8_4huj2")])

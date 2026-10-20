@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="TrashItemDef" format=3 uid="uid://ce0mfcrobi0iv"]
+
+[ext_resource type="Script" uid="uid://khryaotpb0x1" path="res://Minigames/trash_train_v3/trash_train/item_def.gd" id="1_tewd1"]
+
+[resource]
+script = ExtResource("1_tewd1")
+id = &"cup"
+spawn_weight = 0.15
+placeholder_color = Color(0.941176, 0.627451, 0.188235, 1)
