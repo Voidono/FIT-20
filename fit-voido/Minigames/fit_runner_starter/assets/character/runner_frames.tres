@@ -1,6 +1,22 @@
-[gd_resource type="SpriteFrames" format=3]
+[gd_resource type="SpriteFrames" format=3 uid="uid://d3o3rxaawvk2j"]
 
 [ext_resource type="Texture2D" uid="uid://dh031tkascbvt" path="res://Minigames/fit_runner_starter/assets/character/runner_sheet.png" id="1_sheet"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_drink0"]
+atlas = ExtResource("1_sheet")
+region = Rect2(0, 240, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_drink1"]
+atlas = ExtResource("1_sheet")
+region = Rect2(32, 240, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_drink2"]
+atlas = ExtResource("1_sheet")
+region = Rect2(64, 240, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_drink3"]
+atlas = ExtResource("1_sheet")
+region = Rect2(96, 240, 32, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_idle0"]
 atlas = ExtResource("1_sheet")
@@ -34,30 +50,6 @@ region = Rect2(0, 48, 32, 48)
 atlas = ExtResource("1_sheet")
 region = Rect2(32, 48, 32, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_run0"]
-atlas = ExtResource("1_sheet")
-region = Rect2(64, 48, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_run1"]
-atlas = ExtResource("1_sheet")
-region = Rect2(96, 48, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_run2"]
-atlas = ExtResource("1_sheet")
-region = Rect2(128, 48, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_run3"]
-atlas = ExtResource("1_sheet")
-region = Rect2(160, 48, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_run4"]
-atlas = ExtResource("1_sheet")
-region = Rect2(0, 96, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_run5"]
-atlas = ExtResource("1_sheet")
-region = Rect2(32, 96, 32, 48)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_push0"]
 atlas = ExtResource("1_sheet")
 region = Rect2(64, 96, 32, 48)
@@ -81,6 +73,30 @@ region = Rect2(0, 144, 32, 48)
 [sub_resource type="AtlasTexture" id="AtlasTexture_push5"]
 atlas = ExtResource("1_sheet")
 region = Rect2(32, 144, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_run0"]
+atlas = ExtResource("1_sheet")
+region = Rect2(64, 48, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_run1"]
+atlas = ExtResource("1_sheet")
+region = Rect2(96, 48, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_run2"]
+atlas = ExtResource("1_sheet")
+region = Rect2(128, 48, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_run3"]
+atlas = ExtResource("1_sheet")
+region = Rect2(160, 48, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_run4"]
+atlas = ExtResource("1_sheet")
+region = Rect2(0, 96, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_run5"]
+atlas = ExtResource("1_sheet")
+region = Rect2(32, 96, 32, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sprint0"]
 atlas = ExtResource("1_sheet")
@@ -122,24 +138,25 @@ region = Rect2(128, 192, 32, 48)
 atlas = ExtResource("1_sheet")
 region = Rect2(160, 192, 32, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_drink0"]
-atlas = ExtResource("1_sheet")
-region = Rect2(0, 240, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_drink1"]
-atlas = ExtResource("1_sheet")
-region = Rect2(32, 240, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_drink2"]
-atlas = ExtResource("1_sheet")
-region = Rect2(64, 240, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_drink3"]
-atlas = ExtResource("1_sheet")
-region = Rect2(96, 240, 32, 48)
-
 [resource]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_drink0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_drink1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_drink2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_drink3")
+}],
+"loop": 1,
+"name": &"drink",
+"speed": 6.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_idle0")
@@ -147,7 +164,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_idle1")
 }],
-"loop": true,
+"loop": 1,
 "name": &"idle",
 "speed": 4.0
 }, {
@@ -170,32 +187,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_jog5")
 }],
-"loop": true,
+"loop": 1,
 "name": &"jog",
 "speed": 8.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_run0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_run1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_run2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_run3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_run4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_run5")
-}],
-"loop": true,
-"name": &"run",
-"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -216,9 +210,32 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_push5")
 }],
-"loop": true,
+"loop": 1,
 "name": &"push",
 "speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_run0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_run1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_run2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_run3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_run4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_run5")
+}],
+"loop": 1,
+"name": &"run",
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -239,7 +256,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_sprint5")
 }],
-"loop": true,
+"loop": 1,
 "name": &"sprint",
 "speed": 14.0
 }, {
@@ -256,24 +273,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_stumble3")
 }],
-"loop": true,
+"loop": 1,
 "name": &"stumble",
-"speed": 6.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_drink0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_drink1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_drink2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_drink3")
-}],
-"loop": true,
-"name": &"drink",
 "speed": 6.0
 }]
