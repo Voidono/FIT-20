@@ -1,0 +1,31 @@
+# SKETCH for Dialogue Manager 4.x (v4.1.0 targets Godot 4.7). Written from the 4.x API docs:
+#   DialogueManager.show_dialogue_balloon(resource, cue, extra_game_states) -> Node
+#   DialogueManager.show_dialogue_balloon_scene(balloon_scene, resource, cue, extra_game_states) -> Node
+#   DialogueManager.dialogue_ended(resource)         (v4 renamed "titles" to "cues")
+# NOT compiled here, because the addon is not in this project. To use it:
+#   1. rename this file to dialogue_manager_speech.gd (drop ".example")
+#   2. in battle.tscn replace the "Speech" node with a plain Node that has this script
+#   3. assign `dialogue` (a .dialogue file, see con_bug.dialogue.example) and optionally your balloon
+class_name DialogueManagerSpeech
+extends BossSpeech
+
+@export var dialogue: DialogueResource
+## Your custom balloon scene. Empty = the balloon chosen in Project Settings > Dialogue Manager.
+@export var balloon_scene: PackedScene
+
+
+func say(event: StringName, context: Dictionary, anchor: Vector2) -> void:
+	# Cues used: turn_p1..p3, phase_enter_p2..p3, defeat, spare (one per event; "_pN" = boss phase).
+	var cue := String(event)
+	if event == &"turn" or event == &"phase_enter":
+		cue = "%s_p%d" % [event, context.get("phase", 1)]
+	# `context` ({text, phase, turn}) goes in as an extra game state, so lines can use {{phase}}.
+	var balloon: Node
+	if balloon_scene != null:
+		balloon = DialogueManager.show_dialogue_balloon_scene(balloon_scene, dialogue, cue, [context])
+	else:
+		balloon = DialogueManager.show_dialogue_balloon(dialogue, cue, [context])
+	# Optional: a custom balloon can implement set_anchor(global_position) to sit next to the boss.
+	if balloon != null and balloon.has_method(&"set_anchor"):
+		balloon.call(&"set_anchor", anchor)
+	await DialogueManager.dialogue_ended

@@ -1,0 +1,114 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Minigames/fit_battle_step4/fit_battle/battle/battle_menu.gd" id="1_menu"]
+[ext_resource type="Script" path="res://Minigames/fit_battle_step4/fit_battle/core/asset_slot.gd" id="2_slot"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_idle"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0.55, 0.1, 1)
+content_margin_left = 40.0
+content_margin_right = 6.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_active"]
+draw_center = false
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0.9, 0, 1)
+content_margin_left = 40.0
+content_margin_right = 6.0
+
+[node name="BattleMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 32.0
+offset_top = 430.0
+offset_right = 610.0
+offset_bottom = 472.0
+script = ExtResource("1_menu")
+
+[node name="Buttons" type="Control" parent="."]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_right = 578.0
+offset_bottom = 42.0
+
+[node name="Fight" type="Button" parent="Buttons"]
+offset_left = 0.0
+offset_right = 110.0
+offset_bottom = 42.0
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 0.55, 0.1, 1)
+theme_override_colors/font_hover_color = Color(1, 0.9, 0, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.9, 0, 1)
+theme_override_colors/font_focus_color = Color(1, 0.9, 0, 1)
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_idle")
+theme_override_styles/hover = SubResource("StyleBoxFlat_active")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_active")
+theme_override_styles/focus = SubResource("StyleBoxFlat_active")
+text = "FIGHT"
+alignment = 0
+
+[node name="Act" type="Button" parent="Buttons"]
+offset_left = 153.0
+offset_right = 263.0
+offset_bottom = 42.0
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 0.55, 0.1, 1)
+theme_override_colors/font_hover_color = Color(1, 0.9, 0, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.9, 0, 1)
+theme_override_colors/font_focus_color = Color(1, 0.9, 0, 1)
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_idle")
+theme_override_styles/hover = SubResource("StyleBoxFlat_active")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_active")
+theme_override_styles/focus = SubResource("StyleBoxFlat_active")
+text = "ACT"
+alignment = 0
+
+[node name="Item" type="Button" parent="Buttons"]
+offset_left = 313.0
+offset_right = 423.0
+offset_bottom = 42.0
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 0.55, 0.1, 1)
+theme_override_colors/font_hover_color = Color(1, 0.9, 0, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.9, 0, 1)
+theme_override_colors/font_focus_color = Color(1, 0.9, 0, 1)
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_idle")
+theme_override_styles/hover = SubResource("StyleBoxFlat_active")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_active")
+theme_override_styles/focus = SubResource("StyleBoxFlat_active")
+text = "ITEM"
+alignment = 0
+
+[node name="Mercy" type="Button" parent="Buttons"]
+offset_left = 468.0
+offset_right = 578.0
+offset_bottom = 42.0
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 0.55, 0.1, 1)
+theme_override_colors/font_hover_color = Color(1, 0.9, 0, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.9, 0, 1)
+theme_override_colors/font_focus_color = Color(1, 0.9, 0, 1)
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_idle")
+theme_override_styles/hover = SubResource("StyleBoxFlat_active")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_active")
+theme_override_styles/focus = SubResource("StyleBoxFlat_active")
+text = "MERCY"
+alignment = 0
+
+[node name="Heart" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_slot")
+shape = 2
+placeholder_size = Vector2(16, 16)
+color = Color(1, 0, 0, 1)

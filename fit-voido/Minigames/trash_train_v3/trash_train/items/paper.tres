@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="TrashItemDef" format=3 uid="uid://cgahoufgaxgk1"]
+
+[ext_resource type="Script" uid="uid://khryaotpb0x1" path="res://Minigames/trash_train_v3/trash_train/item_def.gd" id="1_4t35m"]
+
+[resource]
+script = ExtResource("1_4t35m")
+id = &"paper"
+spawn_weight = 0.15
+placeholder_color = Color(0.92549, 0.901961, 0.815686, 1)
+placeholder_shape = 3

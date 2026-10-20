@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="TrashItemDef" format=3 uid="uid://u42ahsy340gb"]
+
+[ext_resource type="Script" uid="uid://khryaotpb0x1" path="res://Minigames/trash_train_v3/trash_train/item_def.gd" id="1_v0jpd"]
+
+[resource]
+script = ExtResource("1_v0jpd")
+id = &"crt"
+tier = 1
+bin_id = &"ewaste"
+spawn_weight = 0.12
+placeholder_color = Color(0.168627, 0.309804, 0.658824, 1)
+placeholder_shape = 0
+radius = 15.0
