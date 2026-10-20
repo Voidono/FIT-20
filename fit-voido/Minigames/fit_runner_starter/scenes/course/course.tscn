@@ -1,12 +1,12 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene format=3]
 
-[ext_resource type="Script" path="res://Minigames/fit_runner_starter/fit_runner_starter/scripts/course/course.gd" id="1_course"]
-[ext_resource type="PackedScene" path="res://Minigames/fit_runner_starter/fit_runner_starter/scenes/props/distance_post.tscn" id="2_distance_p"]
-[ext_resource type="Texture2D" path="res://Minigames/fit_runner_starter/fit_runner_starter/assets/world/grass_tile.png" id="3_grass_tile"]
-[ext_resource type="Texture2D" path="res://Minigames/fit_runner_starter/fit_runner_starter/assets/world/track_tile.png" id="4_track_tile"]
-[ext_resource type="PackedScene" path="res://Minigames/fit_runner_starter/fit_runner_starter/scenes/props/sign_flag.tscn" id="5_sign_flag"]
-[ext_resource type="PackedScene" path="res://Minigames/fit_runner_starter/fit_runner_starter/scenes/props/water_station.tscn" id="6_water_stat"]
-[ext_resource type="PackedScene" path="res://Minigames/fit_runner_starter/fit_runner_starter/scenes/props/finish_arch.tscn" id="7_finish_arc"]
+[ext_resource type="Script" uid="uid://cranxxrm5coaq" path="res://Minigames/fit_runner_starter/scripts/course/course.gd" id="1_course"]
+[ext_resource type="PackedScene" path="res://Minigames/fit_runner_starter/scenes/props/distance_post.tscn" id="2_distance_p"]
+[ext_resource type="Texture2D" uid="uid://dkpwdufcfubml" path="res://Minigames/fit_runner_starter/assets/world/grass_tile.png" id="3_grass_tile"]
+[ext_resource type="Texture2D" uid="uid://dfoqn22dh1gre" path="res://Minigames/fit_runner_starter/assets/world/track_tile.png" id="4_track_tile"]
+[ext_resource type="PackedScene" path="res://Minigames/fit_runner_starter/scenes/props/sign_flag.tscn" id="5_sign_flag"]
+[ext_resource type="PackedScene" path="res://Minigames/fit_runner_starter/scenes/props/water_station.tscn" id="6_water_stat"]
+[ext_resource type="PackedScene" path="res://Minigames/fit_runner_starter/scenes/props/finish_arch.tscn" id="7_finish_arc"]
 
 [node name="Course" type="Node2D"]
 script = ExtResource("1_course")

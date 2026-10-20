@@ -1,12 +1,12 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene format=3]
 
-[ext_resource type="Script" path="res://Minigames/fit_runner_starter/fit_runner_starter/scripts/character/runner_character.gd" id="1_runner_cha"]
-[ext_resource type="Texture2D" path="res://Minigames/fit_runner_starter/fit_runner_starter/assets/world/status_wall.png" id="2_status_wal"]
-[ext_resource type="Texture2D" path="res://Minigames/fit_runner_starter/fit_runner_starter/assets/world/status_drink.png" id="3_status_dri"]
-[ext_resource type="Texture2D" path="res://Minigames/fit_runner_starter/fit_runner_starter/assets/world/shadow.png" id="4_shadow"]
-[ext_resource type="SpriteFrames" path="res://Minigames/fit_runner_starter/fit_runner_starter/assets/character/runner_frames.tres" id="5_runner_fra"]
-[ext_resource type="Texture2D" path="res://Minigames/fit_runner_starter/fit_runner_starter/assets/world/dust.png" id="6_dust"]
-[ext_resource type="Texture2D" path="res://Minigames/fit_runner_starter/fit_runner_starter/assets/world/splash.png" id="7_splash"]
+[ext_resource type="Script" uid="uid://dyaxw30wdys6s" path="res://Minigames/fit_runner_starter/scripts/character/runner_character.gd" id="1_runner_cha"]
+[ext_resource type="Texture2D" uid="uid://csbkk4akfeba2" path="res://Minigames/fit_runner_starter/assets/world/status_wall.png" id="2_status_wal"]
+[ext_resource type="Texture2D" uid="uid://b2w70kbtm3u3x" path="res://Minigames/fit_runner_starter/assets/world/status_drink.png" id="3_status_dri"]
+[ext_resource type="Texture2D" uid="uid://0ue6bya6y7lf" path="res://Minigames/fit_runner_starter/assets/world/shadow.png" id="4_shadow"]
+[ext_resource type="SpriteFrames" path="res://Minigames/fit_runner_starter/assets/character/runner_frames.tres" id="5_runner_fra"]
+[ext_resource type="Texture2D" uid="uid://biuuim3og4tbr" path="res://Minigames/fit_runner_starter/assets/world/dust.png" id="6_dust"]
+[ext_resource type="Texture2D" uid="uid://bgg6ygjbsenb2" path="res://Minigames/fit_runner_starter/assets/world/splash.png" id="7_splash"]
 
 [node name="RunnerCharacter" type="Node2D"]
 script = ExtResource("1_runner_cha")

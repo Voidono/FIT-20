@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene format=3]
 
-[ext_resource type="Texture2D" path="res://Minigames/fit_runner_starter/fit_runner_starter/assets/branding/fit_logo.png" id="1_fit_logo"]
+[ext_resource type="Texture2D" uid="uid://c6s3trmjexu1g" path="res://Minigames/fit_runner_starter/assets/branding/fit_logo.png" id="1_fit_logo"]
 
 [node name="ReadyOverlay" type="VBoxContainer"]
 custom_minimum_size = Vector2(300, 0)

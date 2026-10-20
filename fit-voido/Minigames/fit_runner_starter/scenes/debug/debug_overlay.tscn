@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene format=3]
 
-[ext_resource type="Script" path="res://Minigames/fit_runner_starter/fit_runner_starter/scripts/debug/debug_overlay.gd" id="1_debug_over"]
-[ext_resource type="PackedScene" path="res://Minigames/fit_runner_starter/fit_runner_starter/scenes/debug/tuning_slider.tscn" id="2_tuning_sli"]
+[ext_resource type="Script" uid="uid://3ac4gdddh43y" path="res://Minigames/fit_runner_starter/scripts/debug/debug_overlay.gd" id="1_debug_over"]
+[ext_resource type="PackedScene" path="res://Minigames/fit_runner_starter/scenes/debug/tuning_slider.tscn" id="2_tuning_sli"]
 
 [node name="DebugOverlay" type="CanvasLayer"]
 layer = 20

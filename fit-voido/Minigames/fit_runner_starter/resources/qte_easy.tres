@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="QteSettings" load_steps=2 format=3]
+[gd_resource type="Resource" script_class="QteSettings" format=3]
 
-[ext_resource type="Script" path="res://Minigames/fit_runner_starter/fit_runner_starter/scripts/qte/qte_settings.gd" id="1_qte"]
+[ext_resource type="Script" uid="uid://cspco7r7p2eoy" path="res://Minigames/fit_runner_starter/scripts/qte/qte_settings.gd" id="1_qte"]
 
 [resource]
 script = ExtResource("1_qte")

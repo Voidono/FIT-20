@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene format=3]
 
-[ext_resource type="Script" path="res://Minigames/fit_runner_starter/fit_runner_starter/scripts/ui/pause_menu.gd" id="1_pause_menu"]
+[ext_resource type="Script" uid="uid://cg4pqots6ovbj" path="res://Minigames/fit_runner_starter/scripts/ui/pause_menu.gd" id="1_pause_menu"]
 
 [node name="PauseMenu" type="PanelContainer"]
 script = ExtResource("1_pause_menu")

@@ -1,11 +1,11 @@
-[gd_scene load_steps=7 format=3]
+[gd_scene format=3]
 
-[ext_resource type="Script" path="res://Minigames/fit_runner_starter/fit_runner_starter/scripts/ui/effort_gauge.gd" id="1_effort_gau"]
-[ext_resource type="Texture2D" path="res://Minigames/fit_runner_starter/fit_runner_starter/assets/ui/gauge_track.png" id="2_gauge_trac"]
-[ext_resource type="Texture2D" path="res://Minigames/fit_runner_starter/fit_runner_starter/assets/ui/gauge_band.png" id="3_gauge_band"]
-[ext_resource type="Texture2D" path="res://Minigames/fit_runner_starter/fit_runner_starter/assets/ui/gauge_tick.png" id="4_gauge_tick"]
-[ext_resource type="Texture2D" path="res://Minigames/fit_runner_starter/fit_runner_starter/assets/ui/marker_pace.png" id="5_marker_pac"]
-[ext_resource type="Texture2D" path="res://Minigames/fit_runner_starter/fit_runner_starter/assets/ui/marker_effort.png" id="6_marker_eff"]
+[ext_resource type="Script" uid="uid://rs2hcj707wkn" path="res://Minigames/fit_runner_starter/scripts/ui/effort_gauge.gd" id="1_effort_gau"]
+[ext_resource type="Texture2D" uid="uid://cex8t87hrfnaw" path="res://Minigames/fit_runner_starter/assets/ui/gauge_track.png" id="2_gauge_trac"]
+[ext_resource type="Texture2D" uid="uid://br2h458lf2474" path="res://Minigames/fit_runner_starter/assets/ui/gauge_band.png" id="3_gauge_band"]
+[ext_resource type="Texture2D" uid="uid://bk61dc7do8o6b" path="res://Minigames/fit_runner_starter/assets/ui/gauge_tick.png" id="4_gauge_tick"]
+[ext_resource type="Texture2D" uid="uid://cvo77npd11k16" path="res://Minigames/fit_runner_starter/assets/ui/marker_pace.png" id="5_marker_pac"]
+[ext_resource type="Texture2D" uid="uid://c1sks67rr6tiw" path="res://Minigames/fit_runner_starter/assets/ui/marker_effort.png" id="6_marker_eff"]
 
 [node name="EffortGauge" type="Control"]
 custom_minimum_size = Vector2(0, 14)

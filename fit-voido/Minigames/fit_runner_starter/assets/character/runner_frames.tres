@@ -1,6 +1,6 @@
-[gd_resource type="SpriteFrames" load_steps=36 format=3]
+[gd_resource type="SpriteFrames" format=3]
 
-[ext_resource type="Texture2D" path="res://Minigames/fit_runner_starter/fit_runner_starter/assets/character/runner_sheet.png" id="1_sheet"]
+[ext_resource type="Texture2D" uid="uid://dh031tkascbvt" path="res://Minigames/fit_runner_starter/assets/character/runner_sheet.png" id="1_sheet"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_idle0"]
 atlas = ExtResource("1_sheet")

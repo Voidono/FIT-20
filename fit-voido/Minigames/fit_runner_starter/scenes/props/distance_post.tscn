@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene format=3]
 
-[ext_resource type="Script" path="res://Minigames/fit_runner_starter/fit_runner_starter/scripts/course/course_prop.gd" id="1_course_pro"]
-[ext_resource type="Texture2D" path="res://Minigames/fit_runner_starter/fit_runner_starter/assets/world/distance_post.png" id="2_distance_p"]
+[ext_resource type="Script" uid="uid://cdwlxnauqmeh" path="res://Minigames/fit_runner_starter/scripts/course/course_prop.gd" id="1_course_pro"]
+[ext_resource type="Texture2D" uid="uid://v4j6s7nkipv6" path="res://Minigames/fit_runner_starter/assets/world/distance_post.png" id="2_distance_p"]
 
 [node name="DistancePost" type="Node2D"]
 script = ExtResource("1_course_pro")
