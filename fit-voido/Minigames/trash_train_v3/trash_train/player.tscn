@@ -1,0 +1,14 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" uid="uid://c4vsai2kwkghk" path="res://Minigames/trash_train_v3/trash_train/player.gd" id="1_pe5vh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uyj2e"]
+radius = 14.0
+
+[node name="TrashPlayer" type="CharacterBody2D"]
+z_index = 200
+motion_mode = 1
+script = ExtResource("1_pe5vh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_uyj2e")

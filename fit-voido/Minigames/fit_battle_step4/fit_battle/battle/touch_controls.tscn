@@ -1,0 +1,9 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Minigames/fit_battle_step4/fit_battle/battle/touch_controls.gd" id="1_touch"]
+[ext_resource type="PackedScene" path="res://Minigames/fit_battle_step4/fit_battle/battle/touch_joystick.tscn" id="2_joystick"]
+
+[node name="TouchControls" type="CanvasLayer"]
+layer = 8
+script = ExtResource("1_touch")
+joystick_scene = ExtResource("2_joystick")

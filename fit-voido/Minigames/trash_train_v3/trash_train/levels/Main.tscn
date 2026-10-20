@@ -1,0 +1,64 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" uid="uid://dmsfk4cid47on" path="res://Minigames/trash_train_v3/trash_train/level.gd" id="1_apg64"]
+[ext_resource type="Resource" path="res://Minigames/trash_train_v3/trash_train/items/catalog.tres" id="2_8hdmc"]
+[ext_resource type="Script" uid="uid://bsawjc3dvqugr" path="res://Minigames/trash_train_v3/trash_train/ground_grid.gd" id="3_6wxhr"]
+[ext_resource type="Script" uid="uid://bxou2h2kaqs76" path="res://Minigames/trash_train_v3/trash_train/bin.gd" id="4_2mxb2"]
+[ext_resource type="Script" uid="uid://c7fuwrldd508s" path="res://Minigames/trash_train_v3/trash_train/spawn_zone.gd" id="5_iw3of"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7rj8a"]
+size = Vector2(150, 280)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kerpb"]
+size = Vector2(150, 280)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4olqo"]
+size = Vector2(1000, 640)
+
+[node name="LevelTemplate" type="Node2D"]
+script = ExtResource("1_apg64")
+catalog = ExtResource("2_8hdmc")
+
+[node name="Ground" type="Node2D" parent="."]
+script = ExtResource("3_6wxhr")
+
+[node name="Bounds" type="ReferenceRect" parent="."]
+offset_right = 1440.0
+offset_bottom = 810.0
+
+[node name="PlayerStart" type="Marker2D" parent="."]
+position = Vector2(720, 405)
+
+[node name="Obstacles" type="Node2D" parent="."]
+
+[node name="Bins" type="Node2D" parent="."]
+
+[node name="BinEwaste" type="Area2D" parent="Bins"]
+position = Vector2(75, 405)
+script = ExtResource("4_2mxb2")
+accepts = Array[StringName]([&"ewaste"])
+label_key = &"bin_ewaste"
+
+[node name="Zone" type="CollisionShape2D" parent="Bins/BinEwaste"]
+shape = SubResource("RectangleShape2D_7rj8a")
+
+[node name="BinGeneral" type="Area2D" parent="Bins"]
+position = Vector2(1365, 405)
+script = ExtResource("4_2mxb2")
+accepts = Array[StringName]([&"general"])
+label_key = &"bin_general"
+color = Color(0.941176, 0.627451, 0.188235, 1)
+
+[node name="Zone" type="CollisionShape2D" parent="Bins/BinGeneral"]
+shape = SubResource("RectangleShape2D_kerpb")
+
+[node name="SpawnZones" type="Node2D" parent="."]
+
+[node name="ZoneMain" type="Area2D" parent="SpawnZones"]
+position = Vector2(720, 405)
+script = ExtResource("5_iw3of")
+
+[node name="Shape0" type="CollisionShape2D" parent="SpawnZones/ZoneMain"]
+shape = SubResource("RectangleShape2D_4olqo")
+
+[node name="Routes" type="Node2D" parent="."]

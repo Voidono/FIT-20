@@ -30,12 +30,19 @@ runtime/balloon_path="res://Dialogues/Bubbles/balloon.tscn"
 
 [display]
 
+window/size/viewport_width=960
+window/size/viewport_height=540
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+window/handheld/orientation=4
 
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
+
+[internationalization]
+
+locale/translations_pot_files=PackedStringArray("res://untitled.dialogue", "res://Dialogues/test.dialogue")
 
 [physics]
 
@@ -45,3 +52,4 @@ enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
 
 textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
+renderer/rendering_method="gl_compatibility"

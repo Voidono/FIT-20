@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="BattleDifficulty" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Minigames/fit_battle_step4/fit_battle/data/difficulty_data.gd" id="1_diff"]
+
+[resource]
+script = ExtResource("1_diff")
+display_name = "Easy"
+description = "Nhiều máu, đạn chậm và thưa, dễ canh nhịp.
+Dành cho người mới."
+player_max_hp = 30
+invincibility_time = 1.4
+damage_taken_multiplier = 0.6
+bullet_speed_multiplier = 0.8
+spawn_rate_multiplier = 0.7
+attack_duration_multiplier = 0.85
+telegraph_multiplier = 1.4
+bar_speed_multiplier = 0.8
+sweet_spot_multiplier = 1.35
+boss_hp_multiplier = 0.85
+mercy_multiplier = 1.4

@@ -1,14 +1,16 @@
 class_name FitRunner
 extends Node2D
-## FIT Runner minigame - self-contained scene.
+## FIT Runner minigame - self-contained scene (scenes/fit_runner.tscn).
 ##
-##   var game := preload("res://scenes/fit_runner.tscn").instantiate() as FitRunner
+##   var game := preload("res://Minigames/fit_runner_starter/fit_runner_starter/scenes/fit_runner.tscn").instantiate() as FitRunner
 ##   add_child(game)
 ##   game.run_finished.connect(_on_run_finished)  # RunResult: passed, time_sec, stars, walls_hit, attempt, par_time
 ##   game.quit_requested.connect(_on_quit)  # the main game owns scene changes
 ##   game.start({"attempt": 1, "assist": 0})  # optional; _ready() already starts a run
 ##
 ## Everything the player does goes through one "push" action -> one effort value (0..1) -> pace -> stamina.
+## The world, character and HUD are scenes: this script only moves nodes and feeds them values.
+## It has its own Camera2D; enable the main game's camera again when you leave this scene.
 
 signal run_finished(result: RunResult)
 signal quit_requested
@@ -16,26 +18,27 @@ signal quit_requested
 const DT: float = 1.0 / 60.0  ## fixed simulation step: the same run gives the same time on every device
 const MAX_FRAME: float = 0.1
 const ACTION_PUSH: StringName = &"push"
-const COUNTDOWN_SECONDS: float = 3.0
-const CAMERA_ANCHOR_X: float = 0.33  ## runner stays near the left third of the screen
-const CAMERA_RUNNER_Y: float = 0.62
 const PREDICT_INTERVAL: float = 0.5
 const PREDICT_DT: float = 0.2
 const LOG_INTERVAL: float = 0.5
 const EFFORT_AVG_TIME: float = 1.5
 
 @export var tuning: RunnerTuning
+@export_range(0.1, 0.6, 0.01) var camera_anchor_x: float = 0.33  ## runner stays near the left third of the screen
+@export_range(0.3, 0.9, 0.01) var camera_runner_y: float = 0.62  ## and 62% of the way down
+@export_range(0.0, 5.0, 0.5) var countdown_seconds: float = 3.0
 
-@onready var _world: Node2D = $World
-@onready var _course_view: CourseView = $World/CourseView
-@onready var _ghost_view: RunnerView = $World/GhostView
-@onready var _runner_view: RunnerView = $World/RunnerView
-@onready var _hud: Hud = $Hud
-@onready var _debug: DebugOverlay = $DebugOverlay
+@onready var _camera: Camera2D = Lookup.node(self, "Camera") as Camera2D
+@onready var _course: Course = Lookup.node(self, "Course") as Course
+@onready var _ghost: RunnerCharacter = Lookup.node(self, "Ghost") as RunnerCharacter
+@onready var _runner: RunnerCharacter = Lookup.node(self, "Runner") as RunnerCharacter
+@onready var _hud: Hud = Lookup.node(self, "Hud") as Hud
+@onready var _debug: DebugOverlay = Lookup.node(self, "DebugOverlay") as DebugOverlay
+@onready var _qte: QteController = Lookup.node(self, "Qte") as QteController
 
 var phase: int = RunState.Phase.READY
 var model: RunnerModel
-var course: CourseProfile
+var profile: CourseProfile
 var effort_input: EffortInput
 var par_bot: ParBot
 var par_time: float = 0.0
@@ -62,24 +65,22 @@ var _cam_y: float = 0.0
 var _cam_ready: bool = false
 var _log_rows: Array[PackedFloat32Array] = []
 var _log_timer: float = 0.0
+var _press_is_qte: bool = false  ## the current press was spent on a QTE tap; holding on turns it into running
+var _qte_press_time: float = 0.0
+var _qte_log: PackedStringArray = PackedStringArray()
 
 
 func _ready() -> void:
-	Strings.install()
 	_ensure_input_action()
 	if tuning == null:
 		tuning = RunnerTuning.new()
 	_avg_k = 1.0 - exp(-DT / EFFORT_AVG_TIME)
-	_hud.pause_pressed.connect(toggle_pause)
-	_hud.resume_pressed.connect(toggle_pause)
-	_hud.retry_pressed.connect(retry)
-	_hud.quit_pressed.connect(_on_quit_pressed)
-	_debug.restart_requested.connect(restart)
-	_debug.copy_log_requested.connect(_copy_log)
-	_debug.setup(tuning)
+	_debug.bind(tuning)
+	_debug.bind_qte(_qte.settings, _qte_preset_index())
+	_camera.make_current()
 	get_window().size_changed.connect(_on_window_resized)
 	_on_window_resized()
-	start()
+	start()  # the Hud and DebugOverlay signals are connected in fit_runner.tscn
 
 
 # ---------------------------------------------------------------- public API
@@ -108,6 +109,7 @@ func toggle_pause() -> void:
 	if phase == RunState.Phase.RUNNING or phase == RunState.Phase.COUNTDOWN:
 		_phase_before_pause = phase
 		_push_held = false
+		_press_is_qte = false
 		_set_phase(RunState.Phase.PAUSED)
 	elif phase == RunState.Phase.PAUSED:
 		_push_held = false
@@ -123,6 +125,11 @@ func build_log_text() -> String:
 		lines.append("result passed=%s time=%.2f stars=%d walls=%d" % [str(last_result.passed), last_result.time_sec, last_result.stars, last_result.walls_hit])
 	lines.append("--- tuning")
 	lines.append(tuning.to_text())
+	if _qte.settings != null:
+		lines.append("--- qte settings (enabled=%s)" % str(_qte.is_enabled()))
+		lines.append(_qte.settings.to_text())
+		lines.append("--- qte events: time,grade,bonus")
+		lines.append("\n".join(_qte_log))
 	lines.append("--- t,progress,effort,pace,stamina,rate,walled,held")
 	for row: PackedFloat32Array in _log_rows:
 		lines.append("%.1f,%.3f,%.2f,%.2f,%.1f,%.2f,%d,%d" % [row[0], row[1], row[2], row[3], row[4], row[5], int(row[6]), int(row[7])])
@@ -146,8 +153,8 @@ func _ensure_input_action() -> void:
 
 
 func _prepare() -> void:
-	course = CourseProfile.new(tuning)
-	model = RunnerModel.new(tuning, course)
+	profile = CourseProfile.new(tuning)
+	model = RunnerModel.new(tuning, profile)
 	model.assist_level = assist_level
 	effort_input = EffortFactory.create(tuning)
 	var key: int = tuning.to_text().hash()
@@ -156,7 +163,8 @@ func _prepare() -> void:
 		_par_key = key
 	par_time = tuning.par_time_override if tuning.par_time_override > 0.0 else par_bot.finish_time
 	cutoff_time = par_time * tuning.cutoff_mult
-	_course_view.setup(tuning, course)
+	_course.setup(tuning, profile)
+	_hud.configure(tuning, profile)
 	_acc = 0.0
 	_alpha = 1.0
 	_push_held = false
@@ -168,6 +176,10 @@ func _prepare() -> void:
 	_outlook_timer = 0.0
 	_log_rows.clear()
 	_log_timer = 0.0
+	_press_is_qte = false
+	_qte_press_time = 0.0
+	_qte_log.clear()
+	_qte.reset(attempt * 7919 + 13)
 	_cam_ready = false
 	last_result = null
 	_set_phase(RunState.Phase.READY)
@@ -181,7 +193,7 @@ func _set_phase(p: int) -> void:
 
 
 func _start_countdown() -> void:
-	_countdown_left = COUNTDOWN_SECONDS
+	_countdown_left = countdown_seconds
 	_set_phase(RunState.Phase.COUNTDOWN)
 
 
@@ -204,6 +216,7 @@ func _input(event: InputEvent) -> void:
 			_on_push_pressed()
 	elif event.is_action_released(ACTION_PUSH):
 		_push_held = false
+		_press_is_qte = false
 		_press_blocked = false
 	elif event is InputEventKey:
 		var key: InputEventKey = event
@@ -222,7 +235,12 @@ func _on_push_pressed() -> void:
 	if phase == RunState.Phase.READY:
 		_start_countdown()
 	elif phase == RunState.Phase.RUNNING:
-		_push_held = true
+		if _qte.is_active():
+			_qte.on_tap(_acc)  # a tap during a QTE is judged, it is not pushing
+			_press_is_qte = true
+			_qte_press_time = 0.0
+		else:
+			_push_held = true
 
 
 func _notification(what: int) -> void:
@@ -263,6 +281,11 @@ func _process(delta: float) -> void:
 
 
 func _sim_tick() -> void:
+	if _press_is_qte:
+		_qte_press_time += DT
+		if _qte_press_time >= _qte.settings.tap_max_time:
+			_press_is_qte = false  # still pressed after a tap: the player wants to run
+			_push_held = true
 	var progress: float = clampf(model.progress(), 0.0, 1.0)
 	var effort: float = effort_input.update(DT, _push_held, progress)
 	_effort_avg += (effort - _effort_avg) * _avg_k
@@ -274,6 +297,8 @@ func _sim_tick() -> void:
 			model.request_drink()
 	else:
 		_release_timer = 0.0
+
+	_qte.tick(DT, _is_resting())
 
 	var walls_before: int = model.walls_hit
 	model.step(DT, effort)
@@ -326,6 +351,9 @@ func _finish_run(reached_finish: bool) -> void:
 	result.walls_hit = model.walls_hit
 	result.par_time = par_time
 	result.input_mode = int(tuning.input_mode)
+	result.qte_perfect = _qte.perfect_count
+	result.qte_good = _qte.good_count
+	result.qte_miss = _qte.miss_count
 	if reached_finish:
 		result.passed = true
 		result.time_sec = model.finish_time
@@ -340,6 +368,40 @@ func _finish_run(reached_finish: bool) -> void:
 	run_finished.emit(result)
 
 
+# ---------------------------------------------------------------- QTE
+
+## Resting = hands off, pace in the recover zone, not drinking, inside the course range the QTE allows.
+func _is_resting() -> bool:
+	var qs: QteSettings = _qte.settings
+	if qs == null:
+		return false
+	var p: float = model.progress()
+	var in_range: bool = p >= qs.track_from and p <= qs.track_to
+	var needs_stamina: bool = model.stamina < qs.only_below_stamina * tuning.stamina_max
+	return (not _push_held) and model.pace < qs.rest_pace_below and (not model.drinking) and in_range and needs_stamina and (qs.during_wall or not model.walled)
+
+
+func _on_qte_resolved(grade: int, bonus: float, _streak: int) -> void:
+	model.add_stamina(bonus)
+	var names: Array[String] = ["MISS", "GOOD", "PERFECT"]
+	_qte_log.append("%.1f,%s,%.1f" % [model.elapsed, names[clampi(grade, 0, 2)], bonus])
+	if tuning.haptics and grade == QteController.Grade.PERFECT:
+		Input.vibrate_handheld(30)
+
+
+func _on_qte_preset_selected(index: int) -> void:
+	_qte.apply_preset(index)
+	_debug.bind_qte(_qte.settings, index)
+
+
+func _qte_preset_index() -> int:
+	if _qte.settings == _qte.preset_easy:
+		return 1
+	if _qte.settings == _qte.preset_hard:
+		return 3
+	return 2
+
+
 # ---------------------------------------------------------------- views
 
 func _visual_time() -> float:
@@ -351,33 +413,23 @@ func _visual_time() -> float:
 func _update_views(delta: float) -> void:
 	var view: Vector2 = get_viewport_rect().size
 	var px: float = lerpf(model.prev_pos, model.pos, _alpha)
-	var ground: float = CourseView.GROUND_Y - course.height_at(px)
-	var cam_x: float = px - view.x * CAMERA_ANCHOR_X
-	var target_y: float = ground - view.y * CAMERA_RUNNER_Y
+	var ground: float = _course.ground_y_at(px)
+	var target_y: float = ground - view.y * (camera_runner_y - 0.5)
 	if not _cam_ready:
 		_cam_y = target_y
 		_cam_ready = true
 	else:
 		_cam_y = lerpf(_cam_y, target_y, 1.0 - exp(-5.0 * delta))
-	_world.position = Vector2(-cam_x, -_cam_y)
-	_course_view.set_view(Vector2(cam_x, _cam_y), view)
+	_camera.global_position = Vector2(px + view.x * (0.5 - camera_anchor_x), _cam_y)
 
-	var tint: Color = Color.WHITE
-	if model.walled:
-		tint = UiTheme.ZONE_SPRINT
-	elif model.drinking:
-		tint = UiTheme.WATER_BLUE
-	_runner_view.position = Vector2(px, ground)
-	_runner_view.rotation = clampf(atan(-course.slope_at(px)), -0.35, 0.35)
-	_runner_view.set_pose(model.pace, tint)
+	_runner.position = Vector2(px, ground)
+	_runner.apply(model.pace, model.walled, model.drinking, clampf(atan(-profile.slope_at(px)), -0.35, 0.35))
 
 	var t_visual: float = _visual_time()
 	var gp: float = minf(par_bot.position_at(t_visual), tuning.track_length)
-	var g_ground: float = CourseView.GROUND_Y - course.height_at(gp)
 	var g_pace: float = (par_bot.position_at(t_visual + 0.1) - par_bot.position_at(t_visual)) / 0.1 / tuning.max_speed
-	_ghost_view.position = Vector2(gp, g_ground)
-	_ghost_view.rotation = clampf(atan(-course.slope_at(gp)), -0.35, 0.35)
-	_ghost_view.set_pose(g_pace, Color.WHITE)
+	_ghost.position = Vector2(gp, _course.ground_y_at(gp))
+	_ghost.apply(g_pace, false, false, clampf(atan(-profile.slope_at(gp)), -0.35, 0.35))
 
 
 func _refresh_hud(delta: float) -> void:
@@ -392,6 +444,9 @@ func _refresh_hud(delta: float) -> void:
 	s.par_time = par_time
 	s.cutoff_time = cutoff_time
 	s.attempt = attempt
+	s.qte_phase = _qte.phase
+	s.qte_cursor = _qte.cursor()
+	s.runner_screen_pos = get_viewport().get_canvas_transform() * _runner.global_position
 	s.ghost_progress = minf(par_bot.position_at(_visual_time()), tuning.track_length) / tuning.track_length
 	s.has_delta = phase == RunState.Phase.RUNNING and model.pos > 50.0
 	if s.has_delta:

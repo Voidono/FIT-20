@@ -1,0 +1,240 @@
+[gd_scene format=3 uid="uid://dpfeyvxg4h2hd"]
+
+[ext_resource type="Script" uid="uid://dnh3j20sh5xg" path="res://Dialogues/Bubbles/tutorial_balloon.gd" id="1_tut"]
+[ext_resource type="Script" uid="uid://g32um0mltv5d" path="res://addons/dialogue_manager/nodes/dialogue_label/dialogue_label.gd" id="2_label"]
+[ext_resource type="Script" uid="uid://bb52rsfwhkxbn" path="res://addons/dialogue_manager/nodes/responses_menu/dialogue_responses_menu.gd" id="3_cek1u"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pip_on"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.18, 0.071, 0.141, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pip_off"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.18, 0.071, 0.141, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_header"]
+content_margin_left = 14.0
+content_margin_top = 8.0
+content_margin_right = 14.0
+content_margin_bottom = 8.0
+bg_color = Color(0.969, 0.463, 0.133, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.18, 0.071, 0.141, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_body"]
+content_margin_left = 14.0
+content_margin_top = 10.0
+content_margin_right = 14.0
+content_margin_bottom = 12.0
+bg_color = Color(1, 0.914, 0.722, 1)
+border_width_left = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.18, 0.071, 0.141, 1)
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_response"]
+content_margin_left = 12.0
+content_margin_top = 3.0
+content_margin_right = 8.0
+content_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_highlight"]
+content_margin_left = 12.0
+content_margin_top = 3.0
+content_margin_right = 8.0
+content_margin_bottom = 3.0
+bg_color = Color(0.969, 0.463, 0.133, 1)
+border_width_left = 4
+border_color = Color(0.18, 0.071, 0.141, 1)
+anti_aliasing = false
+
+[node name="TutorialBalloon" type="CanvasLayer" unique_id=1404460374]
+layer = 100
+script = ExtResource("1_tut")
+pip_on = SubResource("StyleBoxFlat_pip_on")
+pip_off = SubResource("StyleBoxFlat_pip_off")
+
+[node name="Balloon" type="Control" parent="." unique_id=2005919994]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+
+[node name="Dim" type="ColorRect" parent="Balloon" unique_id=1850869064]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.18, 0.071, 0.141, 1)
+
+[node name="Center" type="CenterContainer" parent="Balloon" unique_id=310955204]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Card" type="VBoxContainer" parent="Balloon/Center" unique_id=1074680423]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(440, 0)
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[node name="Header" type="PanelContainer" parent="Balloon/Center/Card" unique_id=1657795016]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_header")
+
+[node name="HeaderRow" type="HBoxContainer" parent="Balloon/Center/Card/Header" unique_id=1566686087]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 10
+
+[node name="TitleLabel" type="Label" parent="Balloon/Center/Card/Header/HeaderRow" unique_id=2136067085]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.18, 0.071, 0.141, 1)
+text = "How to play"
+
+[node name="PipsRow" type="HBoxContainer" parent="Balloon/Center/Card/Header/HeaderRow" unique_id=939568149]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_constants/separation = 4
+
+[node name="PipTemplate" type="PanelContainer" parent="Balloon/Center/Card/Header/HeaderRow/PipsRow" unique_id=306547748]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pip_off")
+
+[node name="Body" type="PanelContainer" parent="Balloon/Center/Card" unique_id=1189346422]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_body")
+
+[node name="BodyContent" type="VBoxContainer" parent="Balloon/Center/Card/Body" unique_id=325579554]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="TextColumn" type="VBoxContainer" parent="Balloon/Center/Card/Body/BodyContent" unique_id=1255640576]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+
+[node name="DialogueLabel" type="RichTextLabel" parent="Balloon/Center/Card/Body/BodyContent/TextColumn" unique_id=1575722703]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.18, 0.071, 0.141, 1)
+theme_override_constants/line_separation = 3
+bbcode_enabled = true
+text = "Use the arrow keys to move. It wraps and the card grows with it."
+fit_content = true
+scroll_active = false
+script = ExtResource("2_label")
+seconds_per_step = 0.0
+skip_pause_at_abbreviations = PackedStringArray("Mr", "Mrs", "Ms", "Dr", "etc", "eg", "ex")
+
+[node name="Footer" type="HBoxContainer" parent="Balloon/Center/Card/Body/BodyContent" unique_id=485948288]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="FooterSpacer" type="Control" parent="Balloon/Center/Card/Body/BodyContent/Footer" unique_id=353095463]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="HintLabel" type="RichTextLabel" parent="Balloon/Center/Card/Body/BodyContent/Footer" unique_id=1702781778]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.18, 0.071, 0.141, 1)
+bbcode_enabled = true
+text = "Press ENTER to continue"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="ContinueSlot" type="Control" parent="Balloon/Center/Card/Body/BodyContent/Footer" unique_id=450995837]
+custom_minimum_size = Vector2(14, 12)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="ContinueArrow" type="Polygon2D" parent="Balloon/Center/Card/Body/BodyContent/Footer/ContinueSlot" unique_id=253593031]
+unique_name_in_owner = true
+color = Color(0.18, 0.071, 0.141, 1)
+polygon = PackedVector2Array(0, 0, 14, 0, 7, 8)
+
+[node name="ResponsesPanel" type="MarginContainer" parent="Balloon/Center/Card/Body/BodyContent" unique_id=73647555]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_top = 4
+
+[node name="ResponsesMenu" type="VBoxContainer" parent="Balloon/Center/Card/Body/BodyContent/ResponsesPanel" unique_id=1179813]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 2
+script = ExtResource("3_cek1u")
+
+[node name="ResponseTemplate" type="Button" parent="Balloon/Center/Card/Body/BodyContent/ResponsesPanel/ResponsesMenu" unique_id=152701194]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.18, 0.071, 0.141, 1)
+theme_override_colors/font_focus_color = Color(0.18, 0.071, 0.141, 1)
+theme_override_colors/font_pressed_color = Color(0.18, 0.071, 0.141, 1)
+theme_override_colors/font_hover_color = Color(0.18, 0.071, 0.141, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.18, 0.071, 0.141, 1)
+theme_override_colors/font_disabled_color = Color(0.561, 0.416, 0.369, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_response")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_highlight")
+theme_override_styles/hover = SubResource("StyleBoxFlat_highlight")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_highlight")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_response")
+theme_override_styles/focus = SubResource("StyleBoxFlat_highlight")
+text = "Response"
+alignment = 0
