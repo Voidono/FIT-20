@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://da882jd35otsq"
-path="res://.godot/imported/NPC1-1.png-c9168e23f1bcc0e64d5a65cbf2afee4b.ctex"
+uid="uid://bvcmk5c874t4n"
+path="res://.godot/imported/QKhánh.png-2e151b26573e0e3a6d34132d0c2d4a87.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/DrawAsset/NPC1-1.png"
-dest_files=["res://.godot/imported/NPC1-1.png-c9168e23f1bcc0e64d5a65cbf2afee4b.ctex"]
+source_file="res://assets/DrawAsset/QKhánh.png"
+dest_files=["res://.godot/imported/QKhánh.png-2e151b26573e0e3a6d34132d0c2d4a87.ctex"]
 
 [params]
 
