@@ -14,37 +14,37 @@ script = ExtResource("1_4sgyv")
 metadata/_edit_vertical_guides_ = [550.0]
 
 [node name="Screenshot2026022123101212965Bbf4d18d205f782c6b8409c5773a4" type="Sprite2D" parent="." unique_id=45752845]
-position = Vector2(585.00006, 319)
-scale = Vector2(1.6222222, 0.41250002)
+position = Vector2(480.0001, 264.5)
+scale = Vector2(1.3305556, 0.344375)
 texture = ExtResource("2_s4k3q")
 
 [node name="Play Button" type="Button" parent="." unique_id=361870528]
 texture_filter = 1
 layout_mode = 0
-offset_left = 72.0
-offset_top = 221.0
-offset_right = 307.0
-offset_bottom = 319.0
+offset_left = 60.0
+offset_top = 76.0
+offset_right = 295.0
+offset_bottom = 174.0
 theme_override_font_sizes/font_size = 45
 text = "Play"
 
 [node name="Setting Button" type="Button" parent="." unique_id=705487470]
 texture_filter = 1
 layout_mode = 0
-offset_left = 72.0
-offset_top = 361.0
-offset_right = 307.0
-offset_bottom = 459.0
+offset_left = 63.0
+offset_top = 238.0
+offset_right = 298.0
+offset_bottom = 336.0
 theme_override_font_sizes/font_size = 45
 text = "Setting"
 
 [node name="Quit Button" type="Button" parent="." unique_id=1437491712]
 texture_filter = 1
 layout_mode = 0
-offset_left = 72.0
-offset_top = 505.0
-offset_right = 307.0
-offset_bottom = 603.0
+offset_left = 58.0
+offset_top = 391.0
+offset_right = 293.0
+offset_bottom = 489.0
 theme_override_font_sizes/font_size = 45
 text = "Quit"
 

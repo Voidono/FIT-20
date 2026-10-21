@@ -25,6 +25,16 @@ func set_master_volume(value: float):
 func get_master_volume() -> float:
 	var bus_index = AudioServer.get_bus_index("Master")
 	return db_to_linear(AudioServer.get_bus_volume_db(bus_index))
+	
+func set_music_volume(value: float):
+	var bus_index = AudioServer.get_bus_index("Music")
+	AudioServer.set_bus_volume_db(bus_index, linear_to_db(value))
+	config.set_value("audio", "music_volume", value)
+	save_settings()
+
+func get_music_volume() -> float:
+	var bus_index = AudioServer.get_bus_index("Music")
+	return db_to_linear(AudioServer.get_bus_volume_db(bus_index))
 
 func save_settings():
 	config.save(SAVE_PATH)
