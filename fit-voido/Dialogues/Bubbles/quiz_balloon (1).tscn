@@ -1,0 +1,286 @@
+[gd_scene format=3 uid="uid://bhie3pwx0kuav"]
+
+[ext_resource type="Script" uid="uid://dg6t3aosmfdon" path="res://Dialogues/Bubbles/quiz_balloon (1).gd" id="1_quiz"]
+[ext_resource type="Script" uid="uid://g32um0mltv5d" path="res://addons/dialogue_manager/nodes/dialogue_label/dialogue_label.gd" id="2_label"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tile"]
+content_margin_left = 8.0
+content_margin_top = 6.0
+content_margin_right = 10.0
+content_margin_bottom = 6.0
+bg_color = Color(0.969, 0.463, 0.133, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.18, 0.071, 0.141, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tile_focus"]
+content_margin_left = 8.0
+content_margin_top = 6.0
+content_margin_right = 10.0
+content_margin_bottom = 6.0
+bg_color = Color(0.996, 0.682, 0.204, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0.914, 0.722, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tile_correct"]
+content_margin_left = 8.0
+content_margin_top = 6.0
+content_margin_right = 10.0
+content_margin_bottom = 6.0
+bg_color = Color(0.388, 0.78, 0.302, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0.914, 0.722, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tile_wrong"]
+content_margin_left = 8.0
+content_margin_top = 6.0
+content_margin_right = 10.0
+content_margin_bottom = 6.0
+bg_color = Color(0.706, 0.125, 0.165, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0.914, 0.722, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qtab"]
+content_margin_left = 12.0
+content_margin_top = 4.0
+content_margin_right = 12.0
+content_margin_bottom = 4.0
+bg_color = Color(0.969, 0.463, 0.133, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qbox"]
+content_margin_left = 6.0
+content_margin_top = 6.0
+content_margin_right = 6.0
+content_margin_bottom = 6.0
+bg_color = Color(0.18, 0.071, 0.141, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.969, 0.463, 0.133, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qinline"]
+content_margin_left = 12.0
+content_margin_top = 7.0
+content_margin_right = 12.0
+content_margin_bottom = 7.0
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.996, 0.682, 0.204, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_badge"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.18, 0.071, 0.141, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 1
+anti_aliasing = false
+
+[node name="QuizBalloon" type="CanvasLayer" unique_id=633659642]
+layer = 100
+script = ExtResource("1_quiz")
+tile_normal = SubResource("StyleBoxFlat_tile")
+tile_focus = SubResource("StyleBoxFlat_tile_focus")
+tile_correct = SubResource("StyleBoxFlat_tile_correct")
+tile_wrong = SubResource("StyleBoxFlat_tile_wrong")
+
+[node name="Balloon" type="Control" parent="." unique_id=1207020831]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+
+[node name="Dock" type="VBoxContainer" parent="Balloon" unique_id=1602301086]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -300.0
+offset_top = -12.0
+offset_right = 300.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[node name="NameTag" type="MarginContainer" parent="Balloon/Dock" unique_id=1700514368]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_filter = 2
+theme_override_constants/margin_left = 16
+
+[node name="TagPanel" type="PanelContainer" parent="Balloon/Dock/NameTag" unique_id=100402706]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qtab")
+
+[node name="CharacterLabel" type="Label" parent="Balloon/Dock/NameTag/TagPanel" unique_id=1905746507]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.18, 0.071, 0.141, 1)
+text = "Quizmaster"
+
+[node name="QuestionBox" type="PanelContainer" parent="Balloon/Dock" unique_id=1762041501]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qbox")
+
+[node name="Inline" type="PanelContainer" parent="Balloon/Dock/QuestionBox" unique_id=203996200]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qinline")
+
+[node name="Content" type="HBoxContainer" parent="Balloon/Dock/QuestionBox/Inline" unique_id=1886082586]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 12
+
+[node name="TextColumn" type="VBoxContainer" parent="Balloon/Dock/QuestionBox/Inline/Content" unique_id=1169697895]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="DialogueLabel" type="RichTextLabel" parent="Balloon/Dock/QuestionBox/Inline/Content/TextColumn" unique_id=1531973747]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/default_color = Color(1, 0.914, 0.722, 1)
+theme_override_colors/font_shadow_color = Color(0.745, 0.29, 0.184, 1)
+theme_override_constants/line_separation = 3
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+bbcode_enabled = true
+text = "The question goes here. It wraps and the box grows with it."
+fit_content = true
+scroll_active = false
+script = ExtResource("2_label")
+seconds_per_step = 0.0
+skip_pause_at_abbreviations = PackedStringArray("Mr", "Mrs", "Ms", "Dr", "etc", "eg", "ex")
+
+[node name="ContinueSlot" type="Control" parent="Balloon/Dock/QuestionBox/Inline/Content" unique_id=110624012]
+custom_minimum_size = Vector2(14, 12)
+layout_mode = 2
+size_flags_vertical = 8
+mouse_filter = 2
+
+[node name="ContinueArrow" type="Polygon2D" parent="Balloon/Dock/QuestionBox/Inline/Content/ContinueSlot" unique_id=661215951]
+unique_name_in_owner = true
+color = Color(0.996, 0.682, 0.204, 1)
+polygon = PackedVector2Array(0, 0, 14, 0, 7, 8)
+
+[node name="AnswersPanel" type="MarginContainer" parent="Balloon/Dock" unique_id=1815270938]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_top = 8
+
+[node name="AnswersGrid" type="GridContainer" parent="Balloon/Dock/AnswersPanel" unique_id=462510226]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 2
+
+[node name="AnswerTemplate" type="PanelContainer" parent="Balloon/Dock/AnswersPanel/AnswersGrid" unique_id=929547262]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_tile")
+
+[node name="Row" type="HBoxContainer" parent="Balloon/Dock/AnswersPanel/AnswersGrid/AnswerTemplate" unique_id=618224277]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 10
+
+[node name="Badge" type="PanelContainer" parent="Balloon/Dock/AnswersPanel/AnswersGrid/AnswerTemplate/Row" unique_id=606245345]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_badge")
+
+[node name="Letter" type="Label" parent="Balloon/Dock/AnswersPanel/AnswersGrid/AnswerTemplate/Row/Badge" unique_id=411544200]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.996, 0.682, 0.204, 1)
+text = "A"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Answer" type="Label" parent="Balloon/Dock/AnswersPanel/AnswersGrid/AnswerTemplate/Row" unique_id=599315494]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.18, 0.071, 0.141, 1)
+text = "Answer text"
+autowrap_mode = 3
