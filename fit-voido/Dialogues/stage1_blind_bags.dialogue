@@ -1,0 +1,43 @@
+# FIT: THE TIME STONE - Màn 1: The Beginning (Cửa Nhà C)
+# Use with: pixel_balloon.tscn
+# NPC: Thầy Giảng Viên Nhà C
+
+~ start
+if GameState.has_flag("stage1_stone_collected"):
+	Thầy Giảng Viên: Cánh cửa Nhà C đã mở rồi! Em hãy lên [color=yellow]Phòng 417[/color] để tham gia Màn 2: The Classroom nhé! [#mood=happy]
+	=> END
+
+if GameState.has_completed_quest("garbage_quest") or GameState.has_completed_quest("fit_runner"):
+	Thầy Giảng Viên: Xuất sắc lắm! Em đã hoàn thành trọn vẹn thử thách của Màn 1! [#mood=excited]
+	Thầy Giảng Viên: Đây chính là phần thưởng của em: [color=yellow]Viên Đá Thời Gian #1 (Time Stone #1)[/color]!
+	set GameState.set_flag("stage1_stone_collected")
+	set GameState.complete_quest("reach_building_c")
+	set GameState.start_quest("enter_room_417")
+	Thầy Giảng Viên: Cửa Nhà C đã mở! Mau bước lên tầng 4, Phòng 417 đang chờ em giải cứu hành trình tiếp theo!
+	=> END
+
+if GameState.is_quest_active("garbage_quest"):
+	Thầy Giảng Viên: Em đã chọn [color=cyan]Túi Mù: Garbage Quest[/color]! Mau đi thu gom đủ các túi rác quanh sân trường rồi mang về nộp cho thầy nhé!
+	- Em đang đi gom rác đây ạ!
+		=> END
+
+if GameState.is_quest_active("fit_runner"):
+	Thầy Giảng Viên: Em đã chọn [color=cyan]Túi Mù: FIT Runner[/color]! Hãy chạy đủ các vòng quanh sân trường theo đường chạy quy định và cẩn thận né các chướng ngại vật nhé!
+	- Em đang chạy đây ạ!
+		=> END
+
+# First time meeting the Lecturer
+Thầy Giảng Viên: Chào mừng em đã đến trước cửa Nhà C! Nghe nói em là sinh viên du hành thời gian từ năm 2006 đến đúng không? [#mood=happy]
+- Dạ vâng thưa thầy, em cần tìm Viên Đá Thời Gian để trở về năm 2006!
+	Thầy Giảng Viên: Rất tốt! Muốn mở cửa Nhà C và nhận [color=yellow]Viên Đá Thời Gian #1[/color], thầy có [color=green]2 Chiếc Túi Mù[/color] thử thách cho em lựa chọn:
+	- Chọn Túi Mù 1: Garbage Quest (Thu gom rác làm sạch khuôn viên FIT)
+		set GameState.start_quest("garbage_quest")
+		Thầy Giảng Viên: Lựa chọn rất có ý thức môi trường! Khuôn viên trường đang có nhiều rác sau lễ hội. Hãy thu gom đủ và nộp lại cho thầy!
+		=> END
+	- Chọn Túi Mù 2: FIT Runner (Chạy tiếp sức rèn luyện thể lực)
+		set GameState.start_quest("fit_runner")
+		Thầy Giảng Viên: Tinh thần thể thao tuyệt vời! Hãy chạy vượt chướng ngại vật quanh sân trường và trở về đây!
+		=> END
+	- Thầy có thể giải thích thêm về 2 túi mù được không ạ?
+		Thầy Giảng Viên: Cả hai thử thách đều giúp em rèn luyện bản lĩnh sinh viên FIT và đều nhận được Viên Đá Thời Gian #1 khi hoàn thành. Em chọn cách nào cũng được!
+		=> start

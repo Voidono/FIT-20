@@ -1,0 +1,33 @@
+# FIT: THE TIME STONE - Gatekeeper Verification Quiz
+# Use with: quiz_balloon (1).tscn
+# NPC: Bác Bảo Vệ Cổng Trường
+
+~ start
+if GameState.has_completed_quiz("fit_gate_check"):
+	Bác Bảo Vệ: Chào cháu sinh viên 2006! Đi thẳng vào sân trong là tới Nhà C nhé!
+	- Cháu muốn thử thách lại câu hỏi
+		=> question
+	- Cháu đi tới Nhà C đây ạ
+		=> END
+
+Bác Bảo Vệ: Dừng lại chút nào bạn trẻ! Trông trang phục của cháu lạ lắm... Muốn qua chốt cổng vào sân trường, cháu phải trả lời đúng 1 câu hỏi kiểm tra danh tính!
+=> question
+
+~ question
+Bác Bảo Vệ: Khoa Công nghệ Thông tin (FIT - HANU) chính thức được thành lập vào năm nào?
+
+- Năm 2006 [#correct]
+	set GameState.record_quiz_result("fit_gate_check", 1, 1)
+	set GameState.set_flag("gate_unlocked")
+	Bác Bảo Vệ: Chính xác 100%! Đúng là sinh viên FIT rồi! Chúc mừng kỷ niệm 20 năm, mời cháu vào trong sân!
+	=> END
+
+- Năm 1996
+	set GameState.record_quiz_result("fit_gate_check", 0, 1)
+	Bác Bảo Vệ: Chưa đúng rồi! Khoa FIT của chúng ta thành lập năm 2006 cơ, năm nay 2026 vừa tròn 20 năm đấy!
+	=> END
+
+- Năm 2026
+	set GameState.record_quiz_result("fit_gate_check", 0, 1)
+	Bác Bảo Vệ: Nhầm rồi! 2026 là ngày sinh nhật 20 tuổi hôm nay! Năm thành lập là 2006 nhé!
+	=> END

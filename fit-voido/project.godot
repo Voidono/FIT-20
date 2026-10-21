@@ -21,6 +21,7 @@ buses/default_bus_layout="uid://d0tl51dhmhb4f"
 
 [autoload]
 
+GameState="*res://scripts/game_state.gd"
 Setting="*uid://cbrthw1rnxkr2"
 DialogueManager="*uid://c3rodes2l3gxb"
 Music="*uid://70vsihg017kh"
@@ -45,7 +46,7 @@ enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://untitled.dialogue", "res://Dialogues/test.dialogue", "res://Dialogues/hub_ui_tour.dialogue", "res://Dialogues/quiz_basics.dialogue", "res://Dialogues/trash_train_tutorial.dialogue")
+locale/translations_pot_files=PackedStringArray("res://untitled.dialogue", "res://Dialogues/test.dialogue", "res://Dialogues/hub_ui_tour.dialogue", "res://Dialogues/quiz_basics.dialogue", "res://Dialogues/trash_train_tutorial.dialogue", "res://Dialogues/tutorial_arrival.dialogue", "res://Dialogues/tutorial_controls.dialogue", "res://Dialogues/tutorial_hud_tour.dialogue", "res://Dialogues/tutorial_gate_quiz.dialogue", "res://Dialogues/stage1_blind_bags.dialogue")
 
 [physics]
 

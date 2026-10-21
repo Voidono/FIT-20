@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvcmk5c874t4n"
-path="res://.godot/imported/NPC3.png-c480414d6a0f4faad8cbdc608b8b8c2c.ctex"
+uid="uid://da882jd35otsq"
+path="res://.godot/imported/Tùng.png-9307e6613a87015ce6bcf44ae077700a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/DrawAsset/NPC3.png"
-dest_files=["res://.godot/imported/NPC3.png-c480414d6a0f4faad8cbdc608b8b8c2c.ctex"]
+source_file="res://assets/DrawAsset/Tùng.png"
+dest_files=["res://.godot/imported/Tùng.png-9307e6613a87015ce6bcf44ae077700a.ctex"]
 
 [params]
 
