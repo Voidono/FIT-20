@@ -6,7 +6,7 @@ extends CharacterBody2D
 ## child (named "AnimatedSprite2D") with four animations:
 ##   walk_down, walk_up, walk_left, walk_right
 
-@export var speed: float = 120.0
+@export var speed: float = 200.0
 ## Frame of the walk animation to show while standing still.
 @export var idle_frame: int = 0
 

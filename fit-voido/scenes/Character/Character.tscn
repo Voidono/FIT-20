@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c43kdrqiv4a0n"]
 
 [ext_resource type="Texture2D" uid="uid://bgi1hfhu6f5f2" path="res://assets/DrawAsset/1792488572418.png" id="1_sytbi"]
+[ext_resource type="Script" uid="uid://brg76cssj0nl2" path="res://scenes/Character/character.gd" id="1_ximk1"]
 [ext_resource type="Texture2D" uid="uid://byrg3r5eym0is" path="res://assets/DrawAsset/1792488572423.png" id="2_ximk1"]
 [ext_resource type="Texture2D" uid="uid://c5r10qv7l4xm8" path="res://assets/DrawAsset/1792488572427.png" id="3_o13d4"]
 [ext_resource type="Texture2D" uid="uid://dwh4dnfn7ffkg" path="res://assets/DrawAsset/1792488572431.png" id="4_mwtu1"]
@@ -76,6 +77,7 @@ animations = [{
 }]
 
 [node name="Character" type="CharacterBody2D" unique_id=1990053383]
+script = ExtResource("1_ximk1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=588527109]
 position = Vector2(-1, 0)
@@ -84,3 +86,5 @@ shape = SubResource("RectangleShape2D_wbj20")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=83694064]
 sprite_frames = SubResource("SpriteFrames_4wrgo")
 animation = &"Up"
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1104369618]
