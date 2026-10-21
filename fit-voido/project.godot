@@ -22,6 +22,7 @@ buses/default_bus_layout="uid://d0tl51dhmhb4f"
 [autoload]
 
 Setting="*uid://cbrthw1rnxkr2"
+GameState="*res://scripts/game_state.gd"
 DialogueManager="*uid://c3rodes2l3gxb"
 
 [dialogue_manager]
