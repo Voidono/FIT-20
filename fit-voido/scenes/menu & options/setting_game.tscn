@@ -34,8 +34,10 @@ script = ExtResource("1_nf50l")
 
 [node name="Button" type="Button" parent="." unique_id=1380875411]
 layout_mode = 0
-offset_right = 68.0
-offset_bottom = 66.0
+offset_left = 19.0
+offset_top = 13.0
+offset_right = 82.0
+offset_bottom = 87.0
 theme_override_font_sizes/font_size = 45
 text = "X"
 

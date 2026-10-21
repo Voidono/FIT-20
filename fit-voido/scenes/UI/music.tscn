@@ -7,7 +7,10 @@
 script = ExtResource("1_vjhnq")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1094690081]
+position = Vector2(4253, 1366)
 stream = ExtResource("1_c1cx3")
 autoplay = true
+max_distance = 10000.0
+attenuation = 0.0002708911
 bus = &"Music"
 parameters/looping = true

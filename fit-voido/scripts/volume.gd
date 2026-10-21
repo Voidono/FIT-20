@@ -11,10 +11,16 @@ func load_settings():
 	if err != OK:
 		# Chưa có file settings -> dùng giá trị mặc định
 		set_master_volume(1.0)
+		set_music_volume(1.0)
 		return
 	
 	var volume = config.get_value("audio", "master_volume", 1.0)
 	set_master_volume(volume)
+	
+	var music_volume = config.get_value("audio", "music_volume", 1.0)
+	set_music_volume(volume)
+
+
 
 func set_master_volume(value: float):
 	var bus_index = AudioServer.get_bus_index("Master")

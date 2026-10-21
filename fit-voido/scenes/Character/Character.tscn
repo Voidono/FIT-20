@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://cg27njftyg6at" path="res://assets/DrawAsset/1792488572443.png" id="10_sapi2"]
 [ext_resource type="Texture2D" uid="uid://bumqjas5t07qw" path="res://assets/DrawAsset/1792488572448.png" id="11_pakwh"]
 [ext_resource type="Texture2D" uid="uid://ccjshct58r1mu" path="res://assets/DrawAsset/1792488572452.png" id="12_nct8i"]
+[ext_resource type="Texture2D" uid="uid://bk4f30mgslqed" path="res://assets/environments/pixel-art (7).png" id="14_o13d4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wbj20"]
 size = Vector2(20, 52)
@@ -28,6 +29,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("3_o13d4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ximk1")
 }],
 "loop": 1,
 "name": &"Down",
@@ -42,6 +46,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("6_3aj4r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_dy27b")
 }],
 "loop": 1,
 "name": &"Left",
@@ -56,6 +63,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("9_aw5ds")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_d3ohc")
 }],
 "loop": 1,
 "name": &"Right",
@@ -70,6 +80,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("12_nct8i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_pakwh")
 }],
 "loop": 1,
 "name": &"Up",
@@ -77,6 +90,7 @@ animations = [{
 }]
 
 [node name="Character" type="CharacterBody2D" unique_id=1990053383 groups=["player"]]
+z_index = 2
 script = ExtResource("1_ximk1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=588527109]
@@ -84,6 +98,23 @@ shape = SubResource("RectangleShape2D_wbj20")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=83694064]
 sprite_frames = SubResource("SpriteFrames_4wrgo")
-animation = &"Up"
+animation = &"Down"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1104369618]
+
+[node name="PixelArt(7)" type="Sprite2D" parent="Camera2D" unique_id=1028906526]
+z_index = 100
+position = Vector2(-431, -233)
+scale = Vector2(0.65625, 0.65625)
+texture = ExtResource("14_o13d4")
+
+[node name="Button" type="Button" parent="Camera2D" unique_id=665977799]
+z_index = 100
+offset_left = -450.0
+offset_top = -252.0
+offset_right = -412.0
+offset_bottom = -216.0
+theme_override_font_sizes/font_size = 10
+flat = true
+
+[connection signal="pressed" from="Camera2D/Button" to="." method="_on_button_pressed"]

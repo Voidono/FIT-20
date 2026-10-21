@@ -142,3 +142,8 @@ func _add_action(action: StringName, key: Key, axis: JoyAxis, axis_dir: float, d
 	for event in [key_event, stick_event, dpad_event]:
 		event.device = -1  # any device, same as the Input Map editor's default
 		InputMap.action_add_event(action, event)
+
+
+func _on_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/menu & options/menu.tscn")
+	pass # Replace with function body.

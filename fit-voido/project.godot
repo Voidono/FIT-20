@@ -24,6 +24,7 @@ buses/default_bus_layout="uid://d0tl51dhmhb4f"
 Setting="*uid://cbrthw1rnxkr2"
 DialogueManager="*uid://c3rodes2l3gxb"
 Music="*uid://70vsihg017kh"
+SceneLoader="*uid://dajoc7e3wmuse"
 
 [dialogue_manager]
 
