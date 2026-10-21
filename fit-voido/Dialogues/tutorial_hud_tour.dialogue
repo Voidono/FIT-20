@@ -1,0 +1,22 @@
+# FIT: THE TIME STONE - HUD & Quest Tour
+# Use with: ui_tour_balloon.tscn
+
+~ start
+if not GameState.has_flag("hud_tour_seen"):
+	set GameState.set_flag("hud_tour_seen")
+	set locals.steps = 3
+	Chỉ dẫn: Đây là Bảng Nhiệm Vụ, hiển thị mục tiêu hiện tại của bạn trong hành trình FIT: THE TIME STONE. [#target=QuestPanel]
+	Chỉ dẫn: Khung Đá Thời Gian chứa 4 vị trí gắn đá. Bạn cần đủ cả 4 viên để kích hoạt Cánh Cửa trở về năm 2006! [#target=TimeStoneSlots]
+	Chỉ dẫn: Nút Menu/Tạm dừng cho phép lưu trạng thái, chỉnh âm lượng hoặc xem lại bản đồ khuôn viên FIT. [#target=PauseButton]
+	- Đã hiểu, cảm ơn!
+		=> END
+
+Chỉ dẫn: Bạn đã hoàn thành phần giới thiệu giao diện.
+- Xem lại giao diện một lần nữa
+	set locals.steps = 3
+	Chỉ dẫn: Bảng Nhiệm Vụ hiển thị mục tiêu hiện tại. [#target=QuestPanel]
+	Chỉ dẫn: Khung Đá Thời Gian lưu giữ 4 viên đá thu thập được từ 4 màn. [#target=TimeStoneSlots]
+	Chỉ dẫn: Nút Tạm dừng để điều chỉnh cài đặt và bản đồ. [#target=PauseButton]
+	=> END
+- Tiếp tục chơi
+	=> END

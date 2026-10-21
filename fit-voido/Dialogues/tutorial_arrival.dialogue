@@ -1,0 +1,31 @@
+# FIT: THE TIME STONE - Tutorial Arrival Scene
+# Use with: pixel_balloon.tscn
+# NPC: Minh (Sinh viên FIT 2026)
+
+~ start
+if not GameState.has_flag("intro_met_minh"):
+	set GameState.set_flag("intro_met_minh")
+	Minh: Này bạn ơi! Bạn có sao không? Sao lại ngã lăn ra trước cổng trường thế này? [#mood=surprised]
+	- Đây là đâu? Mấy cái màn hình CRT với máy bàn dày cộp đâu hết rồi?
+		Minh: Màn hình CRT thời đồ đá nào thế bạn? Bạn đang ở cổng Trường Đại học Hà Nội đấy! [#mood=laughing]
+	- Tôi vừa bước qua một vết nứt ánh sáng ở năm 2006...
+		Minh: 2006?! Đùa à! Bạn đang ở năm 2026! Hôm nay là Lễ Kỷ Niệm 20 Năm thành lập Khoa CNTT (FIT) đấy! [#mood=excited]
+	
+	Minh: Nhìn kìa, cánh cổng không gian sau lưng bạn đã bị khóa cứng rồi! [#mood=worried]
+	Minh: Tương truyền chỉ có [color=yellow]4 Viên Đá Thời Gian (Time Stones)[/color] mới mở lại được Cánh Cửa Thời Gian tại Văn phòng Khoa để bạn trở về năm 2006!
+	- Làm sao để tìm 4 viên đá đó?
+		Minh: Manh mối đầu tiên nằm ở [color=green]Nhà C[/color]. Hãy tới đó gặp Thầy Giảng Viên đón tiếp!
+	- Tôi hiểu rồi, phải về năm 2006 kịp giờ nộp bài tập!
+		Minh: Haha, tinh thần sinh viên FIT 2006 chuẩn đấy!
+	
+	set GameState.start_quest("reach_building_c")
+	Minh: Mau đứng dậy khởi động chân tay đi, tôi hướng dẫn cách di chuyển cho nhé!
+	=> END
+
+# Repeat interaction if talked to again
+Minh: Đừng đứng ngơ ngác nữa! Mau đi thẳng tới [color=green]Nhà C[/color] tìm Thầy Giảng Viên để bắt đầu thử thách Màn 1! [#mood=happy]
+- Cảm ơn Minh, tôi đi ngay đây!
+	=> END
+- Nhắc lại cho tôi về 4 Viên Đá Thời Gian đi?
+	Minh: Thu thập đủ 4 viên qua các màn ở Nhà C, sân thể thao và giải cứu thầy Trưởng khoa, bạn sẽ trở về được 2006!
+	=> END

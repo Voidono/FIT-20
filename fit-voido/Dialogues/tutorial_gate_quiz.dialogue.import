@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://xvm84vhu86di"
+path="res://.godot/imported/tutorial_gate_quiz.dialogue-67f7981a53f9b5427e1bbeb9b6297400.tres"
+
+[deps]
+
+source_file="res://Dialogues/tutorial_gate_quiz.dialogue"
+dest_files=["res://.godot/imported/tutorial_gate_quiz.dialogue-67f7981a53f9b5427e1bbeb9b6297400.tres"]
+
+[params]
+
+defaults=true

@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://b180hnboxpruv"
+path="res://.godot/imported/tutorial_hud_tour.dialogue-7248f3b167ee3ba2840dbb26fa13e7db.tres"
+
+[deps]
+
+source_file="res://Dialogues/tutorial_hud_tour.dialogue"
+dest_files=["res://.godot/imported/tutorial_hud_tour.dialogue-7248f3b167ee3ba2840dbb26fa13e7db.tres"]
+
+[params]
+
+defaults=true

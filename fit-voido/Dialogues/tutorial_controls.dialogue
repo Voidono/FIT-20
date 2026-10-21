@@ -1,0 +1,24 @@
+# FIT: THE TIME STONE - Movement & Interaction Controls Tutorial
+# Use with: tutorial_balloon.tscn
+
+~ start
+if not GameState.has_flag("controls_tutorial_seen"):
+	set GameState.set_flag("controls_tutorial_seen")
+	set locals.steps = 3
+	Hướng dẫn: Dùng <WASD> hoặc phím mũi tên <ARROWS> để di chuyển xung quanh khuôn viên trường.
+	Hướng dẫn: Giữ phím <SHIFT> để chạy nhanh, nhấn phím <E> hoặc <SPACE> để trò chuyện với Giảng viên, Sinh viên và nhặt vật phẩm.
+	Hướng dẫn: Mục tiêu đầu tiên: Di chuyển thẳng qua sân trường để đến trước cửa [color=yellow]Nhà C[/color] nhận thử thách!
+	- Sẵn sàng xuất phát!
+		=> END
+	- Xem lại hướng dẫn một lần nữa
+		=> start
+
+Hướng dẫn: Bạn có muốn xem lại các thao tác điều khiển không?
+- Xem lại cách điều khiển
+	set locals.steps = 3
+	Hướng dẫn: Dùng <WASD> hoặc <ARROWS> để di chuyển nhân vật.
+	Hướng dẫn: Giữ <SHIFT> để chạy nhanh. Nhấn <E> hoặc <SPACE> để tương tác với NPC.
+	Hướng dẫn: Đi thẳng về phía [color=yellow]Nhà C[/color] để bắt đầu Màn 1.
+	=> END
+- Tôi đã nắm rõ rồi
+	=> END
