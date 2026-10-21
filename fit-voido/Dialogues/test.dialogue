@@ -1,11 +1,31 @@
+# Pixel balloon example: an NPC changes what it says as progress changes.
+# NPC IDs and quest IDs are stable strings owned by GameState, not scene names.
+
 ~ start
-Nathan: [[Hi|Hello|Howdy]], this is some dialogue.
-Nathan: Here are some choices.
-- First one
-	Nathan: You picked the first one.
-- Second one
-	Nathan: You picked the second one.
-- Start again => start
-- End the conversation => END
-Nathan: For more information see the online documentation.
+if GameState.npc_stage("coach_mira") == "new":
+	Coach Mira: Welcome to Fit-Voido. I can help you start your first workout.
+	set GameState.mark_met("coach_mira")
+	- What should I do first?
+		=> first_workout
+	- I will come back later.
+		Coach Mira: No problem. Find me when you are ready.
+		=> END
+
+if GameState.is_quest_active("first_workout"):
+	Coach Mira: Your first workout is active. Complete the training-room challenge, then come back.
+	- I am on it.
+		=> END
+
+if GameState.has_completed_quest("first_workout"):
+	Coach Mira: You finished your first workout! Keep building that streak. [#mood=happy]
+	- Thanks, Coach.
+		=> END
+
+Coach Mira: I am here whenever you need a reminder of your next goal.
+=> END
+
+~ first_workout
+Coach Mira: Start with a gentle warm-up, then head to the training room.
+set GameState.start_quest("first_workout")
+Coach Mira: Come back after you finish the challenge.
 => END

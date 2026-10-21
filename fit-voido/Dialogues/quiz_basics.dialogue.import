@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://ypmw2w7scxd4"
+path="res://.godot/imported/quiz_basics.dialogue-e335a3ad72dc6b4878a833082711c43e.tres"
+
+[deps]
+
+source_file="res://Dialogues/quiz_basics.dialogue"
+dest_files=["res://.godot/imported/quiz_basics.dialogue-e335a3ad72dc6b4878a833082711c43e.tres"]
+
+[params]
+
+defaults=true

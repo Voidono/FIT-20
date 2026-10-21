@@ -1,0 +1,35 @@
+# Quiz balloon example: record the outcome, then alter the next conversation.
+
+~ start
+if GameState.has_completed_quiz("warmup_basics"):
+	Quiz Bot: Your best warm-up score is {{GameState.quiz_best_score("warmup_basics")}} out of 1.
+	- Try again
+		=> question
+	- Leave the quiz
+		=> END
+
+if GameState.is_quest_active("first_workout"):
+	Quiz Bot: Quick check: which choice is a good warm-up?
+	=> question
+
+Quiz Bot: Coach Mira will send you here once your first workout has started.
+=> END
+
+~ question
+Quiz Bot: Before exercising, what should you do?
+
+- Begin with gentle movement that gradually raises your heart rate. [#correct]
+	set GameState.record_quiz_result("warmup_basics", 1, 1)
+	set GameState.complete_quest("first_workout")
+	Quiz Bot: Correct! A gradual warm-up prepares your body for activity.
+	=> END
+
+- Skip preparation to save energy.
+	set GameState.record_quiz_result("warmup_basics", 0, 1)
+	Quiz Bot: Not quite. A short warm-up is a safer start.
+	=> END
+
+- Avoid drinking water before moving.
+	set GameState.record_quiz_result("warmup_basics", 0, 1)
+	Quiz Bot: Not quite. Staying hydrated supports your workout.
+	=> END

@@ -23,7 +23,6 @@ buses/default_bus_layout="uid://d0tl51dhmhb4f"
 
 Setting="*uid://cbrthw1rnxkr2"
 DialogueManager="*uid://c3rodes2l3gxb"
-Music="*uid://70vsihg017kh"
 
 [dialogue_manager]
 
@@ -33,6 +32,7 @@ runtime/balloon_path="res://Dialogues/Bubbles/balloon.tscn"
 
 window/size/viewport_width=960
 window/size/viewport_height=540
+window/size/mode=3
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 window/handheld/orientation=4
@@ -43,7 +43,7 @@ enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://untitled.dialogue", "res://Dialogues/test.dialogue")
+locale/translations_pot_files=PackedStringArray("res://untitled.dialogue", "res://Dialogues/test.dialogue", "res://Dialogues/hub_ui_tour.dialogue", "res://Dialogues/quiz_basics.dialogue", "res://Dialogues/trash_train_tutorial.dialogue")
 
 [physics]
 
@@ -53,4 +53,3 @@ locale/translations_pot_files=PackedStringArray("res://untitled.dialogue", "res:
 
 textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
-renderer/rendering_method="gl_compatibility"

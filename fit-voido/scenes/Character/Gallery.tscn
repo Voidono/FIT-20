@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://lg2anmxt06j2"]
+
+[ext_resource type="PackedScene" uid="uid://c43kdrqiv4a0n" path="res://scenes/Character/Character.tscn" id="1_0eauy"]
+[ext_resource type="PackedScene" uid="uid://cgg7os1kxs0wf" path="res://scenes/mapsides/t_2_c.tscn" id="2_ghwlr"]
+[ext_resource type="PackedScene" uid="uid://c0gjtr6ij3dyy" path="res://scenes/Character/dialogue_npc.tscn" id="3_rdpcd"]
+[ext_resource type="Texture2D" uid="uid://da882jd35otsq" path="res://assets/DrawAsset/NPC1-1.png" id="4_qg2c8"]
+[ext_resource type="Resource" uid="uid://dewolo8g0ynp4" path="res://Dialogues/test.dialogue" id="5_m0bft"]
+[ext_resource type="Texture2D" uid="uid://cj11xk34dhjis" path="res://assets/DrawAsset/NPC2-1.png" id="6_56k78"]
+[ext_resource type="PackedScene" uid="uid://bhie3pwx0kuav" path="res://Dialogues/Bubbles/quiz_balloon (1).tscn" id="7_56k78"]
+[ext_resource type="Texture2D" uid="uid://d02bwmv5ubyb" path="res://assets/DrawAsset/NPC4-1.png" id="8_qojc7"]
+[ext_resource type="PackedScene" uid="uid://dpfeyvxg4h2hd" path="res://Dialogues/Bubbles/tutorial_balloon.tscn" id="9_35sl3"]
+[ext_resource type="Texture2D" uid="uid://bmrkbm77sbroc" path="res://assets/DrawAsset/NPC5.png" id="10_2v6sr"]
+[ext_resource type="PackedScene" uid="uid://bqoakrv3gj1ka" path="res://Dialogues/Bubbles/ui_tour_balloon.tscn" id="11_dya70"]
+[ext_resource type="Resource" uid="uid://ypmw2w7scxd4" path="res://Dialogues/quiz_basics.dialogue" id="12_quiz"]
+[ext_resource type="Resource" uid="uid://ba006mmtaq8ca" path="res://Dialogues/trash_train_tutorial.dialogue" id="13_tutorial"]
+[ext_resource type="Resource" uid="uid://chhuk8m1m8bvg" path="res://Dialogues/hub_ui_tour.dialogue" id="14_tour"]
+
+[node name="Gallery" type="Node2D" unique_id=1603826261]
+
+[node name="Character" parent="." unique_id=1990053383 instance=ExtResource("1_0eauy")]
+top_level = true
+position = Vector2(162, 338)
+
+[node name="t_2_c" parent="." unique_id=282694800 instance=ExtResource("2_ghwlr")]
+
+[node name="Pixel_BalloonNPC" parent="." unique_id=1541297481 instance=ExtResource("3_rdpcd")]
+position = Vector2(457, 305)
+npc_sprite = ExtResource("4_qg2c8")
+dialogue = ExtResource("5_m0bft")
+
+[node name="Quiz_NPC" parent="." unique_id=1073758094 instance=ExtResource("3_rdpcd")]
+position = Vector2(600, 307)
+npc_sprite = ExtResource("6_56k78")
+dialogue = ExtResource("12_quiz")
+dialogue_balloon = ExtResource("7_56k78")
+
+[node name="Tutorial_NPC" parent="." unique_id=473012236 instance=ExtResource("3_rdpcd")]
+position = Vector2(745, 305)
+npc_sprite = ExtResource("8_qojc7")
+dialogue = ExtResource("13_tutorial")
+dialogue_balloon = ExtResource("9_35sl3")
+
+[node name="TuorBaloon_NPC" parent="." unique_id=1820410295 instance=ExtResource("3_rdpcd")]
+position = Vector2(887, 308)
+npc_sprite = ExtResource("10_2v6sr")
+dialogue = ExtResource("14_tour")
+dialogue_balloon = ExtResource("11_dya70")

@@ -1,0 +1,22 @@
+# UI-tour balloon example. Add the matching UI nodes to the `tutorial_target`
+# group for the spotlight tags below to find them.
+
+~ start
+if not GameState.has_flag("hub_ui_tour_seen"):
+	set GameState.set_flag("hub_ui_tour_seen")
+	set locals.steps = 3
+	Guide: Your current activity appears here. [#target=QuestPanel]
+	Guide: This meter shows your available energy. [#target=EnergyMeter]
+	Guide: Open this button to pause or adjust settings. [#target=PauseButton]
+	- Got it
+		=> END
+
+Guide: You have already completed the hub tour.
+- Show the tour again
+	set locals.steps = 3
+	Guide: Your current activity appears here. [#target=QuestPanel]
+	Guide: This meter shows your available energy. [#target=EnergyMeter]
+	Guide: Open this button to pause or adjust settings. [#target=PauseButton]
+	=> END
+- Leave
+	=> END
