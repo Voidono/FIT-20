@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bgkn50km84u16" path="res://scripts/setting_game.gd" id="1_f7dxp"]
 [ext_resource type="Script" uid="uid://ci85wyadcd2fi" path="res://scripts/h_slider.gd" id="1_nf50l"]
+[ext_resource type="Script" uid="uid://dtvvvcgjpxy53" path="res://scenes/menu & options/music.gd" id="3_f7dxp"]
 
 [node name="Setting game" type="Control" unique_id=1183533026]
 layout_mode = 3
@@ -14,20 +15,19 @@ script = ExtResource("1_f7dxp")
 
 [node name="Label" type="Label" parent="." unique_id=1566910263]
 layout_mode = 0
-offset_left = 25.0
-offset_top = 256.0
-offset_right = 460.0
-offset_bottom = 339.0
-theme_override_font_sizes/font_size = 51
-text = "Music volume"
+offset_left = 27.0
+offset_top = 160.0
+offset_right = 396.0
+offset_bottom = 230.0
+theme_override_font_sizes/font_size = 30
+text = "Master volume"
 
 [node name="HSlider" type="HSlider" parent="Label" unique_id=1037563489]
 texture_filter = 1
 layout_mode = 0
-offset_left = 436.0
-offset_top = -30.0
-offset_right = 871.0
-offset_bottom = 122.0
+offset_left = 248.0
+offset_right = 468.0
+offset_bottom = 50.0
 max_value = 1.0
 step = 0.01
 script = ExtResource("1_nf50l")
@@ -39,5 +39,26 @@ offset_bottom = 66.0
 theme_override_font_sizes/font_size = 45
 text = "X"
 
+[node name="Label2" type="Label" parent="." unique_id=1876334299]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 230.0
+offset_right = 465.0
+offset_bottom = 313.0
+theme_override_font_sizes/font_size = 30
+text = "Music volume"
+
+[node name="Music" type="HSlider" parent="Label2" unique_id=170595102]
+texture_filter = 1
+layout_mode = 0
+offset_left = 244.0
+offset_top = -5.0
+offset_right = 464.0
+offset_bottom = 58.0
+max_value = 1.0
+step = 0.01
+script = ExtResource("3_f7dxp")
+
 [connection signal="value_changed" from="Label/HSlider" to="Label/HSlider" method="_on_value_changed"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="value_changed" from="Label2/Music" to="Label2/Music" method="_on_value_changed"]
