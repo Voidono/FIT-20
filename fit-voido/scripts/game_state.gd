@@ -37,6 +37,17 @@ func _ready() -> void:
 	load_game()
 
 
+## Debug-only shortcut available from every scene.
+## Press F8 while running from the editor to reset all persistent progress.
+func _unhandled_input(event: InputEvent) -> void:
+	if not OS.is_debug_build():
+		return
+	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_F8:
+		reset_progress()
+		get_viewport().set_input_as_handled()
+		print("GameState: progress reset.")
+
+
 # NPCs ---------------------------------------------------------------------------
 
 func npc_stage(npc_id: String) -> String:

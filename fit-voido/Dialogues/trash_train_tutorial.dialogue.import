@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://ba006mmtaq8ca"
+path="res://.godot/imported/trash_train_tutorial.dialogue-d15fe800e9c75d71870512005f34bfea.tres"
+
+[deps]
+
+source_file="res://Dialogues/trash_train_tutorial.dialogue"
+dest_files=["res://.godot/imported/trash_train_tutorial.dialogue-d15fe800e9c75d71870512005f34bfea.tres"]
+
+[params]
+
+defaults=true

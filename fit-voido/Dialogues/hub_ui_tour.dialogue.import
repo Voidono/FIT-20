@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://chhuk8m1m8bvg"
+path="res://.godot/imported/hub_ui_tour.dialogue-e0d742e9e411dc60ed419ed59e6fe22c.tres"
+
+[deps]
+
+source_file="res://Dialogues/hub_ui_tour.dialogue"
+dest_files=["res://.godot/imported/hub_ui_tour.dialogue-e0d742e9e411dc60ed419ed59e6fe22c.tres"]
+
+[params]
+
+defaults=true

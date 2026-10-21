@@ -1,0 +1,25 @@
+# Tutorial balloon example: only show the full first-time explanation once.
+
+~ start
+if not GameState.has_flag("trash_train_tutorial_seen"):
+	set GameState.set_flag("trash_train_tutorial_seen")
+	set locals.steps = 3
+	Trash Train: Welcome to Trash Train.
+	Trash Train: Use <WASD> or <ARROWS> to move around the park.
+	Trash Train: Collect litter, avoid pedestrians, and bank your collection before time runs out.
+	- Start the challenge
+		set GameState.start_quest("trash_train")
+		=> END
+	- Read it again
+		=> start
+
+Trash Train: Want a quick refresher before you play?
+- Show the controls again
+	set locals.steps = 3
+	Trash Train: Use <WASD> or <ARROWS> to move.
+	Trash Train: Collect litter and avoid pedestrians.
+	Trash Train: Bank your collection before time runs out.
+	=> END
+- I am ready
+	set GameState.start_quest("trash_train")
+	=> END
