@@ -102,7 +102,7 @@ metadata/_edit_horizontal_guides_ = [292.0]
 layout_mode = 0
 offset_right = 957.0
 offset_bottom = 537.0
-color = Color(0, 1, 0, 1)
+color = Color(0.19215687, 0.38039216, 0.85490197, 1)
 
 [node name="PixelArt(5)" type="Sprite2D" parent="." unique_id=1679429767]
 position = Vector2(125.99999, 487)
@@ -159,6 +159,16 @@ sprite_frames = SubResource("SpriteFrames_csdqt")
 animation = &"Down"
 frame_progress = 0.35914704
 script = ExtResource("15_6085w")
+
+[node name="Label" type="Label" parent="." unique_id=635577035]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 74.0
+offset_right = 674.0
+offset_bottom = 246.0
+theme_override_colors/font_color = Color(0.0051989057, 0.005198906, 0.0051989057, 1)
+theme_override_font_sizes/font_size = 65
+text = "FIT: THE TIME STONE"
 
 [connection signal="pressed" from="PixelArt(5)/Play Button" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="PixelArt(5)2/Setting Button" to="." method="_on_setting_button_pressed"]
