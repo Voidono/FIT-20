@@ -1,0 +1,35 @@
+# NPC: Ngọc – Sinh viên FIT 2026, bạn vui tính gần sân trường
+# Balloon: pixel_balloon.tscn
+
+~ start
+if GameState.npc_stage("ngoc_yard") == "new":
+	set GameState.set_npc_stage("ngoc_yard", "met")
+	Ngọc: Ồ bạn ơi! Nhìn style của bạn... CRT monitor? Floppy disk? 2006 hả? [#mood=surprised]
+	- Sao bạn biết?!
+		Ngọc: Vì cả trường đang đồn ầm lên là có người du hành thời gian xuất hiện! Bạn nổi tiếng rồi đó!
+	- Tôi ăn mặc bình thường mà...
+		Ngọc: Bình thường năm 2006 thôi nha! Ở đây năm 2026 rồi, mốt khác lắm hihi.
+	
+	Ngọc: Bạn cần tìm 4 Viên Đá phải không? Tôi có nghe Minh kể rồi!
+	- Bạn có biết chúng ở đâu không?
+		Ngọc: Minh nói Viên Đá #1 ở Nhà C, gặp Thầy Giảng Viên là được. Còn lại thì bí mật lắm, phải tự khám phá thôi!
+		set GameState.set_npc_stage("ngoc_yard", "active")
+	- Bạn học FIT từ năm mấy?
+		Ngọc: Tôi vào FIT năm 2024! Còn bạn thì... từ năm 2006 à? Wow, bạn cùng năm với Khoa mình ra đời luôn!
+	=> END
+
+if GameState.npc_stage("ngoc_yard") == "active":
+	Ngọc: Bạn tìm được Viên Đá nào rồi chưa? Đang ở giai đoạn nào thế? [#mood=happy]
+	- Chưa có viên nào, mới bắt đầu
+		Ngọc: Thì đến Nhà C đi! Thầy Giảng Viên đang chờ ở trước cửa đó!
+		=> END
+	- Đã có 1 viên, đang tìm tiếp
+		set GameState.set_npc_stage("ngoc_yard", "complete")
+		Ngọc: Woah, ngon đó! Tiếp tục lên Phòng 417 nhé! FIT đang cổ vũ bạn!
+		=> END
+	- Tôi chỉ muốn hỏi thăm thôi
+		Ngọc: Oke oke! Chúc bạn tìm đủ 4 viên đá sớm nhé! Tôi tin bạn làm được!
+		=> END
+
+Ngọc: Cố lên bạn ơi! Cả hành trình FIT đang chờ bạn khám phá đấy! [#mood=excited]
+=> END

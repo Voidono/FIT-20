@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bmrkbm77sbroc"
-path="res://.godot/imported/Thắng.png-5d8cace9c0581b6847c5121ad0a88c1f.ctex"
+uid="uid://cj11xk34dhjis"
+path="res://.godot/imported/Dũng.png-9b070b65a7631846224e3f1f1d034384.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/DrawAsset/Thắng.png"
-dest_files=["res://.godot/imported/Thắng.png-5d8cace9c0581b6847c5121ad0a88c1f.ctex"]
+source_file="res://assets/DrawAsset/NPC/Dũng.png"
+dest_files=["res://.godot/imported/Dũng.png-9b070b65a7631846224e3f1f1d034384.ctex"]
 
 [params]
 
