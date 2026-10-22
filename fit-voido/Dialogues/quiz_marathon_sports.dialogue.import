@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://d28djbf4okdr0"
+path="res://.godot/imported/quiz_marathon_sports.dialogue-a08393509b59087185b6472cb59dccde.tres"
+
+[deps]
+
+source_file="res://Dialogues/quiz_marathon_sports.dialogue"
+dest_files=["res://.godot/imported/quiz_marathon_sports.dialogue-a08393509b59087185b6472cb59dccde.tres"]
+
+[params]
+
+defaults=true

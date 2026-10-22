@@ -1,0 +1,104 @@
+# FIT: THE TIME STONE - Random Quiz 1: FIT History & Classroom Knowledge
+# Balloon: quiz_balloon (1).tscn or pixel_balloon.tscn
+# Speaker: Thầy Thắng (Trưởng Khoa FIT / Giảng viên)
+
+~ start
+if GameState.has_completed_quiz("fit_history_quiz"):
+	Thầy Thắng: Điểm cao nhất của em ở bài kiểm tra Lịch sử FIT là {{GameState.quiz_best_score("fit_history_quiz")}} điểm!
+	- Thử một câu hỏi ngẫu nhiên khác
+		=> pick_random_question
+	- Em đã sẵn sàng cho thử thách tiếp theo
+		=> END
+
+Thầy Thắng: Chào mừng em đến với Thử Thách Tri Thức FIT! Thầy sẽ đưa ra một câu hỏi ngẫu nhiên để kiểm tra xem em hiểu FIT đến đâu nhé!
+=> pick_random_question
+
+~ pick_random_question
+% => question_founded
+% => question_slogan
+% => question_building
+% => question_programming
+
+~ question_founded
+Thầy Thắng: Khoa Công nghệ Thông tin (FIT - HANU) được thành lập vào năm nào và năm 2026 này kỷ niệm bao nhiêu năm?
+
+- Năm 2006 – Kỷ niệm tròn 20 năm thành lập [#correct]
+	set GameState.record_quiz_result("fit_history_quiz", 1, 1)
+	Thầy Thắng: Chính xác! FIT ra đời từ năm 2006, và năm 2026 đánh dấu cột mốc 20 năm rực rỡ!
+	- Làm câu hỏi ngẫu nhiên khác => pick_random_question
+	- Cảm ơn thầy, em đi tiếp đây => END
+
+- Năm 2016 – Kỷ niệm 10 năm
+	set GameState.record_quiz_result("fit_history_quiz", 0, 1)
+	Thầy Thắng: Chưa chính xác! FIT được thành lập từ năm 2006 cơ em nhé!
+	- Thử lại câu khác => pick_random_question
+	- Em sẽ ôn lại sau ạ => END
+
+- Năm 2000 – Kỷ niệm 26 năm
+	set GameState.record_quiz_result("fit_history_quiz", 0, 1)
+	Thầy Thắng: Chưa đúng rồi! Mốc son khởi đầu của chúng ta là năm 2006!
+	- Thử lại câu khác => pick_random_question
+	- Em sẽ ôn lại sau ạ => END
+
+~ question_slogan
+Thầy Thắng: Đâu là thông điệp / tagline chính thức của dịp Kỷ Niệm 20 năm Khoa Công nghệ Thông tin?
+
+- 20 năm – Một hành trình – Một FIT [#correct]
+	set GameState.record_quiz_result("fit_history_quiz", 1, 1)
+	Thầy Thắng: Rất chuẩn xác! '20 năm – Một hành trình – Một FIT' gắn kết bao thế hệ thầy trò!
+	- Làm câu hỏi ngẫu nhiên khác => pick_random_question
+	- Cảm ơn thầy, em đi tiếp đây => END
+
+- Học thật chăm, qua môn thật nhanh
+	set GameState.record_quiz_result("fit_history_quiz", 0, 1)
+	Thầy Thắng: Haha, mong ước thiết thực đấy nhưng khẩu hiệu 20 năm là: '20 năm – Một hành trình – Một FIT'!
+	- Thử lại câu khác => pick_random_question
+	- Em chào thầy => END
+
+- Code thâu đêm, ngủ bù ban ngày
+	set GameState.record_quiz_result("fit_history_quiz", 0, 1)
+	Thầy Thắng: Không đúng rồi! Giữ gìn sức khỏe nhé em, khẩu hiệu đúng là: '20 năm – Một hành trình – Một FIT'!
+	- Thử lại câu khác => pick_random_question
+	- Em chào thầy => END
+
+~ question_building
+Thầy Thắng: Tòa nhà nào trong khuôn viên trường gắn bó mật thiết nhất với các phòng học và giảng viên FIT?
+
+- Nhà C [#correct]
+	set GameState.record_quiz_result("fit_history_quiz", 1, 1)
+	Thầy Thắng: Hoàn toàn chính xác! Nhà C chính là trái tim và ngôi nhà chung của các thế hệ sinh viên FIT!
+	- Làm câu hỏi ngẫu nhiên khác => pick_random_question
+	- Cảm ơn thầy, em đi tiếp đây => END
+
+- Nhà A
+	set GameState.record_quiz_result("fit_history_quiz", 0, 1)
+	Thầy Thắng: Chưa đúng rồi! Địa bàn quen thuộc nhất của dân FIT là Nhà C nhé!
+	- Thử lại câu khác => pick_random_question
+	- Em chào thầy => END
+
+- Nhà D
+	set GameState.record_quiz_result("fit_history_quiz", 0, 1)
+	Thầy Thắng: Chưa đúng! Hãy nhớ tìm đến Nhà C để gặp gỡ các thầy cô và bạn bè FIT nhé!
+	- Thử lại câu khác => pick_random_question
+	- Em chào thầy => END
+
+~ question_programming
+Thầy Thắng: Khi sinh viên FIT nhập môn lập trình C/C++, lỗi kinh điển nào thường xuất hiện khi truy cập bộ nhớ sai?
+
+- Segmentation fault (Lỗi con trỏ / bộ nhớ) [#correct]
+	set GameState.record_quiz_result("fit_history_quiz", 1, 1)
+	Thầy Thắng: Chuẩn dân IT! Con trỏ và Segmentation fault là 'đặc sản' đáng nhớ của mọi lập trình viên FIT!
+	- Làm câu hỏi ngẫu nhiên khác => pick_random_question
+	- Cảm ơn thầy, em đi tiếp đây => END
+
+- Lỗi đánh vần bàn phím
+	set GameState.record_quiz_result("fit_history_quiz", 0, 1)
+	Thầy Thắng: Chưa đúng rồi! Lỗi 'huyền thoại' mà ai học lập trình hệ thống cũng gặp là Segmentation fault!
+	- Thử lại câu khác => pick_random_question
+	- Em chào thầy => END
+
+- Lỗi mạng Internet chập chờn
+	set GameState.record_quiz_result("fit_history_quiz", 0, 1)
+	Thầy Thắng: Không phải lỗi này! Đó là lỗi Segmentation fault khi thao tác sai vùng nhớ con trỏ nhé!
+	- Thử lại câu khác => pick_random_question
+	- Em chào thầy => END
