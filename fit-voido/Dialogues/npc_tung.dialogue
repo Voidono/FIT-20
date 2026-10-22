@@ -1,0 +1,38 @@
+# NPC: Tùng – Sinh viên FIT bí ẩn, biết về Cánh Cửa Thời Gian và Viên Đá
+# Balloon: pixel_balloon.tscn
+
+~ start
+if GameState.npc_stage("tung_secret") == "new":
+	set GameState.set_npc_stage("tung_secret", "met")
+	Tùng: Shhh... Bạn! Lại đây! [#mood=surprised]
+	- Có chuyện gì vậy?
+		Tùng: Tôi biết bạn đang tìm 4 Viên Đá Thời Gian. Đây là tin mật: Cánh Cửa Thời Gian ở Văn phòng Khoa nhạy cảm lắm.
+		Tùng: Nếu bạn đặt sai vị trí 4 viên đá thì... không biết điều gì sẽ xảy ra đâu đó!
+	- Bạn biết gì về Viên Đá?
+		Tùng: Tôi chỉ biết rằng 4 viên đá đó đại diện cho 4 giai đoạn hành trình FIT: Khởi Đầu, Học Hỏi, Khám Phá và Chiến Đấu.
+	
+	Tùng: Và còn một điều nữa... bí mật nhé: [color=cyan]Nhóm rắn ngồi cuối lớp ở Phòng 417[/color] thực ra là Easter Egg đấy! [#mood=excited]
+	- Easter Egg là gì?
+		Tùng: Nếu bạn chọn ngồi với nhóm rắn thay vì nhóm sinh viên bình thường, bạn nhận Skill [color=green]POISON[/color] thay vì [color=orange]FIST[/color] để đánh Boss!
+	- Nhóm rắn mặc đồng phục gì vậy?
+		Tùng: Đồng phục HANU... nhưng có gì đó lạ lắm về họ. Hãy tự mắt nhìn thôi! Haha.
+	
+	set GameState.set_npc_stage("tung_secret", "active")
+	=> END
+
+if GameState.npc_stage("tung_secret") == "active":
+	Tùng: Bạn đã gặp nhóm rắn ở Phòng 417 chưa? [#mood=happy]
+	- Chưa, nhắc tôi về Easter Egg đi
+		Tùng: Ở Màn 2, có 2 nhóm trong lớp. Ngồi với Human Students → Skill FIST. Ngồi với Snake Students → Skill POISON. Cả hai đều dùng được để đánh Boss ở Màn 4!
+		=> END
+	- Rồi, tôi chọn rồi! Haha ngộ lắm
+		set GameState.set_npc_stage("tung_secret", "complete")
+		Tùng: Hehe tôi đã biết bạn sẽ tò mò mà! Giờ thì tiếp tục hành trình đi, Màn 3 đang chờ!
+		=> END
+	- Bạn thực ra là... ai vậy?
+		Tùng: Tôi à? Chỉ là một sinh viên FIT bình thường thôi... hoặc không bình thường lắm? [#mood=laughing]
+		Tùng: Đừng suy nghĩ nhiều! Tập trung tìm 4 Viên Đá đi bạn ơi!
+		=> END
+
+Tùng: Hành trình vẫn còn dài đấy bạn ơi. Cẩn thận với CON BUG ở Màn 4 nhé... nó mạnh lắm! [#mood=worried]
+=> END

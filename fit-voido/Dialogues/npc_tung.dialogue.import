@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://dxw0xlwvypdv0"
+path="res://.godot/imported/npc_tung.dialogue-32992ec73888b6145e9f3b34dab08a05.tres"
+
+[deps]
+
+source_file="res://Dialogues/npc_tung.dialogue"
+dest_files=["res://.godot/imported/npc_tung.dialogue-32992ec73888b6145e9f3b34dab08a05.tres"]
+
+[params]
+
+defaults=true

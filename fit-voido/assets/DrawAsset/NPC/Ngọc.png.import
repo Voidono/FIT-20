@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cj11xk34dhjis"
-path="res://.godot/imported/Dũng.png-41423969998d963de8657f5e1d72c488.ctex"
+uid="uid://d02bwmv5ubyb"
+path="res://.godot/imported/Ngọc.png-43a47405fecdc4b8960bb557f2996824.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/DrawAsset/Dũng.png"
-dest_files=["res://.godot/imported/Dũng.png-41423969998d963de8657f5e1d72c488.ctex"]
+source_file="res://assets/DrawAsset/NPC/Ngọc.png"
+dest_files=["res://.godot/imported/Ngọc.png-43a47405fecdc4b8960bb557f2996824.ctex"]
 
 [params]
 

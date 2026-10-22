@@ -1,0 +1,36 @@
+# NPC: Quỳnh Khánh – Sinh viên FIT đang ngồi trên băng ghế, hướng dẫn về lịch sử FIT
+# Balloon: pixel_balloon.tscn  
+
+~ start
+if GameState.npc_stage("qkhanh_bench") == "new":
+	set GameState.set_npc_stage("qkhanh_bench", "met")
+	Quỳnh Khánh: À, bạn là sinh viên du hành thời gian đúng không? Tôi đang đọc tài liệu về lịch sử FIT đây! [#mood=happy]
+	- Có gì hay trong đó không?
+		Quỳnh Khánh: Hay lắm chứ! FIT được thành lập năm 2006 – đúng năm bạn đến từ đó! Giờ là 2026 rồi, tròn 20 năm!
+		Quỳnh Khánh: 20 năm qua, FIT đã đào tạo rất nhiều thế hệ sinh viên Công nghệ Thông tin. Tự hào lắm!
+	- Bạn có thể dạy tôi về FIT không?
+		Quỳnh Khánh: Được chứ! Khoa mình tên đầy đủ là Khoa Công nghệ Thông tin – FIT, thuộc Trường Đại học Hà Nội (HANU).
+		Quỳnh Khánh: Năm 2026 này là sinh nhật 20 tuổi đó! Chính vì vậy mà game này được tạo ra để kỷ niệm.
+	
+	Quỳnh Khánh: Ở Màn 2, bạn sẽ làm Quiz về lịch sử FIT đấy! Tôi gợi ý cho bạn một chút nhé?
+	- Có, cho tôi biết đi!
+		set GameState.set_npc_stage("qkhanh_bench", "active")
+		Quỳnh Khánh: Quiz sẽ hỏi về năm thành lập, các Thầy Cô trong Khoa và các hoạt động sinh viên đặc trưng của FIT.
+		Quỳnh Khánh: Nhớ kỹ: FIT thành lập năm [color=yellow]2006[/color] nhé! Đây là câu cơ bản nhất!
+		=> END
+	- Không cần đâu, tôi muốn tự khám phá
+		Quỳnh Khánh: Oke, tôi tôn trọng tinh thần tự mày mò! Chúc may mắn ở Màn Quiz nhé bạn!
+		=> END
+
+if GameState.npc_stage("qkhanh_bench") == "active":
+	Quỳnh Khánh: Bạn đã lên Phòng 417 làm Quiz chưa? Tôi đang hồi hộp chờ kết quả đây! [#mood=happy]
+	- Chưa, nhắc tôi về Quiz đi
+		Quỳnh Khánh: Lên Phòng 417 Nhà C là đến Màn 2 rồi. Quiz hỏi về FIT History, Teachers và Student Experience. FIT thành lập năm 2006 nhé!
+		=> END
+	- Tôi đã vượt qua Quiz rồi!
+		set GameState.set_npc_stage("qkhanh_bench", "complete")
+		Quỳnh Khánh: Xuất sắc! Bạn thật sự xứng đáng là sinh viên FIT! Tiếp tục Màn 3 nào!
+		=> END
+
+Quỳnh Khánh: FIT 20 năm – một hành trình đáng tự hào! Chúc bạn sớm trở về năm 2006 với hành lý đầy ký ức!
+=> END

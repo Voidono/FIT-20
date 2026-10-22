@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dpeuwwhhawccf"
-path="res://.godot/imported/Tuấn.png-9caf186b61eaaeefab58bcc93f8242c7.ctex"
+path="res://.godot/imported/Tuấn.png-b43e52abb7e29091d0e50ae851bc1008.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/DrawAsset/Tuấn.png"
-dest_files=["res://.godot/imported/Tuấn.png-9caf186b61eaaeefab58bcc93f8242c7.ctex"]
+source_file="res://assets/DrawAsset/NPC/Tuấn.png"
+dest_files=["res://.godot/imported/Tuấn.png-b43e52abb7e29091d0e50ae851bc1008.ctex"]
 
 [params]
 

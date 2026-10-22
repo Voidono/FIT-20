@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://b8jo7xg3ofl1d"
+path="res://.godot/imported/npc_qkhanh.dialogue-a0ddcb94f15c79dc3d06a6c6abaee641.tres"
+
+[deps]
+
+source_file="res://Dialogues/npc_qkhanh.dialogue"
+dest_files=["res://.godot/imported/npc_qkhanh.dialogue-a0ddcb94f15c79dc3d06a6c6abaee641.tres"]
+
+[params]
+
+defaults=true

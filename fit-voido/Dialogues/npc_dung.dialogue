@@ -1,0 +1,34 @@
+# NPC: Dũng – Sinh viên FIT 2026 tại cổng trường
+# Balloon: pixel_balloon.tscn
+# NPC stage progression: new → met → active
+
+~ start
+if GameState.npc_stage("dung_gate") == "new":
+	set GameState.set_npc_stage("dung_gate", "met")
+	Dũng: Ủa, bạn ổn không? Nhìn bạn đứng ngơ ngác giữa cổng trường vậy? [#mood=surprised]
+	- Tôi vừa du hành thời gian từ năm 2006 đến đây!
+		Dũng: Haha, tuyên bố đỉnh cao đó! Chào mừng đến FIT năm 2026 – ngày kỷ niệm 20 năm thành lập Khoa!
+		Dũng: Mà thật ra tôi cũng mới nghe nói có người "từ quá khứ" xuất hiện sáng nay. Thú vị đó!
+	- Năm nay là năm mấy vậy?
+		Dũng: Năm 2026! Hôm nay FIT tổ chức Lễ Kỷ Niệm 20 năm đấy bạn ơi! Rôm rả lắm!
+	
+	Dũng: À bạn đang đi đâu vậy? Để tôi chỉ đường cho!
+	- Tôi đang tìm đường đến Nhà C
+		set GameState.set_npc_stage("dung_gate", "active")
+		Dũng: Dễ thôi! Đi thẳng qua sân, nhìn thấy tòa nhà lớn đó là Nhà C rồi. Gặp Thầy Giảng Viên đứng trước cửa là đúng người cần tìm!
+		=> END
+	- Tôi muốn nhìn xung quanh khuôn viên trước
+		Dũng: Ừ thì khám phá đi! Sân trường rộng lắm, có cả sân thể thao nữa. Nhưng đừng quên tìm Viên Đá nhé!
+		=> END
+
+if GameState.npc_stage("dung_gate") == "active":
+	Dũng: Bạn đã gặp Thầy Giảng Viên ở Nhà C chưa? Thầy đang đứng đó chờ bạn đấy! [#mood=happy]
+	- Chưa, nhắc lại đường đi cho tôi với
+		Dũng: Đi thẳng qua sân, thấy tòa nhà lớn là Nhà C. Thầy đứng ngay trước cửa vào rồi!
+		=> END
+	- Rồi, tôi đang trên đường đến
+		Dũng: Cố lên! Mau thu đủ 4 Viên Đá Thời Gian để về năm 2006 nào!
+		=> END
+
+Dũng: Ráng lên nhé bạn 2006! Cả trường đang cổ vũ cho bạn đó! [#mood=excited]
+=> END

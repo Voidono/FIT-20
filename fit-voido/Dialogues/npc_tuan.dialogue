@@ -1,0 +1,36 @@
+# NPC: Tuấn – Sinh viên FIT siêng năng, người giao tutorial_controls
+# Balloon: tutorial_balloon.tscn (vì anh này dạy controls)
+# Sau khi xong thì chuyển sang pixel_balloon cho lần sau
+
+~ start
+if not GameState.has_flag("tuan_controls_taught"):
+	set GameState.set_flag("tuan_controls_taught")
+	set locals.steps = 3
+	Tuấn: Ê bạn ơi! Nhìn bạn di chuyển lạ lắm, để tôi dạy nhanh cách điều khiển nhé!
+	Tuấn: Dùng <WASD> hoặc <ARROWS> để di chuyển. Giữ <SHIFT> để chạy nhanh khi cần.
+	Tuấn: Nhấn <E> hoặc <SPACE> khi đứng gần Thầy Cô / NPC để nói chuyện và nhận nhiệm vụ!
+	- Hiểu rồi, cảm ơn bạn Tuấn!
+		=> greet
+	- Cho tôi xem lại một lần nữa
+		=> start
+
+~ greet
+Tuấn: Bạn đến từ năm 2006 đúng không? Tôi nghe Dũng kể rồi! Bọn mình FIT 2026 đây sẵn sàng giúp bạn tìm 4 Viên Đá nha!
+- Cảm ơn Tuấn, bạn thật tốt bụng!
+	Tuấn: Không có gì! Tinh thần FIT mà – giúp nhau là điều hiển nhiên!
+	=> END
+- Bạn học ngành gì trong FIT?
+	Tuấn: Tôi học Công nghệ Thông tin, chuyên sâu về AI và Machine Learning! Giờ đây FIT đào tạo nhiều ngành xịn lắm!
+	=> END
+
+# Repeat talk
+Tuấn: Bạn cần xem lại cách điều khiển không? [#mood=happy]
+- Dạy lại đi Tuấn!
+	set locals.steps = 3
+	Tuấn: <WASD> hoặc <ARROWS> để di chuyển, <SHIFT> để chạy.
+	Tuấn: <E> hoặc <SPACE> để tương tác với NPC và nhặt vật phẩm.
+	Tuấn: Mục tiêu: thu đủ 4 Viên Đá Thời Gian từ 4 màn và mang đến Văn phòng Khoa!
+	=> END
+- Không cần, chỉ hỏi thăm thôi
+	Tuấn: Oke bạn! Cố lên nhé! Tôi tin bạn sẽ về năm 2006 được!
+	=> END

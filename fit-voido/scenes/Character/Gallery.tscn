@@ -2,6 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://c43kdrqiv4a0n" path="res://scenes/Character/Character.tscn" id="1_0eauy"]
 [ext_resource type="PackedScene" uid="uid://cgg7os1kxs0wf" path="res://scenes/mapsides/t_2_c.tscn" id="2_ghwlr"]
+[ext_resource type="PackedScene" uid="uid://c0gjtr6ij3dyy" path="res://scenes/Character/dialogue_npc.tscn" id="3_qg2c8"]
+[ext_resource type="Texture2D" uid="uid://d02bwmv5ubyb" path="res://assets/DrawAsset/NPC/Ngọc.png" id="4_m0bft"]
+[ext_resource type="Resource" uid="uid://xvm84vhu86di" path="res://Dialogues/tutorial_gate_quiz.dialogue" id="5_likh3"]
+[ext_resource type="PackedScene" uid="uid://dpfeyvxg4h2hd" path="res://Dialogues/Bubbles/tutorial_balloon.tscn" id="6_r4kgs"]
 
 [node name="Gallery" type="Node2D" unique_id=1603826261]
 
@@ -10,3 +14,9 @@ top_level = true
 position = Vector2(162, 338)
 
 [node name="t_2_c" parent="." unique_id=282694800 instance=ExtResource("2_ghwlr")]
+
+[node name="DialogueNPC" parent="." unique_id=194546955 instance=ExtResource("3_qg2c8")]
+position = Vector2(458, 307)
+npc_sprite = ExtResource("4_m0bft")
+dialogue = ExtResource("5_likh3")
+dialogue_balloon = ExtResource("6_r4kgs")

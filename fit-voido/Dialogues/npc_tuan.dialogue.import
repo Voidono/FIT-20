@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://dwo1fddl8hj33"
+path="res://.godot/imported/npc_tuan.dialogue-732244e84f04528aa871e114fec464d0.tres"
+
+[deps]
+
+source_file="res://Dialogues/npc_tuan.dialogue"
+dest_files=["res://.godot/imported/npc_tuan.dialogue-732244e84f04528aa871e114fec464d0.tres"]
+
+[params]
+
+defaults=true
