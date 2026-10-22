@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://70vsihg017kh"]
 
-[ext_resource type="AudioStream" uid="uid://b3rmy4mavxpdf" path="res://soundtrack/OMFG - Hello [NCS Fanmade] - Green Man Fanmades.mp3" id="1_c1cx3"]
 [ext_resource type="Script" uid="uid://b6pniat5c8hdk" path="res://scenes/UI/music.gd" id="1_vjhnq"]
+[ext_resource type="AudioStream" uid="uid://dd6pe0l3gvyal" path="res://soundtrack/Hans Zimmer - Interstellar - Main Theme (Piano Version) + Sheet Music - Patrik Pietschmann.mp3" id="2_vjhnq"]
 
 [node name="Music" type="CanvasLayer" unique_id=1382975793]
 script = ExtResource("1_vjhnq")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1094690081]
 position = Vector2(4253, 1366)
-stream = ExtResource("1_c1cx3")
+stream = ExtResource("2_vjhnq")
 autoplay = true
 max_distance = 10000.0
 attenuation = 0.0002708911
