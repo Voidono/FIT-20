@@ -1,0 +1,104 @@
+# FIT: THE TIME STONE - Random Quiz 2: Sports, Marathon & Student Life
+# Balloon: quiz_balloon (1).tscn or pixel_balloon.tscn
+# Speaker: Giảng viên Thể Thao (HLV Marathon FIT)
+
+~ start
+if GameState.has_completed_quiz("fit_sports_quiz"):
+	Thầy Thể Thao: Thành tích thử thách Thể Thao FIT của em là {{GameState.quiz_best_score("fit_sports_quiz")}} điểm!
+	- Trả lời một câu hỏi ngẫu nhiên khác
+		=> pick_random_question
+	- Em tiếp tục hành trình đây ạ
+		=> END
+
+Thầy Thể Thao: Chào bạn trẻ! Dân IT không chỉ code giỏi mà thể lực cũng phải bền bỉ! Hãy trả lời thử một câu hỏi ngẫu nhiên về thể thao và phong trào FIT nhé!
+=> pick_random_question
+
+~ pick_random_question
+% => question_warmup
+% => question_marathon_rule
+% => question_sports_purpose
+% => question_stadium
+
+~ question_warmup
+Thầy Thể Thao: Trước khi tham gia chạy marathon hoặc thi đấu thể thao trong khuôn viên FIT, việc đầu tiên cần làm là gì?
+
+- Khởi động kỹ toàn thân và xoay đều các khớp [#correct]
+	set GameState.record_quiz_result("fit_sports_quiz", 1, 1)
+	Thầy Thể Thao: Quá chuẩn! Khởi động giúp làm nóng cơ bắp, tăng nhịp tim dần dần và phòng ngừa chấn thương!
+	- Thử một câu ngẫu nhiên khác => pick_random_question
+	- Em cảm ơn thầy => END
+
+- Bật chạy hết tốc lực ngay lập tức
+	set GameState.record_quiz_result("fit_sports_quiz", 0, 1)
+	Thầy Thể Thao: Nguy hiểm lắm! Phải khởi động kỹ trước để tránh chuột rút và chấn thương nhé!
+	- Thử câu hỏi khác => pick_random_question
+	- Em chào thầy ạ => END
+
+- Uống ngay 2 lít nước ngọt có gas
+	set GameState.record_quiz_result("fit_sports_quiz", 0, 1)
+	Thầy Thể Thao: Sai lầm rồi! Nước ngọt có gas dễ gây đau dạ dày khi vận động mạnh. Nhớ khởi động kỹ nhé!
+	- Thử câu hỏi khác => pick_random_question
+	- Em chào thầy ạ => END
+
+~ question_marathon_rule
+Thầy Thể Thao: Trong giải chạy Marathon truyền thống của FIT, kỹ năng nào giúp vận động viên duy trì được phong độ đường dài?
+
+- Phân phối sức hợp lý và duy trì nhịp thở đều đặn [#correct]
+	set GameState.record_quiz_result("fit_sports_quiz", 1, 1)
+	Thầy Thể Thao: Tuyệt vời! Chạy marathon là cuộc đua của sức bền và chiến thuật phân phối năng lượng!
+	- Thử một câu ngẫu nhiên khác => pick_random_question
+	- Em cảm ơn thầy => END
+
+- Cố chạy nước rút ngay từ vạch xuất phát
+	set GameState.record_quiz_result("fit_sports_quiz", 0, 1)
+	Thầy Thể Thao: Như vậy sẽ bị đuối sức rất sớm! Hãy giữ nhịp thở đều và phân bổ sức hợp lý trên từng chặng nhé!
+	- Thử câu hỏi khác => pick_random_question
+	- Em chào thầy ạ => END
+
+- Vừa chạy vừa dán mắt vào màn hình điện thoại
+	set GameState.record_quiz_result("fit_sports_quiz", 0, 1)
+	Thầy Thể Thao: Haha, làm vậy vừa mất nhịp chạy vừa dễ va vào chướng ngại vật trên đường chạy đấy!
+	- Thử câu hỏi khác => pick_random_question
+	- Em chào thầy ạ => END
+
+~ question_sports_purpose
+Thầy Thể Thao: Ý nghĩa lớn nhất của các hoạt động thể thao định kỳ tại Khoa Công nghệ Thông tin là gì?
+
+- Nâng cao thể lực, rèn luyện ý chí và thắt chặt tinh thần đồng đội [#correct]
+	set GameState.record_quiz_result("fit_sports_quiz", 1, 1)
+	Thầy Thể Thao: Chính xác 100%! 'Một trí tuệ minh mẫn trong một cơ thể cường tráng' là tiêu chuẩn của sinh viên FIT!
+	- Thử một câu ngẫu nhiên khác => pick_random_question
+	- Em cảm ơn thầy => END
+
+- Để được điểm danh không cần học lý thuyết
+	set GameState.record_quiz_result("fit_sports_quiz", 0, 1)
+	Thầy Thể Thao: Chưa đúng rồi! Thể thao giúp sinh viên rèn luyện sức khỏe và gắn kết tinh thần đồng đội cơ!
+	- Thử câu hỏi khác => pick_random_question
+	- Em chào thầy ạ => END
+
+- Để tìm cớ trốn nộp bài tập lớn
+	set GameState.record_quiz_result("fit_sports_quiz", 0, 1)
+	Thầy Thể Thao: Không trốn được đâu nhé! Tập thể thao xong đầu óc sảng khoái thì code mới mượt được!
+	- Thử câu hỏi khác => pick_random_question
+	- Em chào thầy ạ => END
+
+~ question_stadium
+Thầy Thể Thao: Đâu là địa điểm quen thuộc diễn ra các hoạt động rèn luyện thể thao và giải bóng đá của sinh viên HANU / FIT?
+
+- Sân vận động / Sân thể thao trung tâm [#correct]
+	set GameState.record_quiz_result("fit_sports_quiz", 1, 1)
+	Thầy Thể Thao: Chính xác! Sân thể thao luôn rộn ràng tiếng hò reo cổ vũ của sinh viên trong mỗi mùa giải!
+	- Thử một câu ngẫu nhiên khác => pick_random_question
+	- Em cảm ơn thầy => END
+
+- Phòng thực hành máy tính số 1
+	set GameState.record_quiz_result("fit_sports_quiz", 0, 1)
+	Thầy Thể Thao: Phòng máy tính để học code thôi, thể thao phải ra sân vận động ngoài trời chứ!
+	- Thử câu hỏi khác => pick_random_question
+	- Em chào thầy ạ => END
+
+- Tầng hầm gửi xe
+	set GameState.record_quiz_result("fit_sports_quiz", 0, 1)
+	Thầy Thể Thao: Chưa đúng rồi! Địa điểm thể thao chính là sân vận động trung tâm của trường nhé!
+	- Thử câu hỏi khác => pick_random_question
+	- Em chào thầy ạ => END

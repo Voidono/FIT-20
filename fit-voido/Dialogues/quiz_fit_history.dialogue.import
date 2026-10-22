@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://dygyxu2qxpp6n"
+path="res://.godot/imported/quiz_fit_history.dialogue-b2f188563b9adfa24ce9dd6e461daf83.tres"
+
+[deps]
+
+source_file="res://Dialogues/quiz_fit_history.dialogue"
+dest_files=["res://.godot/imported/quiz_fit_history.dialogue-b2f188563b9adfa24ce9dd6e461daf83.tres"]
+
+[params]
+
+defaults=true
