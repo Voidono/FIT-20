@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dd6pe0l3gvyal"
+path="res://.godot/imported/Hans Zimmer - Interstellar - Main Theme (Piano Version) + Sheet Music - Patrik Pietschmann.mp3-4a573c22fa7d602e9715f47dbcd7ed74.mp3str"
+
+[deps]
+
+source_file="res://soundtrack/Hans Zimmer - Interstellar - Main Theme (Piano Version) + Sheet Music - Patrik Pietschmann.mp3"
+dest_files=["res://.godot/imported/Hans Zimmer - Interstellar - Main Theme (Piano Version) + Sheet Music - Patrik Pietschmann.mp3-4a573c22fa7d602e9715f47dbcd7ed74.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
