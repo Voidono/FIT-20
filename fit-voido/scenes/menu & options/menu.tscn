@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://bumqjas5t07qw" path="res://assets/DrawAsset/1792488572448.png" id="13_je0ug"]
 [ext_resource type="Texture2D" uid="uid://ccjshct58r1mu" path="res://assets/DrawAsset/1792488572452.png" id="14_0qfmy"]
 [ext_resource type="Script" uid="uid://dh05xqiwh2t7q" path="res://scenes/menu & options/animated_sprite_2d.gd" id="15_6085w"]
+[ext_resource type="FontFile" uid="uid://dqcrb0br6qt6w" path="res://soundtrack/Fyodor-Bold.ttf" id="16_17k3w"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_csdqt"]
 animations = [{
@@ -167,6 +168,7 @@ offset_top = 74.0
 offset_right = 674.0
 offset_bottom = 246.0
 theme_override_colors/font_color = Color(0.0051989057, 0.005198906, 0.0051989057, 1)
+theme_override_fonts/font = ExtResource("16_17k3w")
 theme_override_font_sizes/font_size = 65
 text = "FIT: THE TIME STONE"
 
