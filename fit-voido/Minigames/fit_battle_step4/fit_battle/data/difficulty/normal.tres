@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="BattleDifficulty" load_steps=2 format=3]
 
-[ext_resource type="Script" path="res://Minigames/fit_battle_step4/fit_battle/data/difficulty_data.gd" id="1_diff"]
+[ext_resource type="Script" path="res://data/difficulty_data.gd" id="1_diff"]
 
 [resource]
 script = ExtResource("1_diff")

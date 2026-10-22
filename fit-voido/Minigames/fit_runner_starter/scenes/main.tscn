@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene format=3]
 
-[ext_resource type="Script" path="res://Minigames/fit_runner_starter/fit_runner_starter/scripts/main.gd" id="1_main"]
-[ext_resource type="PackedScene" path="res://Minigames/fit_runner_starter/fit_runner_starter/scenes/fit_runner.tscn" id="2_fit_runner"]
+[ext_resource type="Script" uid="uid://b7x66ub6gmcxg" path="res://Minigames/fit_runner_starter/scripts/main.gd" id="1_main"]
+[ext_resource type="PackedScene" path="res://Minigames/fit_runner_starter/scenes/fit_runner.tscn" id="2_fit_runner"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_main")

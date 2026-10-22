@@ -1,0 +1,12 @@
+# Minigame Entry: Trash Train
+# Balloon: pixel_balloon.tscn
+
+~ start
+Tình Nguyện Viên: Chào bạn! Sân trường sau lễ kỷ niệm 20 năm đang có nhiều rác cần thu gom! [#mood=happy]
+Tình Nguyện Viên: Bạn có muốn tham gia thử thách Trash Train để thu gom rác và làm sạch khuôn viên FIT không?
+- Tham gia dọn rác ngay!
+	set SceneLoader.go_to("res://Minigames/trash_train_v3/trash_train/trash_train.tscn")
+	=> END
+- Để lát nữa quay lại
+	Tình Nguyện Viên: Được rồi, khi nào rảnh nhớ ghé qua góp sức bảo vệ môi trường trường mình nhé!
+	=> END

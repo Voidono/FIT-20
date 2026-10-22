@@ -1,6 +1,6 @@
 [gd_scene format=3]
 
-[ext_resource type="Script" path="res://Minigames/fit_battle_step4/fit_battle/battle/player_hud.gd" id="1_hud"]
+[ext_resource type="Script" path="res://battle/player_hud.gd" id="1_hud"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg"]
 bg_color = Color(0.75, 0, 0, 1)

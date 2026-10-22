@@ -1,0 +1,78 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Minigames/fit_battle/battle/difficulty_menu.gd" id="1_menu"]
+[ext_resource type="PackedScene" path="res://Minigames/fit_battle/battle/choice_list.tscn" id="2_choice"]
+
+[node name="DifficultyMenu" type="Control"]
+visible = false
+z_index = 50
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_menu")
+preset_paths = PackedStringArray("res://Minigames/fit_battle/data/difficulty/easy.tres", "res://Minigames/fit_battle/data/difficulty/normal.tres", "res://Minigames/fit_battle/data/difficulty/hard.tres")
+
+[node name="Backdrop" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TitleLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 60.0
+offset_bottom = 110.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 36
+text = "ĐỘ KHÓ"
+horizontal_alignment = 1
+
+[node name="ChoiceList" parent="." instance=ExtResource("2_choice")]
+unique_name_in_owner = true
+offset_left = 250.0
+offset_top = 160.0
+offset_right = 470.0
+offset_bottom = 290.0
+columns = 1
+
+[node name="DescriptionLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 60.0
+offset_top = -170.0
+offset_right = -60.0
+offset_bottom = -90.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 22
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="HintLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -60.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.6, 0.6, 0.6, 1)
+theme_override_font_sizes/font_size = 16
+text = "↑ ↓ chọn   ·   Z / chạm để xác nhận"
+horizontal_alignment = 1

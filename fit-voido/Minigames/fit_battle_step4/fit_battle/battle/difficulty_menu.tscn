@@ -1,7 +1,7 @@
 [gd_scene format=3]
 
-[ext_resource type="Script" path="res://Minigames/fit_battle_step4/fit_battle/battle/difficulty_menu.gd" id="1_menu"]
-[ext_resource type="PackedScene" path="res://Minigames/fit_battle_step4/fit_battle/battle/choice_list.tscn" id="2_choice"]
+[ext_resource type="Script" path="res://battle/difficulty_menu.gd" id="1_menu"]
+[ext_resource type="PackedScene" path="res://battle/choice_list.tscn" id="2_choice"]
 
 [node name="DifficultyMenu" type="Control"]
 visible = false
@@ -13,7 +13,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_menu")
-preset_paths = PackedStringArray("res://Minigames/fit_battle_step4/fit_battle/data/difficulty/easy.tres", "res://Minigames/fit_battle_step4/fit_battle/data/difficulty/normal.tres", "res://Minigames/fit_battle_step4/fit_battle/data/difficulty/hard.tres")
+preset_paths = PackedStringArray("res://data/difficulty/easy.tres", "res://data/difficulty/normal.tres", "res://data/difficulty/hard.tres")
 
 [node name="Backdrop" type="ColorRect" parent="."]
 layout_mode = 1

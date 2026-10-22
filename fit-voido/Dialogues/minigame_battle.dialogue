@@ -1,0 +1,12 @@
+# Minigame Entry: FIT Battle
+# Balloon: pixel_balloon.tscn
+
+~ start
+Thầy Thắng: Cảnh báo khẩn cấp! Hệ thống Khoa FIT đang bị CON BUG tấn công dữ dội! [#mood=surprised]
+Thầy Thắng: Em có muốn kích hoạt võ đài FIT Battle để bước vào chiến đấu, debug và giải cứu hệ thống ngay bây giờ không?
+- Vào chiến đấu ngay!
+	set SceneLoader.go_to("res://Minigames/fit_battle_step4/fit_battle/launcher/launcher.tscn")
+	=> END
+- Em cần chuẩn bị thêm
+	Thầy Thắng: Cố gắng lên nhé! Hãy chuẩn bị kỹ năng thật tốt rồi quay lại tiêu diệt CON BUG!
+	=> END

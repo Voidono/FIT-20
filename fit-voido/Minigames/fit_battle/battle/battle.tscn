@@ -1,0 +1,193 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Minigames/fit_battle/battle/battle.gd" id="1_battle"]
+[ext_resource type="PackedScene" path="res://Minigames/fit_battle/battle/enemies/con_bug.tscn" id="2_enemy"]
+[ext_resource type="Script" path="res://Minigames/fit_battle/core/asset_slot.gd" id="5_slot"]
+[ext_resource type="PackedScene" path="res://Minigames/fit_battle/battle/speech/speech_bubble.tscn" id="6_speech"]
+[ext_resource type="PackedScene" path="res://Minigames/fit_battle/battle/battle_box.tscn" id="7_box"]
+[ext_resource type="PackedScene" path="res://Minigames/fit_battle/battle/soul.tscn" id="8_soul"]
+[ext_resource type="PackedScene" path="res://Minigames/fit_battle/battle/player_hud.tscn" id="9_hud"]
+[ext_resource type="PackedScene" path="res://Minigames/fit_battle/battle/battle_menu.tscn" id="10_menu"]
+[ext_resource type="Script" path="res://Minigames/fit_battle/battle/battle_option.gd" id="11_option"]
+[ext_resource type="Script" path="res://Minigames/fit_battle/battle/battle_input.gd" id="12_input"]
+[ext_resource type="PackedScene" path="res://Minigames/fit_battle/battle/debug_panel.tscn" id="13_debug"]
+[ext_resource type="PackedScene" path="res://Minigames/fit_battle/battle/difficulty_menu.tscn" id="14_diffmenu"]
+[ext_resource type="PackedScene" path="res://Minigames/fit_battle/battle/touch_controls.tscn" id="15_touch"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_idle"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0.55, 0.1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_active"]
+draw_center = false
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0.9, 0, 1)
+
+[node name="Battle" type="Node2D"]
+script = ExtResource("1_battle")
+skill_id = "fist"
+enemy_scene = ExtResource("2_enemy")
+
+[node name="BattleInput" type="Node" parent="."]
+script = ExtResource("12_input")
+
+[node name="Background" type="Node2D" parent="."]
+position = Vector2(320, 240)
+script = ExtResource("5_slot")
+placeholder_size = Vector2(640, 480)
+color = Color(0, 0, 0, 1)
+
+[node name="EnemySlot" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(320, 125)
+
+[node name="Speech" parent="." instance=ExtResource("6_speech")]
+unique_name_in_owner = true
+
+[node name="BattleBox" parent="." instance=ExtResource("7_box")]
+unique_name_in_owner = true
+
+[node name="Bullets" type="Node2D" parent="."]
+unique_name_in_owner = true
+z_index = 5
+
+[node name="Soul" parent="." instance=ExtResource("8_soul")]
+unique_name_in_owner = true
+
+[node name="PlayerHud" parent="." instance=ExtResource("9_hud")]
+unique_name_in_owner = true
+
+[node name="Menu" parent="." instance=ExtResource("10_menu")]
+unique_name_in_owner = true
+
+[node name="Items" type="Node" parent="."]
+unique_name_in_owner = true
+
+[node name="IcedTea" type="Node" parent="Items"]
+script = ExtResource("11_option")
+label = "Trà đá"
+response = "* Bạn uống một ly trà đá. Hồi 8 HP."
+uses = 2
+heal_amount = 8
+
+[node name="Bread" type="Node" parent="Items"]
+script = ExtResource("11_option")
+label = "Bánh mì"
+response = "* Bạn ăn một ổ bánh mì. Hồi 14 HP."
+uses = 1
+heal_amount = 14
+
+[node name="DifficultyMenu" parent="." instance=ExtResource("14_diffmenu")]
+unique_name_in_owner = true
+
+[node name="TouchControls" parent="." instance=ExtResource("15_touch")]
+unique_name_in_owner = true
+
+[node name="Overlay" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="Result" type="Control" parent="Overlay"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Dim" type="ColorRect" parent="Overlay/Result"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.75)
+
+[node name="ResultLabel" type="Label" parent="Overlay/Result"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 48
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HintLabel" type="Label" parent="Overlay/Result"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -110.0
+offset_bottom = -70.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BannerButtons" type="HBoxContainer" parent="Overlay/Result"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -220.0
+offset_top = -140.0
+offset_right = 220.0
+offset_bottom = -90.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="RetryButton" type="Button" parent="Overlay/Result/BannerButtons"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 0.55, 0.1, 1)
+theme_override_colors/font_hover_color = Color(1, 0.9, 0, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.9, 0, 1)
+theme_override_colors/font_focus_color = Color(1, 0.9, 0, 1)
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_idle")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_active")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_active")
+theme_override_styles/focus = SubResource("StyleBoxFlat_btn_active")
+text = "THỬ LẠI"
+
+[node name="ChangeButton" type="Button" parent="Overlay/Result/BannerButtons"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 0.55, 0.1, 1)
+theme_override_colors/font_hover_color = Color(1, 0.9, 0, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.9, 0, 1)
+theme_override_colors/font_focus_color = Color(1, 0.9, 0, 1)
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_idle")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_active")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_active")
+theme_override_styles/focus = SubResource("StyleBoxFlat_btn_active")
+text = "ĐỔI ĐỘ KHÓ"
+
+[node name="DebugPanel" parent="." instance=ExtResource("13_debug")]

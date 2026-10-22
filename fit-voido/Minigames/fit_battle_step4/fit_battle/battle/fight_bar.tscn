@@ -1,7 +1,7 @@
 [gd_scene format=3]
 
-[ext_resource type="Script" path="res://Minigames/fit_battle_step4/fit_battle/battle/fight_bar.gd" id="1_bar"]
-[ext_resource type="Script" path="res://Minigames/fit_battle_step4/fit_battle/core/asset_slot.gd" id="2_slot"]
+[ext_resource type="Script" path="res://battle/fight_bar.gd" id="1_bar"]
+[ext_resource type="Script" path="res://core/asset_slot.gd" id="2_slot"]
 
 [node name="FightBar" type="Node2D"]
 visible = false

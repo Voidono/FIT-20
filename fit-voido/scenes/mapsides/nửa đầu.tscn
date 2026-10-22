@@ -1,4 +1,4 @@
-[gd_scene format=4 uid="uid://1q3un777h5y"]
+﻿[gd_scene format=4 uid="uid://1q3un777h5y"]
 
 [ext_resource type="Texture2D" uid="uid://bi6rc0u2o027a" path="res://assets/environments/Game_Maker_Studio_Autotiles_Singles_48x48_25.png" id="1_s2awt"]
 [ext_resource type="Texture2D" uid="uid://bf2334n8eesyo" path="res://assets/environments/Game_Maker_Studio_Autotiles_Singles_48x48_19.png" id="2_1pr6i"]
@@ -20,6 +20,10 @@
 [ext_resource type="Texture2D" uid="uid://b0srp2woae24h" path="res://assets/environments/ME_Singles_Camping_48x48_Tree_182.png" id="18_78456"]
 [ext_resource type="Texture2D" uid="uid://chwckg1aokf7a" path="res://assets/environments/big_tree.png" id="19_c87k0"]
 [ext_resource type="Texture2D" uid="uid://dexxt8op4ef4t" path="res://assets/environments/tree1.png" id="20_tqdoe"]
+[ext_resource type="Texture2D" uid="uid://byrg3r5eym0is" path="res://assets/DrawAsset/1792488572423.png" id="32_xccqg"]
+[ext_resource type="Resource" uid="uid://dygyxu2qxpp6n" path="res://Dialogues/quiz_fit_history.dialogue" id="33_35r4e"]
+[ext_resource type="PackedScene" uid="uid://bhie3pwx0kuav" path="res://Dialogues/Bubbles/quiz_balloon (1).tscn" id="34_gknmh"]
+[ext_resource type="Resource" uid="uid://d28djbf4okdr0" path="res://Dialogues/quiz_marathon_sports.dialogue" id="35_sgcmy"]
 [ext_resource type="Resource" uid="uid://2qjoeganrbe5" path="res://Dialogues/npc_dung.dialogue" id="dlg_dung"]
 [ext_resource type="Resource" uid="uid://1xkevde5av6a" path="res://Dialogues/npc_ngoc.dialogue" id="dlg_ngoc"]
 [ext_resource type="Resource" uid="uid://b8jo7xg3ofl1d" path="res://Dialogues/npc_qkhanh.dialogue" id="dlg_qkhanh"]
@@ -31,6 +35,10 @@
 [ext_resource type="Texture2D" uid="uid://bvcmk5c874t4n" path="res://assets/DrawAsset/NPC/QKhánh.png" id="npc_tex_qkhanh"]
 [ext_resource type="Texture2D" uid="uid://dpeuwwhhawccf" path="res://assets/DrawAsset/NPC/Tuấn.png" id="npc_tex_tuan"]
 [ext_resource type="Texture2D" uid="uid://da882jd35otsq" path="res://assets/DrawAsset/NPC/Tùng.png" id="npc_tex_tung"]
+[ext_resource type="Texture2D" uid="uid://bmrkbm77sbroc" path="res://assets/DrawAsset/NPC/Th?ng.png" id="npc_tex_thang"]
+[ext_resource type="Resource" path="res://Dialogues/minigame_runner.dialogue" id="dlg_minigame_runner"]
+[ext_resource type="Resource" path="res://Dialogues/minigame_trash.dialogue" id="dlg_minigame_trash"]
+[ext_resource type="Resource" path="res://Dialogues/minigame_battle.dialogue" id="dlg_minigame_battle"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n48ho"]
 texture = ExtResource("1_s2awt")
@@ -8785,3 +8793,36 @@ npc_sprite = ExtResource("npc_tex_tung")
 dialogue = ExtResource("dlg_tung")
 repeat_cue = "start"
 prompt_text = "Nói chuyện"
+
+[node name="NPC_Quiz1" parent="." unique_id=194546955 instance=ExtResource("npc_template")]
+position = Vector2(909, -20)
+npc_sprite = ExtResource("32_xccqg")
+dialogue = ExtResource("33_35r4e")
+dialogue_balloon = ExtResource("34_gknmh")
+
+[node name="NPC_Quiz2" parent="." unique_id=517453545 instance=ExtResource("npc_template")]
+position = Vector2(1038, -19)
+npc_sprite = ExtResource("32_xccqg")
+dialogue = ExtResource("35_sgcmy")
+dialogue_balloon = ExtResource("34_gknmh")
+
+[node name="NPC_Minigame_Runner" parent="." instance=ExtResource("npc_template")]
+position = Vector2(1170, -20)
+npc_sprite = ExtResource("npc_tex_dung")
+dialogue = ExtResource("dlg_minigame_runner")
+prompt_text = "FIT Runner"
+target_scene_path = "res://Minigames/fit_runner_starter/scenes/main.tscn"
+
+[node name="NPC_Minigame_Trash" parent="." instance=ExtResource("npc_template")]
+position = Vector2(1300, -20)
+npc_sprite = ExtResource("npc_tex_ngoc")
+dialogue = ExtResource("dlg_minigame_trash")
+prompt_text = "Trash Train"
+target_scene_path = "res://Minigames/trash_train_v3/trash_train/trash_train.tscn"
+
+[node name="NPC_Minigame_Battle" parent="." instance=ExtResource("npc_template")]
+position = Vector2(1430, -20)
+npc_sprite = ExtResource("npc_tex_thang")
+dialogue = ExtResource("dlg_minigame_battle")
+prompt_text = "FIT Battle"
+target_scene_path = "res://Minigames/fit_battle/fit_battle_host.tscn"

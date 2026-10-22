@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://bgwai5bc0hvp3"
+path="res://.godot/imported/minigame_trash.dialogue-f344aab5dd715fd0ba754fecbc8788a9.tres"
+
+[deps]
+
+source_file="res://Dialogues/minigame_trash.dialogue"
+dest_files=["res://.godot/imported/minigame_trash.dialogue-f344aab5dd715fd0ba754fecbc8788a9.tres"]
+
+[params]
+
+defaults=true

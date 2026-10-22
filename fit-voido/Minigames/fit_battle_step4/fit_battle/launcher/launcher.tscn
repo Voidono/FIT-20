@@ -1,8 +1,8 @@
 [gd_scene format=3]
 
-[ext_resource type="Script" path="res://Minigames/fit_battle_step4/fit_battle/launcher/launcher.gd" id="1_launcher"]
-[ext_resource type="PackedScene" path="res://Minigames/fit_battle_step4/fit_battle/battle/choice_list.tscn" id="2_choice"]
-[ext_resource type="Script" path="res://Minigames/fit_battle_step4/fit_battle/battle/battle_input.gd" id="3_input"]
+[ext_resource type="Script" path="res://launcher/launcher.gd" id="1_launcher"]
+[ext_resource type="PackedScene" path="res://battle/choice_list.tscn" id="2_choice"]
+[ext_resource type="Script" path="res://battle/battle_input.gd" id="3_input"]
 
 [node name="Launcher" type="Control"]
 layout_mode = 3

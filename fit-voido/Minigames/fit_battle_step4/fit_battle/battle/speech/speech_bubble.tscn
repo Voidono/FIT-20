@@ -1,7 +1,7 @@
 [gd_scene format=3]
 
-[ext_resource type="Script" path="res://Minigames/fit_battle_step4/fit_battle/battle/speech/speech_bubble.gd" id="1_bubble"]
-[ext_resource type="Script" path="res://Minigames/fit_battle_step4/fit_battle/battle/dialogue_box.gd" id="2_dialogue"]
+[ext_resource type="Script" path="res://battle/speech/speech_bubble.gd" id="1_bubble"]
+[ext_resource type="Script" path="res://battle/dialogue_box.gd" id="2_dialogue"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bubble"]
 bg_color = Color(1, 1, 1, 1)

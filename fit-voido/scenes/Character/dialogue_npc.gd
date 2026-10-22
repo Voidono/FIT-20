@@ -28,6 +28,12 @@ static var is_any_talking: bool = false
 @export var freeze_player: bool = true
 @export var prompt_text: String = "Talk"
 
+@export_group("Minigame / Scene Transition")
+## If set, this NPC can change scene to this target.
+@export_file("*.tscn") var target_scene_path: String = ""
+## If true, interacting with this NPC changes scene directly without showing dialogue.
+@export var change_scene_directly: bool = false
+
 var _player: Node
 var _in_range := false
 var _is_talking := false
@@ -54,14 +60,19 @@ func _ready() -> void:
 	_setup_prompt()
 
 
-## Returns true when the player can start this NPC's dialogue.
+## Returns true when the player can start this NPC's dialogue or interaction.
 func can_talk() -> bool:
+	if not target_scene_path.is_empty() and (change_scene_directly or dialogue == null):
+		return not _is_talking and not is_any_talking
 	return dialogue != null and dialogue_balloon != null and not _is_talking and not is_any_talking
 
 
-## Starts the conversation; Character calls this after the player presses interact.
+## Starts the conversation or interaction; Character calls this after the player presses interact.
 func talk() -> void:
 	if not can_talk():
+		return
+	if not target_scene_path.is_empty() and (change_scene_directly or dialogue == null):
+		_change_to_target_scene()
 		return
 	if dialogue == null:
 		push_warning("%s has no Dialogue resource assigned." % name)
@@ -158,3 +169,12 @@ func _on_body_exited(body: Node2D) -> void:
 		_player = null
 		_in_range = false
 		_update_prompt()
+
+
+func _change_to_target_scene() -> void:
+	if target_scene_path.is_empty():
+		return
+	if has_node("/root/SceneLoader"):
+		get_node("/root/SceneLoader").go_to(target_scene_path)
+	else:
+		get_tree().change_scene_to_file(target_scene_path)

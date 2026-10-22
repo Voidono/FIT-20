@@ -1,7 +1,7 @@
 [gd_scene format=3]
 
-[ext_resource type="Script" path="res://Minigames/fit_battle_step4/fit_battle/battle/attacks/wall.gd" id="1_wall"]
-[ext_resource type="PackedScene" path="res://Minigames/fit_battle_step4/fit_battle/battle/bullet.tscn" id="2_bullet"]
+[ext_resource type="Script" path="res://battle/attacks/wall.gd" id="1_wall"]
+[ext_resource type="PackedScene" path="res://battle/bullet.tscn" id="2_bullet"]
 
 [node name="Wall" type="Node2D"]
 script = ExtResource("1_wall")

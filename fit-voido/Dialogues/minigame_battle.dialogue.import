@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://c5r6xk1wbmhwj"
+path="res://.godot/imported/minigame_battle.dialogue-29a3af2d34cbe3189442fb9de81482be.tres"
+
+[deps]
+
+source_file="res://Dialogues/minigame_battle.dialogue"
+dest_files=["res://.godot/imported/minigame_battle.dialogue-29a3af2d34cbe3189442fb9de81482be.tres"]
+
+[params]
+
+defaults=true

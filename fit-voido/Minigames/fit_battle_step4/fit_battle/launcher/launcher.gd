@@ -7,9 +7,9 @@ extends Control
 ## The battle itself shows the difficulty menu, because no difficulty is passed in.
 ## Delete this folder when your real flow exists.
 
-const BATTLE_SCENE := preload("res://Minigames/fit_battle_step4/fit_battle/battle/battle.tscn")
+const BATTLE_SCENE := preload("res://battle/battle.tscn")
 
-## Option label -> skill id (res://Minigames/fit_battle_step4/fit_battle/data/skills/<id>.tres).
+## Option label -> skill id (res://data/skills/<id>.tres).
 const SEATS := {
 	"Human Students  (FIST)": "fist",
 	"Snake Students  (POISON)": "poison",

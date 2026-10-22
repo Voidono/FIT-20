@@ -1,12 +1,12 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://c2hlm6p6m1lpr"]
 
 [ext_resource type="Script" uid="uid://5dwpo6l2t4po" path="res://Minigames/trash_train_v3/trash_train/trash_train.gd" id="1_nkkik"]
 [ext_resource type="PackedScene" path="res://Minigames/trash_train_v3/trash_train/levels/level_yard.tscn" id="2_wqjvh"]
 [ext_resource type="PackedScene" path="res://Minigames/trash_train_v3/trash_train/player.tscn" id="3_8om0v"]
 [ext_resource type="PackedScene" path="res://Minigames/trash_train_v3/trash_train/npc.tscn" id="4_rsu3m"]
-[ext_resource type="Resource" path="res://Minigames/trash_train_v3/trash_train/items/catalog.tres" id="5_kn1me"]
+[ext_resource type="Resource" uid="uid://o7xstfhx3lw1" path="res://Minigames/trash_train_v3/trash_train/items/catalog.tres" id="5_kn1me"]
 
-[node name="TrashTrain" type="Node2D"]
+[node name="TrashTrain" type="Node2D" unique_id=818518129]
 script = ExtResource("1_nkkik")
 level_scene = ExtResource("2_wqjvh")
 player_scene = ExtResource("3_8om0v")

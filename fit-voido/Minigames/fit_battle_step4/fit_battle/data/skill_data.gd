@@ -3,7 +3,7 @@ extends Resource
 ## A player skill. Make new ones with right-click > New Resource > BattleSkill.
 ## The main game picks one (from the player's earlier actions) and gives it to BossBattle.
 
-## Used by BossBattle.skill_from_id(): the file must be res://Minigames/fit_battle_step4/fit_battle/data/skills/<id>.tres
+## Used by BossBattle.skill_from_id(): the file must be res://data/skills/<id>.tres
 @export var id: StringName = &"fist"
 @export var display_name := "FIST"
 @export_multiline var description := ""

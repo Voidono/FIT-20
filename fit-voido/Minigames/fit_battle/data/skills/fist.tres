@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="BattleSkill" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Minigames/fit_battle/data/skill_data.gd" id="1_skill"]
+
+[resource]
+script = ExtResource("1_skill")
+id = &"fist"
+display_name = "FIST"
+description = "Đấm trực diện: sát thương cao, cần canh đúng nhịp."
+base_damage = 40
+forgiveness = 0.4
+min_damage_ratio = 0.3
+perfect_threshold = 0.9
+perfect_multiplier = 1.5
+poison_damage = 0
+poison_turns = 0
+dodge_speed_multiplier = 1.0

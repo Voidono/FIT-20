@@ -1,0 +1,239 @@
+Godot Engine v4.7.stable.official.5b4e0cb0f - https://godotengine.org
+OpenGL API 3.3.0 NVIDIA 610.62 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 3050 Ti Laptop GPU
+
+SCRIPT ERROR: Parse Error: Could not find type "BattleSkill" in the current scope.
+   at: GDScript::reload (res://battle/battle.gd:25)
+SCRIPT ERROR: Parse Error: Could not find type "BattleDifficulty" in the current scope.
+   at: GDScript::reload (res://battle/battle.gd:30)
+SCRIPT ERROR: Parse Error: Could not find type "BattleBox" in the current scope.
+   at: GDScript::reload (res://battle/battle.gd:54)
+SCRIPT ERROR: Parse Error: Could not find type "BattleSoul" in the current scope.
+   at: GDScript::reload (res://battle/battle.gd:55)
+SCRIPT ERROR: Parse Error: Could not find type "BattleMenu" in the current scope.
+   at: GDScript::reload (res://battle/battle.gd:57)
+SCRIPT ERROR: Parse Error: Could not find type "BattleHud" in the current scope.
+   at: GDScript::reload (res://battle/battle.gd:58)
+SCRIPT ERROR: Parse Error: Could not find type "BossSpeech" in the current scope.
+   at: GDScript::reload (res://battle/battle.gd:59)
+SCRIPT ERROR: Parse Error: Could not find type "BattleDifficultyMenu" in the current scope.
+   at: GDScript::reload (res://battle/battle.gd:61)
+SCRIPT ERROR: Parse Error: Could not find type "BattleTouchControls" in the current scope.
+   at: GDScript::reload (res://battle/battle.gd:68)
+SCRIPT ERROR: Parse Error: Could not find type "BossEnemy" in the current scope.
+   at: GDScript::reload (res://battle/battle.gd:70)
+SCRIPT ERROR: Parse Error: Could not find type "BattleStats" in the current scope.
+   at: GDScript::reload (res://battle/battle.gd:71)
+SCRIPT ERROR: Parse Error: Could not find type "BossAttack" in the current scope.
+   at: GDScript::reload (res://battle/battle.gd:75)
+SCRIPT ERROR: Parse Error: Could not find type "BattleSkill" in the current scope.
+   at: GDScript::reload (res://battle/battle.gd:81)
+SCRIPT ERROR: Parse Error: Could not find type "BattleDifficulty" in the current scope.
+   at: GDScript::reload (res://battle/battle.gd:85)
+SCRIPT ERROR: Parse Error: Could not find type "BattleDifficulty" in the current scope.
+   at: GDScript::reload (res://battle/battle.gd:114)
+SCRIPT ERROR: Parse Error: Could not find type "BattleSkill" in the current scope.
+   at: GDScript::reload (res://battle/battle.gd:123)
+SCRIPT ERROR: Parse Error: Could not find type "BattleSkill" in the current scope.
+   at: GDScript::reload (res://battle/battle.gd:82)
+SCRIPT ERROR: Parse Error: Could not find type "BattleDifficulty" in the current scope.
+   at: GDScript::reload (res://battle/battle.gd:86)
+SCRIPT ERROR: Parse Error: Identifier "BattleInput" not declared in the current scope.
+   at: GDScript::reload (res://battle/battle.gd:107)
+SCRIPT ERROR: Parse Error: Identifier "BattleTouchControls" not declared in the current scope.
+   at: GDScript::reload (res://battle/battle.gd:137)
+SCRIPT ERROR: Parse Error: Identifier "BattleTouchControls" not declared in the current scope.
+   at: GDScript::reload (res://battle/battle.gd:139)
+SCRIPT ERROR: Parse Error: Identifier "BattleStats" not declared in the current scope.
+   at: GDScript::reload (res://battle/battle.gd:197)
+SCRIPT ERROR: Parse Error: Could not find type "BossEnemy" in the current scope.
+   at: GDScript::reload (res://battle/battle.gd:203)
+SCRIPT ERROR: Parse Error: Could not find type "BattleOption" in the current scope.
+   at: GDScript::reload (res://battle/battle.gd:207)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "option" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://battle/battle.gd:207)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "perfect" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://battle/battle.gd:265)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "bonus" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://battle/battle.gd:267)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "options" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://battle/battle.gd:281)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "chosen_act" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://battle/battle.gd:288)
+SCRIPT ERROR: Parse Error: Could not find type "BattleOption" in the current scope.
+   at: GDScript::reload (res://battle/battle.gd:299)
+SCRIPT ERROR: Parse Error: Could not find type "BattleOption" in the current scope.
+   at: GDScript::reload (res://battle/battle.gd:301)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "candidate" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://battle/battle.gd:301)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "chosen_item" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://battle/battle.gd:313)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "pattern" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://battle/battle.gd:341)
+ERROR: Failed to load script "res://battle/battle.gd" with error "Parse error".
+   at: load (modules/gdscript/gdscript_resource_format.cpp:46)
+SCRIPT ERROR: Parse Error: Could not find type "BossPhase" in the current scope.
+   at: GDScript::reload (res://battle/enemy.gd:35)
+SCRIPT ERROR: Parse Error: Could not find type "BossPhase" in the current scope.
+   at: GDScript::reload (res://battle/enemy.gd:36)
+SCRIPT ERROR: Parse Error: Could not find type "BossPhase" in the current scope.
+   at: GDScript::reload (res://battle/enemy.gd:62)
+SCRIPT ERROR: Parse Error: Could not find type "BossPhase" in the current scope.
+   at: GDScript::reload (res://battle/enemy.gd:62)
+SCRIPT ERROR: Parse Error: Could not find type "BattleDifficulty" in the current scope.
+   at: GDScript::reload (res://battle/enemy.gd:67)
+SCRIPT ERROR: Parse Error: Could not find type "BattleDifficulty" in the current scope.
+   at: GDScript::reload (res://battle/enemy.gd:77)
+SCRIPT ERROR: Parse Error: Could not find type "BattleOption" in the current scope.
+   at: GDScript::reload (res://battle/enemy.gd:110)
+SCRIPT ERROR: Parse Error: Could not find type "BossAttack" in the current scope.
+   at: GDScript::reload (res://battle/enemy.gd:119)
+SCRIPT ERROR: Parse Error: Could not find type "BossPhase" in the current scope.
+   at: GDScript::reload (res://battle/enemy.gd:44)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "target" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://battle/enemy.gd:100)
+SCRIPT ERROR: Parse Error: Could not find type "BattleOption" in the current scope.
+   at: GDScript::reload (res://battle/enemy.gd:111)
+SCRIPT ERROR: Parse Error: Could not find type "BattleOption" in the current scope.
+   at: GDScript::reload (res://battle/enemy.gd:113)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "option" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://battle/enemy.gd:113)
+ERROR: Failed to load script "res://battle/enemy.gd" with error "Parse error".
+   at: load (modules/gdscript/gdscript_resource_format.cpp:46)
+SCRIPT ERROR: Parse Error: Could not find type "BossAttack" in the current scope.
+   at: GDScript::reload (res://battle/boss_phase.gd:35)
+SCRIPT ERROR: Parse Error: Could not find type "BossAttack" in the current scope.
+   at: GDScript::reload (res://battle/boss_phase.gd:36)
+SCRIPT ERROR: Parse Error: Could not find type "BossAttack" in the current scope.
+   at: GDScript::reload (res://battle/boss_phase.gd:38)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "pattern" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://battle/boss_phase.gd:44)
+ERROR: Failed to load script "res://battle/boss_phase.gd" with error "Parse error".
+   at: load (modules/gdscript/gdscript_resource_format.cpp:46)
+SCRIPT ERROR: Parse Error: Could not find base class "BossAttack".
+   at: GDScript::reload (res://battle/attacks/rain.gd:1)
+ERROR: Failed to load script "res://battle/attacks/rain.gd" with error "Parse error".
+   at: load (modules/gdscript/gdscript_resource_format.cpp:46)
+SCRIPT ERROR: Parse Error: Could not find type "AssetSlot" in the current scope.
+   at: GDScript::reload (res://battle/bullet.gd:17)
+ERROR: Failed to load script "res://battle/bullet.gd" with error "Parse error".
+   at: load (modules/gdscript/gdscript_resource_format.cpp:46)
+SCRIPT ERROR: Parse Error: Could not find base class "BossAttack".
+   at: GDScript::reload (res://battle/attacks/wall.gd:1)
+ERROR: Failed to load script "res://battle/attacks/wall.gd" with error "Parse error".
+   at: load (modules/gdscript/gdscript_resource_format.cpp:46)
+SCRIPT ERROR: Parse Error: Could not find base class "BossAttack".
+   at: GDScript::reload (res://battle/attacks/aimed.gd:1)
+ERROR: Failed to load script "res://battle/attacks/aimed.gd" with error "Parse error".
+   at: load (modules/gdscript/gdscript_resource_format.cpp:46)
+SCRIPT ERROR: Parse Error: Could not find base class "BossAttack".
+   at: GDScript::reload (res://battle/attacks/spiral.gd:1)
+ERROR: Failed to load script "res://battle/attacks/spiral.gd" with error "Parse error".
+   at: load (modules/gdscript/gdscript_resource_format.cpp:46)
+SCRIPT ERROR: Parse Error: Could not find base class "BossAttack".
+   at: GDScript::reload (res://battle/attacks/laser_pattern.gd:1)
+ERROR: Failed to load script "res://battle/attacks/laser_pattern.gd" with error "Parse error".
+   at: load (modules/gdscript/gdscript_resource_format.cpp:46)
+SCRIPT ERROR: Parse Error: Could not find base class "BattleBullet".
+   at: GDScript::reload (res://battle/laser.gd:2)
+ERROR: Failed to load script "res://battle/laser.gd" with error "Parse error".
+   at: load (modules/gdscript/gdscript_resource_format.cpp:46)
+SCRIPT ERROR: Parse Error: Could not find base class "BossAttack".
+   at: GDScript::reload (res://battle/attacks/breakpoint.gd:1)
+ERROR: Failed to load script "res://battle/attacks/breakpoint.gd" with error "Parse error".
+   at: load (modules/gdscript/gdscript_resource_format.cpp:46)
+SCRIPT ERROR: Parse Error: Could not find base class "BossSpeech".
+   at: GDScript::reload (res://battle/speech/speech_bubble.gd:2)
+ERROR: Failed to load script "res://battle/speech/speech_bubble.gd" with error "Parse error".
+   at: load (modules/gdscript/gdscript_resource_format.cpp:46)
+SCRIPT ERROR: Parse Error: Identifier "BattleInput" not declared in the current scope.
+   at: GDScript::reload (res://battle/dialogue_box.gd:72)
+SCRIPT ERROR: Parse Error: Identifier "BattleInput" not declared in the current scope.
+   at: GDScript::reload (res://battle/dialogue_box.gd:77)
+SCRIPT ERROR: Parse Error: Identifier "BattleInput" not declared in the current scope.
+   at: GDScript::reload (res://battle/dialogue_box.gd:77)
+ERROR: Failed to load script "res://battle/dialogue_box.gd" with error "Parse error".
+   at: load (modules/gdscript/gdscript_resource_format.cpp:46)
+SCRIPT ERROR: Parse Error: Could not find type "BattleText" in the current scope.
+   at: GDScript::reload (res://battle/battle_box.gd:13)
+SCRIPT ERROR: Parse Error: Could not find type "BattleChoiceList" in the current scope.
+   at: GDScript::reload (res://battle/battle_box.gd:14)
+SCRIPT ERROR: Parse Error: Could not find type "BattleFightBar" in the current scope.
+   at: GDScript::reload (res://battle/battle_box.gd:15)
+ERROR: Failed to load script "res://battle/battle_box.gd" with error "Parse error".
+   at: load (modules/gdscript/gdscript_resource_format.cpp:46)
+SCRIPT ERROR: Parse Error: Identifier "BattleInput" not declared in the current scope.
+   at: GDScript::reload (res://battle/choice_list.gd:25)
+SCRIPT ERROR: Parse Error: Identifier "BattleInput" not declared in the current scope.
+   at: GDScript::reload (res://battle/choice_list.gd:65)
+ERROR: Failed to load script "res://battle/choice_list.gd" with error "Parse error".
+   at: load (modules/gdscript/gdscript_resource_format.cpp:46)
+SCRIPT ERROR: Parse Error: Could not find type "AssetSlot" in the current scope.
+   at: GDScript::reload (res://battle/fight_bar.gd:13)
+SCRIPT ERROR: Parse Error: Could not find type "AssetSlot" in the current scope.
+   at: GDScript::reload (res://battle/fight_bar.gd:14)
+SCRIPT ERROR: Parse Error: Could not find type "AssetSlot" in the current scope.
+   at: GDScript::reload (res://battle/fight_bar.gd:15)
+SCRIPT ERROR: Parse Error: Could not find type "AssetSlot" in the current scope.
+   at: GDScript::reload (res://battle/fight_bar.gd:16)
+SCRIPT ERROR: Parse Error: Identifier "BattleInput" not declared in the current scope.
+   at: GDScript::reload (res://battle/fight_bar.gd:60)
+ERROR: Failed to load script "res://battle/fight_bar.gd" with error "Parse error".
+   at: load (modules/gdscript/gdscript_resource_format.cpp:46)
+SCRIPT ERROR: Parse Error: Could not find type "BattleBox" in the current scope.
+   at: GDScript::reload (res://battle/soul.gd:28)
+SCRIPT ERROR: Parse Error: Could not find type "BattleBox" in the current scope.
+   at: GDScript::reload (res://battle/soul.gd:49)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "area" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://battle/soul.gd:88)
+SCRIPT ERROR: Parse Error: Could not find type "BattleBullet" in the current scope.
+   at: GDScript::reload (res://battle/soul.gd:99)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "bullet" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://battle/soul.gd:99)
+ERROR: Failed to load script "res://battle/soul.gd" with error "Parse error".
+   at: load (modules/gdscript/gdscript_resource_format.cpp:46)
+SCRIPT ERROR: Parse Error: Could not find type "BattleStats" in the current scope.
+   at: GDScript::reload (res://battle/player_hud.gd:14)
+SCRIPT ERROR: Parse Error: Could not find type "BattleStats" in the current scope.
+   at: GDScript::reload (res://battle/player_hud.gd:17)
+ERROR: Failed to load script "res://battle/player_hud.gd" with error "Parse error".
+   at: load (modules/gdscript/gdscript_resource_format.cpp:46)
+SCRIPT ERROR: Parse Error: Could not find type "BossBattle" in the current scope.
+   at: GDScript::reload (res://battle/debug_panel.gd:13)
+SCRIPT ERROR: Parse Error: Could not find type "BossBattle" in the current scope.
+   at: GDScript::reload (res://battle/debug_panel.gd:20)
+SCRIPT ERROR: Parse Error: Could not find type "BattleDifficulty" in the current scope.
+   at: GDScript::reload (res://battle/debug_panel.gd:23)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "preset" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://battle/debug_panel.gd:23)
+SCRIPT ERROR: Parse Error: Could not find type "BattleSkill" in the current scope.
+   at: GDScript::reload (res://battle/debug_panel.gd:28)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "chosen_skill" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://battle/debug_panel.gd:28)
+ERROR: Failed to load script "res://battle/debug_panel.gd" with error "Parse error".
+   at: load (modules/gdscript/gdscript_resource_format.cpp:46)
+SCRIPT ERROR: Parse Error: Could not find type "BattleChoiceList" in the current scope.
+   at: GDScript::reload (res://battle/difficulty_menu.gd:15)
+SCRIPT ERROR: Parse Error: Could not find type "BattleDifficulty" in the current scope.
+   at: GDScript::reload (res://battle/difficulty_menu.gd:17)
+SCRIPT ERROR: Parse Error: Could not find type "BattleDifficulty" in the current scope.
+   at: GDScript::reload (res://battle/difficulty_menu.gd:31)
+SCRIPT ERROR: Parse Error: Could not find type "BattleDifficulty" in the current scope.
+   at: GDScript::reload (res://battle/difficulty_menu.gd:31)
+SCRIPT ERROR: Parse Error: Could not find type "BattleDifficulty" in the current scope.
+   at: GDScript::reload (res://battle/difficulty_menu.gd:23)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "preset" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://battle/difficulty_menu.gd:23)
+ERROR: Failed to load script "res://battle/difficulty_menu.gd" with error "Parse error".
+   at: load (modules/gdscript/gdscript_resource_format.cpp:46)
+SCRIPT ERROR: Parse Error: Identifier "BattleInput" not declared in the current scope.
+   at: GDScript::reload (res://battle/touch_controls.gd:26)
+ERROR: Failed to load script "res://battle/touch_controls.gd" with error "Parse error".
+   at: load (modules/gdscript/gdscript_resource_format.cpp:46)
+SCRIPT ERROR: Parse Error: Could not find type "BattleChoiceList" in the current scope.
+   at: GDScript::reload (res://launcher/launcher.gd:19)
+SCRIPT ERROR: Parse Error: Could not find type "BossBattle" in the current scope.
+   at: GDScript::reload (res://launcher/launcher.gd:35)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "battle" variable because the value doesn't have a set type.
+   at: GDScript::reload (res://launcher/launcher.gd:35)
+ERROR: Failed to load script "res://launcher/launcher.gd" with error "Parse error".
+   at: load (modules/gdscript/gdscript_resource_format.cpp:46)

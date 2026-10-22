@@ -5,7 +5,7 @@ extends Node2D
 ##
 ## Run battle.tscn directly to test (F6), or use it from the main game:
 ##
-##     var battle: BossBattle = preload("res://Minigames/fit_battle_step4/fit_battle/battle/battle.tscn").instantiate()
+##     var battle: BossBattle = preload("res://battle/battle.tscn").instantiate()
 ##     battle.skill_id = "poison"     # PLACEHOLDER handoff: a plain string from the earlier part
 ##     # battle.difficulty = ...      # leave empty: the battle shows the difficulty menu itself
 ##     battle.finished.connect(_on_battle_finished)    # &"win" or &"spared"
@@ -24,7 +24,7 @@ const NEXT := &"next"
 ## The skill as a resource. Leave empty to use `skill_id`.
 @export var skill: BattleSkill
 ## PLACEHOLDER handoff from the earlier part: a skill id such as "fist" or "poison".
-## Loaded from res://Minigames/fit_battle_step4/fit_battle/data/skills/<id>.tres when `skill` is empty.
+## Loaded from res://data/skills/<id>.tres when `skill` is empty.
 @export var skill_id := "fist"
 ## Leave empty and the battle shows the difficulty menu first. Set it to skip the menu.
 @export var difficulty: BattleDifficulty
@@ -79,11 +79,11 @@ var _wait_frame := -1
 
 
 static func skill_from_id(id: StringName) -> BattleSkill:
-	return load("res://Minigames/fit_battle_step4/fit_battle/data/skills/%s.tres" % id) as BattleSkill
+	return load("res://data/skills/%s.tres" % id) as BattleSkill
 
 
 static func difficulty_from_id(id: StringName) -> BattleDifficulty:
-	return load("res://Minigames/fit_battle_step4/fit_battle/data/difficulty/%s.tres" % id) as BattleDifficulty
+	return load("res://data/difficulty/%s.tres" % id) as BattleDifficulty
 
 
 func _ready() -> void:
@@ -91,7 +91,7 @@ func _ready() -> void:
 	if skill == null:
 		skill = skill_from_id(StringName(skill_id))
 		if skill == null:
-			push_error("Unknown skill_id '%s' (expected res://Minigames/fit_battle_step4/fit_battle/data/skills/%s.tres). Using fist." \
+			push_error("Unknown skill_id '%s' (expected res://data/skills/%s.tres). Using fist." \
 					% [skill_id, skill_id])
 			skill = skill_from_id(&"fist")
 	soul.hit.connect(_on_soul_hit)

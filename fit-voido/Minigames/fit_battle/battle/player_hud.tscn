@@ -1,0 +1,63 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Minigames/fit_battle/battle/player_hud.gd" id="1_hud"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg"]
+bg_color = Color(0.75, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fill"]
+bg_color = Color(1, 0.9, 0, 1)
+
+[node name="PlayerHud" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 32.0
+offset_top = 394.0
+offset_right = 608.0
+offset_bottom = 426.0
+script = ExtResource("1_hud")
+
+[node name="NameRow" type="HBoxContainer" parent="."]
+offset_right = 200.0
+offset_bottom = 32.0
+theme_override_constants/separation = 24
+
+[node name="NameLabel" type="Label" parent="NameRow"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "SV 2006"
+
+[node name="LvLabel" type="Label" parent="NameRow"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "LV 1"
+
+[node name="HpRow" type="HBoxContainer" parent="."]
+offset_left = 212.0
+offset_right = 560.0
+offset_bottom = 32.0
+theme_override_constants/separation = 10
+
+[node name="HpTag" type="Label" parent="HpRow"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "HP"
+
+[node name="HpBar" type="ProgressBar" parent="HpRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(24, 20)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_fill")
+max_value = 20.0
+value = 20.0
+show_percentage = false
+
+[node name="HpValue" type="Label" parent="HpRow"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "20 / 20"

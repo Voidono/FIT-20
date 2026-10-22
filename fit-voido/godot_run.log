@@ -1,0 +1,133 @@
+Godot Engine v4.7.stable.official.5b4e0cb0f - https://godotengine.org
+TextServer: Added interface "Dummy"
+TextServer: Added interface "ICU / HarfBuzz / Graphite (Built-in)"
+Accessibility: AccessKit driver loaded.
+Native OpenGL API detected: 3.3: NVIDIA - NVIDIA GeForce RTX 3050 Ti Laptop GPU
+NVAPI: Init OK!
+NVAPI: Profile not found, creating...
+NVAPI: Application not found in profile, creating...
+NVAPI: Error creating application: NVAPI_EXECUTABLE_ALREADY_IN_USE(code -167)
+Accessibility: window 0 adapter created.
+SDL: Init OK!
+Using "winink" pen tablet driver...
+Shader 'CanvasSdfShaderGLES3' SHA256: ee70a81dc1306a935d419fffd9d5bed5895166f4ef80f8b55c81e439b91230af
+Shader 'SkeletonShaderGLES3' SHA256: af35a8f80f35bb07d703e4241ec4e81b23d7260893e4c675f997ef1678313306
+Shader 'ParticlesShaderGLES3' SHA256: 0c90400ddaac3a29f1b61b924bae56e16b22ec1596985e65069a2c7a709aedf1
+Shader 'ParticlesCopyShaderGLES3' SHA256: eba22542c19cf0a63d58553fe82cc18f1598d031a7cec10adbd8f9c3bb3589ed
+Shader 'CopyShaderGLES3' SHA256: 516f0099b4136996a4484684dcfbf964a09df5d9d45252f27624f494f77a0591
+Shader 'CubemapFilterShaderGLES3' SHA256: 4e007bf62c4471c782c831c7525b50a45a2ce156d9dbe904ca24920007a9590c
+Shader 'GlowShaderGLES3' SHA256: 70e7de6a4a4967d04a187d97e701621efae8851af9d2178aa6c4ac33e5cea8ca
+Shader 'PostShaderGLES3' SHA256: cd05d7628a19c311c679b7a6510f0bff52b54cdab9cc15abb911882de3c2c846
+Shader 'FeedShaderGLES3' SHA256: e8a2d6b44977c8d0937b4625130462ee1d05c4769002720e8c163e5c0f19b2a9
+Shader 'CanvasShaderGLES3' SHA256: 311704d9a71a6ed7bcd2a5aaeaf0b6a98853949a51738a542509f8c5f8551bc7
+Shader 'CanvasOcclusionShaderGLES3' SHA256: f8d15ef3c119879d0c820a34f3299cea42891c05eb7cce3fb574aa394d2ed456
+Shader 'SceneShaderGLES3' SHA256: 8fdc6c900221b94ca5f7fc82d75b5c547f493abd756559b3319f0bd99d7c47a1
+Shader 'SkyShaderGLES3' SHA256: 28a7dd7b40b256c9f7b38464b0cd6799be49734cd51274ce08aadd368b163b3c
+Shader 'TexBlitShaderGLES3' SHA256: bef346fff8118ee4196cbca6e68be94ebd2ac79e4cc8c601567196dc70ed830e
+OpenGL API 3.3.0 NVIDIA 610.62 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 3050 Ti Laptop GPU
+WASAPI: Activated output_device using IAudioClient3 interface
+WASAPI: wFormatTag = 65534
+WASAPI: nChannels = 2
+WASAPI: nSamplesPerSec = 48000
+WASAPI: nAvgBytesPerSec = 384000
+WASAPI: nBlockAlign = 8
+WASAPI: wBitsPerSample = 32
+WASAPI: cbSize = 22
+WASAPI: mix_rate = 48000
+WASAPI: fundamental_period_frames = 480
+WASAPI: min_period_frames = 480
+WASAPI: max_period_frames = 480
+WASAPI: selected a period frame size of 480
+WASAPI: detected 2 channels
+WASAPI: audio buffer frames: 480 calculated latency: 10ms
+
+TextServer: Primary interface set to: "ICU / HarfBuzz / Graphite (Built-in)".
+Loading resource: res://default_bus_layout.tres remapped: res://default_bus_layout.tres
+Completed load for: 'res://default_bus_layout.tres' remapped 'res://default_bus_layout.tres' at thread -1
+CORE API HASH: 3472268009
+EDITOR API HASH: 2212757246
+SceneTreeFTI: traversal method DEFAULT
+Loading resource: res://scripts/game_state.gd remapped: res://scripts/game_state.gd
+Completed load for: 'res://scripts/game_state.gd' remapped 'res://scripts/game_state.gd' at thread -1
+Loading resource: res://scripts/volume.gd remapped: res://scripts/volume.gd
+Completed load for: 'res://scripts/volume.gd' remapped 'res://scripts/volume.gd' at thread -1
+Loading resource: res://addons/dialogue_manager/dialogue_manager.gd remapped: res://addons/dialogue_manager/dialogue_manager.gd
+Loading resource: res://addons/dialogue_manager/test_scene.tscn remapped: res://addons/dialogue_manager/test_scene.tscn
+Loading resource: res://addons/dialogue_manager/test_scene.gd remapped: res://addons/dialogue_manager/test_scene.gd
+Completed load for: 'res://addons/dialogue_manager/test_scene.gd' remapped 'res://addons/dialogue_manager/test_scene.gd' at thread -1
+Completed load for: 'res://addons/dialogue_manager/test_scene.tscn' remapped 'res://addons/dialogue_manager/test_scene.tscn' at thread -1
+Completed load for: 'res://addons/dialogue_manager/dialogue_manager.gd' remapped 'res://addons/dialogue_manager/dialogue_manager.gd' at thread -1
+Loading resource: res://scenes/UI/music.tscn remapped: res://scenes/UI/music.tscn
+Loading resource: res://scenes/UI/music.gd remapped: res://scenes/UI/music.gd
+Completed load for: 'res://scenes/UI/music.gd' remapped 'res://scenes/UI/music.gd' at thread -1
+Loading resource: res://soundtrack/Hans Zimmer - Interstellar - Main Theme (Piano Version) + Sheet Music - Patrik Pietschmann.mp3 remapped: res://soundtrack/Hans Zimmer - Interstellar - Main Theme (Piano Version) + Sheet Music - Patrik Pietschmann.mp3
+Loading resource: res://.godot/imported/Hans Zimmer - Interstellar - Main Theme (Piano Version) + Sheet Music - Patrik Pietschmann.mp3-4a573c22fa7d602e9715f47dbcd7ed74.mp3str remapped: res://.godot/imported/Hans Zimmer - Interstellar - Main Theme (Piano Version) + Sheet Music - Patrik Pietschmann.mp3-4a573c22fa7d602e9715f47dbcd7ed74.mp3str
+Completed load for: 'res://soundtrack/Hans Zimmer - Interstellar - Main Theme (Piano Version) + Sheet Music - Patrik Pietschmann.mp3' remapped 'res://soundtrack/Hans Zimmer - Interstellar - Main Theme (Piano Version) + Sheet Music - Patrik Pietschmann.mp3' at thread -1
+Completed load for: 'res://scenes/UI/music.tscn' remapped 'res://scenes/UI/music.tscn' at thread -1
+Loading resource: res://scene_loader.gd remapped: res://scene_loader.gd
+Completed load for: 'res://scene_loader.gd' remapped 'res://scene_loader.gd' at thread -1
+Loaded system CA certificates
+Loading resource: res://Minigames/fit_battle_step4/fit_battle/launcher/launcher.tscn remapped: res://Minigames/fit_battle_step4/fit_battle/launcher/launcher.tscn
+Loading resource: res://Minigames/fit_battle_step4/fit_battle/launcher/launcher.gd remapped: res://Minigames/fit_battle_step4/fit_battle/launcher/launcher.gd
+Loading resource: res://Minigames/fit_battle_step4/fit_battle/battle/battle.tscn remapped: res://Minigames/fit_battle_step4/fit_battle/battle/battle.tscn
+Loading resource: res://Minigames/fit_battle_step4/fit_battle/battle/battle.gd remapped: res://Minigames/fit_battle_step4/fit_battle/battle/battle.gd
+Completed load for: 'res://Minigames/fit_battle_step4/fit_battle/battle/battle.gd' remapped 'res://Minigames/fit_battle_step4/fit_battle/battle/battle.gd' at thread -1
+Loading resource: res://Minigames/fit_battle_step4/fit_battle/battle/enemies/con_bug.tscn remapped: res://Minigames/fit_battle_step4/fit_battle/battle/enemies/con_bug.tscn
+Loading resource: res://Minigames/fit_battle_step4/fit_battle/battle/attacks/rain.tscn remapped: res://Minigames/fit_battle_step4/fit_battle/battle/attacks/rain.tscn
+Loading resource: res://Minigames/fit_battle_step4/fit_battle/battle/attacks/rain.gd remapped: res://Minigames/fit_battle_step4/fit_battle/battle/attacks/rain.gd
+Completed load for: 'res://Minigames/fit_battle_step4/fit_battle/battle/attacks/rain.gd' remapped 'res://Minigames/fit_battle_step4/fit_battle/battle/attacks/rain.gd' at thread -1
+Loading resource: res://Minigames/fit_battle_step4/fit_battle/battle/bullet.tscn remapped: res://Minigames/fit_battle_step4/fit_battle/battle/bullet.tscn
+Completed load for: 'res://Minigames/fit_battle_step4/fit_battle/battle/bullet.tscn' remapped 'res://Minigames/fit_battle_step4/fit_battle/battle/bullet.tscn' at thread -1
+Completed load for: 'res://Minigames/fit_battle_step4/fit_battle/battle/attacks/rain.tscn' remapped 'res://Minigames/fit_battle_step4/fit_battle/battle/attacks/rain.tscn' at thread -1
+Loading resource: res://Minigames/fit_battle_step4/fit_battle/battle/attacks/wall.tscn remapped: res://Minigames/fit_battle_step4/fit_battle/battle/attacks/wall.tscn
+Loading resource: res://Minigames/fit_battle_step4/fit_battle/battle/attacks/wall.gd remapped: res://Minigames/fit_battle_step4/fit_battle/battle/attacks/wall.gd
+Completed load for: 'res://Minigames/fit_battle_step4/fit_battle/battle/attacks/wall.gd' remapped 'res://Minigames/fit_battle_step4/fit_battle/battle/attacks/wall.gd' at thread -1
+Completed load for: 'res://Minigames/fit_battle_step4/fit_battle/battle/attacks/wall.tscn' remapped 'res://Minigames/fit_battle_step4/fit_battle/battle/attacks/wall.tscn' at thread -1
+Loading resource: res://Minigames/fit_battle_step4/fit_battle/battle/attacks/aimed.tscn remapped: res://Minigames/fit_battle_step4/fit_battle/battle/attacks/aimed.tscn
+Loading resource: res://Minigames/fit_battle_step4/fit_battle/battle/attacks/aimed.gd remapped: res://Minigames/fit_battle_step4/fit_battle/battle/attacks/aimed.gd
+Completed load for: 'res://Minigames/fit_battle_step4/fit_battle/battle/attacks/aimed.gd' remapped 'res://Minigames/fit_battle_step4/fit_battle/battle/attacks/aimed.gd' at thread -1
+Completed load for: 'res://Minigames/fit_battle_step4/fit_battle/battle/attacks/aimed.tscn' remapped 'res://Minigames/fit_battle_step4/fit_battle/battle/attacks/aimed.tscn' at thread -1
+Loading resource: res://Minigames/fit_battle_step4/fit_battle/battle/attacks/spiral.tscn remapped: res://Minigames/fit_battle_step4/fit_battle/battle/attacks/spiral.tscn
+Loading resource: res://Minigames/fit_battle_step4/fit_battle/battle/attacks/spiral.gd remapped: res://Minigames/fit_battle_step4/fit_battle/battle/attacks/spiral.gd
+Completed load for: 'res://Minigames/fit_battle_step4/fit_battle/battle/attacks/spiral.gd' remapped 'res://Minigames/fit_battle_step4/fit_battle/battle/attacks/spiral.gd' at thread -1
+Completed load for: 'res://Minigames/fit_battle_step4/fit_battle/battle/attacks/spiral.tscn' remapped 'res://Minigames/fit_battle_step4/fit_battle/battle/attacks/spiral.tscn' at thread -1
+Loading resource: res://Minigames/fit_battle_step4/fit_battle/battle/attacks/laser_pattern.tscn remapped: res://Minigames/fit_battle_step4/fit_battle/battle/attacks/laser_pattern.tscn
+Loading resource: res://Minigames/fit_battle_step4/fit_battle/battle/attacks/laser_pattern.gd remapped: res://Minigames/fit_battle_step4/fit_battle/battle/attacks/laser_pattern.gd
+Completed load for: 'res://Minigames/fit_battle_step4/fit_battle/battle/attacks/laser_pattern.gd' remapped 'res://Minigames/fit_battle_step4/fit_battle/battle/attacks/laser_pattern.gd' at thread -1
+Loading resource: res://Minigames/fit_battle_step4/fit_battle/battle/laser.tscn remapped: res://Minigames/fit_battle_step4/fit_battle/battle/laser.tscn
+Completed load for: 'res://Minigames/fit_battle_step4/fit_battle/battle/laser.tscn' remapped 'res://Minigames/fit_battle_step4/fit_battle/battle/laser.tscn' at thread -1
+Completed load for: 'res://Minigames/fit_battle_step4/fit_battle/battle/attacks/laser_pattern.tscn' remapped 'res://Minigames/fit_battle_step4/fit_battle/battle/attacks/laser_pattern.tscn' at thread -1
+Loading resource: res://Minigames/fit_battle_step4/fit_battle/battle/attacks/breakpoint.tscn remapped: res://Minigames/fit_battle_step4/fit_battle/battle/attacks/breakpoint.tscn
+Loading resource: res://Minigames/fit_battle_step4/fit_battle/battle/attacks/breakpoint.gd remapped: res://Minigames/fit_battle_step4/fit_battle/battle/attacks/breakpoint.gd
+Completed load for: 'res://Minigames/fit_battle_step4/fit_battle/battle/attacks/breakpoint.gd' remapped 'res://Minigames/fit_battle_step4/fit_battle/battle/attacks/breakpoint.gd' at thread -1
+Completed load for: 'res://Minigames/fit_battle_step4/fit_battle/battle/attacks/breakpoint.tscn' remapped 'res://Minigames/fit_battle_step4/fit_battle/battle/attacks/breakpoint.tscn' at thread -1
+Completed load for: 'res://Minigames/fit_battle_step4/fit_battle/battle/enemies/con_bug.tscn' remapped 'res://Minigames/fit_battle_step4/fit_battle/battle/enemies/con_bug.tscn' at thread -1
+Loading resource: res://Minigames/fit_battle_step4/fit_battle/battle/speech/speech_bubble.tscn remapped: res://Minigames/fit_battle_step4/fit_battle/battle/speech/speech_bubble.tscn
+Loading resource: res://Minigames/fit_battle_step4/fit_battle/battle/speech/speech_bubble.gd remapped: res://Minigames/fit_battle_step4/fit_battle/battle/speech/speech_bubble.gd
+Completed load for: 'res://Minigames/fit_battle_step4/fit_battle/battle/speech/speech_bubble.gd' remapped 'res://Minigames/fit_battle_step4/fit_battle/battle/speech/speech_bubble.gd' at thread -1
+Completed load for: 'res://Minigames/fit_battle_step4/fit_battle/battle/speech/speech_bubble.tscn' remapped 'res://Minigames/fit_battle_step4/fit_battle/battle/speech/speech_bubble.tscn' at thread -1
+Loading resource: res://Minigames/fit_battle_step4/fit_battle/battle/battle_box.tscn remapped: res://Minigames/fit_battle_step4/fit_battle/battle/battle_box.tscn
+Loading resource: res://Minigames/fit_battle_step4/fit_battle/battle/choice_list.tscn remapped: res://Minigames/fit_battle_step4/fit_battle/battle/choice_list.tscn
+Completed load for: 'res://Minigames/fit_battle_step4/fit_battle/battle/choice_list.tscn' remapped 'res://Minigames/fit_battle_step4/fit_battle/battle/choice_list.tscn' at thread -1
+Loading resource: res://Minigames/fit_battle_step4/fit_battle/battle/fight_bar.tscn remapped: res://Minigames/fit_battle_step4/fit_battle/battle/fight_bar.tscn
+Completed load for: 'res://Minigames/fit_battle_step4/fit_battle/battle/fight_bar.tscn' remapped 'res://Minigames/fit_battle_step4/fit_battle/battle/fight_bar.tscn' at thread -1
+Completed load for: 'res://Minigames/fit_battle_step4/fit_battle/battle/battle_box.tscn' remapped 'res://Minigames/fit_battle_step4/fit_battle/battle/battle_box.tscn' at thread -1
+Loading resource: res://Minigames/fit_battle_step4/fit_battle/battle/soul.tscn remapped: res://Minigames/fit_battle_step4/fit_battle/battle/soul.tscn
+Completed load for: 'res://Minigames/fit_battle_step4/fit_battle/battle/soul.tscn' remapped 'res://Minigames/fit_battle_step4/fit_battle/battle/soul.tscn' at thread -1
+Loading resource: res://Minigames/fit_battle_step4/fit_battle/battle/player_hud.tscn remapped: res://Minigames/fit_battle_step4/fit_battle/battle/player_hud.tscn
+Completed load for: 'res://Minigames/fit_battle_step4/fit_battle/battle/player_hud.tscn' remapped 'res://Minigames/fit_battle_step4/fit_battle/battle/player_hud.tscn' at thread -1
+Loading resource: res://Minigames/fit_battle_step4/fit_battle/battle/battle_menu.tscn remapped: res://Minigames/fit_battle_step4/fit_battle/battle/battle_menu.tscn
+Completed load for: 'res://Minigames/fit_battle_step4/fit_battle/battle/battle_menu.tscn' remapped 'res://Minigames/fit_battle_step4/fit_battle/battle/battle_menu.tscn' at thread -1
+Loading resource: res://Minigames/fit_battle_step4/fit_battle/battle/debug_panel.tscn remapped: res://Minigames/fit_battle_step4/fit_battle/battle/debug_panel.tscn
+Loading resource: res://Minigames/fit_battle_step4/fit_battle/battle/debug_panel.gd remapped: res://Minigames/fit_battle_step4/fit_battle/battle/debug_panel.gd
+Completed load for: 'res://Minigames/fit_battle_step4/fit_battle/battle/debug_panel.gd' remapped 'res://Minigames/fit_battle_step4/fit_battle/battle/debug_panel.gd' at thread -1
+Completed load for: 'res://Minigames/fit_battle_step4/fit_battle/battle/debug_panel.tscn' remapped 'res://Minigames/fit_battle_step4/fit_battle/battle/debug_panel.tscn' at thread -1
+Loading resource: res://Minigames/fit_battle_step4/fit_battle/battle/difficulty_menu.tscn remapped: res://Minigames/fit_battle_step4/fit_battle/battle/difficulty_menu.tscn
+Completed load for: 'res://Minigames/fit_battle_step4/fit_battle/battle/difficulty_menu.tscn' remapped 'res://Minigames/fit_battle_step4/fit_battle/battle/difficulty_menu.tscn' at thread -1
+Loading resource: res://Minigames/fit_battle_step4/fit_battle/battle/touch_controls.tscn remapped: res://Minigames/fit_battle_step4/fit_battle/battle/touch_controls.tscn
+Loading resource: res://Minigames/fit_battle_step4/fit_battle/battle/touch_joystick.tscn remapped: res://Minigames/fit_battle_step4/fit_battle/battle/touch_joystick.tscn
+Completed load for: 'res://Minigames/fit_battle_step4/fit_battle/battle/touch_joystick.tscn' remapped 'res://Minigames/fit_battle_step4/fit_battle/battle/touch_joystick.tscn' at thread -1
+Completed load for: 'res://Minigames/fit_battle_step4/fit_battle/battle/touch_controls.tscn' remapped 'res://Minigames/fit_battle_step4/fit_battle/battle/touch_controls.tscn' at thread -1
+Completed load for: 'res://Minigames/fit_battle_step4/fit_battle/battle/battle.tscn' remapped 'res://Minigames/fit_battle_step4/fit_battle/battle/battle.tscn' at thread -1
+Completed load for: 'res://Minigames/fit_battle_step4/fit_battle/launcher/launcher.gd' remapped 'res://Minigames/fit_battle_step4/fit_battle/launcher/launcher.gd' at thread -1
+Completed load for: 'res://Minigames/fit_battle_step4/fit_battle/launcher/launcher.tscn' remapped 'res://Minigames/fit_battle_step4/fit_battle/launcher/launcher.tscn' at thread -1

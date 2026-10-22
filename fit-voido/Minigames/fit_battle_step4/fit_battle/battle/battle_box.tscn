@@ -1,9 +1,9 @@
 [gd_scene format=3]
 
-[ext_resource type="Script" path="res://Minigames/fit_battle_step4/fit_battle/battle/battle_box.gd" id="1_box"]
-[ext_resource type="Script" path="res://Minigames/fit_battle_step4/fit_battle/battle/dialogue_box.gd" id="2_dialogue"]
-[ext_resource type="PackedScene" path="res://Minigames/fit_battle_step4/fit_battle/battle/choice_list.tscn" id="3_choice"]
-[ext_resource type="PackedScene" path="res://Minigames/fit_battle_step4/fit_battle/battle/fight_bar.tscn" id="4_fight"]
+[ext_resource type="Script" path="res://battle/battle_box.gd" id="1_box"]
+[ext_resource type="Script" path="res://battle/dialogue_box.gd" id="2_dialogue"]
+[ext_resource type="PackedScene" path="res://battle/choice_list.tscn" id="3_choice"]
+[ext_resource type="PackedScene" path="res://battle/fight_bar.tscn" id="4_fight"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_box"]
 bg_color = Color(0, 0, 0, 1)
