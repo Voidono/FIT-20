@@ -1,4 +1,4 @@
-﻿[gd_scene format=4 uid="uid://1q3un777h5y"]
+[gd_scene format=4 uid="uid://1q3un777h5y"]
 
 [ext_resource type="Texture2D" uid="uid://bi6rc0u2o027a" path="res://assets/environments/Game_Maker_Studio_Autotiles_Singles_48x48_25.png" id="1_s2awt"]
 [ext_resource type="Texture2D" uid="uid://bf2334n8eesyo" path="res://assets/environments/Game_Maker_Studio_Autotiles_Singles_48x48_19.png" id="2_1pr6i"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://mh3v06bcbcma" path="res://scenes/testing/tòa_c.tscn" id="13_v6mcx"]
 [ext_resource type="PackedScene" uid="uid://buls7gyqsh04d" path="res://scenes/testing/đường_2.tscn" id="14_k8vhn"]
 [ext_resource type="PackedScene" uid="uid://cllt2h6tjsxxt" path="res://scenes/testing/nhà_khác.tscn" id="14_n48ho"]
+[ext_resource type="PackedScene" uid="uid://qfynrbabqgoq" path="res://scenes/testing/nhà_bựa.tscn" id="15_aqbed"]
 [ext_resource type="PackedScene" uid="uid://5ksmv5od38lu" path="res://scenes/testing/đường.tscn" id="15_k8vhn"]
 [ext_resource type="PackedScene" uid="uid://c43kdrqiv4a0n" path="res://scenes/Character/Character.tscn" id="17_n48ho"]
 [ext_resource type="Texture2D" uid="uid://b0srp2woae24h" path="res://assets/environments/ME_Singles_Camping_48x48_Tree_182.png" id="18_78456"]
@@ -25,6 +26,9 @@
 [ext_resource type="PackedScene" uid="uid://bhie3pwx0kuav" path="res://Dialogues/Bubbles/quiz_balloon (1).tscn" id="34_gknmh"]
 [ext_resource type="Resource" uid="uid://d28djbf4okdr0" path="res://Dialogues/quiz_marathon_sports.dialogue" id="35_sgcmy"]
 [ext_resource type="Resource" uid="uid://2qjoeganrbe5" path="res://Dialogues/npc_dung.dialogue" id="dlg_dung"]
+[ext_resource type="Resource" uid="uid://c5r6xk1wbmhwj" path="res://Dialogues/minigame_battle.dialogue" id="dlg_minigame_battle"]
+[ext_resource type="Resource" uid="uid://by6mhn33w07mh" path="res://Dialogues/minigame_runner.dialogue" id="dlg_minigame_runner"]
+[ext_resource type="Resource" uid="uid://bgwai5bc0hvp3" path="res://Dialogues/minigame_trash.dialogue" id="dlg_minigame_trash"]
 [ext_resource type="Resource" uid="uid://1xkevde5av6a" path="res://Dialogues/npc_ngoc.dialogue" id="dlg_ngoc"]
 [ext_resource type="Resource" uid="uid://b8jo7xg3ofl1d" path="res://Dialogues/npc_qkhanh.dialogue" id="dlg_qkhanh"]
 [ext_resource type="Resource" uid="uid://dwo1fddl8hj33" path="res://Dialogues/npc_tuan.dialogue" id="dlg_tuan"]
@@ -33,12 +37,9 @@
 [ext_resource type="Texture2D" uid="uid://cj11xk34dhjis" path="res://assets/DrawAsset/NPC/Dũng.png" id="npc_tex_dung"]
 [ext_resource type="Texture2D" uid="uid://d02bwmv5ubyb" path="res://assets/DrawAsset/NPC/Ngọc.png" id="npc_tex_ngoc"]
 [ext_resource type="Texture2D" uid="uid://bvcmk5c874t4n" path="res://assets/DrawAsset/NPC/QKhánh.png" id="npc_tex_qkhanh"]
+[ext_resource type="Texture2D" uid="uid://bmrkbm77sbroc" path="res://assets/DrawAsset/NPC/Thắng.png" id="npc_tex_thang"]
 [ext_resource type="Texture2D" uid="uid://dpeuwwhhawccf" path="res://assets/DrawAsset/NPC/Tuấn.png" id="npc_tex_tuan"]
 [ext_resource type="Texture2D" uid="uid://da882jd35otsq" path="res://assets/DrawAsset/NPC/Tùng.png" id="npc_tex_tung"]
-[ext_resource type="Texture2D" uid="uid://bmrkbm77sbroc" path="res://assets/DrawAsset/NPC/Th?ng.png" id="npc_tex_thang"]
-[ext_resource type="Resource" path="res://Dialogues/minigame_runner.dialogue" id="dlg_minigame_runner"]
-[ext_resource type="Resource" path="res://Dialogues/minigame_trash.dialogue" id="dlg_minigame_trash"]
-[ext_resource type="Resource" path="res://Dialogues/minigame_battle.dialogue" id="dlg_minigame_battle"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n48ho"]
 texture = ExtResource("1_s2awt")
@@ -8725,6 +8726,8 @@ tile_set = SubResource("TileSet_5h11f")
 
 [node name="Cây to 2" parent="." unique_id=1080911031 instance=ExtResource("9_33srm")]
 
+[node name="tòa C" parent="." unique_id=1804656104 instance=ExtResource("13_v6mcx")]
+
 [node name="nhà khác" parent="." unique_id=1481711122 instance=ExtResource("14_n48ho")]
 
 [node name="tòa xanh" type="TileMapLayer" parent="." unique_id=1680190856]
@@ -8745,7 +8748,7 @@ tile_set = SubResource("TileSet_ft2n7")
 
 [node name="Nhà" parent="." unique_id=1610747002 instance=ExtResource("11_odrqq")]
 
-[node name="tòa C" parent="." unique_id=1804656104 instance=ExtResource("13_v6mcx")]
+[node name="nhà bựa" parent="." unique_id=1810255131 instance=ExtResource("15_aqbed")]
 
 [node name="cây to" parent="." unique_id=1058534028 instance=ExtResource("13_odrqq")]
 
@@ -8806,21 +8809,21 @@ npc_sprite = ExtResource("32_xccqg")
 dialogue = ExtResource("35_sgcmy")
 dialogue_balloon = ExtResource("34_gknmh")
 
-[node name="NPC_Minigame_Runner" parent="." instance=ExtResource("npc_template")]
+[node name="NPC_Minigame_Runner" parent="." unique_id=754943833 instance=ExtResource("npc_template")]
 position = Vector2(1170, -20)
 npc_sprite = ExtResource("npc_tex_dung")
 dialogue = ExtResource("dlg_minigame_runner")
 prompt_text = "FIT Runner"
 target_scene_path = "res://Minigames/fit_runner_starter/scenes/main.tscn"
 
-[node name="NPC_Minigame_Trash" parent="." instance=ExtResource("npc_template")]
+[node name="NPC_Minigame_Trash" parent="." unique_id=83090953 instance=ExtResource("npc_template")]
 position = Vector2(1300, -20)
 npc_sprite = ExtResource("npc_tex_ngoc")
 dialogue = ExtResource("dlg_minigame_trash")
 prompt_text = "Trash Train"
 target_scene_path = "res://Minigames/trash_train_v3/trash_train/trash_train.tscn"
 
-[node name="NPC_Minigame_Battle" parent="." instance=ExtResource("npc_template")]
+[node name="NPC_Minigame_Battle" parent="." unique_id=1637374103 instance=ExtResource("npc_template")]
 position = Vector2(1430, -20)
 npc_sprite = ExtResource("npc_tex_thang")
 dialogue = ExtResource("dlg_minigame_battle")
