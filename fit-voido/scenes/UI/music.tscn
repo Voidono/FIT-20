@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://70vsihg017kh"]
 
 [ext_resource type="Script" uid="uid://b6pniat5c8hdk" path="res://scenes/UI/music.gd" id="1_vjhnq"]
-[ext_resource type="AudioStream" uid="uid://dd6pe0l3gvyal" path="res://soundtrack/Hans Zimmer - Interstellar - Main Theme (Piano Version) + Sheet Music - Patrik Pietschmann.mp3" id="2_vjhnq"]
+[ext_resource type="AudioStream" uid="uid://ccehoo0cu5uso" path="res://soundtrack/001. Once Upon a Time (UNDERTALE Soundtrack) - Toby Fox - Toby Fox.mp3" id="2_vjhnq"]
 
 [node name="Music" type="CanvasLayer" unique_id=1382975793]
 script = ExtResource("1_vjhnq")
@@ -10,6 +10,7 @@ script = ExtResource("1_vjhnq")
 position = Vector2(4253, 1366)
 stream = ExtResource("2_vjhnq")
 autoplay = true
+stream_paused = true
 max_distance = 10000.0
 attenuation = 0.0002708911
 bus = &"Music"

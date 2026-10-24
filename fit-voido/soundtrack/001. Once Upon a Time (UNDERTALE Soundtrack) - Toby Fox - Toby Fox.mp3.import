@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ccehoo0cu5uso"
+path="res://.godot/imported/001. Once Upon a Time (UNDERTALE Soundtrack) - Toby Fox - Toby Fox.mp3-1f1d4a4ff9fb6550e9496277e3a59ac1.mp3str"
+
+[deps]
+
+source_file="res://soundtrack/001. Once Upon a Time (UNDERTALE Soundtrack) - Toby Fox - Toby Fox.mp3"
+dest_files=["res://.godot/imported/001. Once Upon a Time (UNDERTALE Soundtrack) - Toby Fox - Toby Fox.mp3-1f1d4a4ff9fb6550e9496277e3a59ac1.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
