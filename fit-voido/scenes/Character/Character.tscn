@@ -101,19 +101,23 @@ sprite_frames = SubResource("SpriteFrames_4wrgo")
 animation = &"Down"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1104369618]
+limit_left = -5
+limit_top = -2122
+limit_right = 5210
+limit_bottom = 1778
 
 [node name="PixelArt(7)" type="Sprite2D" parent="Camera2D" unique_id=1028906526]
 z_index = 100
-position = Vector2(-431, -233)
+position = Vector2(-353, -209)
 scale = Vector2(0.65625, 0.65625)
 texture = ExtResource("14_o13d4")
 
 [node name="Button" type="Button" parent="Camera2D" unique_id=665977799]
 z_index = 100
-offset_left = -450.0
-offset_top = -252.0
-offset_right = -412.0
-offset_bottom = -216.0
+offset_left = -372.0
+offset_top = -228.0
+offset_right = -334.0
+offset_bottom = -192.0
 theme_override_font_sizes/font_size = 10
 flat = true
 
