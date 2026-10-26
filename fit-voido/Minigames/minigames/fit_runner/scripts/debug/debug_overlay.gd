@@ -1,0 +1,119 @@
+class_name FrDebugOverlay
+extends CanvasLayer
+## Live tuning and readouts. The layout is debug_overlay.tscn; every slider is a FrTuningSlider instance writing
+## straight into the FrTuning resource. Toggle with the DBG button or F1.
+## Rate and speed sliders act live; track length, mode and presets restart the run so par is rebuilt.
+
+signal restart_requested
+signal copy_log_requested
+signal qte_preset_selected(index: int)
+
+@onready var _toggle: Button = FrLookup.node(self, "ToggleButton") as Button
+@onready var _panel: PanelContainer = FrLookup.node(self, "Panel") as PanelContainer
+@onready var _readout: Label = FrLookup.node(self, "Readout") as Label
+@onready var _mode_option: OptionButton = FrLookup.node(self, "ModeOption") as OptionButton
+@onready var _language_option: OptionButton = FrLookup.node(self, "LanguageOption") as OptionButton
+@onready var _qte_option: OptionButton = FrLookup.node(self, "QteOption") as OptionButton
+@onready var _sliders: Control = FrLookup.node(self, "Sliders") as Control
+
+var _tuning: FrTuning
+var _qte_settings: FrQteSettings
+
+
+func bind(tuning: FrTuning) -> void:
+	_tuning = tuning
+	_toggle.visible = tuning.show_debug_button
+	_mode_option.select(int(tuning.input_mode))
+	_language_option.select(0 if TranslationServer.get_locale().begins_with("vi") else 1)
+	_sync_sliders()
+
+
+## The QTE settings can change when a preset is picked, so the sliders are bound again.
+func bind_qte(settings: FrQteSettings, preset_index: int) -> void:
+	_qte_settings = settings
+	_qte_option.select(preset_index)
+	_sync_sliders()
+
+
+func toggle_panel() -> void:
+	_panel.visible = not _panel.visible
+
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey:
+		var key: InputEventKey = event
+		if key.pressed and not key.echo and key.keycode == KEY_F1:
+			toggle_panel()
+
+
+func is_point_over_ui(pos: Vector2) -> bool:
+	if _toggle.is_visible_in_tree() and _toggle.get_global_rect().has_point(pos):
+		return true
+	return _panel.is_visible_in_tree() and _panel.get_global_rect().has_point(pos)
+
+
+func _sync_sliders() -> void:
+	for child: Node in _sliders.get_children():
+		var row := child as FrTuningSlider
+		if row == null:
+			continue
+		if row.target == &"qte":
+			if _qte_settings != null:
+				row.bind(_qte_settings)
+		elif _tuning != null:
+			row.bind(_tuning)
+
+
+func _on_restart_pressed() -> void:
+	restart_requested.emit()
+
+
+func _on_copy_pressed() -> void:
+	copy_log_requested.emit()
+
+
+func _on_original_pressed() -> void:
+	if _tuning == null:
+		return
+	_tuning.apply_original_numbers()
+	_sync_sliders()
+	restart_requested.emit()
+
+
+func _on_calibrated_pressed() -> void:
+	if _tuning == null:
+		return
+	_tuning.apply_calibrated_numbers()
+	_sync_sliders()
+	restart_requested.emit()
+
+
+func _on_mode_selected(index: int) -> void:
+	if _tuning == null:
+		return
+	_tuning.input_mode = index as FrTuning.InputMode
+	restart_requested.emit()
+
+
+func _on_qte_selected(index: int) -> void:
+	qte_preset_selected.emit(index)
+
+
+func _on_language_selected(index: int) -> void:
+	TranslationServer.set_locale("vi" if index == 0 else "en")
+
+
+func refresh(s: FrHudState) -> void:
+	if not _panel.visible or s.model == null or s.tuning == null:
+		return
+	var m: FrModel = s.model
+	var t: FrTuning = s.tuning
+	var mode_name: String = "B tiers" if t.input_mode == FrTuning.InputMode.TIERS else "A hold/release"
+	var lines: PackedStringArray = []
+	lines.append("fps %d | mode %s | attempt %d" % [Engine.get_frames_per_second(), mode_name, s.attempt])
+	lines.append("pace %.2f  effort %.2f  zone %d" % [m.pace, s.effort, FrZones.for_pace(m.pace, m.walled)])
+	lines.append("stamina %.1f  rate %s/s  walls %d%s" % [m.stamina, FrFmt.signed(m.rate, 2), m.walls_hit, " WALLED" if m.walled else ""])
+	lines.append("slope %s  speed %.0f px/s" % [FrFmt.signed(m.slope_norm, 2), m.ground_speed])
+	lines.append("t %.1f  par %.1f  cutoff %.1f" % [m.elapsed, s.par_time, s.cutoff_time])
+	lines.append("progress %.1f%%" % (m.progress() * 100.0))
+	_readout.text = "\n".join(lines)

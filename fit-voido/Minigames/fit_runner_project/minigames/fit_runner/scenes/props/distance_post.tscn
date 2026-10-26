@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://minigames/fit_runner/scripts/course/course_prop.gd" id="1_course_pro"]
+[ext_resource type="Texture2D" path="res://minigames/fit_runner/assets/world/distance_post.png" id="2_distance_p"]
+[ext_resource type="Theme" path="res://minigames/fit_runner/assets/ui/fit_theme.tres" id="3_fit_theme"]
+
+[node name="DistancePost" type="Node2D"]
+script = ExtResource("1_course_pro")
+label_key = "100 m"
+
+[node name="Pole" type="Sprite2D" parent="."]
+texture = ExtResource("2_distance_p")
+centered = false
+offset = Vector2(-2, -18)
+
+[node name="Label" type="Label" parent="."]
+unique_name_in_owner = true
+text = ""
+horizontal_alignment = 1
+vertical_alignment = 1
+theme_override_font_sizes/font_size = 10
+theme_override_colors/font_color = Color(0.9451, 0.9569, 0.9725, 1.0)
+theme = ExtResource("3_fit_theme")
+offset_left = -24.0
+offset_top = -33.0
+offset_right = 24.0
+offset_bottom = -19.0

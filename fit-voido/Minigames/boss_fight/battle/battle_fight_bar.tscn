@@ -1,0 +1,42 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" uid="uid://c5qpa8wyu3lwy" path="res://Minigames/boss_fight/battle/battle_fight_bar.gd" id="1_bar"]
+[ext_resource type="Script" uid="uid://seb12u45552p" path="res://Minigames/boss_fight/core/asset_slot.gd" id="2_slot"]
+
+[node name="FightBar" type="Node2D"]
+visible = false
+script = ExtResource("1_bar")
+
+[node name="Background" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_slot")
+placeholder_size = Vector2(540, 80)
+color = Color(0.12, 0.12, 0.12, 1)
+
+[node name="SweetSpot" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_slot")
+placeholder_size = Vector2(216, 80)
+color = Color(0.2, 0.7, 0.3, 1)
+
+[node name="PerfectZone" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_slot")
+placeholder_size = Vector2(22, 80)
+color = Color(0.7, 1, 0.5, 1)
+
+[node name="Cursor" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_slot")
+placeholder_size = Vector2(8, 96)
+color = Color(1, 1, 1, 1)
+
+[node name="Title" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = -270.0
+offset_top = -60.0
+offset_right = 270.0
+offset_bottom = -42.0
+theme_override_font_sizes/font_size = 16
+text = "FIST"
+horizontal_alignment = 1

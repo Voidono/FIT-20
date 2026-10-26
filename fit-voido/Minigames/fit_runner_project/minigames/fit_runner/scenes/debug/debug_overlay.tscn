@@ -1,0 +1,447 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://minigames/fit_runner/scripts/debug/debug_overlay.gd" id="1_debug_over"]
+[ext_resource type="Theme" path="res://minigames/fit_runner/assets/ui/fit_theme.tres" id="2_fit_theme"]
+[ext_resource type="PackedScene" path="res://minigames/fit_runner/scenes/debug/tuning_slider.tscn" id="3_tuning_sli"]
+
+[node name="DebugOverlay" type="CanvasLayer"]
+layer = 20
+script = ExtResource("1_debug_over")
+
+[node name="Root" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("2_fit_theme")
+texture_filter = 1
+
+[node name="ToggleButton" type="Button" parent="Root"]
+unique_name_in_owner = true
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 44.0
+offset_bottom = 26.0
+focus_mode = 0
+text = "DBG"
+theme_override_font_sizes/font_size = 11
+
+[node name="Panel" type="PanelContainer" parent="Root"]
+unique_name_in_owner = true
+visible = false
+anchor_left = 0.58
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 30.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Scroll" type="ScrollContainer" parent="Root/Panel"]
+horizontal_scroll_mode = 0
+
+[node name="Box" type="VBoxContainer" parent="Root/Panel/Scroll"]
+size_flags_horizontal = 3
+theme_override_constants/separation = 3
+
+[node name="Readout" type="Label" parent="Root/Panel/Scroll/Box"]
+unique_name_in_owner = true
+text = ""
+theme_override_font_sizes/font_size = 11
+theme_override_constants/outline_size = 0
+
+[node name="Buttons" type="HBoxContainer" parent="Root/Panel/Scroll/Box"]
+
+[node name="RestartButton" type="Button" parent="Root/Panel/Scroll/Box/Buttons"]
+size_flags_horizontal = 3
+focus_mode = 0
+text = "Restart"
+theme_override_font_sizes/font_size = 11
+
+[node name="CopyLogButton" type="Button" parent="Root/Panel/Scroll/Box/Buttons"]
+size_flags_horizontal = 3
+focus_mode = 0
+text = "Copy log"
+theme_override_font_sizes/font_size = 11
+
+[node name="Presets" type="HBoxContainer" parent="Root/Panel/Scroll/Box"]
+
+[node name="OriginalButton" type="Button" parent="Root/Panel/Scroll/Box/Presets"]
+size_flags_horizontal = 3
+focus_mode = 0
+text = "Your numbers"
+theme_override_font_sizes/font_size = 11
+
+[node name="CalibratedButton" type="Button" parent="Root/Panel/Scroll/Box/Presets"]
+size_flags_horizontal = 3
+focus_mode = 0
+text = "Calibrated"
+theme_override_font_sizes/font_size = 11
+
+[node name="ModeOption" type="OptionButton" parent="Root/Panel/Scroll/Box"]
+unique_name_in_owner = true
+focus_mode = 0
+theme_override_font_sizes/font_size = 11
+item_count = 2
+selected = 0
+popup/item_0/text = "A  hold / release"
+popup/item_0/id = 0
+popup/item_1/text = "B  hold-time tiers"
+popup/item_1/id = 1
+
+[node name="LanguageOption" type="OptionButton" parent="Root/Panel/Scroll/Box"]
+unique_name_in_owner = true
+focus_mode = 0
+theme_override_font_sizes/font_size = 11
+item_count = 2
+selected = 0
+popup/item_0/text = "vi  Tiếng Việt"
+popup/item_0/id = 0
+popup/item_1/text = "en  English"
+popup/item_1/id = 1
+
+[node name="QteOption" type="OptionButton" parent="Root/Panel/Scroll/Box"]
+unique_name_in_owner = true
+focus_mode = 0
+theme_override_font_sizes/font_size = 11
+item_count = 4
+selected = 2
+popup/item_0/text = "QTE off"
+popup/item_0/id = 0
+popup/item_1/text = "QTE easy"
+popup/item_1/id = 1
+popup/item_2/text = "QTE normal"
+popup/item_2/id = 2
+popup/item_3/text = "QTE hard"
+popup/item_3/id = 3
+
+[node name="Sliders" type="VBoxContainer" parent="Root/Panel/Scroll/Box"]
+unique_name_in_owner = true
+theme_override_constants/separation = 2
+
+[node name="Slider_max_speed" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("3_tuning_sli")]
+property = &"max_speed"
+label_text = "max speed px/s"
+min_value = 80.0
+max_value = 260.0
+step = 1.0
+
+[node name="Slider_track_length" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("3_tuning_sli")]
+property = &"track_length"
+label_text = "track length px"
+min_value = 4000.0
+max_value = 16000.0
+step = 100.0
+
+[node name="Slider_rise_rate" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("3_tuning_sli")]
+property = &"rise_rate"
+label_text = "A rise /s"
+min_value = 0.1
+max_value = 2.0
+step = 0.05
+
+[node name="Slider_fall_rate" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("3_tuning_sli")]
+property = &"fall_rate"
+label_text = "A fall /s"
+min_value = 0.1
+max_value = 2.5
+step = 0.05
+
+[node name="Slider_rest_floor" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("3_tuning_sli")]
+property = &"rest_floor"
+label_text = "A rest floor"
+min_value = 0.0
+max_value = 0.5
+step = 0.01
+
+[node name="Slider_stick_start" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("3_tuning_sli")]
+property = &"stick_start"
+label_text = "A stick start"
+min_value = 0.1
+max_value = 1.0
+step = 0.05
+
+[node name="Slider_stick_end" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("3_tuning_sli")]
+property = &"stick_end"
+label_text = "A stick end"
+min_value = 0.1
+max_value = 1.0
+step = 0.05
+
+[node name="Slider_tier_up_time" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("3_tuning_sli")]
+property = &"tier_up_time"
+label_text = "B up time s"
+min_value = 0.2
+max_value = 1.5
+step = 0.05
+
+[node name="Slider_tier_down_time" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("3_tuning_sli")]
+property = &"tier_down_time"
+label_text = "B down time s"
+min_value = 0.2
+max_value = 1.5
+step = 0.05
+
+[node name="Slider_speed_accel" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("3_tuning_sli")]
+property = &"speed_accel"
+label_text = "pace accel /s"
+min_value = 0.3
+max_value = 4.0
+step = 0.05
+
+[node name="Slider_speed_decel" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("3_tuning_sli")]
+property = &"speed_decel"
+label_text = "pace decel /s"
+min_value = 0.3
+max_value = 4.0
+step = 0.05
+
+[node name="Slider_rate_recover" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("3_tuning_sli")]
+property = &"rate_recover"
+label_text = "drain recover"
+min_value = 0.5
+max_value = 8.0
+step = 0.1
+
+[node name="Slider_rate_cruise" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("3_tuning_sli")]
+property = &"rate_cruise"
+label_text = "drain cruise"
+min_value = -3.0
+max_value = 0.0
+step = 0.05
+
+[node name="Slider_rate_push" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("3_tuning_sli")]
+property = &"rate_push"
+label_text = "drain push"
+min_value = -6.0
+max_value = 0.0
+step = 0.05
+
+[node name="Slider_rate_sprint" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("3_tuning_sli")]
+property = &"rate_sprint"
+label_text = "drain sprint"
+min_value = -14.0
+max_value = 0.0
+step = 0.1
+
+[node name="Slider_wall_speed_cap" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("3_tuning_sli")]
+property = &"wall_speed_cap"
+label_text = "wall pace cap"
+min_value = 0.2
+max_value = 0.7
+step = 0.01
+
+[node name="Slider_wall_release" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("3_tuning_sli")]
+property = &"wall_release"
+label_text = "wall exit"
+min_value = 10.0
+max_value = 70.0
+step = 1.0
+
+[node name="Slider_water_amount" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("3_tuning_sli")]
+property = &"water_amount"
+label_text = "water +"
+min_value = 0.0
+max_value = 40.0
+step = 1.0
+
+[node name="Slider_water_duration" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("3_tuning_sli")]
+property = &"water_duration"
+label_text = "water time s"
+min_value = 0.5
+max_value = 4.0
+step = 0.1
+
+[node name="Slider_spurt_speed_cap" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("3_tuning_sli")]
+property = &"spurt_speed_cap"
+label_text = "spurt cap"
+min_value = 1.0
+max_value = 1.3
+step = 0.01
+
+[node name="Slider_spurt_drain_mult" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("3_tuning_sli")]
+property = &"spurt_drain_mult"
+label_text = "spurt drain x"
+min_value = 0.2
+max_value = 1.0
+step = 0.05
+
+[node name="Slider_uphill_drain_extra" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("3_tuning_sli")]
+property = &"uphill_drain_extra"
+label_text = "uphill drain +"
+min_value = 0.0
+max_value = 3.0
+step = 0.1
+
+[node name="Slider_uphill_speed_penalty" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("3_tuning_sli")]
+property = &"uphill_speed_penalty"
+label_text = "uphill speed -"
+min_value = 0.0
+max_value = 0.6
+step = 0.01
+
+[node name="Slider_downhill_speed_bonus" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("3_tuning_sli")]
+property = &"downhill_speed_bonus"
+label_text = "downhill speed +"
+min_value = 0.0
+max_value = 0.6
+step = 0.01
+
+[node name="Slider_cutoff_mult" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("3_tuning_sli")]
+property = &"cutoff_mult"
+label_text = "cutoff x par"
+min_value = 1.1
+max_value = 2.5
+step = 0.05
+
+[node name="Slider_star3_mult" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("3_tuning_sli")]
+property = &"star3_mult"
+label_text = "3 star x par"
+min_value = 1.0
+max_value = 1.3
+step = 0.01
+
+[node name="Slider_star2_mult" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("3_tuning_sli")]
+property = &"star2_mult"
+label_text = "2 star x par"
+min_value = 1.0
+max_value = 1.6
+step = 0.01
+
+[node name="Slider_qte_rest_time_before_event" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("3_tuning_sli")]
+property = &"rest_time_before_event"
+target = &"qte"
+label_text = "qte rest first s"
+min_value = 0.0
+max_value = 5.0
+step = 0.05
+
+[node name="Slider_qte_cooldown" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("3_tuning_sli")]
+property = &"cooldown"
+target = &"qte"
+label_text = "qte cooldown s"
+min_value = 0.0
+max_value = 5.0
+step = 0.05
+
+[node name="Slider_qte_duration" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("3_tuning_sli")]
+property = &"duration"
+target = &"qte"
+label_text = "qte sweep s"
+min_value = 0.3
+max_value = 4.0
+step = 0.05
+
+[node name="Slider_qte_perfect_width" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("3_tuning_sli")]
+property = &"perfect_width"
+target = &"qte"
+label_text = "qte perfect width"
+min_value = 0.02
+max_value = 0.5
+step = 0.01
+
+[node name="Slider_qte_good_width" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("3_tuning_sli")]
+property = &"good_width"
+target = &"qte"
+label_text = "qte good width"
+min_value = 0.05
+max_value = 0.8
+step = 0.01
+
+[node name="Slider_qte_target_center" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("3_tuning_sli")]
+property = &"target_center"
+target = &"qte"
+label_text = "qte sweet spot"
+min_value = 0.0
+max_value = 1.0
+step = 0.01
+
+[node name="Slider_qte_target_jitter" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("3_tuning_sli")]
+property = &"target_jitter"
+target = &"qte"
+label_text = "qte spot jitter"
+min_value = 0.0
+max_value = 0.5
+step = 0.01
+
+[node name="Slider_qte_perfect_bonus" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("3_tuning_sli")]
+property = &"perfect_bonus"
+target = &"qte"
+label_text = "qte perfect +"
+min_value = 0.0
+max_value = 40.0
+step = 0.5
+
+[node name="Slider_qte_good_bonus" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("3_tuning_sli")]
+property = &"good_bonus"
+target = &"qte"
+label_text = "qte good +"
+min_value = 0.0
+max_value = 40.0
+step = 0.5
+
+[node name="Slider_qte_miss_penalty" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("3_tuning_sli")]
+property = &"miss_penalty"
+target = &"qte"
+label_text = "qte miss -"
+min_value = 0.0
+max_value = 20.0
+step = 0.5
+
+[node name="Slider_qte_streak_step" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("3_tuning_sli")]
+property = &"streak_step"
+target = &"qte"
+label_text = "qte streak +"
+min_value = 0.0
+max_value = 10.0
+step = 0.5
+
+[node name="Slider_qte_only_below_stamina" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("3_tuning_sli")]
+property = &"only_below_stamina"
+target = &"qte"
+label_text = "qte only below"
+min_value = 0.0
+max_value = 1.0
+step = 0.01
+
+[node name="Slider_qte_track_from" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("3_tuning_sli")]
+property = &"track_from"
+target = &"qte"
+label_text = "qte from track"
+min_value = 0.0
+max_value = 1.0
+step = 0.005
+
+[node name="Slider_qte_track_to" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("3_tuning_sli")]
+property = &"track_to"
+target = &"qte"
+label_text = "qte to track"
+min_value = 0.0
+max_value = 1.0
+step = 0.005
+
+[node name="Slider_qte_tap_max_time" parent="Root/Panel/Scroll/Box/Sliders" instance=ExtResource("3_tuning_sli")]
+property = &"tap_max_time"
+target = &"qte"
+label_text = "qte tap max s"
+min_value = 0.05
+max_value = 0.6
+step = 0.01
+
+[node name="TestLabel" type="Label" parent="Root/Panel/Scroll/Box"]
+text = "Tiếng Việt: ắ ằ ẳ ẵ ặ ề ể ễ ệ ổ ỗ ộ ờ ở ỡ ợ ừ ử ữ ự ỳ ỷ ỹ ỵ"
+autowrap_mode = 3
+theme_override_font_sizes/font_size = 11
+auto_translate_mode = 2
+theme_override_constants/outline_size = 0
+
+[connection signal="pressed" from="Root/ToggleButton" to="." method="toggle_panel"]
+[connection signal="pressed" from="Root/Panel/Scroll/Box/Buttons/RestartButton" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="Root/Panel/Scroll/Box/Buttons/CopyLogButton" to="." method="_on_copy_pressed"]
+[connection signal="pressed" from="Root/Panel/Scroll/Box/Presets/OriginalButton" to="." method="_on_original_pressed"]
+[connection signal="pressed" from="Root/Panel/Scroll/Box/Presets/CalibratedButton" to="." method="_on_calibrated_pressed"]
+[connection signal="item_selected" from="Root/Panel/Scroll/Box/ModeOption" to="." method="_on_mode_selected"]
+[connection signal="item_selected" from="Root/Panel/Scroll/Box/LanguageOption" to="." method="_on_language_selected"]
+[connection signal="item_selected" from="Root/Panel/Scroll/Box/QteOption" to="." method="_on_qte_selected"]

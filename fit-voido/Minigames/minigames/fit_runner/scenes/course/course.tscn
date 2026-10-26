@@ -1,0 +1,62 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" uid="uid://bv6q1bn77i8r6" path="res://Minigames/minigames/fit_runner/scripts/course/course.gd" id="1_course"]
+[ext_resource type="PackedScene" path="res://Minigames/minigames/fit_runner/scenes/props/distance_post.tscn" id="2_distance_p"]
+[ext_resource type="Texture2D" uid="uid://cc8bkju3vsvqv" path="res://Minigames/minigames/fit_runner/assets/world/grass_tile.png" id="3_grass_tile"]
+[ext_resource type="Texture2D" uid="uid://caoyoeaese827" path="res://Minigames/minigames/fit_runner/assets/world/track_tile.png" id="4_track_tile"]
+[ext_resource type="PackedScene" path="res://Minigames/minigames/fit_runner/scenes/props/sign_flag.tscn" id="5_sign_flag"]
+[ext_resource type="PackedScene" path="res://Minigames/minigames/fit_runner/scenes/props/water_station.tscn" id="6_water_stat"]
+[ext_resource type="PackedScene" path="res://Minigames/minigames/fit_runner/scenes/props/finish_arch.tscn" id="7_finish_arc"]
+
+[node name="Course" type="Node2D"]
+script = ExtResource("1_course")
+post_scene = ExtResource("2_distance_p")
+
+[node name="Ground" type="Polygon2D" parent="."]
+unique_name_in_owner = true
+texture_repeat = 2
+texture = ExtResource("3_grass_tile")
+
+[node name="Track" type="Line2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, 8)
+width = 16.0
+default_color = Color(1, 1, 1, 1)
+texture = ExtResource("4_track_tile")
+texture_mode = 1
+texture_repeat = 2
+
+[node name="LaneLine" type="Line2D" parent="."]
+unique_name_in_owner = true
+width = 2.0
+default_color = Color(0.9451, 0.9569, 0.9725, 1.0)
+
+[node name="Posts" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Props" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="StartSign" parent="Props" instance=ExtResource("5_sign_flag")]
+track_fraction = 0.0
+label_key = "FR_SIGN_START"
+banner_color = Color(1, 1, 1, 1)
+
+[node name="HillSign" parent="Props" instance=ExtResource("5_sign_flag")]
+track_fraction = 0.25
+label_key = "FR_SIGN_HILL"
+banner_color = Color(1.0, 0.651, 0.2392, 1.0)
+
+[node name="WaterStation" parent="Props" instance=ExtResource("6_water_stat")]
+track_fraction = 0.62
+span_fraction = 0.05
+label_key = "FR_SIGN_WATER"
+banner_color = Color(0.2902, 0.6392, 0.8745, 1.0)
+
+[node name="SpurtGate" parent="Props" instance=ExtResource("5_sign_flag")]
+track_fraction = 0.85
+label_key = "FR_SIGN_SPURT"
+banner_color = Color(0.9333, 0.2588, 0.4, 1.0)
+
+[node name="FinishArch" parent="Props" instance=ExtResource("7_finish_arc")]
+track_fraction = 1.0

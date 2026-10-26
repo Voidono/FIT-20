@@ -1,0 +1,251 @@
+[gd_scene load_steps=21 format=3]
+
+[ext_resource type="Script" path="res://minigames/fit_runner/scripts/ui/hud.gd" id="1_hud"]
+[ext_resource type="Theme" path="res://minigames/fit_runner/assets/ui/fit_theme.tres" id="2_fit_theme"]
+[ext_resource type="PackedScene" path="res://minigames/fit_runner/scenes/ui/stamina_bar.tscn" id="3_stamina_ba"]
+[ext_resource type="PackedScene" path="res://minigames/fit_runner/scenes/ui/effort_gauge.tscn" id="4_effort_gau"]
+[ext_resource type="PackedScene" path="res://minigames/fit_runner/scenes/ui/ready_overlay.tscn" id="5_ready_over"]
+[ext_resource type="PackedScene" path="res://minigames/fit_runner/scenes/ui/progress_strip.tscn" id="6_progress_s"]
+[ext_resource type="Texture2D" path="res://minigames/fit_runner/assets/ui/pause.png" id="7_pause"]
+[ext_resource type="PackedScene" path="res://minigames/fit_runner/scenes/ui/qte_prompt.tscn" id="8_qte_prompt"]
+[ext_resource type="PackedScene" path="res://minigames/fit_runner/scenes/ui/pause_menu.tscn" id="9_pause_menu"]
+[ext_resource type="PackedScene" path="res://minigames/fit_runner/scenes/ui/result_panel.tscn" id="10_result_pan"]
+[ext_resource type="PackedScene" path="res://minigames/fit_runner/scenes/ui/rotate_overlay.tscn" id="11_rotate_ove"]
+[ext_resource type="Script" path="res://minigames/fit_runner/scripts/ui/zone_style.gd" id="12_zone_style"]
+[ext_resource type="Texture2D" path="res://minigames/fit_runner/assets/ui/icon_recover.png" id="13_icon_recov"]
+[ext_resource type="Texture2D" path="res://minigames/fit_runner/assets/ui/icon_cruise.png" id="14_icon_cruis"]
+[ext_resource type="Texture2D" path="res://minigames/fit_runner/assets/ui/icon_push.png" id="15_icon_push"]
+[ext_resource type="Texture2D" path="res://minigames/fit_runner/assets/ui/pattern_stripes_sparse.png" id="16_pattern_st"]
+[ext_resource type="Texture2D" path="res://minigames/fit_runner/assets/ui/icon_sprint.png" id="17_icon_sprin"]
+[ext_resource type="Texture2D" path="res://minigames/fit_runner/assets/ui/pattern_stripes_dense.png" id="18_pattern_st"]
+[ext_resource type="Texture2D" path="res://minigames/fit_runner/assets/ui/icon_wall.png" id="19_icon_wall"]
+[ext_resource type="Texture2D" path="res://minigames/fit_runner/assets/ui/pattern_dots.png" id="20_pattern_do"]
+
+[node name="Hud" type="CanvasLayer"]
+layer = 10
+script = ExtResource("1_hud")
+
+[node name="Root" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("2_fit_theme")
+texture_filter = 1
+
+[node name="Margin" type="MarginContainer" parent="Root"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Row" type="HBoxContainer" parent="Root/Margin"]
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[node name="LeftSpacer" type="Control" parent="Root/Margin/Row"]
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.0
+mouse_filter = 2
+
+[node name="Center" type="VBoxContainer" parent="Root/Margin/Row"]
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+mouse_filter = 2
+
+[node name="RightSpacer" type="Control" parent="Root/Margin/Row"]
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.0
+mouse_filter = 2
+
+[node name="Top" type="VBoxContainer" parent="Root/Margin/Row/Center"]
+mouse_filter = 2
+theme_override_constants/separation = 3
+
+[node name="InfoRow" type="HBoxContainer" parent="Root/Margin/Row/Center/Top"]
+mouse_filter = 2
+
+[node name="TimeLabel" type="Label" parent="Root/Margin/Row/Center/Top/InfoRow"]
+unique_name_in_owner = true
+text = "00:00.0"
+horizontal_alignment = 0
+theme_override_font_sizes/font_size = 20
+size_flags_horizontal = 3
+
+[node name="ZoneBox" type="HBoxContainer" parent="Root/Margin/Row/Center/Top/InfoRow"]
+size_flags_horizontal = 3
+alignment = 1
+mouse_filter = 2
+theme_override_constants/separation = 4
+
+[node name="ZoneIcon" type="TextureRect" parent="Root/Margin/Row/Center/Top/InfoRow/ZoneBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(12, 12)
+size_flags_vertical = 4
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="ZoneLabel" type="Label" parent="Root/Margin/Row/Center/Top/InfoRow/ZoneBox"]
+unique_name_in_owner = true
+text = ""
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 14
+
+[node name="DeltaLabel" type="Label" parent="Root/Margin/Row/Center/Top/InfoRow"]
+unique_name_in_owner = true
+text = ""
+horizontal_alignment = 2
+theme_override_font_sizes/font_size = 16
+size_flags_horizontal = 3
+
+[node name="StaminaBar" parent="Root/Margin/Row/Center/Top" instance=ExtResource("3_stamina_ba")]
+unique_name_in_owner = true
+
+[node name="EffortGauge" parent="Root/Margin/Row/Center/Top" instance=ExtResource("4_effort_gau")]
+unique_name_in_owner = true
+
+[node name="OutlookLabel" type="Label" parent="Root/Margin/Row/Center/Top"]
+unique_name_in_owner = true
+text = ""
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 12
+
+[node name="Middle" type="Control" parent="Root/Margin/Row/Center"]
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="PromptLabel" type="Label" parent="Root/Margin/Row/Center/Middle"]
+unique_name_in_owner = true
+text = ""
+horizontal_alignment = 1
+vertical_alignment = 1
+theme_override_font_sizes/font_size = 16
+anchor_right = 1.0
+anchor_bottom = 0.3
+offset_top = 6.0
+
+[node name="Overlays" type="CenterContainer" parent="Root/Margin/Row/Center/Middle"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ReadyOverlay" parent="Root/Margin/Row/Center/Middle/Overlays" instance=ExtResource("5_ready_over")]
+unique_name_in_owner = true
+
+[node name="CountdownLabel" type="Label" parent="Root/Margin/Row/Center/Middle/Overlays"]
+unique_name_in_owner = true
+text = "3"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 44
+
+[node name="ProgressStrip" parent="Root/Margin/Row/Center" instance=ExtResource("6_progress_s")]
+unique_name_in_owner = true
+
+[node name="PauseButton" type="Button" parent="Root"]
+unique_name_in_owner = true
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -48.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = 48.0
+grow_horizontal = 0
+focus_mode = 0
+icon = ExtResource("7_pause")
+icon_alignment = 1
+expand_icon = true
+
+[node name="QtePrompt" parent="Root" instance=ExtResource("8_qte_prompt")]
+unique_name_in_owner = true
+anchor_left = 0.58
+anchor_top = 0.5
+anchor_right = 0.58
+anchor_bottom = 0.5
+offset_left = -110.0
+offset_top = -24.0
+offset_right = 110.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PauseMenu" parent="Root" instance=ExtResource("9_pause_menu")]
+unique_name_in_owner = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+offset_left = -110.0
+offset_top = -92.0
+offset_right = 110.0
+offset_bottom = 92.0
+
+[node name="ResultPanel" parent="Root" instance=ExtResource("10_result_pan")]
+unique_name_in_owner = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+offset_left = -170.0
+offset_top = -152.0
+offset_right = 170.0
+offset_bottom = 152.0
+
+[node name="RotateOverlay" parent="Root" instance=ExtResource("11_rotate_ove")]
+unique_name_in_owner = true
+visible = false
+
+[node name="Zones" type="Node" parent="Root"]
+unique_name_in_owner = true
+
+[node name="Recover" type="Node" parent="Root/Zones"]
+script = ExtResource("12_zone_style")
+label_key = "FR_ZONE_RECOVER"
+color = Color(0.4039, 0.7843, 0.9098, 1.0)
+icon = ExtResource("13_icon_recov")
+
+[node name="Cruise" type="Node" parent="Root/Zones"]
+script = ExtResource("12_zone_style")
+label_key = "FR_ZONE_CRUISE"
+color = Color(0.651, 0.8471, 0.2902, 1.0)
+icon = ExtResource("14_icon_cruis")
+
+[node name="Push" type="Node" parent="Root/Zones"]
+script = ExtResource("12_zone_style")
+label_key = "FR_ZONE_PUSH"
+color = Color(1.0, 0.651, 0.2392, 1.0)
+icon = ExtResource("15_icon_push")
+pattern = ExtResource("16_pattern_st")
+
+[node name="Sprint" type="Node" parent="Root/Zones"]
+script = ExtResource("12_zone_style")
+label_key = "FR_ZONE_SPRINT"
+color = Color(0.9333, 0.2588, 0.4, 1.0)
+icon = ExtResource("17_icon_sprin")
+pattern = ExtResource("18_pattern_st")
+
+[node name="Wall" type="Node" parent="Root/Zones"]
+script = ExtResource("12_zone_style")
+label_key = "FR_ZONE_WALL"
+color = Color(0.5412, 0.4627, 0.651, 1.0)
+icon = ExtResource("19_icon_wall")
+pattern = ExtResource("20_pattern_do")
+
+[connection signal="pressed" from="Root/PauseButton" to="." method="_on_pause_button_pressed"]
+[connection signal="resume_pressed" from="Root/PauseMenu" to="." method="_on_resume_pressed"]
+[connection signal="retry_pressed" from="Root/PauseMenu" to="." method="_on_retry_pressed"]
+[connection signal="quit_pressed" from="Root/PauseMenu" to="." method="_on_quit_pressed"]
+[connection signal="retry_pressed" from="Root/ResultPanel" to="." method="_on_retry_pressed"]
+[connection signal="quit_pressed" from="Root/ResultPanel" to="." method="_on_quit_pressed"]

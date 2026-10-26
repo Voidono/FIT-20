@@ -1,0 +1,16 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" uid="uid://eu8mtkxyk7rx" path="res://Minigames/boss_fight/boss/attacks/laser_pattern.gd" id="1_laser"]
+[ext_resource type="PackedScene" path="res://Minigames/boss_fight/battle/battle_laser.tscn" id="2_laser"]
+
+[node name="Laser" type="Node2D"]
+script = ExtResource("1_laser")
+display_name = "Segmentation Fault"
+duration = 6.0
+box_size = Vector2(240, 140)
+bullet_scene = ExtResource("2_laser")
+bullet_damage = 3
+cull_to_box = true
+
+[node name="SpawnTimer" type="Timer" parent="."]
+unique_name_in_owner = true
