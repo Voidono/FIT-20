@@ -1,12 +1,12 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene format=3]
 
-[ext_resource type="Script" path="res://minigames/fit_runner/scripts/ui/progress_strip.gd" id="1_progress_s"]
-[ext_resource type="Texture2D" path="res://minigames/fit_runner/assets/ui/strip_under.png" id="2_strip_unde"]
-[ext_resource type="Texture2D" path="res://minigames/fit_runner/assets/ui/strip_fill.png" id="3_strip_fill"]
-[ext_resource type="Texture2D" path="res://minigames/fit_runner/assets/ui/zone_water.png" id="4_zone_water"]
-[ext_resource type="Texture2D" path="res://minigames/fit_runner/assets/ui/zone_spurt.png" id="5_zone_spurt"]
-[ext_resource type="Texture2D" path="res://minigames/fit_runner/assets/ui/dot_ghost.png" id="6_dot_ghost"]
-[ext_resource type="Texture2D" path="res://minigames/fit_runner/assets/ui/dot_player.png" id="7_dot_player"]
+[ext_resource type="Script" uid="uid://clfj2iprwwrdm" path="res://Minigames/minigames/fit_runner/scripts/ui/progress_strip.gd" id="1_progress_s"]
+[ext_resource type="Texture2D" uid="uid://b5lpgbxw4papk" path="res://Minigames/minigames/fit_runner/assets/ui/strip_under.png" id="2_strip_unde"]
+[ext_resource type="Texture2D" uid="uid://d2svvf25bgae8" path="res://Minigames/minigames/fit_runner/assets/ui/strip_fill.png" id="3_strip_fill"]
+[ext_resource type="Texture2D" uid="uid://b3bvc6wpltwnh" path="res://Minigames/minigames/fit_runner/assets/ui/zone_water.png" id="4_zone_water"]
+[ext_resource type="Texture2D" uid="uid://cbl26adbryrxw" path="res://Minigames/minigames/fit_runner/assets/ui/zone_spurt.png" id="5_zone_spurt"]
+[ext_resource type="Texture2D" uid="uid://d1ytfurytw3n4" path="res://Minigames/minigames/fit_runner/assets/ui/dot_ghost.png" id="6_dot_ghost"]
+[ext_resource type="Texture2D" uid="uid://dxclljutni0jt" path="res://Minigames/minigames/fit_runner/assets/ui/dot_player.png" id="7_dot_player"]
 
 [node name="ProgressStrip" type="Control"]
 custom_minimum_size = Vector2(0, 30)

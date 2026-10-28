@@ -2,7 +2,7 @@ extends Control
 ## DEV ONLY. Plays the role of your main game: decides a skill, runs the fight, reads the result.
 ## It is not part of the module: run this scene (F6) to try the fight in your project, then delete dev_harness/.
 
-const BOSS_FIGHT := preload("res://boss_fight/boss_fight.tscn")
+const BOSS_FIGHT := preload("res://Minigames/boss_fight/boss_fight.tscn")
 
 ## Option label -> skill id. Your real game derives this from what the player did earlier.
 const SEATS := {

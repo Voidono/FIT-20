@@ -1,10 +1,10 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene format=3]
 
-[ext_resource type="Script" path="res://minigames/fit_runner/scripts/ui/qte_prompt.gd" id="1_qte_prompt"]
-[ext_resource type="Texture2D" path="res://minigames/fit_runner/assets/ui/qte_bar.png" id="2_qte_bar"]
-[ext_resource type="Texture2D" path="res://minigames/fit_runner/assets/ui/qte_zone_good.png" id="3_qte_zone_g"]
-[ext_resource type="Texture2D" path="res://minigames/fit_runner/assets/ui/qte_zone_perfect.png" id="4_qte_zone_p"]
-[ext_resource type="Texture2D" path="res://minigames/fit_runner/assets/ui/qte_cursor.png" id="5_qte_cursor"]
+[ext_resource type="Script" uid="uid://btnc2qb72ryjm" path="res://Minigames/minigames/fit_runner/scripts/ui/qte_prompt.gd" id="1_qte_prompt"]
+[ext_resource type="Texture2D" uid="uid://dob5kce14t1tu" path="res://Minigames/minigames/fit_runner/assets/ui/qte_bar.png" id="2_qte_bar"]
+[ext_resource type="Texture2D" uid="uid://djhah6wl7o2ki" path="res://Minigames/minigames/fit_runner/assets/ui/qte_zone_good.png" id="3_qte_zone_g"]
+[ext_resource type="Texture2D" uid="uid://cmdaxtxpbdnki" path="res://Minigames/minigames/fit_runner/assets/ui/qte_zone_perfect.png" id="4_qte_zone_p"]
+[ext_resource type="Texture2D" uid="uid://el324uj0xswv" path="res://Minigames/minigames/fit_runner/assets/ui/qte_cursor.png" id="5_qte_cursor"]
 
 [node name="QtePrompt" type="Control"]
 custom_minimum_size = Vector2(220, 48)

@@ -1,12 +1,19 @@
 @tool
 class_name DialogueNPC
 extends Area2D
-## Reusable talkable-NPC template. Drag a texture, .dialogue resource, and balloon
-## scene into the Content fields in the Inspector. Move Sprite and PromptAnchor
-## in the editor to lay out each NPC without editing this template.
+## Reusable talkable & moving NPC template.
+## Drag a texture, .dialogue resource, and balloon scene in the Inspector.
+## NPCs can walk around (Wander or Patrol) and automatically pause and face
+## the player during conversations.
 
 signal interaction_started
 signal interaction_finished
+signal started_moving
+signal stopped_moving
+## Emitted when the dominant walking direction changes (Vector2.RIGHT / LEFT / UP / DOWN).
+signal facing_changed(direction: Vector2)
+
+enum Mode { STATIONARY, WANDER, PATROL }
 
 static var is_any_talking: bool = false
 
@@ -34,12 +41,84 @@ static var is_any_talking: bool = false
 ## If true, interacting with this NPC changes scene directly without showing dialogue.
 @export var change_scene_directly: bool = false
 
+@export_group("Movement Mode")
+## STATIONARY: stays in place.
+## WANDER: randomly walks around its starting location.
+## PATROL: follows Marker2D children or patrol_points waypoints.
+@export var mode: Mode = Mode.WANDER:
+	set(value):
+		mode = value
+		queue_redraw()
+		if Engine.is_editor_hint():
+			if is_inside_tree():
+				update_configuration_warnings()
+		elif is_node_ready():
+			_restart_movement()
+
+@export_group("Movement")
+@export_range(5.0, 300.0, 1.0, "suffix:px/s") var speed: float = 40.0
+## How close counts as "arrived".
+@export_range(1.0, 20.0, 0.5, "suffix:px") var arrive_distance: float = 4.0
+
+@export_group("Wander")
+## Random targets are picked within this distance of the NPC's starting position.
+@export_range(8.0, 1000.0, 1.0, "suffix:px") var wander_radius: float = 100.0:
+	set(value):
+		wander_radius = value
+		queue_redraw()
+
+@export_group("Patrol")
+## Off = loop through waypoints 1,2,3,1,2,3. On = 1,2,3,2,1,2,3...
+@export var ping_pong: bool = false
+## Optional manual waypoints (offsets from spawn position). If empty, Marker2D children are used.
+@export var patrol_points: Array[Vector2] = []
+
+@export_group("Waiting")
+@export_range(0.0, 30.0, 0.1, "suffix:s") var min_wait: float = 1.5
+@export_range(0.0, 30.0, 0.1, "suffix:s") var max_wait: float = 4.0
+
+@export_group("Pathfinding")
+## Off: walks in straight lines and skips targets that a wall blocks (uses Obstacle Mask).
+## On: follows a baked NavigationRegion2D / TileMap navigation layer around obstacles.
+@export var use_navigation: bool = false
+## Navigation only: NPCs steer around each other (RVO avoidance).
+@export var avoid_other_npcs: bool = false
+## Straight-line mode only: physics layers that block the NPC (walls, water...).
+## Leave the player and NPC layers off.
+@export_flags_2d_physics var obstacle_mask: int = 1
+
+@export_group("Movement Interaction")
+@export var pause_while_talking: bool = true
+@export var face_player_when_talking: bool = true
+
+@export_group("Visuals")
+## Flip the Sprite2D left/right depending on walking direction.
+@export var flip_sprite: bool = true
+@export var sprite_faces_right: bool = true
+## Little hop while walking, so a single static texture still looks alive. 0 = off.
+@export_range(0.0, 8.0, 0.5, "suffix:px") var walk_bob_height: float = 1.5
+@export_range(0.05, 0.5, 0.01, "suffix:s") var walk_bob_time: float = 0.12
+
 var _player: Node
 var _in_range := false
 var _is_talking := false
 var _has_talked := false
 var _prompt_rest_y := 0.0
 var _hop_tween: Tween
+
+var _home: Vector2
+var _target: Vector2
+var _is_moving := false
+var _give_up_left := 0.0
+var _patrol_waypoints: Array[Vector2] = []
+var _patrol_index := -1
+var _patrol_step := 1
+var _bob_tween: Tween
+var _sprite_rest_y := 0.0
+var _facing := Vector2.ZERO
+var _warned_no_nav := false
+var _wait_timer: Timer
+var _nav_agent: NavigationAgent2D
 
 @onready var sprite: Sprite2D = %Sprite
 @onready var prompt: Node2D = %PromptAnchor
@@ -52,13 +131,49 @@ func _ready() -> void:
 	_apply_sprite()
 	if Engine.is_editor_hint():
 		return
+	set_process(false)
+	set_physics_process(false)
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
 	key_label.text = _key_name()
 	action_label.text = prompt_text
 	_prompt_rest_y = prompt.position.y
 	_setup_prompt()
+	_setup_movement()
 
+
+func _setup_movement() -> void:
+	_home = global_position
+	if is_instance_valid(sprite):
+		_sprite_rest_y = sprite.position.y
+
+	_patrol_waypoints.clear()
+	for child in get_children():
+		if child is Marker2D:
+			_patrol_waypoints.append((child as Marker2D).global_position)
+	if _patrol_waypoints.is_empty() and not patrol_points.is_empty():
+		for pt in patrol_points:
+			_patrol_waypoints.append(_home + pt)
+
+	_wait_timer = Timer.new()
+	_wait_timer.one_shot = true
+	_wait_timer.process_callback = Timer.TIMER_PROCESS_PHYSICS
+	_wait_timer.timeout.connect(_on_wait_finished)
+	add_child(_wait_timer)
+
+	if use_navigation:
+		_nav_agent = NavigationAgent2D.new()
+		_nav_agent.path_desired_distance = arrive_distance
+		_nav_agent.target_desired_distance = arrive_distance
+		_nav_agent.max_speed = speed
+		_nav_agent.avoidance_enabled = avoid_other_npcs
+		_nav_agent.velocity_computed.connect(_apply_velocity)
+		add_child(_nav_agent)
+
+	_schedule_wait(true)
+
+
+# --- Interaction / Dialogue ------------------------------------------------
 
 ## Returns true when the player can start this NPC's dialogue or interaction.
 func can_talk() -> bool:
@@ -85,6 +200,10 @@ func talk() -> void:
 	_update_prompt()
 	if freeze_player:
 		_set_player_frozen(true)
+	if pause_while_talking:
+		_set_movement_paused(true)
+	if face_player_when_talking and is_instance_valid(_player):
+		_face((_player as Node2D).global_position - global_position)
 	interaction_started.emit()
 	var start_cue := repeat_cue if _has_talked and not repeat_cue.is_empty() else cue
 	DialogueManager.show_dialogue_balloon_scene(dialogue_balloon, dialogue, start_cue)
@@ -94,12 +213,16 @@ func talk() -> void:
 	is_any_talking = false
 	if freeze_player:
 		_set_player_frozen(false)
+	if pause_while_talking:
+		_set_movement_paused(false)
 	_update_prompt()
 	interaction_finished.emit()
 
 
 func _apply_sprite() -> void:
-	if is_instance_valid(sprite):
+	if sprite == null and has_node("%Sprite"):
+		sprite = %Sprite
+	if is_instance_valid(sprite) and sprite is Sprite2D:
 		sprite.texture = npc_sprite
 
 
@@ -178,3 +301,255 @@ func _change_to_target_scene() -> void:
 		get_node("/root/SceneLoader").go_to(target_scene_path)
 	else:
 		get_tree().change_scene_to_file(target_scene_path)
+
+
+# --- Movement Logic --------------------------------------------------------
+
+## Call from cutscenes/quests to send the NPC somewhere right now.
+## Returns false if the spot is blocked / unreachable. Use `await stopped_moving` to wait for arrival.
+func walk_to(point: Vector2) -> bool:
+	if _wait_timer == null:
+		return false
+	_wait_timer.stop()
+	var ok := _try_go_to(point)
+	if not ok:
+		_schedule_wait()
+	return ok
+
+
+## Pauses wandering or patrol movement (e.g. from a cutscene).
+func pause_movement() -> void:
+	_set_movement_paused(true)
+
+
+## Resumes wandering or patrol movement.
+func resume_movement() -> void:
+	_set_movement_paused(false)
+
+
+## Sets a new home position for wander mode.
+func set_home(new_home: Vector2) -> void:
+	_home = new_home
+
+
+func _schedule_wait(first: bool = false) -> void:
+	if mode == Mode.STATIONARY or _is_talking:
+		return
+	if _wait_timer == null:
+		return
+	var t := randf_range(min_wait, maxf(min_wait, max_wait))
+	if first:
+		t = randf_range(0.1, maxf(0.1, max_wait)) # desync NPCs so they don't all start together
+	_wait_timer.start(maxf(t, 0.05))
+
+
+func _on_wait_finished() -> void:
+	if _is_talking or mode == Mode.STATIONARY:
+		return
+	match mode:
+		Mode.WANDER:
+			_pick_wander_target()
+		Mode.PATROL:
+			_pick_patrol_target()
+
+
+func _pick_wander_target() -> void:
+	for attempt in 8:
+		var offset := Vector2.from_angle(randf() * TAU) * randf_range(wander_radius * 0.25, wander_radius)
+		if _try_go_to(_home + offset):
+			return
+	_schedule_wait() # nothing reachable this time, try again later
+
+
+func _pick_patrol_target() -> void:
+	var count := _patrol_waypoints.size()
+	if count == 0:
+		push_warning("%s: Patrol mode needs Marker2D children or patrol_points as waypoints." % get_path())
+		return
+	_patrol_index += _patrol_step
+	if ping_pong:
+		if _patrol_index >= count:
+			_patrol_step = -1
+			_patrol_index = maxi(count - 2, 0)
+		elif _patrol_index < 0:
+			_patrol_step = 1
+			_patrol_index = mini(1, count - 1)
+	else:
+		_patrol_index = wrapi(_patrol_index, 0, count)
+	if not _try_go_to(_patrol_waypoints[_patrol_index]):
+		_schedule_wait()
+
+
+func _try_go_to(point: Vector2) -> bool:
+	if use_navigation:
+		if _nav_agent == null:
+			return false
+		var map := _nav_agent.get_navigation_map()
+		if NavigationServer2D.map_get_regions(map).is_empty():
+			if not _warned_no_nav:
+				_warned_no_nav = true
+				push_warning("%s: Use Navigation is on but there is no NavigationRegion2D / baked navmesh." % get_path())
+			return false
+		point = NavigationServer2D.map_get_closest_point(map, point)
+		_nav_agent.target_position = point
+	elif not _is_path_clear(global_position, point):
+		return false
+	_target = point
+	_start_moving()
+	return true
+
+
+func _is_path_clear(from: Vector2, to: Vector2) -> bool:
+	var world := get_world_2d()
+	if world == null:
+		return true
+	var space_state := world.direct_space_state
+	if space_state == null:
+		return true
+	var query := PhysicsRayQueryParameters2D.create(from, to, obstacle_mask)
+	query.collide_with_areas = false
+	query.exclude = [get_rid()]
+	return space_state.intersect_ray(query).is_empty()
+
+
+func _start_moving() -> void:
+	_is_moving = true
+	# If something keeps the NPC from arriving (stuck on a corner), give up eventually.
+	_give_up_left = global_position.distance_to(_target) / speed * 2.5 + 1.0
+	set_physics_process(true)
+	_play_bob(true)
+	started_moving.emit()
+
+
+func _stop_moving() -> void:
+	var was_moving := _is_moving
+	_is_moving = false
+	set_physics_process(false)
+	_play_bob(false)
+	if was_moving:
+		stopped_moving.emit()
+	_schedule_wait()
+
+
+func _physics_process(delta: float) -> void:
+	if not _is_moving or _is_talking:
+		return
+	_give_up_left -= delta
+	if _give_up_left <= 0.0:
+		_stop_moving()
+		return
+
+	var pos := global_position
+	var next := _target
+	if use_navigation and _nav_agent != null:
+		if _nav_agent.is_navigation_finished():
+			_stop_moving()
+			return
+		next = _nav_agent.get_next_path_position()
+	elif pos.distance_to(_target) <= maxf(arrive_distance, speed * delta):
+		_stop_moving()
+		return
+
+	var desired := pos.direction_to(next) * speed
+	if use_navigation and _nav_agent != null and _nav_agent.avoidance_enabled:
+		_nav_agent.velocity = desired # result arrives via velocity_computed -> _apply_velocity
+	else:
+		_apply_velocity(desired)
+
+
+func _apply_velocity(vel: Vector2) -> void:
+	if not _is_moving or _is_talking:
+		return
+	global_position += vel * get_physics_process_delta_time()
+	_face(vel)
+
+
+func _restart_movement() -> void:
+	if _wait_timer == null:
+		return
+	_is_moving = false
+	set_physics_process(false)
+	_play_bob(false)
+	_wait_timer.stop()
+	_schedule_wait(true)
+
+
+func _set_movement_paused(paused: bool) -> void:
+	if _wait_timer:
+		_wait_timer.paused = paused
+	set_physics_process(not paused and _is_moving)
+	_play_bob(not paused and _is_moving)
+	if not paused and not _is_moving and mode != Mode.STATIONARY:
+		if _wait_timer and _wait_timer.is_stopped():
+			_schedule_wait()
+
+
+func _face(direction: Vector2) -> void:
+	if direction.length_squared() < 0.0001:
+		return
+	if is_instance_valid(sprite) and flip_sprite and absf(direction.x) > 0.01:
+		sprite.flip_h = (direction.x < 0.0) == sprite_faces_right
+	var cardinal := Vector2(signf(direction.x), 0.0) if absf(direction.x) >= absf(direction.y) \
+			else Vector2(0.0, signf(direction.y))
+	if cardinal != _facing:
+		_facing = cardinal
+		facing_changed.emit(cardinal)
+
+
+func _play_bob(active: bool) -> void:
+	if _bob_tween:
+		_bob_tween.kill()
+		_bob_tween = null
+	if not is_instance_valid(sprite):
+		return
+	sprite.position.y = _sprite_rest_y
+	if not active or walk_bob_height <= 0.0:
+		return
+	_bob_tween = create_tween().set_loops()
+	_bob_tween.tween_property(sprite, "position:y", _sprite_rest_y - walk_bob_height, walk_bob_time) \
+			.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	_bob_tween.tween_property(sprite, "position:y", _sprite_rest_y, walk_bob_time) \
+			.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+
+
+# --- Editor Helpers --------------------------------------------------------
+
+func _process(_delta: float) -> void:
+	if Engine.is_editor_hint():
+		queue_redraw()
+
+
+func _draw() -> void:
+	if not Engine.is_editor_hint():
+		return
+	var color := Color(0.3, 0.8, 1.0)
+	match mode:
+		Mode.WANDER:
+			draw_circle(Vector2.ZERO, wander_radius, Color(color, 0.08))
+			draw_arc(Vector2.ZERO, wander_radius, 0.0, TAU, 64, Color(color, 0.8), 1.0)
+		Mode.PATROL:
+			var points := PackedVector2Array()
+			for child in get_children():
+				if child is Marker2D:
+					points.append((child as Marker2D).position)
+			if points.is_empty() and not patrol_points.is_empty():
+				points.append(Vector2.ZERO)
+				for pt in patrol_points:
+					points.append(pt)
+			if points.size() >= 2:
+				draw_polyline(points, Color(color, 0.8), 1.5)
+				for p in points:
+					draw_circle(p, 3.0, Color(color, 0.9))
+
+
+func _get_configuration_warnings() -> PackedStringArray:
+	var warnings := PackedStringArray()
+	if mode == Mode.PATROL:
+		var has_markers := false
+		for child in get_children():
+			if child is Marker2D:
+				has_markers = true
+				break
+		if not has_markers and patrol_points.is_empty():
+			warnings.append("Patrol mode needs Marker2D children or patrol_points entries as waypoints.")
+	return warnings

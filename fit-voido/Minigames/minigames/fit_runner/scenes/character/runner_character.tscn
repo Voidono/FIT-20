@@ -1,69 +1,67 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://djjbrl8kvmk34"]
 
 [ext_resource type="Script" uid="uid://breaasix3syc2" path="res://Minigames/minigames/fit_runner/scripts/character/runner_character.gd" id="1_runner_cha"]
 [ext_resource type="Texture2D" uid="uid://ch5n6jwwfndhk" path="res://Minigames/minigames/fit_runner/assets/world/status_wall.png" id="2_status_wal"]
 [ext_resource type="Texture2D" uid="uid://t6wkws6dm5h5" path="res://Minigames/minigames/fit_runner/assets/world/status_drink.png" id="3_status_dri"]
 [ext_resource type="Texture2D" uid="uid://bvsujhb2l0do8" path="res://Minigames/minigames/fit_runner/assets/world/shadow.png" id="4_shadow"]
-[ext_resource type="SpriteFrames" path="res://Minigames/minigames/fit_runner/assets/character/runner_frames.tres" id="5_runner_fra"]
+[ext_resource type="SpriteFrames" uid="uid://div0884xuqi7h" path="res://Minigames/minigames/fit_runner/assets/character/runner_frames.tres" id="5_runner_fra"]
 [ext_resource type="Texture2D" uid="uid://ddnx7d1miquoy" path="res://Minigames/minigames/fit_runner/assets/world/dust.png" id="6_dust"]
 [ext_resource type="Texture2D" uid="uid://dg240xk68t1i0" path="res://Minigames/minigames/fit_runner/assets/world/splash.png" id="7_splash"]
 
-[node name="RunnerCharacter" type="Node2D"]
+[node name="RunnerCharacter" type="Node2D" unique_id=1341579471]
 script = ExtResource("1_runner_cha")
 status_wall_texture = ExtResource("2_status_wal")
 status_drink_texture = ExtResource("3_status_dri")
 
-[node name="Shadow" type="Sprite2D" parent="."]
+[node name="Shadow" type="Sprite2D" parent="." unique_id=295258498]
 unique_name_in_owner = true
-texture = ExtResource("4_shadow")
 position = Vector2(0, 1)
+texture = ExtResource("4_shadow")
 
-[node name="Body" type="Node2D" parent="."]
+[node name="Body" type="Node2D" parent="." unique_id=739987282]
 unique_name_in_owner = true
 
-[node name="Sprite" type="AnimatedSprite2D" parent="Body"]
+[node name="Sprite" type="AnimatedSprite2D" parent="Body" unique_id=991687022]
 unique_name_in_owner = true
 sprite_frames = ExtResource("5_runner_fra")
-animation = &"idle"
+animation = &"run"
 autoplay = "idle"
+frame_progress = 0.22530842
 centered = false
 offset = Vector2(-16, -48)
 
-[node name="Dust" type="CPUParticles2D" parent="Body"]
+[node name="Dust" type="CPUParticles2D" parent="Body" unique_id=1110003387]
 unique_name_in_owner = true
 position = Vector2(-6, -1)
 emitting = false
 amount = 10
-lifetime = 0.5
-local_coords = false
 texture = ExtResource("6_dust")
+lifetime = 0.5
 direction = Vector2(-1, -0.4)
 spread = 25.0
 gravity = Vector2(0, 40)
 initial_velocity_min = 20.0
 initial_velocity_max = 45.0
-scale_amount_min = 1.0
 scale_amount_max = 2.0
 color = Color(0.92, 0.9, 0.84, 0.7)
 
-[node name="StatusIcon" type="Sprite2D" parent="Body"]
+[node name="StatusIcon" type="Sprite2D" parent="Body" unique_id=1671039971]
 unique_name_in_owner = true
 visible = false
 position = Vector2(7, -56)
 
-[node name="Splash" type="CPUParticles2D" parent="."]
+[node name="Splash" type="CPUParticles2D" parent="." unique_id=464520481]
 unique_name_in_owner = true
 position = Vector2(9, -34)
 emitting = false
+amount = 10
+texture = ExtResource("7_splash")
+lifetime = 0.45
 one_shot = true
 explosiveness = 0.9
-amount = 10
-lifetime = 0.45
-texture = ExtResource("7_splash")
 direction = Vector2(0.3, -1)
 spread = 60.0
 gravity = Vector2(0, 120)
 initial_velocity_min = 25.0
 initial_velocity_max = 55.0
-scale_amount_min = 1.0
 scale_amount_max = 1.8

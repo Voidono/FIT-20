@@ -1,10 +1,10 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene format=3]
 
-[ext_resource type="Texture2D" path="res://minigames/fit_runner/assets/ui/bar_under.png" id="1_bar_under"]
-[ext_resource type="Texture2D" path="res://minigames/fit_runner/assets/ui/bar_over.png" id="2_bar_over"]
-[ext_resource type="Texture2D" path="res://minigames/fit_runner/assets/ui/bar_fill.png" id="3_bar_fill"]
-[ext_resource type="Script" path="res://minigames/fit_runner/scripts/ui/stamina_bar.gd" id="4_stamina_ba"]
-[ext_resource type="Texture2D" path="res://minigames/fit_runner/assets/ui/exit_mark.png" id="5_exit_mark"]
+[ext_resource type="Texture2D" uid="uid://h2jnl2odfcrp" path="res://Minigames/minigames/fit_runner/assets/ui/bar_under.png" id="1_bar_under"]
+[ext_resource type="Texture2D" uid="uid://csfru8ogjflj7" path="res://Minigames/minigames/fit_runner/assets/ui/bar_over.png" id="2_bar_over"]
+[ext_resource type="Texture2D" uid="uid://ceuns0u6tbfh8" path="res://Minigames/minigames/fit_runner/assets/ui/bar_fill.png" id="3_bar_fill"]
+[ext_resource type="Script" uid="uid://cnyhspoo4vt13" path="res://Minigames/minigames/fit_runner/scripts/ui/stamina_bar.gd" id="4_stamina_ba"]
+[ext_resource type="Texture2D" uid="uid://1vaw61j8cg30" path="res://Minigames/minigames/fit_runner/assets/ui/exit_mark.png" id="5_exit_mark"]
 
 [node name="StaminaBar" type="TextureProgressBar"]
 custom_minimum_size = Vector2(0, 16)

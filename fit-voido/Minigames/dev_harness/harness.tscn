@@ -1,10 +1,10 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://rkkt2aigja1"]
 
 [ext_resource type="Script" uid="uid://djjfch7af5ttk" path="res://Minigames/dev_harness/harness.gd" id="1_harness"]
 [ext_resource type="PackedScene" path="res://Minigames/boss_fight/battle/battle_choice_list.tscn" id="2_choice"]
 [ext_resource type="Script" uid="uid://ma1ppsb35aad" path="res://Minigames/boss_fight/core/battle_input.gd" id="3_input"]
 
-[node name="Harness" type="Control"]
+[node name="Harness" type="Control" unique_id=1859179150]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,10 +13,10 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_harness")
 
-[node name="BattleInput" type="Node" parent="."]
+[node name="BattleInput" type="Node" parent="." unique_id=1713920315]
 script = ExtResource("3_input")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="." unique_id=782436764]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -26,7 +26,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.06, 0.06, 0.09, 1)
 
-[node name="UI" type="Control" parent="."]
+[node name="UI" type="Control" parent="." unique_id=49202547]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -36,7 +36,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Title" type="Label" parent="UI"]
+[node name="Title" type="Label" parent="UI" unique_id=2098386972]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -48,15 +48,16 @@ text = "[DEV HARNESS: giả lập game chính]
 Chọn chỗ ngồi (kỹ năng)"
 horizontal_alignment = 1
 
-[node name="ChoiceList" parent="UI" instance=ExtResource("2_choice")]
+[node name="ChoiceList" parent="UI" unique_id=2129103663 instance=ExtResource("2_choice")]
 unique_name_in_owner = true
+layout_mode = 0
 offset_left = 440.0
 offset_top = 280.0
 offset_right = 880.0
 offset_bottom = 400.0
 columns = 1
 
-[node name="Message" type="Label" parent="UI"]
+[node name="Message" type="Label" parent="UI" unique_id=1552534152]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 12

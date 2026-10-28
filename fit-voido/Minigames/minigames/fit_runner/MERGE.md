@@ -27,12 +27,12 @@ add_child(game)
 ```
 ```gdscript
 func _on_run_finished(r: FitRunnerResult) -> void:
-    if r.passed:
-        award_time_stone(1)     # r.stars 1-3, r.time_sec, r.walls_hit, r.attempt, r.par_time, r.qte_perfect / qte_good / qte_miss
-    # failed: nothing to do, the Retry button runs the next attempt inside the minigame
+	if r.passed:
+		award_time_stone(1)     # r.stars 1-3, r.time_sec, r.walls_hit, r.attempt, r.par_time, r.qte_perfect / qte_good / qte_miss
+	# failed: nothing to do, the Retry button runs the next attempt inside the minigame
 
 func _on_quit_requested() -> void:   # Continue / Quit was pressed
-    game.queue_free()                # your camera comes back automatically; then continue your level flow
+	game.queue_free()                # your camera comes back automatically; then continue your level flow
 ```
 `dev/example_level1.gd` has the same flow for a Level 1 minigame menu. If you want to control the start (a cutscene first), set
 `config.autostart = false` and call `game.start()` yourself.
