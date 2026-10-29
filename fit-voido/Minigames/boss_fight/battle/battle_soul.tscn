@@ -1,0 +1,27 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" uid="uid://b34oj7npph78s" path="res://Minigames/boss_fight/battle/battle_soul.gd" id="1_soul"]
+[ext_resource type="Script" uid="uid://seb12u45552p" path="res://Minigames/boss_fight/core/asset_slot.gd" id="2_slot"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hit"]
+radius = 4.0
+
+[node name="Soul" type="Node2D"]
+z_index = 10
+script = ExtResource("1_soul")
+
+[node name="Visual" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_slot")
+shape = 2
+placeholder_size = Vector2(16, 16)
+color = Color(1, 0, 0, 1)
+
+[node name="Hurtbox" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 2147483648
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CircleShape2D_hit")

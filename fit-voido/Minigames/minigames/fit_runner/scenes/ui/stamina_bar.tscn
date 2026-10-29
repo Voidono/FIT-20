@@ -1,0 +1,45 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" uid="uid://h2jnl2odfcrp" path="res://Minigames/minigames/fit_runner/assets/ui/bar_under.png" id="1_bar_under"]
+[ext_resource type="Texture2D" uid="uid://csfru8ogjflj7" path="res://Minigames/minigames/fit_runner/assets/ui/bar_over.png" id="2_bar_over"]
+[ext_resource type="Texture2D" uid="uid://ceuns0u6tbfh8" path="res://Minigames/minigames/fit_runner/assets/ui/bar_fill.png" id="3_bar_fill"]
+[ext_resource type="Script" uid="uid://cnyhspoo4vt13" path="res://Minigames/minigames/fit_runner/scripts/ui/stamina_bar.gd" id="4_stamina_ba"]
+[ext_resource type="Texture2D" uid="uid://1vaw61j8cg30" path="res://Minigames/minigames/fit_runner/assets/ui/exit_mark.png" id="5_exit_mark"]
+
+[node name="StaminaBar" type="TextureProgressBar"]
+custom_minimum_size = Vector2(0, 16)
+max_value = 100.0
+value = 100.0
+nine_patch_stretch = true
+stretch_margin_left = 3
+stretch_margin_top = 3
+stretch_margin_right = 3
+stretch_margin_bottom = 3
+texture_under = ExtResource("1_bar_under")
+texture_over = ExtResource("2_bar_over")
+texture_progress = ExtResource("3_bar_fill")
+script = ExtResource("4_stamina_ba")
+
+[node name="Pattern" type="TextureRect" parent="."]
+unique_name_in_owner = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = -2.0
+offset_bottom = -2.0
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 1
+
+[node name="ExitMark" type="TextureRect" parent="."]
+unique_name_in_owner = true
+anchor_left = 0.35
+anchor_right = 0.35
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_right = 1.0
+mouse_filter = 2
+texture = ExtResource("5_exit_mark")
+expand_mode = 1
+stretch_mode = 0

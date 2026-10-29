@@ -1,0 +1,24 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" uid="uid://bnnpx41pn7buy" path="res://Minigames/boss_fight/battle/battle_bullet.gd" id="1_bullet"]
+[ext_resource type="Script" uid="uid://seb12u45552p" path="res://Minigames/boss_fight/core/asset_slot.gd" id="2_slot"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hit"]
+resource_local_to_scene = true
+radius = 6.0
+
+[node name="Bullet" type="Area2D"]
+collision_layer = 2147483648
+collision_mask = 0
+monitoring = false
+script = ExtResource("1_bullet")
+
+[node name="Visual" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_slot")
+shape = 1
+placeholder_size = Vector2(14, 14)
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
+shape = SubResource("CircleShape2D_hit")

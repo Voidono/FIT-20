@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="FrQteSettings" format=3]
+
+[ext_resource type="Script" uid="uid://bhvi1tq2lvits" path="res://Minigames/minigames/fit_runner/scripts/qte/qte_settings.gd" id="1_qte"]
+
+[resource]
+script = ExtResource("1_qte")
+duration = 1.5
+perfect_width = 0.16
+good_width = 0.36
+target_center = 0.6
+target_jitter = 0.06
+perfect_bonus = 4.0
+good_bonus = 2.0
+streak_step = 0.5
+rest_time_before_event = 1.8
+cooldown = 0.8

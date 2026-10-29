@@ -1,0 +1,94 @@
+[gd_scene format=3 uid="uid://dbo7plptdc6nh"]
+
+[ext_resource type="Script" uid="uid://cuvdilp32h7v3" path="res://Minigames/minigames/fit_runner/scripts/api/fit_runner.gd" id="1_fit_runner"]
+[ext_resource type="Texture2D" uid="uid://dc7id803y27y0" path="res://Minigames/minigames/fit_runner/assets/world/sky.png" id="2_sky"]
+[ext_resource type="Texture2D" uid="uid://obq4xe70e2gs" path="res://Minigames/minigames/fit_runner/assets/world/hills_far.png" id="3_hills_far"]
+[ext_resource type="Texture2D" uid="uid://dfworg8emkyrs" path="res://Minigames/minigames/fit_runner/assets/world/hills_near.png" id="4_hills_near"]
+[ext_resource type="PackedScene" path="res://Minigames/minigames/fit_runner/scenes/course/course.tscn" id="5_course"]
+[ext_resource type="PackedScene" uid="uid://djjbrl8kvmk34" path="res://Minigames/minigames/fit_runner/scenes/character/runner_character.tscn" id="6_runner_cha"]
+[ext_resource type="Script" uid="uid://cq7yrbbwb2r2h" path="res://Minigames/minigames/fit_runner/scripts/qte/qte_controller.gd" id="7_qte_contro"]
+[ext_resource type="Resource" path="res://Minigames/minigames/fit_runner/resources/qte_normal.tres" id="8_qte_normal"]
+[ext_resource type="Resource" path="res://Minigames/minigames/fit_runner/resources/qte_easy.tres" id="9_qte_easy"]
+[ext_resource type="Resource" path="res://Minigames/minigames/fit_runner/resources/qte_hard.tres" id="10_qte_hard"]
+[ext_resource type="PackedScene" path="res://Minigames/minigames/fit_runner/scenes/ui/hud.tscn" id="11_hud"]
+[ext_resource type="PackedScene" path="res://Minigames/minigames/fit_runner/scenes/debug/debug_overlay.tscn" id="12_debug_over"]
+
+[node name="FitRunner" type="Node2D" unique_id=1259276694]
+texture_filter = 1
+script = ExtResource("1_fit_runner")
+
+[node name="SkyLayer" type="CanvasLayer" parent="." unique_id=751382555]
+layer = -10
+
+[node name="Sky" type="TextureRect" parent="SkyLayer" unique_id=1072715114]
+texture_filter = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_sky")
+expand_mode = 1
+
+[node name="Background" type="Node2D" parent="." unique_id=411076517]
+z_index = -10
+
+[node name="FarHills" type="Parallax2D" parent="Background" unique_id=405297467]
+scroll_scale = Vector2(0.35, 1)
+repeat_size = Vector2(640, 0)
+repeat_times = 3
+
+[node name="Sprite" type="Sprite2D" parent="Background/FarHills" unique_id=246322241]
+position = Vector2(0, 130)
+texture = ExtResource("3_hills_far")
+centered = false
+
+[node name="NearHills" type="Parallax2D" parent="Background" unique_id=1598369782]
+scroll_scale = Vector2(0.6, 1)
+repeat_size = Vector2(640, 0)
+repeat_times = 3
+
+[node name="Sprite" type="Sprite2D" parent="Background/NearHills" unique_id=904862803]
+position = Vector2(0, 160)
+texture = ExtResource("4_hills_near")
+centered = false
+
+[node name="Camera" type="Camera2D" parent="." unique_id=2012959103]
+unique_name_in_owner = true
+
+[node name="Course" parent="." unique_id=785327871 instance=ExtResource("5_course")]
+unique_name_in_owner = true
+
+[node name="Ghost" parent="." unique_id=114607933 instance=ExtResource("6_runner_cha")]
+unique_name_in_owner = true
+modulate = Color(0.55, 0.9, 1, 0.45)
+
+[node name="Runner" parent="." unique_id=1397693528 instance=ExtResource("6_runner_cha")]
+unique_name_in_owner = true
+
+[node name="Qte" type="Node" parent="." unique_id=562516496]
+unique_name_in_owner = true
+script = ExtResource("7_qte_contro")
+settings = ExtResource("8_qte_normal")
+preset_easy = ExtResource("9_qte_easy")
+preset_normal = ExtResource("8_qte_normal")
+preset_hard = ExtResource("10_qte_hard")
+
+[node name="Hud" parent="." unique_id=75236426 instance=ExtResource("11_hud")]
+unique_name_in_owner = true
+
+[node name="DebugOverlay" parent="." unique_id=461678945 instance=ExtResource("12_debug_over")]
+unique_name_in_owner = true
+
+[connection signal="cancelled" from="Qte" to="Hud" method="on_qte_cancelled"]
+[connection signal="resolved" from="Qte" to="." method="_on_qte_resolved"]
+[connection signal="resolved" from="Qte" to="Hud" method="on_qte_resolved"]
+[connection signal="started" from="Qte" to="Hud" method="on_qte_started"]
+[connection signal="pause_pressed" from="Hud" to="." method="toggle_pause"]
+[connection signal="quit_pressed" from="Hud" to="." method="_on_quit_pressed"]
+[connection signal="resume_pressed" from="Hud" to="." method="toggle_pause"]
+[connection signal="retry_pressed" from="Hud" to="." method="retry"]
+[connection signal="copy_log_requested" from="DebugOverlay" to="." method="_copy_log"]
+[connection signal="qte_preset_selected" from="DebugOverlay" to="." method="_on_qte_preset_selected"]
+[connection signal="restart_requested" from="DebugOverlay" to="." method="restart"]
