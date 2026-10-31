@@ -18,11 +18,20 @@ enum Mode { STATIONARY, WANDER, PATROL }
 static var is_any_talking: bool = false
 
 @export_group("Content")
-## Drag an image texture here; it is shown by the Sprite child.
+## Drag an image texture here; it is shown by the Sprite child when no animation skin is set.
 @export var npc_sprite: Texture2D:
 	set(value):
 		npc_sprite = value
 		_apply_sprite()
+## Animation skin ID (e.g. "NPC_1", "NPC_2"). Leave empty to use the static npc_sprite instead.
+## Frames must follow the pattern: res://assets/DrawAsset/NPC/<skin>_<dir>_<n>.png
+## where <dir> is up/down/left/right and <n> is 1, 2, 3...
+@export var npc_skin: String = "":
+	set(value):
+		npc_skin = value
+		_apply_sprite()
+## FPS for walking animations.
+@export_range(1, 30, 1, "suffix:fps") var animation_fps: int = 8
 ## Drag the .dialogue file this NPC should speak from here.
 @export var dialogue: DialogueResource
 @export var cue: String = "start"
@@ -121,10 +130,26 @@ var _wait_timer: Timer
 var _nav_agent: NavigationAgent2D
 
 @onready var sprite: Sprite2D = %Sprite
+@onready var anim_sprite: AnimatedSprite2D = %AnimSprite
 @onready var prompt: Node2D = %PromptAnchor
 @onready var prompt_box: Control = %PromptBox
 @onready var key_label: Label = %KeyLabel
 @onready var action_label: Label = %ActionLabel
+
+## Maps facing direction to animation name suffix.
+const _DIR_ANIM := {
+	Vector2.RIGHT: "right",
+	Vector2.LEFT:  "left",
+	Vector2.UP:    "up",
+	Vector2.DOWN:  "down",
+}
+## The folder that holds NPC frame PNGs (relative to res://).
+const _NPC_ASSET_DIR := "res://assets/DrawAsset/NPC/"
+## How many walk frames exist per direction in the asset files.
+const _FRAME_COUNT := 3
+
+var _has_anim: bool = false
+var _current_anim_dir: String = ""
 
 
 func _ready() -> void:
@@ -139,6 +164,7 @@ func _ready() -> void:
 	action_label.text = prompt_text
 	_prompt_rest_y = prompt.position.y
 	_setup_prompt()
+	_setup_animation()
 	_setup_movement()
 
 
@@ -220,10 +246,81 @@ func talk() -> void:
 
 
 func _apply_sprite() -> void:
+	# Resolve sprite node (may be called before @onready)
 	if sprite == null and has_node("%Sprite"):
 		sprite = %Sprite
-	if is_instance_valid(sprite) and sprite is Sprite2D:
+	var anim: AnimatedSprite2D = null
+	if has_node("%AnimSprite"):
+		anim = %AnimSprite
+
+	# In the editor show the static sprite so you can see NPC placement.
+	# At runtime: use AnimSprite when a skin is configured, Sprite otherwise.
+	if is_instance_valid(anim):
+		anim.visible = npc_skin != "" and not Engine.is_editor_hint()
+	if is_instance_valid(sprite):
+		sprite.visible = npc_skin == "" or Engine.is_editor_hint()
 		sprite.texture = npc_sprite
+
+
+## Builds SpriteFrames from individual PNGs and attaches them to AnimSprite.
+## Called once from _ready() when a skin is configured.
+func _setup_animation() -> void:
+	if not is_instance_valid(anim_sprite):
+		return
+	if npc_skin.is_empty():
+		anim_sprite.visible = false
+		sprite.visible = true
+		_has_anim = false
+		return
+
+	var frames := SpriteFrames.new()
+	frames.remove_animation("default")  # remove placeholder
+	var loaded_any := false
+
+	for dir in ["down", "up", "left", "right"]:
+		var textures: Array[Texture2D] = []
+		for n in range(1, _FRAME_COUNT + 1):
+			var path := "%s%s_%s_%d.png" % [_NPC_ASSET_DIR, npc_skin, dir, n]
+			if ResourceLoader.exists(path):
+				textures.append(load(path) as Texture2D)
+		if textures.is_empty():
+			continue
+		var anim_name := "walk_%s" % dir
+		frames.add_animation(anim_name)
+		frames.set_animation_speed(anim_name, float(animation_fps))
+		frames.set_animation_loop(anim_name, true)
+		for tex in textures:
+			frames.add_frame(anim_name, tex)
+		loaded_any = true
+
+	if not loaded_any:
+		push_warning("DialogueNPC '%s': no frames found for skin '%s' in %s" % [name, npc_skin, _NPC_ASSET_DIR])
+		anim_sprite.visible = false
+		sprite.visible = true
+		_has_anim = false
+		return
+
+	anim_sprite.sprite_frames = frames
+	anim_sprite.visible = true
+	sprite.visible = false
+	_has_anim = true
+	# Start idle (first frame of walk_down, stopped)
+	anim_sprite.animation = "walk_down"
+	anim_sprite.stop()
+
+
+## Plays the walk animation for the given facing direction,
+## or stops playing (shows idle frame) when direction is Vector2.ZERO.
+func _play_anim(direction: Vector2) -> void:
+	if not _has_anim or not is_instance_valid(anim_sprite):
+		return
+	if direction == Vector2.ZERO:
+		anim_sprite.stop()
+		return
+	var anim_name := "walk_%s" % _DIR_ANIM.get(direction, "down")
+	if anim_name != _current_anim_dir:
+		_current_anim_dir = anim_name
+		anim_sprite.play(anim_name)
 
 
 func _key_name() -> String:
@@ -426,6 +523,7 @@ func _stop_moving() -> void:
 	_is_moving = false
 	set_physics_process(false)
 	_play_bob(false)
+	_play_anim(Vector2.ZERO)
 	if was_moving:
 		stopped_moving.emit()
 	_schedule_wait()
@@ -479,6 +577,10 @@ func _set_movement_paused(paused: bool) -> void:
 		_wait_timer.paused = paused
 	set_physics_process(not paused and _is_moving)
 	_play_bob(not paused and _is_moving)
+	if paused:
+		_play_anim(Vector2.ZERO)
+	elif _is_moving:
+		_play_anim(_facing)
 	if not paused and not _is_moving and mode != Mode.STATIONARY:
 		if _wait_timer and _wait_timer.is_stopped():
 			_schedule_wait()
@@ -494,6 +596,7 @@ func _face(direction: Vector2) -> void:
 	if cardinal != _facing:
 		_facing = cardinal
 		facing_changed.emit(cardinal)
+	_play_anim(cardinal)
 
 
 func _play_bob(active: bool) -> void:
