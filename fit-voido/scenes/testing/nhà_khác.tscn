@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://s1xgw3v5i1ef" path="res://assets/building/48x48/6_Garage_Sales_48x48.png" id="3_i4bay"]
 [ext_resource type="Texture2D" uid="uid://bl81ik2i6xhnq" path="res://assets/environments/11_Camping_16x16.png" id="3_u8din"]
 [ext_resource type="Texture2D" uid="uid://oktkp77rc5lg" path="res://assets/building/48x48/pixel-art (3).png" id="4_rgqfg"]
+[ext_resource type="Script" path="res://scripts/occlusion_fader.gd" id="6_fader"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7etvw"]
 texture = ExtResource("1_fudyh")

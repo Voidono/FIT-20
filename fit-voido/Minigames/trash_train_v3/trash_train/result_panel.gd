@@ -91,7 +91,7 @@ func show_result(r: TrashRunResult, goal_points: float) -> void:
 	if not r.passed:
 		score_text += " / " + TrashStrings.num(goal_points)
 	_score.text = score_text
-	_detail.text = "%s: %d     %s: %s" % [TrashStrings.t(&"bumps_label"), r.bumps_taken, TrashStrings.t(&"unbanked"), TrashStrings.num(r.unbanked_points)]
+	_detail.text = "%s: %d     %s: %s     %s: %d" % [TrashStrings.t(&"bumps_label"), r.bumps_taken, TrashStrings.t(&"unbanked"), TrashStrings.num(r.unbanked_points), "Power-ups", r.powerups_taken]
 	retry_button.text = TrashStrings.t(&"retry")
 	continue_button.text = TrashStrings.t(&"next")
 	continue_button.visible = r.passed

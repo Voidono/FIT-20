@@ -8,6 +8,7 @@ var banks := 0  # bin visits that banked something
 var best_bank := 0.0
 var bumps := 0  # NPC hits that cut the tail
 var items_lost := 0  # items dropped by bumps
+var powerups_taken := 0  # power-up pickups collected
 
 
 func reset() -> void:
@@ -17,3 +18,4 @@ func reset() -> void:
 	best_bank = 0.0
 	bumps = 0
 	items_lost = 0
+	powerups_taken = 0

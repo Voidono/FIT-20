@@ -11,6 +11,7 @@ extends CharacterBody2D
 var tuning: TrashTrainTuning
 var pointer: TrashPointer
 var tail: TrashTail
+var powerups: TrashPowerups  ## set by TrashTrain after setup; null until powerups are wired
 var speed_now := 0.0  # px/s, for the debug overlay
 
 var _facing := Vector2.RIGHT
@@ -44,7 +45,8 @@ func setup(t: TrashTrainTuning, p: TrashPointer, tl: TrashTail) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	speed_now = tuning.base_speed * tail.speed_multiplier()
+	var weight := tail.speed_multiplier()
+	speed_now = tuning.base_speed * (powerups.speed_factor(weight) if powerups != null else weight)
 	var wanted := pointer.get_move_vector() * speed_now
 	if tuning.acceleration > 0.0:
 		velocity = velocity.move_toward(wanted, tuning.acceleration * delta)

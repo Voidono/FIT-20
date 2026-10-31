@@ -44,12 +44,24 @@ const GROUPS := [
 		["assist_bonus_seconds", 0.0, 30.0, 1.0],
 		["assist_after_fails", 0, 6, 1],
 	]],
+	["Pwrup", [
+		["powerup_first_delay", 3.0, 30.0, 0.5],
+		["powerup_interval", 5.0, 60.0, 1.0],
+		["powerup_lifetime", 3.0, 30.0, 0.5],
+		["magnet_radius", 40.0, 400.0, 5.0],
+		["magnet_pull_speed", 50.0, 600.0, 10.0],
+		["magnet_seconds", 3.0, 30.0, 0.5],
+		["sneakers_speed", 1.0, 3.0, 0.05],
+		["sneakers_seconds", 3.0, 30.0, 0.5],
+		["shield_seconds", 3.0, 60.0, 1.0],
+	]],
 ]
 
 const BUTTONS := [
 	["Bank 1", &"bank_0"], ["Bank 2", &"bank_1"], ["Cut mid", &"cut"],
 	["Freeze", &"freeze"], ["Routes", &"routes"], ["Mode", &"mode"],
 	["End run", &"end"], ["New run", &"restart"],
+	["Magnet", &"give_magnet"], ["Sneakers", &"give_sneakers"], ["Shield", &"give_shield"],
 ]
 
 var panel: PanelContainer

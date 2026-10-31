@@ -10,6 +10,7 @@ var bumps_taken := 0
 var items_banked := 0
 var items_lost := 0  # dropped by bumps (they can be picked up again, so this is "ever dropped")
 var unbanked_points := 0.0  # still in the tail when time ran out (worth nothing)
+var powerups_taken := 0  # power-up pickups collected during this attempt
 var time_used := 0.0
 var duration := 0.0  # the clock this attempt started with (includes the quiet assist)
 var assist_applied := false
@@ -21,6 +22,7 @@ func to_dict() -> Dictionary:
 	return {
 		"passed": passed, "stars": stars, "banked_score": banked_score, "bumps_taken": bumps_taken,
 		"items_banked": items_banked, "items_lost": items_lost, "unbanked_points": unbanked_points,
+		"powerups_taken": powerups_taken,
 		"time_used": time_used, "duration": duration, "assist_applied": assist_applied,
 		"attempt": attempt, "failed_attempts": failed_attempts,
 	}

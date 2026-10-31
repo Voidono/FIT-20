@@ -66,6 +66,18 @@ enum ControlMode { STEER_TO_POINTER, FLOATING_STICK }
 @export_range(10.0, 200.0, 5.0) var scatter_min_radius := 40.0
 @export_range(30.0, 250.0, 5.0) var scatter_radius := 110.0
 
+@export_group("Powerups")
+@export var powerups_enabled := true  ## master switch: false = no pickups spawn on the map
+@export_range(3.0, 30.0, 0.5) var powerup_first_delay := 8.0  ## seconds before the first pickup appears
+@export_range(5.0, 60.0, 1.0) var powerup_interval := 15.0  ## seconds between map spawns
+@export_range(3.0, 30.0, 0.5) var powerup_lifetime := 12.0  ## how long a pickup sits on the map
+@export_range(40.0, 400.0, 5.0) var magnet_radius := 160.0  ## magnet pull range (px)
+@export_range(50.0, 600.0, 10.0) var magnet_pull_speed := 280.0  ## px/s items slide toward the runner
+@export_range(3.0, 30.0, 0.5) var magnet_seconds := 8.0  ## magnet active duration
+@export_range(1.0, 3.0, 0.05) var sneakers_speed := 1.4  ## speed multiplier while sneakers are active (ignores weight)
+@export_range(3.0, 30.0, 0.5) var sneakers_seconds := 6.0  ## sneakers active duration
+@export_range(3.0, 60.0, 1.0) var shield_seconds := 20.0  ## shield active duration
+
 
 func points_for(tier: int) -> float:
 	match tier:

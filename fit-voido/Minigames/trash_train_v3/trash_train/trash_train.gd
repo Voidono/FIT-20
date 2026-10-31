@@ -58,6 +58,7 @@ var _result_panel: TrashResultPanel
 var _npcs: TrashNpcs
 var _popups: TrashPopups
 var _spawner: TrashSpawner
+var _powerups: TrashPowerups
 var _camera: Camera2D
 var _pickups: Node2D
 var _bins: Array[TrashBin] = []
@@ -120,6 +121,7 @@ func end_run() -> void:
 	r.items_banked = stats.items_banked
 	r.items_lost = stats.items_lost
 	r.unbanked_points = _tail.carried_points()
+	r.powerups_taken = stats.powerups_taken
 	r.duration = duration
 	r.time_used = duration - time_left
 	r.assist_applied = _assist_applied
@@ -280,6 +282,13 @@ func _build_world() -> bool:
 	_bins = level.get_bins()
 	_popups = TrashPopups.new()
 	_world.add_child(_popups)
+
+	_powerups = TrashPowerups.new()
+	_powerups.setup(tuning, _spawner, _player, _tail, _rng, _pickups)
+	_powerups.collected.connect(_on_powerup_collected)
+	_world.add_child(_powerups)
+	_player.powerups = _powerups
+
 	_pointer.follow_target = _player
 
 	# the walls only exist in the physics space after the first physics step
@@ -322,6 +331,8 @@ func _process(delta: float) -> void:
 	_tail.modulate.a = alpha
 
 	_hud.set_time(time_left)
+	if _powerups != null:
+		_hud.set_powerups(_powerups.hud_state())
 	_info_left -= delta
 	if _info_left <= 0.0:
 		_info_left = 0.1
@@ -387,6 +398,10 @@ func _bank_bin(b: TrashBin) -> void:
 # --- bumps -------------------------------------------------------------------------
 
 func _on_bumped(index: int) -> void:
+	if _powerups != null and _powerups.consume_shield():
+		_popups.add(TrashStrings.t(&"shield_block"), _player.global_position + Vector2(0.0, -34.0), Color("4ad0ff"), 30)
+		_last_event = "bump: absorbed by shield"
+		return
 	var dropped := _tail.cut_at(index)
 	if dropped.is_empty():
 		return
@@ -417,6 +432,13 @@ func _collect(p: TrashPickup) -> void:
 		_popups.add(TrashStrings.t(&"full"), _player.global_position + Vector2(0.0, -34.0), Color("ffd24a"), 24)
 
 
+func _on_powerup_collected(id: StringName) -> void:
+	stats.powerups_taken += 1
+	var col := TrashPowerups.color_of(id)
+	_popups.add(TrashStrings.t(id), _player.global_position + Vector2(0.0, -40.0), col, 28)
+	_last_event = "powerup: collected %s" % id
+
+
 # --- debug actions ---------------------------------------------------------------------
 
 func _on_action(action: StringName) -> void:
@@ -444,6 +466,15 @@ func _on_action(action: StringName) -> void:
 			end_run()
 		&"restart":
 			restart()
+		&"give_magnet":
+			if _powerups != null:
+				_powerups.activate(TrashPowerups.MAGNET)
+		&"give_sneakers":
+			if _powerups != null:
+				_powerups.activate(TrashPowerups.SNEAKERS)
+		&"give_shield":
+			if _powerups != null:
+				_powerups.activate(TrashPowerups.SHIELD)
 
 
 func _info_text() -> String:
@@ -455,9 +486,11 @@ func _info_text() -> String:
 	for b in _bins:
 		var st := _bin_stats(b)
 		bin_parts.append("%s %d = %.1f" % [b.name, st[0], st[2]])
-	return "FPS %d   control %s   %s %.1f / %.0f s\nspeed %d px/s (%d%%)   tail %d / %s\n%s\nscore %s   banks %d   best %s\nbumps %d   lost %d   invuln %.1f s\nNPC %d (%d frozen)   pickups %d   attempt %d, failed %d\nlast: %s" % [
+	var power_text := _powerups.active_text() if _powerups != null else "-"
+	return "FPS %d   control %s   %s %.1f / %.0f s\nspeed %d px/s (%d%%)   tail %d / %s\npowerups: %s (map: %s)\n%s\nscore %s   banks %d   best %s\nbumps %d   lost %d   invuln %.1f s\nNPC %d (%d frozen)   pickups %d   attempt %d, failed %d\nlast: %s" % [
 		Engine.get_frames_per_second(), mode, State.keys()[state], time_left, duration,
 		_player.speed_now, roundi(_tail.speed_multiplier() * 100.0), _tail.count(), cap,
+		power_text, _powerups.map_text() if _powerups != null else "-",
 		"   ".join(bin_parts),
 		TrashStrings.num(stats.score), stats.banks, TrashStrings.num(stats.best_bank),
 		stats.bumps, stats.items_lost, _npcs.invuln_left,

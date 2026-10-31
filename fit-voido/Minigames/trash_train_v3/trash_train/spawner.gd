@@ -170,7 +170,46 @@ func _pick_zone() -> TrashSpawnZone:
 	return eligible.back()
 
 
+## A legal spot for something that is not trash (a power-up). With powerup = true only zones that
+## allow power-ups are used. Returns Vector2.INF if nothing legal turns up.
+func find_spot(shape: Shape2D, powerup: bool = false) -> Vector2:
+	var any_area := false
+	var allowed: Array[TrashSpawnZone] = []
+	for z in zones:
+		if z.has_area():
+			any_area = true
+			if z.weight > 0.0 and (not powerup or z.allow_powerups):
+				allowed.append(z)
+	for attempt in 24:
+		var pos: Vector2
+		if any_area:
+			if allowed.is_empty():
+				return Vector2.INF
+			pos = _pick_weighted(allowed).sample(rng)
+		else:
+			pos = Vector2(rng.randf_range(bounds.position.x, bounds.end.x), rng.randf_range(bounds.position.y, bounds.end.y))
+		if _spot_valid(pos, shape):
+			return pos
+	return Vector2.INF
+
+
+func _pick_weighted(list: Array[TrashSpawnZone]) -> TrashSpawnZone:
+	var total := 0.0
+	for z in list:
+		total += z.weight
+	var r := rng.randf() * total
+	for z in list:
+		r -= z.weight
+		if r <= 0.0:
+			return z
+	return list.back()
+
+
 func _spawn_valid(pos: Vector2, def: TrashItemDef) -> bool:
+	return _spot_valid(pos, def.get_pickup_shape())
+
+
+func _spot_valid(pos: Vector2, shape: Shape2D) -> bool:
 	if not bounds.grow(-tuning.spawn_margin).has_point(pos):
 		return false
 	if pos.distance_to(player.global_position) < tuning.spawn_clear_radius:
@@ -178,7 +217,7 @@ func _spawn_valid(pos: Vector2, def: TrashItemDef) -> bool:
 	for p in _active:
 		if p.global_position.distance_to(pos) < tuning.spawn_min_separation:
 			return false
-	return _free_of_walls_and_bins(pos, def.get_pickup_shape())
+	return _free_of_walls_and_bins(pos, shape)
 
 
 func _free_of_walls_and_bins(pos: Vector2, shape: Shape2D) -> bool:

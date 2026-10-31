@@ -21,6 +21,10 @@ const TABLE := {
 		&"bin_general": "RÁC THƯỜNG",
 		&"full": "ĐẦY!",
 		&"bump": "Va chạm!",
+		&"magnet": "NAM CHÂM",
+		&"sneakers": "GIÀY NHANH",
+		&"shield": "KHIÊN",
+		&"shield_block": "Đã chặn!",
 	},
 	"en": {
 		&"score": "Score",
@@ -37,6 +41,10 @@ const TABLE := {
 		&"bin_general": "GENERAL",
 		&"full": "FULL!",
 		&"bump": "Bump!",
+		&"magnet": "MAGNET",
+		&"sneakers": "SNEAKERS",
+		&"shield": "SHIELD",
+		&"shield_block": "Blocked!",
 	},
 }
 

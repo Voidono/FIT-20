@@ -1,12 +1,11 @@
-# Minigame Entry: FIT Runner
-# Balloon: pixel_balloon.tscn
-
 ~ start
-HLV Runner: Chào bạn! Đây là đường chạy FIT Runner vòng quanh sân trường! [#mood=happy]
-HLV Runner: Thử thách đòi hỏi bạn phải điều khiển nhịp chạy và vượt qua các chướng ngại vật trên đường đua. Bạn đã sẵn sàng chưa?
-- Vào chạy ngay!
-	set SceneLoader.go_to("res://Minigames/fit_runner_starter/scenes/main.tscn")
-	=> END
-- Để lát nữa quay lại
-	HLV Runner: Được rồi, khi nào sẵn sàng rèn luyện thể lực thì quay lại gặp tôi nhé!
-	=> END
+Nathan: [[Hi|Hello|Howdy]], this is some dialogue.
+Nathan: Here are some choices.
+- First one
+	Nathan: You picked the first one.
+- Second one
+	Nathan: You picked the second one.
+- Start again => start
+- End the conversation => END
+Nathan: For more information see the online documentation.
+=> END

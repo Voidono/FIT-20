@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://d02bwmv5ubyb" path="res://assets/DrawAsset/NPC/Ngọc.png" id="4_m0bft"]
 [ext_resource type="Resource" uid="uid://xvm84vhu86di" path="res://Dialogues/tutorial_gate_quiz.dialogue" id="5_likh3"]
 [ext_resource type="PackedScene" uid="uid://dpfeyvxg4h2hd" path="res://Dialogues/Bubbles/tutorial_balloon.tscn" id="6_r4kgs"]
+[ext_resource type="Texture2D" uid="uid://byrg3r5eym0is" path="res://assets/DrawAsset/1792488572423.png" id="7_likh3"]
+[ext_resource type="Resource" uid="uid://c5r6xk1wbmhwj" path="res://Dialogues/minigame_battle.dialogue" id="8_r4kgs"]
 
 [node name="Gallery" type="Node2D" unique_id=1603826261]
 
@@ -20,20 +22,8 @@ position = Vector2(458, 307)
 npc_sprite = ExtResource("4_m0bft")
 dialogue = ExtResource("5_likh3")
 dialogue_balloon = ExtResource("6_r4kgs")
-mode = null
-speed = null
-arrive_distance = null
-wander_radius = null
-ping_pong = null
-patrol_points = null
-min_wait = null
-max_wait = null
-use_navigation = null
-avoid_other_npcs = null
-obstacle_mask = null
-pause_while_talking = null
-face_player_when_talking = null
-flip_sprite = null
-sprite_faces_right = null
-walk_bob_height = null
-walk_bob_time = null
+
+[node name="DialogueNPC2" parent="." unique_id=1052185399 instance=ExtResource("3_qg2c8")]
+position = Vector2(667, 316)
+npc_sprite = ExtResource("7_likh3")
+dialogue = ExtResource("8_r4kgs")

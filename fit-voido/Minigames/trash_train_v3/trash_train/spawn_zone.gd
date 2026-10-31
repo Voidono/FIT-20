@@ -7,6 +7,7 @@ extends Area2D
 @export_range(0.0, 20.0, 0.1) var weight := 1.0  ## relative share of spawns this zone gets
 @export var kinds: Array[TrashItemDef] = []  ## only these kinds spawn here (empty = whole catalog)
 @export_range(0, 200, 1) var max_alive := 0  ## cap on items from this zone on the ground (0 = no cap)
+@export var allow_powerups := true  ## power-up pickups may spawn inside this zone
 
 var alive := 0  # maintained by the spawner
 
