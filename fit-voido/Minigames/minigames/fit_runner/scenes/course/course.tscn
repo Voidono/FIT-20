@@ -42,16 +42,20 @@ track_fraction = 0.0
 label_key = "FR_SIGN_START"
 banner_color = Color(1, 1, 1, 1)
 
-[node name="HillSign" parent="Props" instance=ExtResource("5_sign_flag")]
+[node name="Checkpoint1" parent="Props" instance=ExtResource("5_sign_flag")]
 track_fraction = 0.25
-label_key = "FR_SIGN_HILL"
-banner_color = Color(1.0, 0.651, 0.2392, 1.0)
+label_key = "FR_SIGN_CP1"
+banner_color = Color(0.2, 0.8, 0.95, 1.0)
 
-[node name="WaterStation" parent="Props" instance=ExtResource("6_water_stat")]
-track_fraction = 0.62
-span_fraction = 0.05
-label_key = "FR_SIGN_WATER"
-banner_color = Color(0.2902, 0.6392, 0.8745, 1.0)
+[node name="Checkpoint2" parent="Props" instance=ExtResource("5_sign_flag")]
+track_fraction = 0.5
+label_key = "FR_SIGN_CP2"
+banner_color = Color(0.3, 0.9, 0.45, 1.0)
+
+[node name="Checkpoint3" parent="Props" instance=ExtResource("5_sign_flag")]
+track_fraction = 0.75
+label_key = "FR_SIGN_CP3"
+banner_color = Color(1.0, 0.75, 0.2, 1.0)
 
 [node name="SpurtGate" parent="Props" instance=ExtResource("5_sign_flag")]
 track_fraction = 0.85

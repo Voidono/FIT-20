@@ -6,8 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://d02bwmv5ubyb" path="res://assets/DrawAsset/NPC/Ngọc.png" id="4_m0bft"]
 [ext_resource type="Resource" uid="uid://xvm84vhu86di" path="res://Dialogues/tutorial_gate_quiz.dialogue" id="5_likh3"]
 [ext_resource type="PackedScene" uid="uid://dpfeyvxg4h2hd" path="res://Dialogues/Bubbles/tutorial_balloon.tscn" id="6_r4kgs"]
-[ext_resource type="Texture2D" uid="uid://byrg3r5eym0is" path="res://assets/DrawAsset/1792488572423.png" id="7_likh3"]
+[ext_resource type="Resource" uid="uid://dwo1fddl8hj33" path="res://Dialogues/npc_tuan.dialogue" id="8_a8qaj"]
 [ext_resource type="Resource" uid="uid://c5r6xk1wbmhwj" path="res://Dialogues/minigame_battle.dialogue" id="8_r4kgs"]
+[ext_resource type="Resource" uid="uid://dxw0xlwvypdv0" path="res://Dialogues/npc_tung.dialogue" id="9_56k78"]
 
 [node name="Gallery" type="Node2D" unique_id=1603826261]
 
@@ -25,5 +26,16 @@ dialogue_balloon = ExtResource("6_r4kgs")
 
 [node name="DialogueNPC2" parent="." unique_id=1052185399 instance=ExtResource("3_qg2c8")]
 position = Vector2(667, 316)
-npc_sprite = ExtResource("7_likh3")
+npc_skin = "NPC_1"
 dialogue = ExtResource("8_r4kgs")
+
+[node name="DialogueNPC3" parent="." unique_id=840655631 instance=ExtResource("3_qg2c8")]
+position = Vector2(843, 317)
+npc_skin = "NPC_2"
+dialogue = ExtResource("8_a8qaj")
+
+[node name="DialogueNPC4" parent="." unique_id=1839968450 instance=ExtResource("3_qg2c8")]
+position = Vector2(990, 318)
+npc_skin = "NPC_2"
+dialogue = ExtResource("9_56k78")
+npc_name = "Goaga"

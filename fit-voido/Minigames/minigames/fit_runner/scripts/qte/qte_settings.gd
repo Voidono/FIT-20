@@ -19,14 +19,17 @@ extends Resource
 @export_range(0.3, 4.0, 0.05) var duration: float = 1.1  ## seconds for the cursor to cross the bar (shorter = harder)
 @export_range(0.02, 0.5, 0.01) var perfect_width: float = 0.10  ## share of the bar (smaller = harder)
 @export_range(0.05, 0.8, 0.01) var good_width: float = 0.26
+@export_range(0.1, 1.0, 0.05) var qte_time_scale: float = 0.75  ## slowdown during QTE (0.55 in easy, 1.0 in hard)
 
 @export_group("Position of the sweet spot")
 @export_range(0.0, 1.0, 0.01) var target_center: float = 0.65  ## 0 = left end of the bar, 1 = right end
 @export_range(0.0, 0.5, 0.01) var target_jitter: float = 0.10  ## random shift per event, plus or minus
 
 @export_group("Reward")
-@export_range(0.0, 40.0, 0.5) var perfect_bonus: float = 5.0  ## stamina
-@export_range(0.0, 40.0, 0.5) var good_bonus: float = 2.5
+@export_range(0.0, 60.0, 0.5) var perfect_bonus: float = 35.0  ## stamina for top tier (Perfect)
+@export_range(0.0, 60.0, 0.5) var good_bonus: float = 20.0  ## stamina for mid tier (Good/Normal)
+@export_range(1.0, 2.0, 0.05) var boost_mult: float = 1.25  ## speed multiplier for top tier (Perfect)
+@export_range(0.5, 6.0, 0.1) var boost_duration: float = 2.5  ## boost duration in seconds
 @export_range(0.0, 20.0, 0.5) var miss_penalty: float = 0.0
 @export_range(0.0, 10.0, 0.5) var streak_step: float = 0.5  ## extra stamina per perfect in a row
 @export_range(0, 10, 1) var streak_cap: int = 4

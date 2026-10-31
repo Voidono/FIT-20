@@ -33,8 +33,8 @@ func begin(target_center: float, perfect_width: float, good_width: float) -> voi
 	_bar.modulate.a = 1.0
 
 
-## The event ended with a grade (FrQteController.Grade) and a stamina bonus.
-func show_result(grade: int, bonus: float) -> void:
+## The event ended with a grade (FrQteController.Grade), a stamina bonus, and optional speed boost.
+func show_result(grade: int, bonus: float, has_boost: bool = false) -> void:
 	var key: String = "FR_QTE_MISS"
 	var color: Color = color_miss
 	if grade == FrQteController.Grade.PERFECT:
@@ -43,7 +43,12 @@ func show_result(grade: int, bonus: float) -> void:
 	elif grade == FrQteController.Grade.GOOD:
 		key = "FR_QTE_GOOD"
 		color = color_good
-	_message.text = tr(key) + ("  +%d" % roundi(bonus) if bonus >= 0.5 else "")
+	var txt: String = tr(key)
+	if bonus >= 0.5:
+		txt += "  +%d" % roundi(bonus)
+	if has_boost:
+		txt += "  ⚡ BOOST!"
+	_message.text = txt
 	_message.add_theme_color_override("font_color", color)
 	_cursor.visible = false
 	_bar.modulate.a = 0.55

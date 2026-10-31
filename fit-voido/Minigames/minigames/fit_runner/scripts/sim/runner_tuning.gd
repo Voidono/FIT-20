@@ -39,7 +39,7 @@ enum InputMode { HOLD_RELEASE, TIERS }
 @export_group("Stamina")
 @export_range(20.0, 300.0, 1.0) var stamina_max: float = 100.0
 @export var anchor_paces: PackedFloat32Array = PackedFloat32Array([0.25, 0.60, 0.80, 0.95])  ## pace where each rate below applies; linear in between
-@export_range(0.0, 10.0, 0.1) var rate_recover: float = 3.0  ## yours: +3 per second
+@export_range(0.0, 10.0, 0.1) var rate_recover: float = 0.0  ## passive coasting recovery (set to 0: recovery now happens at checkpoints)
 @export_range(-5.0, 0.0, 0.05) var rate_cruise: float = -0.6  ## yours
 @export_range(-10.0, 0.0, 0.05) var rate_push: float = -2.5  ## yours
 @export_range(-16.0, 0.0, 0.1) var rate_sprint: float = -8.0  ## yours was -5; the sim needs about -8 for pacing to matter
@@ -49,13 +49,18 @@ enum InputMode { HOLD_RELEASE, TIERS }
 @export_range(0.5, 1.0, 0.01) var wall_assist_mult: float = 0.9  ## yours: drain x0.9 after two walls
 @export_range(0.5, 1.0, 0.01) var assist_mult: float = 0.9  ## extra assist after repeated failed attempts
 
-@export_group("Water station")
+@export_group("Checkpoints")
+@export var checkpoint_fractions: PackedFloat32Array = PackedFloat32Array([0.25, 0.50, 0.75])
+@export_range(1.0, 2.0, 0.05) var boost_speed_mult: float = 1.25  ## speed multiplier on good/perfect QTE
+@export_range(0.5, 6.0, 0.1) var boost_duration: float = 2.5  ## boost duration in seconds
+
+@export_group("Water station (Legacy/Disabled)")
 @export_range(0.0, 1.0, 0.005) var station_start: float = 0.62
 @export_range(0.0, 1.0, 0.005) var station_end: float = 0.67
-@export_range(0.0, 60.0, 1.0) var water_amount: float = 15.0  ## yours
+@export_range(0.0, 60.0, 1.0) var water_amount: float = 0.0  ## disabled in favor of checkpoints
 @export_range(0.3, 5.0, 0.1) var water_duration: float = 1.6
 @export_range(0.1, 1.0, 0.01) var water_speed_cap: float = 0.40
-@export_range(0.0, 1.0, 0.01) var water_release_delay: float = 0.12  ## let go this long inside the zone to take a cup
+@export_range(0.0, 1.0, 0.01) var water_release_delay: float = 0.12
 
 @export_group("Final spurt")
 @export_range(0.5, 1.0, 0.005) var spurt_start: float = 0.85  ## yours: last ~15%

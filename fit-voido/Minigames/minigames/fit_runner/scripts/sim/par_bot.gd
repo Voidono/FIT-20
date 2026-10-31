@@ -39,12 +39,10 @@ func _run(tuning: FrTuning) -> void:
 			target = _target_hold_release(model)
 		var held: bool = input.effort < target
 		var effort: float = input.update(DT, held, clampf(model.progress(), 0.0, 1.0))
-		if model.in_station() and not held:
-			release_timer += DT
-			if release_timer >= tuning.water_release_delay:
-				model.request_drink()
-		else:
-			release_timer = 0.0
+		var cp: int = model.poll_checkpoint()
+		if cp >= 0:
+			model.add_stamina(35.0)
+			model.apply_speed_boost(tuning.boost_speed_mult, tuning.boost_duration)
 		model.step(DT, effort)
 		positions.append(model.pos)
 	finish_time = model.finish_time if model.finished else MAX_TIME
@@ -54,8 +52,6 @@ func _run(tuning: FrTuning) -> void:
 func _target_hold_release(m: FrModel) -> float:
 	var t: FrTuning = _tuning
 	var p: float = m.progress()
-	if m.in_station() and m.stamina < t.bot_drink_below:
-		return RELEASE
 	if m.walled:
 		return RELEASE
 	if p >= t.spurt_start - t.bot_spurt_lead:
@@ -68,8 +64,6 @@ func _target_hold_release(m: FrModel) -> float:
 func _target_tiers(m: FrModel, input: FrEffortTiers) -> float:
 	var t: FrTuning = _tuning
 	var p: float = m.progress()
-	if m.in_station() and m.stamina < t.bot_drink_below:
-		return RELEASE
 	if m.walled:
 		return RELEASE
 	var top: int = t.tier_values.size() - 1

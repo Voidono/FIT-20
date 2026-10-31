@@ -22,6 +22,9 @@ var assist_level: int = 0
 var rate: float = 0.0  ## stamina change per second on the last step (+ recover, - drain)
 var slope_norm: float = 0.0  ## -1 (steep down) .. +1 (steep up)
 var ground_speed: float = 0.0
+var boost_timer: float = 0.0
+var boost_speed_mult: float = 1.0
+var checkpoints_triggered: Array[bool] = [false, false, false]
 
 
 func _init(p_tuning: FrTuning, p_course: FrCourseProfile = null) -> void:
@@ -45,12 +48,28 @@ func in_spurt() -> bool:
 
 ## Take the cup (once per station). Returns true if it started now.
 func request_drink() -> bool:
-	if station_used or drinking:
+	if station_used or drinking or tuning.water_amount <= 0.0:
 		return false
 	station_used = true
 	drinking = true
 	drink_left = tuning.water_duration
 	return true
+
+
+func apply_speed_boost(multiplier: float, duration: float) -> void:
+	boost_speed_mult = multiplier
+	boost_timer = duration
+
+
+## Check if the runner just reached an untriggered checkpoint. Returns the checkpoint index (0, 1, 2) or -1.
+func poll_checkpoint() -> int:
+	var prog: float = progress()
+	var cp: PackedFloat32Array = tuning.checkpoint_fractions
+	for i in range(mini(cp.size(), checkpoints_triggered.size())):
+		if (not checkpoints_triggered[i]) and prog >= cp[i]:
+			checkpoints_triggered[i] = true
+			return i
+	return -1
 
 
 ## Instant stamina change (the QTE bonus or penalty). Reaching the exit level frees the runner from the wall.
@@ -134,6 +153,16 @@ func step(dt: float, effort: float) -> void:
 		gm -= t.uphill_speed_penalty * sn
 	elif sn < 0.0:
 		gm += t.downhill_speed_bonus * (-sn)
+
+	# update active speed boost
+	if boost_timer > 0.0:
+		boost_timer = maxf(boost_timer - dt, 0.0)
+		gm *= boost_speed_mult
+		if boost_timer <= 0.0:
+			boost_speed_mult = 1.0
+	else:
+		boost_speed_mult = 1.0
+
 	ground_speed = pace * t.max_speed * gm
 	prev_pos = pos
 	pos += ground_speed * dt
@@ -160,4 +189,7 @@ func clone() -> FrModel:
 	c.finished = finished
 	c.finish_time = finish_time
 	c.assist_level = assist_level
+	c.boost_timer = boost_timer
+	c.boost_speed_mult = boost_speed_mult
+	c.checkpoints_triggered = checkpoints_triggered.duplicate()
 	return c

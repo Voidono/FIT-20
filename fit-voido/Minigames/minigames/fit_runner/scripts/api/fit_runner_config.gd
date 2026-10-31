@@ -9,6 +9,7 @@ extends Resource
 @export_range(0, 3, 1) var assist_level: int = 0  ## 0 = none; above 0 cuts stamina drain 10% (use after repeated fails)
 @export var debug_enabled: bool = false
 @export var push_action: StringName = &"fr_push"
+@export var qte_action: StringName = &"fr_qte"
 @export var require_landscape_window: bool = true
 @export var pause_keys_enabled: bool = true
 @export var autostart: bool = true

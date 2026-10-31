@@ -25,7 +25,8 @@ const EFFORT_AVG_TIME: float = 1.5
 @export_range(0.1, 0.6, 0.01) var camera_anchor_x: float = 0.33  ## runner stays near the left third of the screen
 @export_range(0.3, 0.9, 0.01) var camera_runner_y: float = 0.62  ## and 62% of the way down
 @export_range(0.0, 5.0, 0.5) var countdown_seconds: float = 3.0
-@export var push_action: StringName = &"fr_push"  ## the one InputMap action; Space + left mouse (so touch) are added if you have not defined it
+@export var push_action: StringName = &"fr_push"  ## speed control: hold to push / accelerate
+@export var qte_action: StringName = &"fr_qte"    ## QTE action tap: hit sweet spot at checkpoints
 @export var debug_enabled: bool = false  ## shows the DBG tuning overlay; leave off in the real game
 @export var require_landscape_window: bool = true  ## "rotate your phone" prompt when the window is portrait
 @export var pause_keys_enabled: bool = true  ## Esc and P pause (turn off if your game owns those keys)
@@ -92,6 +93,10 @@ func _ready() -> void:
 		_debug = null
 	_prev_camera = get_viewport().get_camera_2d()  # remembered so the host's camera comes back on exit
 	_camera.make_current()
+	if _hud != null:
+		_hud.speed_button_down.connect(_on_speed_button_down)
+		_hud.speed_button_up.connect(_on_speed_button_up)
+		_hud.qte_button_pressed.connect(_on_qte_button_pressed)
 	get_window().size_changed.connect(_on_window_resized)
 	_on_window_resized()
 	if autostart:
@@ -116,6 +121,8 @@ func configure(config: FitRunnerConfig) -> void:
 	assist_level = config.assist_level
 	debug_enabled = config.debug_enabled
 	push_action = config.push_action
+	if config.qte_action != &"":
+		qte_action = config.qte_action
 	require_landscape_window = config.require_landscape_window
 	pause_keys_enabled = config.pause_keys_enabled
 	autostart = config.autostart
@@ -174,18 +181,37 @@ func build_log_text() -> String:
 
 # ---------------------------------------------------------------- setup
 
-## One InputMap action for touch and mouse. A phone tap arrives as an emulated left click
-## (Project Settings > Input Devices > Pointing > Emulate Mouse From Touch, on by default).
+## Setup InputMap actions for Speed (fr_push / fr_speed) and QTE (fr_qte).
 func _ensure_input_action() -> void:
-	if InputMap.has_action(push_action):
-		return
-	InputMap.add_action(push_action)
-	var space := InputEventKey.new()
-	space.physical_keycode = KEY_SPACE
-	InputMap.action_add_event(push_action, space)
-	var click := InputEventMouseButton.new()
-	click.button_index = MOUSE_BUTTON_LEFT
-	InputMap.action_add_event(push_action, click)
+	if not InputMap.has_action(push_action):
+		InputMap.add_action(push_action)
+		var space := InputEventKey.new()
+		space.physical_keycode = KEY_SPACE
+		InputMap.action_add_event(push_action, space)
+		var key_w := InputEventKey.new()
+		key_w.physical_keycode = KEY_W
+		InputMap.action_add_event(push_action, key_w)
+		var key_up := InputEventKey.new()
+		key_up.physical_keycode = KEY_UP
+		InputMap.action_add_event(push_action, key_up)
+		var click := InputEventMouseButton.new()
+		click.button_index = MOUSE_BUTTON_LEFT
+		InputMap.action_add_event(push_action, click)
+
+	if not InputMap.has_action(qte_action):
+		InputMap.add_action(qte_action)
+		var enter := InputEventKey.new()
+		enter.physical_keycode = KEY_ENTER
+		InputMap.action_add_event(qte_action, enter)
+		var key_j := InputEventKey.new()
+		key_j.physical_keycode = KEY_J
+		InputMap.action_add_event(qte_action, key_j)
+		var key_k := InputEventKey.new()
+		key_k.physical_keycode = KEY_K
+		InputMap.action_add_event(qte_action, key_k)
+		var key_down := InputEventKey.new()
+		key_down.physical_keycode = KEY_DOWN
+		InputMap.action_add_event(qte_action, key_down)
 
 
 func _prepare() -> void:
@@ -244,7 +270,9 @@ func _begin_run() -> void:
 # ---------------------------------------------------------------- input
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed(push_action):
+	if event.is_action_pressed(qte_action):
+		_on_qte_button_pressed()
+	elif event.is_action_pressed(push_action):
 		if _is_over_ui(event):
 			_press_blocked = true  # a tap on a button or the debug panel is not "push"
 		else:
@@ -252,7 +280,6 @@ func _input(event: InputEvent) -> void:
 			_on_push_pressed()
 	elif event.is_action_released(push_action):
 		_push_held = false
-		_press_is_qte = false
 		_press_blocked = false
 	elif event is InputEventKey:
 		var key: InputEventKey = event
@@ -273,12 +300,25 @@ func _on_push_pressed() -> void:
 	if phase == FrRunState.Phase.READY:
 		_start_countdown()
 	elif phase == FrRunState.Phase.RUNNING:
-		if _qte.is_active():
-			_qte.on_tap(_acc)  # a tap during a QTE is judged, it is not pushing
-			_press_is_qte = true
-			_qte_press_time = 0.0
-		else:
-			_push_held = true
+		_push_held = true
+
+
+func _on_speed_button_down() -> void:
+	if phase == FrRunState.Phase.READY:
+		_start_countdown()
+	elif phase == FrRunState.Phase.RUNNING:
+		_push_held = true
+
+
+func _on_speed_button_up() -> void:
+	_push_held = false
+
+
+func _on_qte_button_pressed() -> void:
+	if phase == FrRunState.Phase.READY:
+		_start_countdown()
+	elif phase == FrRunState.Phase.RUNNING and _qte.is_active():
+		_qte.on_tap(_acc)
 
 
 func _notification(what: int) -> void:
@@ -305,9 +345,12 @@ func _on_quit_pressed() -> void:
 func _process(delta: float) -> void:
 	if model == null:
 		return  # autostart is off and the host has not called start() yet
-	var frame: float = minf(delta, MAX_FRAME)
+	var time_scale: float = 1.0
+	if _qte.is_active() and _qte.settings != null:
+		time_scale = _qte.settings.qte_time_scale
+	var frame: float = minf(delta * time_scale, MAX_FRAME)
 	if phase == FrRunState.Phase.COUNTDOWN:
-		_countdown_left -= frame
+		_countdown_left -= delta
 		if _countdown_left <= 0.0:
 			_begin_run()
 	elif phase == FrRunState.Phase.RUNNING:
@@ -321,24 +364,16 @@ func _process(delta: float) -> void:
 
 
 func _sim_tick() -> void:
-	if _press_is_qte:
-		_qte_press_time += DT
-		if _qte_press_time >= _qte.settings.tap_max_time:
-			_press_is_qte = false  # still pressed after a tap: the player wants to run
-			_push_held = true
 	var progress: float = clampf(model.progress(), 0.0, 1.0)
 	var effort: float = effort_input.update(DT, _push_held, progress)
 	_effort_avg += (effort - _effort_avg) * _avg_k
 
-	# water station: letting go inside the zone takes the cup
-	if model.in_station() and not _push_held:
-		_release_timer += DT
-		if _release_timer >= tuning.water_release_delay:
-			model.request_drink()
-	else:
-		_release_timer = 0.0
+	# Checkpoint QTE trigger
+	var cp_index: int = model.poll_checkpoint()
+	if cp_index >= 0:
+		_qte.trigger_checkpoint(cp_index)
 
-	_qte.tick(DT, _is_resting())
+	_qte.tick(DT)
 
 	var walls_before: int = model.walls_hit
 	model.step(DT, effort)
@@ -410,19 +445,10 @@ func _finish_run(reached_finish: bool) -> void:
 
 # ---------------------------------------------------------------- QTE
 
-## Resting = hands off, pace in the recover zone, not drinking, inside the course range the QTE allows.
-func _is_resting() -> bool:
-	var qs: FrQteSettings = _qte.settings
-	if qs == null:
-		return false
-	var p: float = model.progress()
-	var in_range: bool = p >= qs.track_from and p <= qs.track_to
-	var needs_stamina: bool = model.stamina < qs.only_below_stamina * tuning.stamina_max
-	return (not _push_held) and model.pace < qs.rest_pace_below and (not model.drinking) and in_range and needs_stamina and (qs.during_wall or not model.walled)
-
-
-func _on_qte_resolved(grade: int, bonus: float, _streak: int) -> void:
+func _on_qte_resolved(grade: int, bonus: float, _streak: int, boost_mult: float = 1.0, boost_dur: float = 0.0) -> void:
 	model.add_stamina(bonus)
+	if boost_mult > 1.0 and boost_dur > 0.0:
+		model.apply_speed_boost(boost_mult, boost_dur)
 	var names: Array[String] = ["MISS", "GOOD", "PERFECT"]
 	_qte_log.append("%.1f,%s,%.1f" % [model.elapsed, names[clampi(grade, 0, 2)], bonus])
 	if tuning.haptics and grade == FrQteController.Grade.PERFECT:

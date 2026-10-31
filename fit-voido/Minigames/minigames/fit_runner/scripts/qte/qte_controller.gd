@@ -5,7 +5,7 @@ extends Node
 ## FitRunner applies the stamina, the Hud draws the bar. Settings come from a FrQteSettings resource.
 
 signal started(target_center: float, perfect_width: float, good_width: float)
-signal resolved(grade: int, bonus: float, streak: int)
+signal resolved(grade: int, bonus: float, streak: int, boost_mult: float, boost_duration: float)
 signal cancelled
 
 enum Grade { MISS, GOOD, PERFECT }
@@ -79,8 +79,16 @@ func apply_preset(index: int) -> void:
 		settings = chosen
 
 
-## Call once per simulation tick. resting: the runner is recovering and the player is not pushing.
-func tick(dt: float, resting: bool) -> void:
+func trigger_checkpoint(_checkpoint_index: int = 0) -> void:
+	if not is_enabled():
+		return
+	if phase == Phase.ACTIVE:
+		_resolve(Grade.MISS)
+	_start()
+
+
+## Call once per simulation tick.
+func tick(dt: float) -> void:
 	if not is_enabled():
 		if phase != Phase.IDLE:
 			_cancel()
@@ -88,21 +96,12 @@ func tick(dt: float, resting: bool) -> void:
 	_cooldown = maxf(_cooldown - dt, 0.0)
 	match phase:
 		Phase.IDLE:
-			if resting:
-				_rest_time += dt
-				if _rest_time >= settings.rest_time_before_event and _cooldown <= 0.0:
-					_start()
-			else:
-				_rest_time = 0.0
+			pass
 		Phase.ACTIVE:
-			if not resting:
-				_cancel()  # the player went back to running: no penalty
-				return
 			elapsed += dt
 			if elapsed >= settings.duration:
 				_resolve(Grade.MISS)
 		Phase.FEEDBACK:
-			_rest_time = _rest_time + dt if resting else 0.0
 			_feedback_left -= dt
 			if _feedback_left <= 0.0:
 				phase = Phase.IDLE
@@ -139,20 +138,28 @@ func _cancel() -> void:
 
 func _resolve(grade: int) -> void:
 	var bonus: float = 0.0
+	var b_mult: float = 1.0
+	var b_dur: float = 0.0
 	match grade:
 		Grade.PERFECT:
 			bonus = settings.perfect_bonus + settings.streak_step * float(mini(streak, settings.streak_cap))
+			b_mult = settings.boost_mult
+			b_dur = settings.boost_duration
 			streak += 1
 			perfect_count += 1
 		Grade.GOOD:
 			bonus = settings.good_bonus
+			b_mult = 1.0
+			b_dur = 0.0
 			streak = 0
 			good_count += 1
 		_:
 			bonus = -settings.miss_penalty
+			b_mult = 1.0
+			b_dur = 0.0
 			streak = 0
 			miss_count += 1
 	phase = Phase.FEEDBACK
 	_feedback_left = settings.feedback_time
 	_cooldown = settings.cooldown
-	resolved.emit(grade, bonus, streak)
+	resolved.emit(grade, bonus, streak, b_mult, b_dur)

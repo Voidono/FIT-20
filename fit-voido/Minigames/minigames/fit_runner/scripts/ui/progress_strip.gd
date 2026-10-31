@@ -17,11 +17,35 @@ var _course: FrCourseProfile
 func configure(tuning: FrTuning, course: FrCourseProfile) -> void:
 	_tuning = tuning
 	_course = course
-	_water.anchor_left = tuning.station_start
-	_water.anchor_right = tuning.station_end
+	if _water != null:
+		_water.visible = false
 	_spurt.anchor_left = tuning.spurt_start
 	_spurt.anchor_right = 1.0
 	_rebuild_profile()
+	_setup_checkpoint_markers()
+
+
+func _setup_checkpoint_markers() -> void:
+	for child in _bar.get_children():
+		if child.name.begins_with("CpMarker_"):
+			child.queue_free()
+	var cp: PackedFloat32Array = _tuning.checkpoint_fractions
+	for i in range(cp.size()):
+		var f: float = cp[i]
+		var marker := ColorRect.new()
+		marker.name = "CpMarker_%d" % i
+		marker.color = Color(0.2, 0.95, 1.0, 0.85)
+		marker.custom_minimum_size = Vector2(2, 8)
+		marker.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		marker.anchor_left = f
+		marker.anchor_right = f
+		marker.anchor_top = 0.0
+		marker.anchor_bottom = 1.0
+		marker.offset_left = -1
+		marker.offset_right = 1
+		marker.offset_top = -2
+		marker.offset_bottom = 2
+		_bar.add_child(marker)
 
 
 func apply(player_progress: float, ghost_progress: float) -> void:

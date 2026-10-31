@@ -4,13 +4,16 @@
 
 [resource]
 script = ExtResource("1_qte")
-duration = 1.5
-perfect_width = 0.16
-good_width = 0.36
+duration = 1.4
+perfect_width = 0.18
+good_width = 0.38
 target_center = 0.6
 target_jitter = 0.06
-perfect_bonus = 4.0
-good_bonus = 2.0
+perfect_bonus = 40.0
+good_bonus = 25.0
+boost_mult = 1.30
+boost_duration = 3.0
+qte_time_scale = 0.55
 streak_step = 0.5
 rest_time_before_event = 1.8
 cooldown = 0.8

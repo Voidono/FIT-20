@@ -44,6 +44,46 @@ static var is_any_talking: bool = false
 @export var freeze_player: bool = true
 @export var prompt_text: String = "Talk"
 
+@export_group("Name Tag")
+## The name shown above the NPC when the player walks close. Leave empty to hide the tag entirely.
+@export var npc_name: String = "":
+	set(value):
+		npc_name = value
+		_apply_name_tag()
+## Whether to show the name tag at all (useful for NPCs that should stay anonymous).
+@export var show_name_tag: bool = true
+## Background colour of the name tag panel.
+@export var name_tag_bg_color: Color = Color(0.18, 0.071, 0.141, 0.85):
+	set(value):
+		name_tag_bg_color = value
+		_apply_name_tag()
+## Border colour of the name tag panel.
+@export var name_tag_border_color: Color = Color(0.969, 0.463, 0.133, 1):
+	set(value):
+		name_tag_border_color = value
+		_apply_name_tag()
+## Text colour of the name label.
+@export var name_tag_font_color: Color = Color(1, 0.914, 0.722, 1):
+	set(value):
+		name_tag_font_color = value
+		_apply_name_tag()
+## Vertical pixel offset of the tag above the NPC's default anchor position.
+@export_range(-100, 100, 1, "suffix:px") var name_tag_offset_y: int = 0:
+	set(value):
+		name_tag_offset_y = value
+		_apply_name_tag()
+
+@export_group("Collision")
+## Size of the physical body capsule that blocks the player (width × height in px).
+@export var body_capsule_radius: float = 10.0:
+	set(value):
+		body_capsule_radius = value
+		_apply_body_shape()
+@export var body_capsule_height: float = 20.0:
+	set(value):
+		body_capsule_height = value
+		_apply_body_shape()
+
 @export_group("Minigame / Scene Transition")
 ## If set, this NPC can change scene to this target.
 @export_file("*.tscn") var target_scene_path: String = ""
@@ -135,6 +175,9 @@ var _nav_agent: NavigationAgent2D
 @onready var prompt_box: Control = %PromptBox
 @onready var key_label: Label = %KeyLabel
 @onready var action_label: Label = %ActionLabel
+@onready var name_tag_anchor: Node2D = %NameTagAnchor
+@onready var name_panel: PanelContainer = %NamePanel
+@onready var name_label: Label = %NameLabel
 
 ## Maps facing direction to animation name suffix.
 const _DIR_ANIM := {
@@ -154,6 +197,8 @@ var _current_anim_dir: String = ""
 
 func _ready() -> void:
 	_apply_sprite()
+	_apply_name_tag()
+	_apply_body_shape()
 	if Engine.is_editor_hint():
 		return
 	set_process(false)
@@ -230,6 +275,8 @@ func talk() -> void:
 		_set_movement_paused(true)
 	if face_player_when_talking and is_instance_valid(_player):
 		_face((_player as Node2D).global_position - global_position)
+	# Ensure the NPC enters their idle stance in whatever direction they are facing
+	_play_anim(Vector2.ZERO)
 	interaction_started.emit()
 	var start_cue := repeat_cue if _has_talked and not repeat_cue.is_empty() else cue
 	DialogueManager.show_dialogue_balloon_scene(dialogue_balloon, dialogue, start_cue)
@@ -260,6 +307,56 @@ func _apply_sprite() -> void:
 	if is_instance_valid(sprite):
 		sprite.visible = npc_skin == "" or Engine.is_editor_hint()
 		sprite.texture = npc_sprite
+
+
+## Applies name tag text and colours; works both in-editor and at runtime.
+func _apply_name_tag() -> void:
+	var anchor: Node2D = null
+	var panel: PanelContainer = null
+	var label: Label = null
+	if has_node("%NameTagAnchor"):
+		anchor = %NameTagAnchor
+	if has_node("%NamePanel"):
+		panel = %NamePanel
+	if has_node("%NameLabel"):
+		label = %NameLabel
+	if not is_instance_valid(anchor):
+		return
+
+	# Position offset (base -52 + export tweak)
+	anchor.position.y = -52 + name_tag_offset_y
+
+	# Update label text
+	if is_instance_valid(label):
+		label.text = npc_name
+		label.add_theme_color_override("font_color", name_tag_font_color)
+
+	# Update panel style colours
+	if is_instance_valid(panel):
+		var style := panel.get_theme_stylebox("panel").duplicate() as StyleBoxFlat
+		if style:
+			style.bg_color = name_tag_bg_color
+			style.border_color = name_tag_border_color
+			panel.add_theme_stylebox_override("panel", style)
+
+	# In editor: always show when npc_name is set so you can preview it
+	if Engine.is_editor_hint():
+		anchor.visible = show_name_tag and npc_name != ""
+
+
+## Applies the exported capsule size to the StaticBody child shape.
+func _apply_body_shape() -> void:
+	if not has_node("Body/BodyShape"):
+		return
+	var shape_node := get_node("Body/BodyShape") as CollisionShape2D
+	if not is_instance_valid(shape_node):
+		return
+	var cap := shape_node.shape as CapsuleShape2D
+	if cap == null:
+		cap = CapsuleShape2D.new()
+		shape_node.shape = cap
+	cap.radius = body_capsule_radius
+	cap.height = body_capsule_height
 
 
 ## Builds SpriteFrames from individual PNGs and attaches them to AnimSprite.
@@ -293,6 +390,18 @@ func _setup_animation() -> void:
 			frames.add_frame(anim_name, tex)
 		loaded_any = true
 
+		# Idle animation for this direction (single frame).
+		var idle_path := "%s%s_%s_Idle.png" % [_NPC_ASSET_DIR, npc_skin, dir]
+		var idle_anim := "idle_%s" % dir
+		frames.add_animation(idle_anim)
+		frames.set_animation_speed(idle_anim, 1.0)
+		frames.set_animation_loop(idle_anim, false)
+		if ResourceLoader.exists(idle_path):
+			frames.add_frame(idle_anim, load(idle_path) as Texture2D)
+		else:
+			# Fallback: reuse first walk frame when no idle sprite exists.
+			frames.add_frame(idle_anim, textures[0])
+
 	if not loaded_any:
 		push_warning("DialogueNPC '%s': no frames found for skin '%s' in %s" % [name, npc_skin, _NPC_ASSET_DIR])
 		anim_sprite.visible = false
@@ -304,9 +413,9 @@ func _setup_animation() -> void:
 	anim_sprite.visible = true
 	sprite.visible = false
 	_has_anim = true
-	# Start idle (first frame of walk_down, stopped)
-	anim_sprite.animation = "walk_down"
-	anim_sprite.stop()
+	# Start in idle facing down.
+	anim_sprite.play("idle_down")
+	_current_anim_dir = ""
 
 
 ## Plays the walk animation for the given facing direction,
@@ -315,7 +424,10 @@ func _play_anim(direction: Vector2) -> void:
 	if not _has_anim or not is_instance_valid(anim_sprite):
 		return
 	if direction == Vector2.ZERO:
-		anim_sprite.stop()
+		# Idle: play the directional idle animation (derived from last facing).
+		var idle_name := "idle_%s" % _DIR_ANIM.get(_facing, "down")
+		anim_sprite.play(idle_name)
+		_current_anim_dir = ""  # reset so next walk always triggers a fresh play
 		return
 	var anim_name := "walk_%s" % _DIR_ANIM.get(direction, "down")
 	if anim_name != _current_anim_dir:
@@ -348,6 +460,9 @@ func _update_prompt() -> void:
 	var should_show := _in_range and not _is_talking
 	prompt.visible = should_show
 	prompt.position.y = _prompt_rest_y
+	# Show name tag whenever the player is in range (even during dialogue).
+	if is_instance_valid(name_tag_anchor):
+		name_tag_anchor.visible = show_name_tag and npc_name != "" and _in_range
 	if not should_show:
 		return
 	_hop_tween = create_tween().set_loops()

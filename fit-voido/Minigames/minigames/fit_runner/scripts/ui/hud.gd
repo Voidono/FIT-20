@@ -8,6 +8,9 @@ signal pause_pressed
 signal resume_pressed
 signal retry_pressed
 signal quit_pressed
+signal speed_button_down
+signal speed_button_up
+signal qte_button_pressed
 
 @onready var _time_label: Label = FrLookup.node(self, "TimeLabel") as Label
 @onready var _zone_icon: TextureRect = FrLookup.node(self, "ZoneIcon") as TextureRect
@@ -26,6 +29,8 @@ signal quit_pressed
 @onready var _rotate_overlay: Control = FrLookup.node(self, "RotateOverlay") as Control
 @onready var _zones: Node = FrLookup.node(self, "Zones") as Node
 @onready var _qte_prompt: FrQtePrompt = FrLookup.node(self, "QtePrompt") as FrQtePrompt
+@onready var _speed_button: Button = FrLookup.node(self, "SpeedButton") as Button
+@onready var _qte_button: Button = FrLookup.node(self, "QteButton") as Button
 
 var _blink: float = 0.0
 var _last_zone: int = -1
@@ -44,11 +49,16 @@ func configure(tuning: FrTuning, profile: FrCourseProfile) -> void:
 func set_phase(phase: int, result: FitRunnerResult) -> void:
 	var is_ready: bool = phase == FrRunState.Phase.READY
 	var counting: bool = phase == FrRunState.Phase.COUNTDOWN
-	_pause_button.visible = counting or phase == FrRunState.Phase.RUNNING
+	var running: bool = phase == FrRunState.Phase.RUNNING
+	_pause_button.visible = counting or running
 	_pause_menu.visible = phase == FrRunState.Phase.PAUSED
 	_result_panel.visible = phase == FrRunState.Phase.FINISHED
 	_ready_overlay.visible = is_ready
 	_countdown.visible = counting
+	if _speed_button != null:
+		_speed_button.visible = counting or running
+	if _qte_button != null:
+		_qte_button.visible = running
 	if phase == FrRunState.Phase.FINISHED and result != null:
 		_result_panel.show_result(result)
 
@@ -59,7 +69,12 @@ func set_portrait(is_portrait: bool) -> void:
 
 ## True when a point is on something clickable, so the runner does not treat that tap as "push".
 func is_point_over_ui(pos: Vector2) -> bool:
-	for c: Control in [_pause_button, _pause_menu, _result_panel]:
+	var ui_elements: Array[Control] = [_pause_button, _pause_menu, _result_panel]
+	if _speed_button != null:
+		ui_elements.append(_speed_button)
+	if _qte_button != null:
+		ui_elements.append(_qte_button)
+	for c: Control in ui_elements:
 		if c.is_visible_in_tree() and c.get_global_rect().has_point(pos):
 			return true
 	return false
@@ -96,6 +111,12 @@ func refresh(delta: float, s: FrHudState) -> void:
 	_effort_gauge.apply(s.effort, m.pace, t.band_lo, band_hi, t.input_mode == FrTuning.InputMode.TIERS, t.tier_values)
 	_progress.apply(m.progress(), s.ghost_progress)
 	_qte_prompt.apply(s.qte_phase, s.qte_cursor, s.runner_screen_pos)
+
+	if running and _qte_button != null:
+		if s.qte_phase == 1:  # ACTIVE
+			_qte_button.modulate = Color(1.0, 0.95, 0.2, 1.0) if fmod(_blink, 0.3) < 0.15 else Color.WHITE
+		else:
+			_qte_button.modulate = Color(0.85, 0.85, 0.9, 0.8)
 
 	if running and m.progress() < 0.97:
 		if s.outlook != _last_outlook:
@@ -138,8 +159,8 @@ func on_qte_started(target_center: float, perfect_width: float, good_width: floa
 	_qte_prompt.begin(target_center, perfect_width, good_width)
 
 
-func on_qte_resolved(grade: int, bonus: float, _streak: int) -> void:
-	_qte_prompt.show_result(grade, bonus)
+func on_qte_resolved(grade: int, bonus: float, _streak: int, boost_mult: float = 1.0, _boost_dur: float = 0.0) -> void:
+	_qte_prompt.show_result(grade, bonus, boost_mult > 1.0)
 
 
 func on_qte_cancelled() -> void:
@@ -148,6 +169,18 @@ func on_qte_cancelled() -> void:
 
 func _style(zone: int) -> FrZoneStyle:
 	return _zones.get_child(clampi(zone, 0, _zones.get_child_count() - 1)) as FrZoneStyle
+
+
+func _on_speed_button_down() -> void:
+	speed_button_down.emit()
+
+
+func _on_speed_button_up() -> void:
+	speed_button_up.emit()
+
+
+func _on_qte_button_pressed() -> void:
+	qte_button_pressed.emit()
 
 
 func _on_pause_button_pressed() -> void:
