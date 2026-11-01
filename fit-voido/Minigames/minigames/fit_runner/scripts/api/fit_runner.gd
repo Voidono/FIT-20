@@ -55,6 +55,7 @@ var _hud_state := FrHudState.new()
 var _acc: float = 0.0
 var _alpha: float = 1.0
 var _push_held: bool = false
+var _speed_button_held: bool = false
 var _press_blocked: bool = false
 var _release_timer: float = 0.0
 var _countdown_left: float = 0.0
@@ -230,6 +231,7 @@ func _prepare() -> void:
 	_acc = 0.0
 	_alpha = 1.0
 	_push_held = false
+	_speed_button_held = false
 	_press_blocked = false
 	_release_timer = 0.0
 	_effort_avg = effort_input.effort
@@ -304,14 +306,13 @@ func _on_push_pressed() -> void:
 
 
 func _on_speed_button_down() -> void:
+	_speed_button_held = true
 	if phase == FrRunState.Phase.READY:
 		_start_countdown()
-	elif phase == FrRunState.Phase.RUNNING:
-		_push_held = true
 
 
 func _on_speed_button_up() -> void:
-	_push_held = false
+	_speed_button_held = false
 
 
 func _on_qte_button_pressed() -> void:
@@ -324,6 +325,7 @@ func _on_qte_button_pressed() -> void:
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_APPLICATION_FOCUS_OUT or what == NOTIFICATION_WM_WINDOW_FOCUS_OUT or what == NOTIFICATION_APPLICATION_PAUSED:
 		_push_held = false
+		_speed_button_held = false
 		if phase == FrRunState.Phase.RUNNING or phase == FrRunState.Phase.COUNTDOWN:
 			toggle_pause()
 
@@ -365,7 +367,8 @@ func _process(delta: float) -> void:
 
 func _sim_tick() -> void:
 	var progress: float = clampf(model.progress(), 0.0, 1.0)
-	var effort: float = effort_input.update(DT, _push_held, progress)
+	var is_held: bool = _push_held or _speed_button_held
+	var effort: float = effort_input.update(DT, is_held, progress)
 	_effort_avg += (effort - _effort_avg) * _avg_k
 
 	# Checkpoint QTE trigger
@@ -387,7 +390,7 @@ func _sim_tick() -> void:
 	_log_timer -= DT
 	if _log_timer <= 0.0:
 		_log_timer = LOG_INTERVAL
-		_log_rows.append(PackedFloat32Array([model.elapsed, model.progress(), effort, model.pace, model.stamina, model.rate, 1.0 if model.walled else 0.0, 1.0 if _push_held else 0.0]))
+		_log_rows.append(PackedFloat32Array([model.elapsed, model.progress(), effort, model.pace, model.stamina, model.rate, 1.0 if model.walled else 0.0, 1.0 if is_held else 0.0]))
 
 	if model.finished and model.finish_time <= cutoff_time:
 		_finish_run(true)

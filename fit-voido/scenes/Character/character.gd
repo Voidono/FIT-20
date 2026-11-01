@@ -1,10 +1,16 @@
 extends CharacterBody2D
 ## Top-down player controller for Godot 4.
-## Move with WASD, a gamepad's left stick, or the D-pad.
+## Move with WASD, a gamepad's left stick, or the D-pad (PC/keyboard).
+## On mobile a VirtualJoystick + Interact button are spawned automatically.
 ##
 ## Scene setup: put this script on a CharacterBody2D that has an AnimatedSprite2D
 ## child (named "AnimatedSprite2D") with four animations:
 ##   walk_down, walk_up, walk_left, walk_right
+##
+## Device detection:
+##   The script checks DeviceInput.is_mobile() at runtime.
+##   Mobile  -> PlayerMobileControls scene (joystick + interact button) is shown.
+##   Desktop -> WASD / arrow keys + E key hint label is shown.
 
 @export var speed: float = 200.0
 ## Frame of the walk animation to show while standing still.
@@ -12,11 +18,20 @@ extends CharacterBody2D
 ## Shared action used to speak with the closest DialogueNPC. Defaults to E.
 @export var interact_action: StringName = &"interact"
 
+## Optional: path to the PlayerMobileControls scene.
+## Leave empty to use the default location.
+@export var mobile_controls_scene: PackedScene
+
 @onready var _sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 var _facing := "Down"
 var can_move := true
 var _nearby_dialogue_npcs: Array[DialogueNPC] = []
+
+## Injected reference to the mobile controls node (if spawned).
+var _mobile_controls: PlayerMobileControls = null
+## Keyboard hint label shown on desktop.
+var _keyboard_hint: Label = null
 
 
 func _ready() -> void:
@@ -24,6 +39,55 @@ func _ready() -> void:
 	motion_mode = MOTION_MODE_FLOATING  # top-down: no floor, ceiling or gravity logic
 	_ensure_input_actions()
 	_update_animation(false)
+	_setup_device_ui()
+
+
+func _setup_device_ui() -> void:
+	if DeviceInput.is_mobile():
+		_spawn_mobile_controls()
+	else:
+		_spawn_keyboard_hint()
+
+
+func _spawn_mobile_controls() -> void:
+	var scene: PackedScene = mobile_controls_scene
+	if scene == null:
+		scene = load("res://scenes/Character/player_mobile_controls.tscn")
+	if scene == null:
+		push_warning("PlayerCharacter: player_mobile_controls.tscn not found.")
+		return
+	_mobile_controls = scene.instantiate() as PlayerMobileControls
+	# Add under Camera2D so it stays in screen-space (CanvasLayer handles its own transform anyway)
+	add_child(_mobile_controls)
+
+
+func _spawn_keyboard_hint() -> void:
+	## Small semi-transparent label at the bottom of the screen reminding the
+	## player which keys to use. Parented to the Camera2D child if one exists,
+	## otherwise to the character itself (CanvasLayer would be cleaner but we keep
+	## it self-contained here).
+	var camera: Camera2D = null
+	for child in get_children():
+		if child is Camera2D:
+			camera = child
+			break
+
+	_keyboard_hint = Label.new()
+	_keyboard_hint.text = "WASD / Arrow keys: Move   |   E: Interact"
+	_keyboard_hint.add_theme_font_size_override("font_size", 13)
+	_keyboard_hint.add_theme_color_override("font_color", Color(1, 1, 1, 0.75))
+	_keyboard_hint.add_theme_color_override("font_outline_color", Color(0, 0, 0, 0.85))
+	_keyboard_hint.add_theme_constant_override("outline_size", 6)
+	_keyboard_hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_keyboard_hint.mouse_filter = Control.MOUSE_FILTER_IGNORE
+
+	if camera != null:
+		# Position inside the camera's local coordinate space near the bottom.
+		_keyboard_hint.position = Vector2(-300, 190)
+		_keyboard_hint.size = Vector2(600, 24)
+		camera.add_child(_keyboard_hint)
+	else:
+		add_child(_keyboard_hint)
 
 
 func _physics_process(_delta: float) -> void:

@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://oe3nyk0pk2b7"
+path="res://.godot/imported/Tliet.dialogue-b33622f94db37bd025551f61636ef13f.tres"
+
+[deps]
+
+source_file="res://Dialogues/Tliet.dialogue"
+dest_files=["res://.godot/imported/Tliet.dialogue-b33622f94db37bd025551f61636ef13f.tres"]
+
+[params]
+
+defaults=true

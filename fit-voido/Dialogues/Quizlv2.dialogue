@@ -1,0 +1,153 @@
+~ start
+if GameState.npc_stage("npc_quiz_417c") == "new"
+	=> first_meeting
+else
+	=> idle
+
+~ first_meeting
+Giảng viên: Chào em. Thầy có một bài kiểm tra nhỏ dành cho em.
+Giảng viên: Hãy trả lời các câu hỏi để chứng minh kiến thức của mình nhé.
+$> GameState.mark_met("npc_quiz_417c")
+=> quiz_menu
+
+~ idle
+=> quiz_menu
+
+~ quiz_menu
+if GameState.has_completed_quiz("quiz_screen_2")
+	=> all_done
+else
+	Giảng viên: Em đã sẵn sàng tham gia bài kiểm tra chưa?
+	- Em sẵn sàng ạ => quiz_screen_2_intro
+	- Để lúc khác ạ => END
+
+~ quiz_screen_2_intro
+Giảng viên: Bài kiểm tra gồm 5 câu hỏi. Chúc em hoàn thành tốt.
+- Em bắt đầu ạ
+	$> GameState.quiz_begin("quiz_screen_2", 5)
+	=> quiz_screen_2_q1
+- Để em chuẩn bị thêm đã ạ => END
+
+~ quiz_screen_2_q1
+Giảng viên: Câu 1. Bạn đang đi dạo ở sân trường và bắt gặp một sinh viên khoa FIT đang làm nhiệm vụ hệ thống kiếm điểm Exp. Sinh viên đó đang học môn nào?
+- Machine Learning Applications (MLA)
+	$> GameState.quiz_mark(false)
+	Giảng viên: Chưa chính xác.
+	=> quiz_screen_2_q2
+- Web Programming (WPR)
+	$> GameState.quiz_mark(false)
+	Giảng viên: Chưa chính xác.
+	=> quiz_screen_2_q2
+- Principle of Operating Systems (POP)
+	$> GameState.quiz_mark(false)
+	Giảng viên: Chưa chính xác.
+	=> quiz_screen_2_q2
+- System Analysis and Design (SAD)
+	$> GameState.quiz_mark(true)
+	Giảng viên: Chính xác.
+	=> quiz_screen_2_q2
+
+~ quiz_screen_2_q2
+Giảng viên: Câu 2. Vừa bước chân lên chuyên ngành, môn học nào khiến phần lớn sinh viên FIT bắt đầu hoài nghi về lựa chọn ngành học của mình?
+- PrOne
+	$> GameState.quiz_mark(true)
+	Giảng viên: Chính xác.
+	=> quiz_screen_2_q3
+- PCO
+	$> GameState.quiz_mark(false)
+	Giảng viên: Chưa chính xác.
+	=> quiz_screen_2_q3
+- CAL
+	$> GameState.quiz_mark(false)
+	Giảng viên: Chưa chính xác.
+	=> quiz_screen_2_q3
+- DMA
+	$> GameState.quiz_mark(false)
+	Giảng viên: Chưa chính xác.
+	=> quiz_screen_2_q3
+
+~ quiz_screen_2_q3
+Giảng viên: Câu 3. Khoa Công nghệ Thông tin (FIT) – Trường Đại học Hà Nội được thành lập vào năm nào?
+- 2004
+	$> GameState.quiz_mark(false)
+	Giảng viên: Chưa chính xác.
+	=> quiz_screen_2_q4
+- 2006
+	$> GameState.quiz_mark(true)
+	Giảng viên: Chính xác.
+	=> quiz_screen_2_q4
+- 2008
+	$> GameState.quiz_mark(false)
+	Giảng viên: Chưa chính xác.
+	=> quiz_screen_2_q4
+- 2010
+	$> GameState.quiz_mark(false)
+	Giảng viên: Chưa chính xác.
+	=> quiz_screen_2_q4
+
+~ quiz_screen_2_q4
+Giảng viên: Câu 4: Bạn có biết chương trình chào tân sinh viên hằng năm của Khoa FIT có tên là gì không?
+- Hello World
+	$> GameState.quiz_mark(true)
+	Giảng viên: Chính xác.
+	=> quiz_screen_2_q5
+- hello World
+	$> GameState.quiz_mark(false)
+	Giảng viên: Chưa chính xác.
+	=> quiz_screen_2_q5
+- Hello world
+	$> GameState.quiz_mark(false)
+	Giảng viên: Chưa chính xác.
+	=> quiz_screen_2_q5
+- hello word
+	$> GameState.quiz_mark(false)
+	Giảng viên: Chưa chính xác.
+	=> quiz_screen_2_q5
+
+~ quiz_screen_2_q5
+Giảng viên: Câu 5: FIT là viết tắt của cụm từ nào?
+- Faculty of Information Technology
+	$> GameState.quiz_mark(true)
+	Giảng viên: Chính xác.
+	=> quiz_screen_2_result
+- Foundation of Information Technology
+	$> GameState.quiz_mark(false)
+	Giảng viên: Chưa chính xác.
+	=> quiz_screen_2_result
+- Forum of Information Technology
+	$> GameState.quiz_mark(false)
+	Giảng viên: Chưa chính xác.
+	=> quiz_screen_2_result
+- Faculty of Internet Technology
+	$> GameState.quiz_mark(false)
+	Giảng viên: Chưa chính xác.
+	=> quiz_screen_2_result
+
+~ quiz_screen_2_result
+$> GameState.quiz_finish()
+Giảng viên: Em trả lời đúng {{GameState.quiz_session_score}}/{{GameState.quiz_session_total}} câu.
+if GameState.quiz_session_score >= GameState.quiz_session_total
+	=> quiz_screen_2_high
+elif GameState.quiz_session_score * 100 >= GameState.quiz_session_total * 60
+	=> quiz_screen_2_mid
+else
+	=> quiz_screen_2_low
+
+~ quiz_screen_2_high
+Giảng viên: Xuất sắc. Em đã trả lời đúng tất cả các câu hỏi.
+$> GameState.trigger_event("award_exp", 0)
+=> END
+
+~ quiz_screen_2_mid
+Giảng viên: Khá tốt. Em đã hoàn thành bài kiểm tra.
+$> GameState.trigger_event("award_exp", 0)
+=> END
+
+~ quiz_screen_2_low
+Giảng viên: Em đã hoàn thành bài kiểm tra. Hãy tiếp tục trau dồi kiến thức nhé.
+$> GameState.trigger_event("award_exp", 0)
+=> END
+
+~ all_done
+Giảng viên: Cảm ơn em đã hoàn thành bài kiểm tra. Chúc em có những trải nghiệm thú vị tại FIT!
+=> END

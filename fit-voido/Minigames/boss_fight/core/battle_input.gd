@@ -31,8 +31,9 @@ static func is_cancel(event: InputEvent) -> bool:
 
 
 ## True on phones and tablets: native Android / iOS, or a web export running on them.
+## Delegates to DeviceInput for unified detection across all scenes.
 static func is_mobile() -> bool:
-	return OS.has_feature("mobile") or OS.has_feature("web_android") or OS.has_feature("web_ios")
+	return DeviceInput.is_mobile()
 
 
 ## True when the project turns mouse clicks into touch events (then those touch events are used).

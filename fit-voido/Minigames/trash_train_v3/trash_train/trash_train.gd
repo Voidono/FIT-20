@@ -227,6 +227,28 @@ func _build_ui() -> void:
 	_pointer.blockers.append(_overlay.panel)
 	_pointer.blockers.append(_overlay.toggle_button)
 	_pointer.blockers.append(_result_panel)
+	# Device-specific UI
+	if DeviceInput.is_desktop():
+		_add_keyboard_hint(ui)
+
+
+## Adds a small keyboard-controls hint label for desktop players.
+func _add_keyboard_hint(ui: CanvasLayer) -> void:
+	var label := Label.new()
+	label.text = "Click & Drag: Steer   |   F3: Debug"
+	label.add_theme_font_size_override("font_size", 13)
+	label.add_theme_color_override("font_color", Color(1, 1, 1, 0.72))
+	label.add_theme_color_override("font_outline_color", Color(0, 0, 0, 0.85))
+	label.add_theme_constant_override("outline_size", 5)
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var ctrl := Control.new()
+	ctrl.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_WIDE)
+	ctrl.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	ctrl.custom_minimum_size = Vector2(0, 28)
+	ctrl.add_child(label)
+	label.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	ui.add_child(ctrl)
 
 
 func _build_world() -> bool:

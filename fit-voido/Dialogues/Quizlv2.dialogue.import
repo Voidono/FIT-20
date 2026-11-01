@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://bbu5n7rxwo21c"
+path="res://.godot/imported/Quizlv2.dialogue-12387fb00c8423f9bfdd50d6470c4b0c.tres"
+
+[deps]
+
+source_file="res://Dialogues/Quizlv2.dialogue"
+dest_files=["res://.godot/imported/Quizlv2.dialogue-12387fb00c8423f9bfdd50d6470c4b0c.tres"]
+
+[params]
+
+defaults=true

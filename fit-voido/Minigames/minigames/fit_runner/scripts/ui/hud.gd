@@ -4,6 +4,8 @@ extends CanvasLayer
 ## progress_strip, pause_menu, result_panel...). This script feeds them values and shows or hides panels.
 ## Everything the player must read sits in the centre 60%: the Row container splits 1 : 3 : 1.
 
+const FrRunnerTouchButton = preload("runner_touch_button.gd")
+
 signal pause_pressed
 signal resume_pressed
 signal retry_pressed
@@ -29,8 +31,8 @@ signal qte_button_pressed
 @onready var _rotate_overlay: Control = FrLookup.node(self, "RotateOverlay") as Control
 @onready var _zones: Node = FrLookup.node(self, "Zones") as Node
 @onready var _qte_prompt: FrQtePrompt = FrLookup.node(self, "QtePrompt") as FrQtePrompt
-@onready var _speed_button: Button = FrLookup.node(self, "SpeedButton") as Button
-@onready var _qte_button: Button = FrLookup.node(self, "QteButton") as Button
+@onready var _speed_button: FrRunnerTouchButton = FrLookup.node(self, "SpeedButton") as FrRunnerTouchButton
+@onready var _qte_button: FrRunnerTouchButton = FrLookup.node(self, "QteButton") as FrRunnerTouchButton
 
 var _blink: float = 0.0
 var _last_zone: int = -1
@@ -40,6 +42,59 @@ var _last_ahead: bool = true
 
 func _ready() -> void:
 	set_phase(FrRunState.Phase.READY, null)
+	_update_button_texts()
+	_apply_device_ui()
+
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_TRANSLATION_CHANGED:
+		_update_button_texts()
+
+
+## Hide/show touch buttons based on device. Called once in _ready().
+## On PC: buttons are hidden, a keyboard hint label is shown instead.
+## On mobile: buttons remain visible (their default state).
+func _apply_device_ui() -> void:
+	var on_mobile := DeviceInput.is_mobile()
+	if _speed_button != null:
+		_speed_button.visible = on_mobile
+	if _qte_button != null:
+		_qte_button.visible = on_mobile
+	if not on_mobile:
+		_spawn_keyboard_hint()
+
+
+func _spawn_keyboard_hint() -> void:
+	var label := Label.new()
+	label.text = "Space / W / Up Arrow : Push   |   Enter / J / Down Arrow : QTE   |   Esc / P: Pause"
+	label.add_theme_font_size_override("font_size", 13)
+	label.add_theme_color_override("font_color", Color(1, 1, 1, 0.72))
+	label.add_theme_color_override("font_outline_color", Color(0, 0, 0, 0.85))
+	label.add_theme_constant_override("outline_size", 5)
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	label.anchor_left = 0.0
+	label.anchor_right = 1.0
+	label.anchor_top = 1.0
+	label.anchor_bottom = 1.0
+	label.offset_top = -28.0
+	label.offset_bottom = -6.0
+	label.grow_vertical = Control.GROW_DIRECTION_BEGIN
+	# Walk up to the CanvasLayer's root Control to add the hint there
+	var root: Control = get_node_or_null("Root")
+	if root != null:
+		root.add_child(label)
+	else:
+		add_child(label)
+
+
+func _update_button_texts() -> void:
+	if _speed_button != null:
+		_speed_button.set_texts(tr("FR_BTN_SPEED"), tr("FR_BTN_SPEED_SUB"))
+	if _qte_button != null:
+		_qte_button.set_texts(tr("FR_BTN_QTE"), tr("FR_BTN_QTE_SUB"))
+		_qte_button.qte_active_title = tr("FR_BTN_QTE_ACTIVE_TITLE")
+		_qte_button.qte_active_sub = tr("FR_BTN_QTE_ACTIVE_SUB")
 
 
 func configure(tuning: FrTuning, profile: FrCourseProfile) -> void:
@@ -55,10 +110,12 @@ func set_phase(phase: int, result: FitRunnerResult) -> void:
 	_result_panel.visible = phase == FrRunState.Phase.FINISHED
 	_ready_overlay.visible = is_ready
 	_countdown.visible = counting
+	## Touch buttons only shown on mobile AND during active phases.
+	var on_mobile := DeviceInput.is_mobile()
 	if _speed_button != null:
-		_speed_button.visible = counting or running
+		_speed_button.visible = on_mobile and (is_ready or counting or running)
 	if _qte_button != null:
-		_qte_button.visible = running
+		_qte_button.visible = on_mobile and (is_ready or counting or running)
 	if phase == FrRunState.Phase.FINISHED and result != null:
 		_result_panel.show_result(result)
 
@@ -113,10 +170,7 @@ func refresh(delta: float, s: FrHudState) -> void:
 	_qte_prompt.apply(s.qte_phase, s.qte_cursor, s.runner_screen_pos)
 
 	if running and _qte_button != null:
-		if s.qte_phase == 1:  # ACTIVE
-			_qte_button.modulate = Color(1.0, 0.95, 0.2, 1.0) if fmod(_blink, 0.3) < 0.15 else Color.WHITE
-		else:
-			_qte_button.modulate = Color(0.85, 0.85, 0.9, 0.8)
+		_qte_button.set_qte_active(s.qte_phase == 1)
 
 	if running and m.progress() < 0.97:
 		if s.outlook != _last_outlook:

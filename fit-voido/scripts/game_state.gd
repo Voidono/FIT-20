@@ -10,6 +10,7 @@ signal npc_stage_changed(npc_id: String, previous_stage: String, new_stage: Stri
 signal quest_stage_changed(quest_id: String, previous_stage: String, new_stage: String)
 signal flag_changed(flag_id: String, value: bool)
 signal quiz_result_recorded(quiz_id: String, result: Dictionary)
+signal game_event_triggered(event_name: String, value: Variant)
 signal state_saved
 
 const SAVE_PATH := "user://game_state.cfg"
@@ -31,6 +32,11 @@ var _npc_stages: Dictionary = {}
 var _quest_stages: Dictionary = {}
 var _flags: Dictionary = {}
 var _quiz_results: Dictionary = {}
+
+## Active quiz session state for dialogues
+var quiz_session_id: String = ""
+var quiz_session_score: int = 0
+var quiz_session_total: int = 0
 
 
 func _ready() -> void:
@@ -119,6 +125,30 @@ func set_flag(flag_id: String, value: bool = true) -> void:
 
 
 # Quizzes ------------------------------------------------------------------------
+
+## Begins an interactive quiz session from dialogue
+func quiz_begin(quiz_id: String, total: int = 5) -> void:
+	quiz_session_id = quiz_id
+	quiz_session_total = total
+	quiz_session_score = 0
+
+
+## Marks a question answer as correct or incorrect
+func quiz_mark(correct: bool) -> void:
+	if correct:
+		quiz_session_score += 1
+
+
+## Finishes the current quiz session and records the result
+func quiz_finish() -> void:
+	if quiz_session_id != "":
+		record_quiz_result(quiz_session_id, quiz_session_score, quiz_session_total)
+
+
+## Generic event trigger called from dialogues (e.g. award_exp)
+func trigger_event(event_name: String, value: Variant = 0) -> void:
+	game_event_triggered.emit(event_name, value)
+
 
 ## Stores the best score, latest score, number of attempts, and completion state.
 func record_quiz_result(quiz_id: String, score: int, total: int) -> void:

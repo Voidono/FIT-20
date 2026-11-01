@@ -5,6 +5,7 @@ extends CanvasLayer
 ## The joystick feeds ui_left / ui_right / ui_up / ui_down, which the heart already reads, so no
 ## other code changes. Size, colours and textures live in touch_joystick.tscn (theme styleboxes).
 ## A fresh joystick is created each time, so no stale touch state can survive between phases.
+## Uses DeviceInput.is_mobile() for unified cross-platform detection.
 
 enum Mode { AUTO, ALWAYS, NEVER }
 
@@ -23,7 +24,7 @@ func is_enabled() -> bool:
 			return true
 		Mode.NEVER:
 			return false
-	return BattleInput.is_mobile()
+	return DeviceInput.is_mobile()
 
 
 ## Shows a fresh joystick (if enabled) or removes it.

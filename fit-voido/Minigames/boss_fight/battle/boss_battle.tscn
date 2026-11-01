@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" path="res://Minigames/boss_fight/battle/battle_debug_panel.tscn" id="13_debug"]
 [ext_resource type="PackedScene" path="res://Minigames/boss_fight/battle/battle_difficulty_menu.tscn" id="14_diffmenu"]
 [ext_resource type="PackedScene" path="res://Minigames/boss_fight/battle/battle_touch_controls.tscn" id="15_touch"]
+[ext_resource type="PackedScene" path="res://Minigames/boss_fight/battle/battle_keyboard_hint.tscn" id="22_kbhint"]
 [ext_resource type="Script" uid="uid://8s5dcqynu5b1" path="res://Minigames/boss_fight/core/battle_resource_ref.gd" id="16_ref"]
 [ext_resource type="Resource" path="res://Minigames/boss_fight/data/skills/fist.tres" id="17_fist"]
 [ext_resource type="Resource" path="res://Minigames/boss_fight/data/skills/poison.tres" id="18_poison"]
@@ -94,6 +95,9 @@ heal_amount = 14
 unique_name_in_owner = true
 
 [node name="TouchControls" parent="." instance=ExtResource("15_touch")]
+unique_name_in_owner = true
+
+[node name="KeyboardHint" parent="." instance=ExtResource("22_kbhint")]
 unique_name_in_owner = true
 
 [node name="Library" type="Node" parent="."]

@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://b7tqkcwahcn34" path="res://Minigames/minigames/fit_runner/assets/ui/pattern_stripes_dense.png" id="18_pattern_st"]
 [ext_resource type="Texture2D" uid="uid://cx3ws438tiq84" path="res://Minigames/minigames/fit_runner/assets/ui/icon_wall.png" id="19_icon_wall"]
 [ext_resource type="Texture2D" uid="uid://b55vay8jk58f0" path="res://Minigames/minigames/fit_runner/assets/ui/pattern_dots.png" id="20_pattern_do"]
+[ext_resource type="Script" path="res://Minigames/minigames/fit_runner/scripts/ui/runner_touch_button.gd" id="21_touch_btn"]
 
 [node name="Hud" type="CanvasLayer"]
 layer = 10
@@ -207,34 +208,37 @@ offset_bottom = 152.0
 unique_name_in_owner = true
 visible = false
 
-[node name="SpeedButton" type="Button" parent="Root"]
+[node name="SpeedButton" type="Control" parent="Root"]
 unique_name_in_owner = true
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 16.0
-offset_top = -68.0
-offset_right = 116.0
-offset_bottom = -16.0
+offset_left = 20.0
+offset_top = -96.0
+offset_right = 164.0
+offset_bottom = -20.0
 grow_vertical = 0
-focus_mode = 0
-text = "FR_BTN_SPEED"
-theme_override_font_sizes/font_size = 14
+mouse_filter = 0
+script = ExtResource("21_touch_btn")
+title_text = "⚡ TĂNG TỐC"
+sub_text = "[ GIỮ ĐỂ CHẠY ]"
 
-[node name="QteButton" type="Button" parent="Root"]
+[node name="QteButton" type="Control" parent="Root"]
 unique_name_in_owner = true
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -116.0
-offset_top = -68.0
-offset_right = -16.0
-offset_bottom = -16.0
+offset_left = -164.0
+offset_top = -96.0
+offset_right = -20.0
+offset_bottom = -20.0
 grow_horizontal = 0
 grow_vertical = 0
-focus_mode = 0
-text = "FR_BTN_QTE"
-theme_override_font_sizes/font_size = 14
+mouse_filter = 0
+script = ExtResource("21_touch_btn")
+is_qte = true
+title_text = "🎯 QTE TAP"
+sub_text = "[ CHẠM TẠI TRẠM ]"
 
 [node name="Zones" type="Node" parent="Root"]
 unique_name_in_owner = true
@@ -275,7 +279,7 @@ pattern = ExtResource("20_pattern_do")
 [connection signal="pressed" from="Root/PauseButton" to="." method="_on_pause_button_pressed"]
 [connection signal="button_down" from="Root/SpeedButton" to="." method="_on_speed_button_down"]
 [connection signal="button_up" from="Root/SpeedButton" to="." method="_on_speed_button_up"]
-[connection signal="pressed" from="Root/QteButton" to="." method="_on_qte_button_pressed"]
+[connection signal="button_pressed" from="Root/QteButton" to="." method="_on_qte_button_pressed"]
 [connection signal="resume_pressed" from="Root/PauseMenu" to="." method="_on_resume_pressed"]
 [connection signal="retry_pressed" from="Root/PauseMenu" to="." method="_on_retry_pressed"]
 [connection signal="quit_pressed" from="Root/PauseMenu" to="." method="_on_quit_pressed"]

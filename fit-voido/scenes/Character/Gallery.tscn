@@ -9,6 +9,8 @@
 [ext_resource type="Resource" uid="uid://dwo1fddl8hj33" path="res://Dialogues/npc_tuan.dialogue" id="8_a8qaj"]
 [ext_resource type="Resource" uid="uid://c5r6xk1wbmhwj" path="res://Dialogues/minigame_battle.dialogue" id="8_r4kgs"]
 [ext_resource type="Resource" uid="uid://dxw0xlwvypdv0" path="res://Dialogues/npc_tung.dialogue" id="9_56k78"]
+[ext_resource type="Texture2D" uid="uid://d3jsnmu6eotvg" path="res://assets/DrawAsset/NPC/T1.png" id="10_a8qaj"]
+[ext_resource type="Resource" uid="uid://oe3nyk0pk2b7" path="res://Dialogues/Tliet.dialogue" id="11_56k78"]
 
 [node name="Gallery" type="Node2D" unique_id=1603826261]
 
@@ -39,3 +41,10 @@ position = Vector2(990, 318)
 npc_skin = "NPC_2"
 dialogue = ExtResource("9_56k78")
 npc_name = "Goaga"
+
+[node name="DialogueNPC5" parent="." unique_id=452189008 instance=ExtResource("3_qg2c8")]
+position = Vector2(346, 314)
+npc_sprite = ExtResource("10_a8qaj")
+dialogue = ExtResource("11_56k78")
+npc_name = "Anh ban tliet"
+mode = 0

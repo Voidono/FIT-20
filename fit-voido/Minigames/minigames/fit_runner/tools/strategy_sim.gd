@@ -23,17 +23,14 @@ func _init() -> void:
 func _run(tuning: FrTuning, kind: String, e: float) -> FrModel:
 	var m := FrModel.new(tuning)
 	var input: FrEffortInput = FrEffortFactory.create(tuning)
-	var release_timer: float = 0.0
 	while (not m.finished) and m.elapsed < 400.0:
 		var target: float = _target(m, kind, e)
 		var held: bool = input.effort < target
 		var effort: float = input.update(DT, held, clampf(m.progress(), 0.0, 1.0))
-		if m.in_station() and not held:
-			release_timer += DT
-			if release_timer >= tuning.water_release_delay:
-				m.request_drink()
-		else:
-			release_timer = 0.0
+		var cp: int = m.poll_checkpoint()
+		if cp >= 0:
+			m.add_stamina(35.0)
+			m.apply_speed_boost(tuning.boost_speed_mult, tuning.boost_duration)
 		m.step(DT, effort)
 	return m
 
@@ -41,8 +38,6 @@ func _run(tuning: FrTuning, kind: String, e: float) -> FrModel:
 func _target(m: FrModel, kind: String, e: float) -> float:
 	if kind == "mash_never":
 		return FrParBot.HOLD
-	if m.in_station() and m.stamina < 90.0:
-		return FrParBot.RELEASE
 	if kind == "mash_let_go":
 		if m.walled and m.stamina < m.tuning.wall_release:
 			return FrParBot.RELEASE
