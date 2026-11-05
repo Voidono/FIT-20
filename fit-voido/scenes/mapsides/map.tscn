@@ -12380,6 +12380,7 @@ tile_set = SubResource("TileSet_5h11f")
 [node name="Cây to 2" parent="." unique_id=1080911031 instance=ExtResource("8_u2yjv")]
 
 [node name="tòa C" parent="." unique_id=1804656104 instance=ExtResource("9_wrd0f")]
+z_index = 0
 
 [node name="tòa xanh" type="TileMapLayer" parent="." unique_id=356689178]
 position = Vector2(-3710.0002, 681.00006)

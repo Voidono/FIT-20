@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="TrashItemDef" format=3 uid="uid://cirgw13atdl5h"]
+
+[ext_resource type="Script" uid="uid://khryaotpb0x1" path="res://Minigames/trash_train_v3/trash_train/item_def.gd" id="1_aq1v8"]
+[ext_resource type="Texture2D" uid="uid://dddvwltcj2k8p" path="res://Minigames/trash_train_v3/trash_train/levels/temo/bag.png" id="2_oet5r"]
+
+[resource]
+script = ExtResource("1_aq1v8")
+id = &"floppy"
+bin_id = &"ewaste"
+spawn_weight = 0.15
+texture = ExtResource("2_oet5r")
+placeholder_color = Color(0.309804, 0.552941, 0.941176, 1)
+placeholder_shape = 0

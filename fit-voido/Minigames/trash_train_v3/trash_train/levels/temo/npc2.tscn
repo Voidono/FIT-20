@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dcd2ufo82ckdj"]
+
+[ext_resource type="Script" uid="uid://dr7fo4ejqamd5" path="res://Minigames/trash_train_v3/trash_train/npc.gd" id="1_cc322"]
+[ext_resource type="Texture2D" uid="uid://byo564vmwvhkw" path="res://Minigames/trash_train_v3/trash_train/levels/temo/npc2.png" id="2_gkv17"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jhpoe"]
+radius = 20.024984
+
+[node name="TrashNpc" type="Area2D" unique_id=1976246481]
+script = ExtResource("1_cc322")
+
+[node name="HitArea" type="CollisionShape2D" parent="." unique_id=390979550]
+shape = SubResource("CircleShape2D_jhpoe")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=297156801]
+texture = ExtResource("2_gkv17")

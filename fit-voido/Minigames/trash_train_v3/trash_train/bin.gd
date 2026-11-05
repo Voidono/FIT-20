@@ -6,7 +6,6 @@ extends Area2D
 
 @export var accepts: Array[StringName] = []  ## item bin_ids this can take (empty = takes everything)
 @export var label_key: StringName = &""  ## key in strings.gd (empty = no label)
-@export var color := Color("4f8df0")
 @export var draw_zone := true  ## untick once you have your own art
 @export var label_font_size := 20
 
@@ -52,8 +51,3 @@ func _on_body(body: Node2D, entered: bool) -> void:
 	if body.is_in_group(&"trash_player"):
 		player_inside = entered
 		queue_redraw()
-
-
-func _draw() -> void:
-	if draw_zone:
-		TrashGeometry.draw_zone(self, self, Color(color, 0.45 if player_inside else 0.25), color)

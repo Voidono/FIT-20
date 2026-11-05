@@ -1,14 +1,14 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://xd15dvk68mh"]
 
 [ext_resource type="Script" uid="uid://dmsfk4cid47on" path="res://Minigames/trash_train_v3/trash_train/level.gd" id="1_kpni0"]
-[ext_resource type="Resource" path="res://Minigames/trash_train_v3/trash_train/items/catalog.tres" id="2_awxhf"]
+[ext_resource type="Resource" uid="uid://o7xstfhx3lw1" path="res://Minigames/trash_train_v3/trash_train/items/catalog.tres" id="2_awxhf"]
 [ext_resource type="Script" uid="uid://bsawjc3dvqugr" path="res://Minigames/trash_train_v3/trash_train/ground_grid.gd" id="3_8ysal"]
 [ext_resource type="Script" uid="uid://bxou2h2kaqs76" path="res://Minigames/trash_train_v3/trash_train/bin.gd" id="4_pusc5"]
 [ext_resource type="Script" uid="uid://c7fuwrldd508s" path="res://Minigames/trash_train_v3/trash_train/spawn_zone.gd" id="5_l6avy"]
 [ext_resource type="Script" uid="uid://khryaotpb0x1" path="res://Minigames/trash_train_v3/trash_train/item_def.gd" id="6_sufhm"]
-[ext_resource type="Resource" path="res://Minigames/trash_train_v3/trash_train/items/crt.tres" id="7_4mi60"]
-[ext_resource type="Resource" path="res://Minigames/trash_train_v3/trash_train/items/glitch.tres" id="8_u4ju6"]
-[ext_resource type="Resource" path="res://Minigames/trash_train_v3/trash_train/items/floppy.tres" id="9_4hh2e"]
+[ext_resource type="Resource" uid="uid://u42ahsy340gb" path="res://Minigames/trash_train_v3/trash_train/items/bottle.tres" id="7_4mi60"]
+[ext_resource type="Resource" uid="uid://ces51gxvpk4um" path="res://Minigames/trash_train_v3/trash_train/items/can.tres" id="8_u4ju6"]
+[ext_resource type="Resource" uid="uid://cirgw13atdl5h" path="res://Minigames/trash_train_v3/trash_train/items/bag.tres" id="9_4hh2e"]
 [ext_resource type="Script" uid="uid://bh7m24sof4267" path="res://Minigames/trash_train_v3/trash_train/npc_route.gd" id="10_0xeo8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3ecsy"]
@@ -89,227 +89,226 @@ _data = {
 }
 point_count = 2
 
-[node name="LevelYard" type="Node2D"]
+[node name="LevelYard" type="Node2D" unique_id=1864585272]
 script = ExtResource("1_kpni0")
 catalog = ExtResource("2_awxhf")
 
-[node name="Ground" type="Node2D" parent="."]
+[node name="Ground" type="Node2D" parent="." unique_id=917137097]
 script = ExtResource("3_8ysal")
 
-[node name="Bounds" type="ReferenceRect" parent="."]
+[node name="Bounds" type="ReferenceRect" parent="." unique_id=2062816996]
 offset_right = 1440.0
 offset_bottom = 810.0
 
-[node name="PlayerStart" type="Marker2D" parent="."]
+[node name="PlayerStart" type="Marker2D" parent="." unique_id=1439092184]
 position = Vector2(720, 600)
 
-[node name="Obstacles" type="Node2D" parent="."]
+[node name="Obstacles" type="Node2D" parent="." unique_id=1554625721]
 
-[node name="Fountain" type="StaticBody2D" parent="Obstacles"]
+[node name="Fountain" type="StaticBody2D" parent="Obstacles" unique_id=1235658559]
 position = Vector2(720, 405)
 collision_layer = 8
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/Fountain"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/Fountain" unique_id=1707770203]
 shape = SubResource("CircleShape2D_3ecsy")
 
-[node name="Sprite" type="Polygon2D" parent="Obstacles/Fountain"]
+[node name="Sprite" type="Polygon2D" parent="Obstacles/Fountain" unique_id=1573851414]
 color = Color(0.541176, 0.643137, 0.721569, 1)
 polygon = PackedVector2Array(70, 0, 67.6148, 18.1173, 60.6218, 35, 49.4975, 49.4975, 35, 60.6218, 18.1173, 67.6148, -3.0598e-06, 70, -18.1173, 67.6148, -35, 60.6218, -49.4975, 49.4975, -60.6218, 35, -67.6148, 18.1173, -70, -6.11959e-06, -67.6148, -18.1173, -60.6218, -35, -49.4975, -49.4975, -35, -60.6218, -18.1173, -67.6148, 8.34742e-07, -70, 18.1173, -67.6148, 35, -60.6218, 49.4975, -49.4975, 60.6218, -35, 67.6148, -18.1173)
 
-[node name="Building" type="StaticBody2D" parent="Obstacles"]
+[node name="Building" type="StaticBody2D" parent="Obstacles" unique_id=947072887]
 position = Vector2(720, 120)
 collision_layer = 8
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/Building"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/Building" unique_id=1936264907]
 shape = SubResource("RectangleShape2D_0x5i8")
 
-[node name="Sprite" type="Polygon2D" parent="Obstacles/Building"]
+[node name="Sprite" type="Polygon2D" parent="Obstacles/Building" unique_id=1476011138]
 color = Color(0.545098, 0.435294, 0.352941, 1)
 polygon = PackedVector2Array(-140, -60, 140, -60, 140, 60, -140, 60)
 
-[node name="BenchWest" type="StaticBody2D" parent="Obstacles"]
+[node name="BenchWest" type="StaticBody2D" parent="Obstacles" unique_id=2115499838]
 position = Vector2(400, 290)
 collision_layer = 8
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/BenchWest"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/BenchWest" unique_id=2020228614]
 shape = SubResource("RectangleShape2D_vq5cl")
 
-[node name="Sprite" type="Polygon2D" parent="Obstacles/BenchWest"]
+[node name="Sprite" type="Polygon2D" parent="Obstacles/BenchWest" unique_id=21216627]
 color = Color(0.419608, 0.290196, 0.168627, 1)
 polygon = PackedVector2Array(-65, -15, 65, -15, 65, 15, -65, 15)
 
-[node name="BenchEast" type="StaticBody2D" parent="Obstacles"]
+[node name="BenchEast" type="StaticBody2D" parent="Obstacles" unique_id=1569202019]
 position = Vector2(1040, 520)
 collision_layer = 8
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/BenchEast"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/BenchEast" unique_id=1315071904]
 shape = SubResource("RectangleShape2D_gmig5")
 
-[node name="Sprite" type="Polygon2D" parent="Obstacles/BenchEast"]
+[node name="Sprite" type="Polygon2D" parent="Obstacles/BenchEast" unique_id=1279451571]
 color = Color(0.419608, 0.290196, 0.168627, 1)
 polygon = PackedVector2Array(-65, -15, 65, -15, 65, 15, -65, 15)
 
-[node name="HedgeSouthWest" type="StaticBody2D" parent="Obstacles"]
+[node name="HedgeSouthWest" type="StaticBody2D" parent="Obstacles" unique_id=861907643]
 position = Vector2(500, 600)
 collision_layer = 8
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/HedgeSouthWest"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/HedgeSouthWest" unique_id=1305732182]
 shape = SubResource("RectangleShape2D_1wi7t")
 
-[node name="Sprite" type="Polygon2D" parent="Obstacles/HedgeSouthWest"]
+[node name="Sprite" type="Polygon2D" parent="Obstacles/HedgeSouthWest" unique_id=110740794]
 color = Color(0.184314, 0.419608, 0.227451, 1)
 polygon = PackedVector2Array(-14, -90, 14, -90, 14, 90, -14, 90)
 
-[node name="HedgeNorthEast" type="StaticBody2D" parent="Obstacles"]
+[node name="HedgeNorthEast" type="StaticBody2D" parent="Obstacles" unique_id=1941274176]
 position = Vector2(940, 210)
 collision_layer = 8
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/HedgeNorthEast"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/HedgeNorthEast" unique_id=993680564]
 shape = SubResource("RectangleShape2D_m7wbk")
 
-[node name="Sprite" type="Polygon2D" parent="Obstacles/HedgeNorthEast"]
+[node name="Sprite" type="Polygon2D" parent="Obstacles/HedgeNorthEast" unique_id=1383739543]
 color = Color(0.184314, 0.419608, 0.227451, 1)
 polygon = PackedVector2Array(-14, -90, 14, -90, 14, 90, -14, 90)
 
-[node name="TreeA" type="StaticBody2D" parent="Obstacles"]
+[node name="TreeA" type="StaticBody2D" parent="Obstacles" unique_id=2062986948]
 position = Vector2(330, 650)
 collision_layer = 8
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/TreeA"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/TreeA" unique_id=551012480]
 shape = SubResource("CircleShape2D_kbg7j")
 
-[node name="Sprite" type="Polygon2D" parent="Obstacles/TreeA"]
+[node name="Sprite" type="Polygon2D" parent="Obstacles/TreeA" unique_id=1233266769]
 color = Color(0.141176, 0.360784, 0.184314, 1)
 polygon = PackedVector2Array(32, 0, 30.9096, 8.28221, 27.7128, 16, 22.6274, 22.6274, 16, 27.7128, 8.28221, 30.9096, -1.39876e-06, 32, -8.28221, 30.9096, -16, 27.7128, -22.6274, 22.6274, -27.7128, 16, -30.9096, 8.28221, -32, -2.79753e-06, -30.9096, -8.28221, -27.7128, -16, -22.6274, -22.6274, -16, -27.7128, -8.28221, -30.9096, 3.81596e-07, -32, 8.28221, -30.9096, 16, -27.7128, 22.6274, -22.6274, 27.7128, -16, 30.9096, -8.2822)
 
-[node name="TreeB" type="StaticBody2D" parent="Obstacles"]
+[node name="TreeB" type="StaticBody2D" parent="Obstacles" unique_id=823015007]
 position = Vector2(395, 695)
 collision_layer = 8
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/TreeB"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/TreeB" unique_id=1390065669]
 shape = SubResource("CircleShape2D_4f2xa")
 
-[node name="Sprite" type="Polygon2D" parent="Obstacles/TreeB"]
+[node name="Sprite" type="Polygon2D" parent="Obstacles/TreeB" unique_id=119813791]
 color = Color(0.141176, 0.360784, 0.184314, 1)
 polygon = PackedVector2Array(26, 0, 25.1141, 6.7293, 22.5167, 13, 18.3848, 18.3848, 13, 22.5167, 6.7293, 25.1141, -1.1365e-06, 26, -6.7293, 25.1141, -13, 22.5167, -18.3848, 18.3848, -22.5167, 13, -25.1141, 6.7293, -26, -2.27299e-06, -25.1141, -6.7293, -22.5167, -13, -18.3848, -18.3848, -13, -22.5167, -6.72929, -25.1141, 3.10047e-07, -26, 6.72929, -25.1141, 13, -22.5167, 18.3848, -18.3848, 22.5167, -13, 25.1141, -6.72929)
 
-[node name="TreeC" type="StaticBody2D" parent="Obstacles"]
+[node name="TreeC" type="StaticBody2D" parent="Obstacles" unique_id=1991268493]
 position = Vector2(1140, 160)
 collision_layer = 8
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/TreeC"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/TreeC" unique_id=1515761559]
 shape = SubResource("CircleShape2D_dnqwg")
 
-[node name="Sprite" type="Polygon2D" parent="Obstacles/TreeC"]
+[node name="Sprite" type="Polygon2D" parent="Obstacles/TreeC" unique_id=836831864]
 color = Color(0.141176, 0.360784, 0.184314, 1)
 polygon = PackedVector2Array(32, 0, 30.9096, 8.28221, 27.7128, 16, 22.6274, 22.6274, 16, 27.7128, 8.28221, 30.9096, -1.39876e-06, 32, -8.28221, 30.9096, -16, 27.7128, -22.6274, 22.6274, -27.7128, 16, -30.9096, 8.28221, -32, -2.79753e-06, -30.9096, -8.28221, -27.7128, -16, -22.6274, -22.6274, -16, -27.7128, -8.28221, -30.9096, 3.81596e-07, -32, 8.28221, -30.9096, 16, -27.7128, 22.6274, -22.6274, 27.7128, -16, 30.9096, -8.2822)
 
-[node name="TreeD" type="StaticBody2D" parent="Obstacles"]
+[node name="TreeD" type="StaticBody2D" parent="Obstacles" unique_id=2001653877]
 position = Vector2(1075, 118)
 collision_layer = 8
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/TreeD"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/TreeD" unique_id=1767212090]
 shape = SubResource("CircleShape2D_g6p1p")
 
-[node name="Sprite" type="Polygon2D" parent="Obstacles/TreeD"]
+[node name="Sprite" type="Polygon2D" parent="Obstacles/TreeD" unique_id=423717438]
 color = Color(0.141176, 0.360784, 0.184314, 1)
 polygon = PackedVector2Array(26, 0, 25.1141, 6.7293, 22.5167, 13, 18.3848, 18.3848, 13, 22.5167, 6.7293, 25.1141, -1.1365e-06, 26, -6.7293, 25.1141, -13, 22.5167, -18.3848, 18.3848, -22.5167, 13, -25.1141, 6.7293, -26, -2.27299e-06, -25.1141, -6.7293, -22.5167, -13, -18.3848, -18.3848, -13, -22.5167, -6.72929, -25.1141, 3.10047e-07, -26, 6.72929, -25.1141, 13, -22.5167, 18.3848, -18.3848, 22.5167, -13, 25.1141, -6.72929)
 
-[node name="Bins" type="Node2D" parent="."]
+[node name="Bins" type="Node2D" parent="." unique_id=957224519]
 
-[node name="BinEwaste" type="Area2D" parent="Bins"]
+[node name="BinEwaste" type="Area2D" parent="Bins" unique_id=867017828]
 position = Vector2(75, 405)
 script = ExtResource("4_pusc5")
 accepts = Array[StringName]([&"ewaste"])
 label_key = &"bin_ewaste"
 
-[node name="Zone" type="CollisionShape2D" parent="Bins/BinEwaste"]
+[node name="Zone" type="CollisionShape2D" parent="Bins/BinEwaste" unique_id=1869112884]
 shape = SubResource("RectangleShape2D_15ihq")
 
-[node name="BinGeneral" type="Area2D" parent="Bins"]
+[node name="BinGeneral" type="Area2D" parent="Bins" unique_id=134121960]
 position = Vector2(1365, 405)
 script = ExtResource("4_pusc5")
 accepts = Array[StringName]([&"general"])
 label_key = &"bin_general"
-color = Color(0.941176, 0.627451, 0.188235, 1)
 
-[node name="Zone" type="CollisionShape2D" parent="Bins/BinGeneral"]
+[node name="Zone" type="CollisionShape2D" parent="Bins/BinGeneral" unique_id=307588938]
 shape = SubResource("RectangleShape2D_6rmno")
 
-[node name="SpawnZones" type="Node2D" parent="."]
+[node name="SpawnZones" type="Node2D" parent="." unique_id=1435685533]
 
-[node name="ZoneWest" type="Area2D" parent="SpawnZones"]
+[node name="ZoneWest" type="Area2D" parent="SpawnZones" unique_id=1855706316]
 position = Vector2(335, 535)
 script = ExtResource("5_l6avy")
 
-[node name="Shape0" type="CollisionShape2D" parent="SpawnZones/ZoneWest"]
+[node name="Shape0" type="CollisionShape2D" parent="SpawnZones/ZoneWest" unique_id=1270864750]
 shape = SubResource("RectangleShape2D_2laux")
 
-[node name="ZoneEast" type="Area2D" parent="SpawnZones"]
+[node name="ZoneEast" type="Area2D" parent="SpawnZones" unique_id=56302859]
 position = Vector2(1105, 295)
 script = ExtResource("5_l6avy")
 
-[node name="Shape0" type="CollisionShape2D" parent="SpawnZones/ZoneEast"]
+[node name="Shape0" type="CollisionShape2D" parent="SpawnZones/ZoneEast" unique_id=523324971]
 shape = SubResource("RectangleShape2D_6os7p")
 
-[node name="ZoneSouth" type="Area2D" parent="SpawnZones"]
+[node name="ZoneSouth" type="Area2D" parent="SpawnZones" unique_id=579661149]
 script = ExtResource("5_l6avy")
 weight = 1.2
 
-[node name="Polygon0" type="CollisionPolygon2D" parent="SpawnZones/ZoneSouth"]
+[node name="Polygon0" type="CollisionPolygon2D" parent="SpawnZones/ZoneSouth" unique_id=1030506002]
 polygon = PackedVector2Array(560, 640, 880, 640, 980, 760, 460, 760)
 
-[node name="ZoneNorthStrip" type="Area2D" parent="SpawnZones"]
+[node name="ZoneNorthStrip" type="Area2D" parent="SpawnZones" unique_id=113323326]
 position = Vector2(720, 235)
 script = ExtResource("5_l6avy")
 weight = 0.5
 kinds = Array[ExtResource("6_sufhm")]([ExtResource("7_4mi60"), ExtResource("8_u4ju6"), ExtResource("9_4hh2e")])
 
-[node name="Shape0" type="CollisionShape2D" parent="SpawnZones/ZoneNorthStrip"]
+[node name="Shape0" type="CollisionShape2D" parent="SpawnZones/ZoneNorthStrip" unique_id=1851489179]
 shape = SubResource("RectangleShape2D_r0yjk")
 
-[node name="ZonePicnic" type="Area2D" parent="SpawnZones"]
+[node name="ZonePicnic" type="Area2D" parent="SpawnZones" unique_id=1923248616]
 position = Vector2(720, 700)
 script = ExtResource("5_l6avy")
 weight = 0.8
 
-[node name="Shape0" type="CollisionShape2D" parent="SpawnZones/ZonePicnic"]
+[node name="Shape0" type="CollisionShape2D" parent="SpawnZones/ZonePicnic" unique_id=532589192]
 shape = SubResource("CircleShape2D_65mu2")
 
-[node name="Routes" type="Node2D" parent="."]
+[node name="Routes" type="Node2D" parent="." unique_id=2048582154]
 
-[node name="FountainLoop" type="Path2D" parent="Routes"]
+[node name="FountainLoop" type="Path2D" parent="Routes" unique_id=826429430]
 curve = SubResource("Curve2D_7p322")
 script = ExtResource("10_0xeo8")
 mode = 0
 speed_scale = 0.9
 
-[node name="WestGuard" type="Path2D" parent="Routes"]
+[node name="WestGuard" type="Path2D" parent="Routes" unique_id=2119648649]
 curve = SubResource("Curve2D_1a4pn")
 script = ExtResource("10_0xeo8")
 speed_scale = 0.8
 
-[node name="EastGuard" type="Path2D" parent="Routes"]
+[node name="EastGuard" type="Path2D" parent="Routes" unique_id=1771322254]
 curve = SubResource("Curve2D_5v8p1")
 script = ExtResource("10_0xeo8")
 speed_scale = 0.8
 
-[node name="SouthSweep" type="Path2D" parent="Routes"]
+[node name="SouthSweep" type="Path2D" parent="Routes" unique_id=893987660]
 curve = SubResource("Curve2D_j2dir")
 script = ExtResource("10_0xeo8")
 count = 2
 
-[node name="NorthSweep" type="Path2D" parent="Routes"]
+[node name="NorthSweep" type="Path2D" parent="Routes" unique_id=587536187]
 curve = SubResource("Curve2D_4hx2j")
 script = ExtResource("10_0xeo8")
 speed_scale = 1.1

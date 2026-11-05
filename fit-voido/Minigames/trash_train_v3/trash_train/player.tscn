@@ -1,14 +1,18 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://djif8jrbdt62x"]
 
 [ext_resource type="Script" uid="uid://c4vsai2kwkghk" path="res://Minigames/trash_train_v3/trash_train/player.gd" id="1_pe5vh"]
+[ext_resource type="Texture2D" uid="uid://bgjg4trocghk1" path="res://Minigames/trash_train_v3/trash_train/levels/temo/char.png" id="2_cr2wm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uyj2e"]
-radius = 14.0
+radius = 19.235384
 
-[node name="TrashPlayer" type="CharacterBody2D"]
+[node name="TrashPlayer" type="CharacterBody2D" unique_id=1906405180]
 z_index = 200
 motion_mode = 1
 script = ExtResource("1_pe5vh")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=141299883]
 shape = SubResource("CircleShape2D_uyj2e")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2092852514]
+texture = ExtResource("2_cr2wm")

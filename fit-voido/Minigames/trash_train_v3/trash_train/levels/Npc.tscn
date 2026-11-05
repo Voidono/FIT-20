@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://c84u1gc8xy5nf"]
+
+[ext_resource type="Texture2D" uid="uid://d2hyrttouc3xa" path="res://Minigames/trash_train_v3/trash_train/levels/Sprite-0015-Sheet.png" id="1_ktw5l"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qtoa3"]
+atlas = ExtResource("1_ktw5l")
+region = Rect2(0, 0, 160, 196)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k5r7f"]
+atlas = ExtResource("1_ktw5l")
+region = Rect2(1304, 0, 163, 196)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4wrgo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qtoa3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k5r7f")
+}],
+"loop": 1,
+"name": &"Walk down",
+"speed": 5.0
+}]
+
+[node name="Npc" type="Node2D" unique_id=854501507]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1044443424]
+sprite_frames = SubResource("SpriteFrames_4wrgo")
+animation = &"Walk down"
+frame_progress = 0.3723939
