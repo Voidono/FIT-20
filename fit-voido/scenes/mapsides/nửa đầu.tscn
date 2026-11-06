@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://1q3un777h5y"]
 
 [ext_resource type="PackedScene" uid="uid://cjd51hpkjfo4d" path="res://scenes/mapsides/map.tscn" id="1_tqdoe"]
+[ext_resource type="Texture2D" uid="uid://b206awfu4cnl2" path="res://Minigames/trash_train_v3/trash_train/levels/sussu.png" id="22_2wedu"]
 [ext_resource type="Texture2D" uid="uid://byrg3r5eym0is" path="res://assets/DrawAsset/1792488572423.png" id="32_xccqg"]
 [ext_resource type="Resource" uid="uid://dygyxu2qxpp6n" path="res://Dialogues/quiz_fit_history.dialogue" id="33_35r4e"]
 [ext_resource type="PackedScene" uid="uid://bhie3pwx0kuav" path="res://Dialogues/Bubbles/quiz_balloon (1).tscn" id="34_gknmh"]
@@ -26,6 +27,7 @@
 size = Vector2(696.5, 58)
 
 [node name="nửa đầu" type="Node2D" unique_id=1986852966]
+position = Vector2(431, 65)
 metadata/_edit_vertical_guides_ = [5714.0, 30.0]
 metadata/_edit_horizontal_guides_ = [-2101.0, 1792.0]
 
@@ -112,5 +114,16 @@ script = ExtResource("41_kuesd")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area/Area2D" unique_id=1964753536]
 position = Vector2(1158.75, -1023)
 shape = SubResource("RectangleShape2D_5h11f")
+
+[node name="Bounds" type="ReferenceRect" parent="." unique_id=174901145]
+offset_left = -2.0
+offset_top = -1833.0
+offset_right = 5420.0
+offset_bottom = 1751.0
+metadata/_edit_lock_ = true
+
+[node name="Sussu" type="Sprite2D" parent="." unique_id=2140558345]
+position = Vector2(10, 4)
+texture = ExtResource("22_2wedu")
 
 [connection signal="body_entered" from="Area/Area2D" to="Area/Area2D" method="_on_body_entered"]

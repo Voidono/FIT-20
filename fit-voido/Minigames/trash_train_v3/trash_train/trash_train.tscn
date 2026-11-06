@@ -1,14 +1,21 @@
 [gd_scene format=3 uid="uid://c2hlm6p6m1lpr"]
 
 [ext_resource type="Script" uid="uid://5dwpo6l2t4po" path="res://Minigames/trash_train_v3/trash_train/trash_train.gd" id="1_nkkik"]
-[ext_resource type="PackedScene" uid="uid://xd15dvk68mh" path="res://Minigames/trash_train_v3/trash_train/levels/level_yard.tscn" id="2_wqjvh"]
+[ext_resource type="PackedScene" uid="uid://c3o5m7kqgtb5l" path="res://Minigames/trash_train_v3/trash_train/levels/Field.tscn" id="2_a8ych"]
 [ext_resource type="PackedScene" uid="uid://djif8jrbdt62x" path="res://Minigames/trash_train_v3/trash_train/player.tscn" id="3_8om0v"]
 [ext_resource type="PackedScene" uid="uid://drrtrkpsxp3f7" path="res://Minigames/trash_train_v3/trash_train/npc.tscn" id="4_rsu3m"]
 [ext_resource type="Resource" uid="uid://o7xstfhx3lw1" path="res://Minigames/trash_train_v3/trash_train/items/catalog.tres" id="5_kn1me"]
+[ext_resource type="Script" uid="uid://dqyo7j8fjn8bh" path="res://Minigames/trash_train_v3/trash_train/tuning.gd" id="6_8jpu3"]
+
+[sub_resource type="Resource" id="Resource_24y8t"]
+script = ExtResource("6_8jpu3")
+npc_count = 10
+metadata/_custom_type_script = "uid://dqyo7j8fjn8bh"
 
 [node name="TrashTrain" type="Node2D" unique_id=818518129]
 script = ExtResource("1_nkkik")
-level_scene = ExtResource("2_wqjvh")
+level_scene = ExtResource("2_a8ych")
 player_scene = ExtResource("3_8om0v")
 npc_scene = ExtResource("4_rsu3m")
 catalog = ExtResource("5_kn1me")
+tuning = SubResource("Resource_24y8t")

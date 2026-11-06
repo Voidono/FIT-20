@@ -16,13 +16,19 @@ extends Node2D
 ##
 ## For your quest system: instance trash_train.tscn, set level_scene (and failed_attempts from your
 ## save data), then listen to run_finished(result) / closed(result). See README.md.
+##
+## Tutorial: on the very first run a TrashTutorial balloon is shown before "tap to start".
+## Set skip_tutorial = true (or TrashTutorial.session_shown = true from outside) to skip it.
+## Save-on-continue: when the player presses Continue after a pass, _save_progress() is called.
+## Connect the save_requested signal or override _save_progress() in a subclass / wrapper.
 
 signal run_finished(result: TrashRunResult)  ## every attempt, the moment time is up
 signal closed(result: TrashRunResult)  ## the player pressed Continue after a pass
+signal save_requested(result: TrashRunResult)  ## emitted just before closed(), so your quest system can save
 
 enum State { LOADING, READY, RUNNING, ENDED }
 
-const DEFAULT_LEVEL := "res://trash_train/levels/level_yard.tscn"
+const DEFAULT_LEVEL := "res://trash_train/levels/Field.tscn"
 const DEFAULT_PLAYER := "res://trash_train/player.tscn"
 const DEFAULT_NPC := "res://trash_train/npc.tscn"
 const DEFAULT_CATALOG := "res://trash_train/items/catalog.tres"
@@ -39,6 +45,8 @@ const GOLDEN_ANGLE := 2.399963  # radians; consecutive drops fan out instead of 
 @export var failed_attempts := 0  ## feed from your save data; decides when the quiet extra time kicks in
 @export var rng_seed := 0  ## 0 = random layout; any other number = the same starting layout (playtests)
 @export var log_runs := true  ## append every result to user://trash_train_runs.csv
+@export_group("Tutorial")
+@export var skip_tutorial := false  ## set true to never show the tutorial (e.g. returning players)
 
 var stats := TrashRunStats.new()
 var state := State.LOADING
@@ -67,6 +75,7 @@ var _info_left := 0.0
 var _full_cooldown := 0.0
 var _assist_applied := false
 var _last_event := "-"
+var _tutorial: TrashTutorial  ## tutorial controller (created in _ready)
 
 
 func _ready() -> void:
@@ -82,6 +91,10 @@ func _ready() -> void:
 		_rng.seed = rng_seed
 	else:
 		_rng.randomize()
+	# Create the tutorial controller so the host can configure it before _ready() builds the world.
+	_tutorial = TrashTutorial.new()
+	_tutorial.skip = skip_tutorial
+	add_child(_tutorial)
 	_build_ui()
 	var ok: bool = await _build_world()
 	if not ok:
@@ -161,6 +174,9 @@ func _next_duration() -> float:
 
 
 func _finish_loading() -> void:
+	# Show the tutorial bubble on the very first run (before "tap to start").
+	if _tutorial != null:
+		await _tutorial.run()
 	if auto_start:
 		start_run()
 	else:
@@ -182,7 +198,22 @@ func _on_pointer_pressed() -> void:
 
 
 func _on_continue() -> void:
+	_save_progress(last_result)
+	save_requested.emit(last_result)
 	closed.emit(last_result)
+
+
+## Override this in a subclass, or connect the [signal save_requested] signal,
+## to hook into your game's save system when the player presses Continue / Tiếp tục.
+## The default implementation calls GameState.save() if that autoload exists.
+func _save_progress(result: TrashRunResult) -> void:
+	# If the project has a GameState autoload with a save() method, call it now.
+	var gs := get_node_or_null("/root/GameState")
+	if gs != null and gs.has_method("save"):
+		gs.save()
+		_last_event = "progress saved (GameState.save)"
+	else:
+		_last_event = "continue: no GameState.save() found — connect save_requested to save manually"
 
 
 func _log_result(r: TrashRunResult) -> void:
@@ -235,7 +266,7 @@ func _build_ui() -> void:
 ## Adds a small keyboard-controls hint label for desktop players.
 func _add_keyboard_hint(ui: CanvasLayer) -> void:
 	var label := Label.new()
-	label.text = "Click & Drag: Steer   |   F3: Debug"
+	label.text = "WASD or Arrows: Move   |   Click & Drag: Steer"
 	label.add_theme_font_size_override("font_size", 13)
 	label.add_theme_color_override("font_color", Color(1, 1, 1, 0.72))
 	label.add_theme_color_override("font_outline_color", Color(0, 0, 0, 0.85))
@@ -365,9 +396,15 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	var k := event as InputEventKey
 	if k == null or not k.pressed or k.echo:
 		return
+	if k.keycode == KEY_F3:
+		_overlay.toggle()
+		return
+	if state == State.READY and _is_move_key(k):
+		start_run()
+		return
+	if not _overlay.is_open():
+		return
 	match k.keycode:
-		KEY_F3:
-			_overlay.toggle()
 		KEY_1:
 			_on_action(&"bank_0")
 		KEY_2:
@@ -384,6 +421,10 @@ func _unhandled_key_input(event: InputEvent) -> void:
 			_on_action(&"end")
 		KEY_N:
 			_on_action(&"restart")
+
+
+func _is_move_key(k: InputEventKey) -> bool:
+	return k.physical_keycode in [KEY_W, KEY_A, KEY_S, KEY_D] or k.keycode in [KEY_UP, KEY_DOWN, KEY_LEFT, KEY_RIGHT]
 
 
 # --- banking ---------------------------------------------------------------------
@@ -412,7 +453,7 @@ func _bank_bin(b: TrashBin) -> void:
 	stats.banks += 1
 	stats.best_bank = maxf(stats.best_bank, pay)
 	_hud.set_score(stats.score)
-	_popups.add("+" + TrashStrings.num(pay), _player.global_position + Vector2(0.0, -40.0), b.color.lightened(0.5), 36)
+	_popups.add("+" + TrashStrings.num(pay), _player.global_position + Vector2(0.0, -40.0))
 	_last_event = "%s: %d items, %.1f pts x%.2f = %.1f" % [
 		b.name, taken.size(), st[1], 1.0 + tuning.multiplier_per_item * taken.size(), pay]
 

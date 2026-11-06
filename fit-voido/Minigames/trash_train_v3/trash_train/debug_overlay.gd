@@ -2,7 +2,8 @@ class_name TrashDebugOverlay
 extends Control
 ## Developer overlay: live readouts, test buttons (no keyboard needed on a phone) and tuning sliders
 ## bound straight to TrashTrainTuning properties, grouped into tabs.
-## DBG button or F3 cycles: readouts -> readouts + sliders -> hidden.
+## F3 cycles: readouts -> readouts + sliders -> hidden.
+## Starts hidden. The DBG button is only on screen while the panel is open.
 ## While a panel is visible it blocks steering underneath it, so steer from the free part of the screen.
 ## To add a slider, add one line to GROUPS: [property, min, max, step].
 
@@ -71,7 +72,7 @@ var info: Label
 var _tuning: TrashTrainTuning
 var _tabs: TabContainer
 var _sliders := {}  # property name -> HSlider
-var _state := 0  # 0 readouts, 1 readouts + sliders, 2 hidden
+var _state := 2  # 0 readouts, 1 readouts + sliders, 2 hidden
 
 
 func setup(tuning: TrashTrainTuning) -> void:
@@ -126,6 +127,10 @@ func setup(tuning: TrashTrainTuning) -> void:
 	_apply_state()
 
 
+func is_open() -> bool:
+	return _state != 2
+
+
 func toggle() -> void:
 	_state = (_state + 1) % 3
 	_apply_state()
@@ -140,7 +145,9 @@ func slider(prop: String) -> HSlider:
 
 
 func _apply_state() -> void:
-	panel.visible = _state != 2
+	var open := _state != 2
+	panel.visible = open
+	toggle_button.visible = open
 	_tabs.visible = _state == 1
 
 

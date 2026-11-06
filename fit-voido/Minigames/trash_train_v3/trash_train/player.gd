@@ -21,6 +21,8 @@ func _init() -> void:
 	add_to_group(&"trash_player")
 	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
 	z_index = 200
+	# Physics starts in setup(), once tuning, pointer and tail exist.
+	set_physics_process(false)
 
 
 func _ready() -> void:
@@ -42,9 +44,12 @@ func setup(t: TrashTrainTuning, p: TrashPointer, tl: TrashTail) -> void:
 	tuning = t
 	pointer = p
 	tail = tl
+	set_physics_process(tuning != null and pointer != null and tail != null)
 
 
 func _physics_process(delta: float) -> void:
+	if tail == null or tuning == null or pointer == null:
+		return
 	var weight := tail.speed_multiplier()
 	speed_now = tuning.base_speed * (powerups.speed_factor(weight) if powerups != null else weight)
 	var wanted := pointer.get_move_vector() * speed_now

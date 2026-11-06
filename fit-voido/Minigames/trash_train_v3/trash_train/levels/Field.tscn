@@ -593,6 +593,7 @@ texture = ExtResource("5_ph1eq")
 metadata/_edit_lock_ = true
 
 [node name="MeSinglesSchool32x32SoccerNet2" type="Sprite2D" parent="MeSinglesSchool32x32SoccerCourt1" unique_id=1568304388]
+z_index = 1
 position = Vector2(-3.0000172, -274)
 rotation = -6.2831855
 texture = ExtResource("8_57664")
@@ -705,11 +706,10 @@ position = Vector2(1183, -143)
 script = ExtResource("4_2mxb2")
 accepts = Array[StringName]([&"general"])
 label_key = &"bin_general"
-draw_zone = false
 metadata/_edit_lock_ = true
 
 [node name="Zone" type="CollisionShape2D" parent="BinGeneral2" unique_id=803272867]
-position = Vector2(-3, 26)
+position = Vector2(-1268, 975)
 shape = SubResource("RectangleShape2D_kerpb")
 
 [node name="Sprite2D" type="Sprite2D" parent="BinGeneral2" unique_id=1548348654]
@@ -720,7 +720,6 @@ texture = ExtResource("5_1afr2")
 position = Vector2(1131, 808)
 script = ExtResource("4_2mxb2")
 label_key = &"bin_ewaste"
-draw_zone = false
 metadata/_edit_lock_ = true
 
 [node name="Zone" type="CollisionShape2D" parent="BinEwaste" unique_id=341231516]

@@ -1,7 +1,8 @@
 class_name TrashPointer
 extends Node2D
-## ONE code path for mouse and touch -> a movement vector with length 0..1.
+## ONE code path for mouse, touch, and WASD / arrow keys -> a movement vector with length 0..1.
 ## Put it under a CanvasLayer so the stick graphics draw in screen space.
+## A held key wins over the pointer, so keyboard and click-drag both steer the same runner.
 ##
 ## It only reacts to REAL mouse / touch events (events emulated by the engine are skipped),
 ## so it behaves the same whether "Emulate Mouse From Touch" / "Emulate Touch From Mouse" are on or off.
@@ -30,6 +31,9 @@ func is_active() -> bool:
 
 
 func get_move_vector() -> Vector2:
+	var keys := _keyboard_vector()
+	if keys != Vector2.ZERO:
+		return keys
 	if _id == NO_POINTER or tuning == null:
 		return Vector2.ZERO
 	var origin := _anchor
@@ -108,6 +112,22 @@ func _up(id: int) -> void:
 		return
 	_id = NO_POINTER
 	queue_redraw()
+
+
+## WASD and the arrow keys. Physical WASD so the same keys work on non-QWERTY layouts.
+func _keyboard_vector() -> Vector2:
+	var v := Vector2.ZERO
+	if Input.is_physical_key_pressed(KEY_A) or Input.is_key_pressed(KEY_LEFT):
+		v.x -= 1.0
+	if Input.is_physical_key_pressed(KEY_D) or Input.is_key_pressed(KEY_RIGHT):
+		v.x += 1.0
+	if Input.is_physical_key_pressed(KEY_W) or Input.is_key_pressed(KEY_UP):
+		v.y -= 1.0
+	if Input.is_physical_key_pressed(KEY_S) or Input.is_key_pressed(KEY_DOWN):
+		v.y += 1.0
+	if v == Vector2.ZERO:
+		return Vector2.ZERO
+	return v.normalized()
 
 
 func _runner_screen_pos() -> Vector2:
