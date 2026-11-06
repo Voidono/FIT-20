@@ -1,0 +1,49 @@
+# Duplicate into Dialogues/. Replace NPC_NAME, TEMPLATE_QUIZ_ID, and <...>.
+# Starter contains two questions; total in quiz_begin must match question count.
+# One correct choice per question. Each answer must jump to the next section.
+
+~ start
+if GameState.has_completed_quiz("TEMPLATE_QUIZ_ID"):
+	=> completed
+NPC_NAME: <Introduce the topic and explain there are two questions.>
+- <Start the quiz.>
+	set GameState.quiz_begin("TEMPLATE_QUIZ_ID", 2)
+	=> question_1
+- <Maybe later.>
+	=> END
+
+~ question_1
+NPC_NAME: <Question 1?>
+- <Correct answer.>
+	set GameState.quiz_mark(true)
+	NPC_NAME: <Explain why this answer is correct.>
+	=> question_2
+- <Incorrect answer.>
+	set GameState.quiz_mark(false)
+	NPC_NAME: <Give the correct answer and a short explanation.>
+	=> question_2
+
+~ question_2
+NPC_NAME: <Question 2?>
+- <Incorrect answer.>
+	set GameState.quiz_mark(false)
+	NPC_NAME: <Give the correct answer and a short explanation.>
+	=> result
+- <Correct answer.>
+	set GameState.quiz_mark(true)
+	NPC_NAME: <Explain why this answer is correct.>
+	=> result
+
+~ result
+set GameState.quiz_finish()
+NPC_NAME: <Your score:> {{GameState.quiz_session_score}}/2.
+if GameState.quiz_session_score == 2:
+	NPC_NAME: <Perfect-score response.> [#mood=excited]
+else:
+	NPC_NAME: <Encouragement and a useful learning tip.>
+=> END
+
+~ completed
+NPC_NAME: <Your best score:> {{GameState.quiz_best_score("TEMPLATE_QUIZ_ID")}}/2.
+NPC_NAME: <Thanks and a hint about where to go next.>
+=> END

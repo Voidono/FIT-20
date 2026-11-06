@@ -1,0 +1,39 @@
+# Duplicate this file into Dialogues/ before editing.
+# Replace TEMPLATE_NPC_ID everywhere with a unique ID, e.g. linh_yard.
+# Replace NPC_NAME and all text inside <...>. Keep tabs for indentation.
+# Completion below is a conversation choice, not a verified gameplay objective.
+
+~ start
+if GameState.npc_stage("TEMPLATE_NPC_ID") == "complete":
+	=> completed
+if GameState.npc_stage("TEMPLATE_NPC_ID") == "active":
+	=> returning
+=> first_meeting
+
+~ first_meeting
+set GameState.mark_met("TEMPLATE_NPC_ID")
+NPC_NAME: <Greeting that shows this character's personality.> [#mood=happy]
+NPC_NAME: <Explain the situation or give one useful clue.>
+- <Player asks for more information.>
+	NPC_NAME: <Answer the question.>
+- <Player reacts or makes a joke.>
+	NPC_NAME: <Respond in this character's voice.>
+NPC_NAME: <Tell the player what to do next and where to go.>
+set GameState.set_npc_stage("TEMPLATE_NPC_ID", "active")
+=> END
+
+~ returning
+NPC_NAME: <Ask how things are going.>
+- <Ask for the clue again.>
+	NPC_NAME: <Repeat the next step clearly.>
+	=> END
+- <Finish this conversation thread.>
+	NPC_NAME: <Acknowledge the player and offer a final tip.> [#mood=excited]
+	set GameState.set_npc_stage("TEMPLATE_NPC_ID", "complete")
+	=> END
+- <Say goodbye.>
+	=> END
+
+~ completed
+NPC_NAME: <Short line for later visits.>
+=> END

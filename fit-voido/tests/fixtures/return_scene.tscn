@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://tests/fixtures/return_player.gd" id="1"]
+
+[node name="ReturnFixture" type="Node2D"]
+
+[node name="Player" type="Node2D" parent="." groups=["player"]]
+position = Vector2(40, 40)
+script = ExtResource("1")

@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://bhie3pwx0kuav" path="res://Dialogues/Bubbles/quiz_balloon (1).tscn" id="34_gknmh"]
 [ext_resource type="Resource" uid="uid://d28djbf4okdr0" path="res://Dialogues/quiz_marathon_sports.dialogue" id="35_sgcmy"]
 [ext_resource type="Script" uid="uid://dj85aueh40i2t" path="res://scenes/mapsides/area_2d.gd" id="41_kuesd"]
+[ext_resource type="Resource" uid="uid://7b1wjkdfsk7m" path="res://Dialogues/tutorial_arrival.dialogue" id="arrival"]
+[ext_resource type="Script" uid="uid://dhpa62fnhs18p" path="res://scenes/chapters/chapter1.gd" id="chapter1"]
 [ext_resource type="Resource" uid="uid://2qjoeganrbe5" path="res://Dialogues/npc_dung.dialogue" id="dlg_dung"]
 [ext_resource type="Resource" uid="uid://c5r6xk1wbmhwj" path="res://Dialogues/minigame_battle.dialogue" id="dlg_minigame_battle"]
 [ext_resource type="Resource" uid="uid://by6mhn33w07mh" path="res://Dialogues/minigame_runner.dialogue" id="dlg_minigame_runner"]
@@ -15,6 +17,7 @@
 [ext_resource type="Resource" uid="uid://b8jo7xg3ofl1d" path="res://Dialogues/npc_qkhanh.dialogue" id="dlg_qkhanh"]
 [ext_resource type="Resource" uid="uid://dwo1fddl8hj33" path="res://Dialogues/npc_tuan.dialogue" id="dlg_tuan"]
 [ext_resource type="Resource" uid="uid://dxw0xlwvypdv0" path="res://Dialogues/npc_tung.dialogue" id="dlg_tung"]
+[ext_resource type="Resource" uid="uid://cqr0hddaxpm41" path="res://Dialogues/stage1_blind_bags.dialogue" id="lecturer"]
 [ext_resource type="PackedScene" uid="uid://c0gjtr6ij3dyy" path="res://scenes/Character/dialogue_npc.tscn" id="npc_template"]
 [ext_resource type="Texture2D" uid="uid://cj11xk34dhjis" path="res://assets/DrawAsset/NPC/Dũng.png" id="npc_tex_dung"]
 [ext_resource type="Texture2D" uid="uid://d02bwmv5ubyb" path="res://assets/DrawAsset/NPC/Ngọc.png" id="npc_tex_ngoc"]
@@ -28,12 +31,34 @@ size = Vector2(696.5, 58)
 
 [node name="nửa đầu" type="Node2D" unique_id=1986852966]
 position = Vector2(431, 65)
+script = ExtResource("chapter1")
 metadata/_edit_vertical_guides_ = [5714.0, 30.0]
 metadata/_edit_horizontal_guides_ = [-2101.0, 1792.0]
 
 [node name="Map" parent="." unique_id=2025633542 instance=ExtResource("1_tqdoe")]
 
 [node name="NPC" type="Node2D" parent="." unique_id=711439941]
+
+[node name="Minh" parent="NPC" unique_id=2050054754 instance=ExtResource("npc_template")]
+z_index = 2
+position = Vector2(380, 100)
+npc_sprite = ExtResource("npc_tex_tuan")
+npc_skin = "NPC_1"
+dialogue = ExtResource("arrival")
+prompt_text = "Hỏi chuyện"
+npc_name = "Minh"
+mode = 0
+walk_bob_height = 0.0
+
+[node name="Lecturer" parent="NPC" unique_id=1339434561 instance=ExtResource("npc_template")]
+z_index = 2
+position = Vector2(1158, -915)
+npc_sprite = ExtResource("npc_tex_thang")
+dialogue = ExtResource("lecturer")
+prompt_text = "Thử thách / Nhận đá"
+npc_name = "Giảng viên Nhà C"
+mode = 0
+walk_bob_height = 0.0
 
 [node name="NPC_Dung" parent="NPC" unique_id=129886877 instance=ExtResource("npc_template")]
 position = Vector2(279, -9)
@@ -90,21 +115,28 @@ position = Vector2(1170, -20)
 npc_sprite = ExtResource("npc_tex_dung")
 dialogue = ExtResource("dlg_minigame_runner")
 prompt_text = "FIT Runner"
-target_scene_path = "res://Minigames/fit_runner_starter/scenes/main.tscn"
 
 [node name="NPC_Minigame_Trash" parent="NPC" unique_id=83090953 instance=ExtResource("npc_template")]
 position = Vector2(1300, -20)
 npc_sprite = ExtResource("npc_tex_ngoc")
 dialogue = ExtResource("dlg_minigame_trash")
 prompt_text = "Trash Train"
-target_scene_path = "res://Minigames/trash_train_v3/trash_train/trash_train.tscn"
 
 [node name="NPC_Minigame_Battle" parent="NPC" unique_id=1637374103 instance=ExtResource("npc_template")]
 position = Vector2(1430, -20)
 npc_sprite = ExtResource("npc_tex_thang")
 dialogue = ExtResource("dlg_minigame_battle")
 prompt_text = "FIT Battle"
-target_scene_path = "res://Minigames/fit_battle/fit_battle_host.tscn"
+
+[node name="BuildingCSign" type="Label" parent="." unique_id=250271833]
+z_index = 3
+offset_left = 940.0
+offset_top = -865.0
+offset_right = 1380.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+text = "NHÀ C — GẶP GIẢNG VIÊN ↑"
+horizontal_alignment = 1
 
 [node name="Area" type="Node2D" parent="." unique_id=1180033783]
 

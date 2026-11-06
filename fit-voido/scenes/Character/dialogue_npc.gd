@@ -253,6 +253,13 @@ func can_talk() -> bool:
 	return dialogue != null and dialogue_balloon != null and not _is_talking and not is_any_talking
 
 
+func _exit_tree() -> void:
+	# A dialogue can launch a scene before its awaited dialogue_ended resumes.
+	# Do not leave the shared interaction lock set in the returning campus.
+	if _is_talking:
+		is_any_talking = false
+
+
 ## Starts the conversation or interaction; Character calls this after the player presses interact.
 func talk() -> void:
 	if not can_talk():

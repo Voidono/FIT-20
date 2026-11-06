@@ -1,11 +1,9 @@
 ~ start
-Nathan: [[Hi|Hello|Howdy]], this is some dialogue.
-Nathan: Here are some choices.
-- First one
-	Nathan: You picked the first one.
-- Second one
-	Nathan: You picked the second one.
-- Start again => start
-- End the conversation => END
-Nathan: For more information see the online documentation.
+Huấn luyện viên: Em muốn tham gia FIT Runner không? Giữ nút chạy để tăng nỗ lực, thả ra để giảm nhịp và chú ý thanh thể lực.
+Huấn luyện viên: Hoàn thành đường chạy trước thời gian giới hạn để vượt qua thử thách. Em có thể quay lại khuôn viên bất cứ lúc nào.
+- Bắt đầu chạy!
+	set SceneLoader.start_minigame("fit_runner")
+	=> END
+- Để em chuẩn bị thêm
+	=> END
 => END

@@ -12392,7 +12392,7 @@ tile_set = SubResource("TileSet_ft2n7")
 
 [node name="Character" parent="." unique_id=1990053383 instance=ExtResource("12_25iw3")]
 z_index = 0
-position = Vector2(118, 76)
+position = Vector2(-106, 78)
 
 [node name="Mái2" parent="." unique_id=955468270 instance=ExtResource("13_hpkr7")]
 position = Vector2(-2128, 48)

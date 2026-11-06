@@ -1,0 +1,25 @@
+# Duplicate into Dialogues/. Replace NPC_NAME and text inside <...>.
+# Replace TEMPLATE_ACTIVITY_ID with an existing activity ID:
+# fit_runner, garbage_quest, or boss_fight.
+# This is a generic launcher; chapter rewards require their existing flow.
+
+~ start
+NPC_NAME: <Introduce the activity.>
+NPC_NAME: <Explain the controls, goal, and failure condition briefly.>
+- <Start the activity!>
+	set SceneLoader.start_minigame("TEMPLATE_ACTIVITY_ID")
+	=> END
+- <Explain the rules again.>
+	=> rules
+- <I'll come back later.>
+	=> END
+
+~ rules
+NPC_NAME: <Controls: what to press or hold.>
+NPC_NAME: <Goal: what counts as success, including any time limit.>
+NPC_NAME: <One useful tip.>
+- <I'm ready!>
+	set SceneLoader.start_minigame("TEMPLATE_ACTIVITY_ID")
+	=> END
+- <I'll prepare first.>
+	=> END

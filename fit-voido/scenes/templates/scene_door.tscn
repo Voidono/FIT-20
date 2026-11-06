@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://b6ecnxvrpy3u1"]
+
+[ext_resource type="Script" uid="uid://dj85aueh40i2t" path="res://scenes/mapsides/area_2d.gd" id="1"]
+
+[sub_resource type="RectangleShape2D" id="DoorShape"]
+resource_local_to_scene = true
+size = Vector2(35, 48)
+
+[node name="SceneDoor" type="Area2D" unique_id=176558923]
+collision_layer = 0
+script = ExtResource("1")
+target_scene = ""
+target_position = Vector2(0, 0)
+required_chapter = 1
+locked_message = "Cửa đang khóa. Hãy hoàn thành nhiệm vụ trước đó."
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1662057239]
+position = Vector2(-0.5, 0)
+shape = SubResource("DoorShape")

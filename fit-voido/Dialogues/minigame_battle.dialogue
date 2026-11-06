@@ -2,10 +2,13 @@
 # Balloon: pixel_balloon.tscn
 
 ~ start
+if not GameState.can_start_activity("boss_fight"):
+	Thầy Thắng: Em cần thu thập ba viên đá thời gian và chọn kỹ năng ở Phòng 417 trước khi vào trận chiến.
+	=> END
 Thầy Thắng: Cảnh báo khẩn cấp! Hệ thống Khoa FIT đang bị CON BUG tấn công dữ dội! [#mood=surprised]
 Thầy Thắng: Em có muốn kích hoạt võ đài FIT Battle để bước vào chiến đấu, debug và giải cứu hệ thống ngay bây giờ không?
 - Vào chiến đấu ngay!
-	set SceneLoader.go_to("res://Minigames/fit_battle_step4/fit_battle/launcher/launcher.tscn")
+	set SceneLoader.start_minigame("boss_fight")
 	=> END
 - Em cần chuẩn bị thêm
 	Thầy Thắng: Cố gắng lên nhé! Hãy chuẩn bị kỹ năng thật tốt rồi quay lại tiêu diệt CON BUG!

@@ -13,6 +13,12 @@ extends CharacterBody2D
 ##   Desktop -> WASD / arrow keys + E key hint label is shown.
 
 @export var speed: float = 200.0
+## Short non-looping clips; empty disables footsteps.
+@export var footstep_sounds: Array[AudioStream] = []
+@export_range(1.0, 200.0) var footstep_distance: float = 48.0
+@export_range(-40.0, 0.0) var footstep_volume_db: float = -12.0
+var _footstep_player: AudioStreamPlayer
+var _step_distance: float = 0.0
 ## Frame of the walk animation to show while standing still.
 @export var idle_frame: int = 0
 ## Shared action used to speak with the closest DialogueNPC. Defaults to E.
@@ -40,6 +46,11 @@ func _ready() -> void:
 	_ensure_input_actions()
 	_update_animation(false)
 	_setup_device_ui()
+	_footstep_player = AudioStreamPlayer.new()
+	_footstep_player.bus = &"sound effect"
+	_footstep_player.max_polyphony = 2
+	add_child(_footstep_player)
+	SceneLoader.restore_player.call_deferred(self)
 
 
 func _setup_device_ui() -> void:
@@ -92,6 +103,7 @@ func _spawn_keyboard_hint() -> void:
 
 func _physics_process(_delta: float) -> void:
 	if not can_move:
+		_step_distance = 0.0
 		velocity = Vector2.ZERO
 		_update_animation(false)
 		return
@@ -100,12 +112,30 @@ func _physics_process(_delta: float) -> void:
 	var dir := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 
 	velocity = dir * speed
+	var before_move := global_position
 	move_and_slide()
+	_update_footsteps(global_position.distance_to(before_move))
 
 	var is_moving := dir != Vector2.ZERO
 	if is_moving:
 		_update_facing(dir)
 	_update_animation(is_moving)
+
+
+func _update_footsteps(distance: float) -> void:
+	if distance < 0.01 or footstep_sounds.is_empty():
+		_step_distance = 0.0
+		return
+	_step_distance += distance
+	if _step_distance < footstep_distance:
+		return
+	_step_distance = fmod(_step_distance, footstep_distance)
+	var clip: AudioStream = footstep_sounds.pick_random()
+	if clip != null:
+		_footstep_player.stream = clip
+		_footstep_player.volume_db = footstep_volume_db
+		_footstep_player.pitch_scale = randf_range(0.94, 1.06)
+		_footstep_player.play()
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -177,6 +207,12 @@ func _ensure_input_actions() -> void:
 	_add_action("move_up", KEY_W, JOY_AXIS_LEFT_Y, -1.0, JOY_BUTTON_DPAD_UP)
 	_add_action("move_down", KEY_S, JOY_AXIS_LEFT_Y, 1.0, JOY_BUTTON_DPAD_DOWN)
 	_add_interact_action()
+	# Keep the advertised arrow controls available alongside WASD.
+	for binding in [["move_left", KEY_LEFT], ["move_right", KEY_RIGHT], ["move_up", KEY_UP], ["move_down", KEY_DOWN]]:
+		var arrow := InputEventKey.new()
+		arrow.physical_keycode = binding[1]
+		if not InputMap.action_has_event(binding[0], arrow):
+			InputMap.action_add_event(binding[0], arrow)
 
 
 func _add_interact_action() -> void:

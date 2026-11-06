@@ -7,14 +7,22 @@ extends Node
 ##   set GameState.set_npc_stage("coach_mira", "met")
 
 signal npc_stage_changed(npc_id: String, previous_stage: String, new_stage: String)
+signal quests_changed
 signal quest_stage_changed(quest_id: String, previous_stage: String, new_stage: String)
 signal flag_changed(flag_id: String, value: bool)
 signal quiz_result_recorded(quiz_id: String, result: Dictionary)
 signal game_event_triggered(event_name: String, value: Variant)
 signal state_saved
+signal progression_changed
+signal save_failed(error: int)
 
 const SAVE_PATH := "user://game_state.cfg"
 const STATE_SECTION := "progress"
+const SAVE_VERSION := 2
+const ACTIVITY_IDS := ["garbage_quest", "fit_runner", "boss_fight"]
+## Override only for isolated tests. Normal gameplay uses SAVE_PATH.
+var save_path := SAVE_PATH
+var last_save_error: Error = OK
 
 const NPC_STAGE_NEW := "new"
 const NPC_STAGE_MET := "met"
@@ -30,8 +38,11 @@ const QUEST_STAGE_COMPLETE := "complete"
 ## A missing NPC defaults to "new"; a missing quest defaults to "inactive".
 var _npc_stages: Dictionary = {}
 var _quest_stages: Dictionary = {}
+var _quest_details: Dictionary = {}
 var _flags: Dictionary = {}
 var _quiz_results: Dictionary = {}
+var _journey: Dictionary = {}
+var _activity_results: Dictionary = {}
 
 ## Active quiz session state for dialogues
 var quiz_session_id: String = ""
@@ -40,6 +51,7 @@ var quiz_session_total: int = 0
 
 
 func _ready() -> void:
+	quest_stage_changed.connect(func(_id: String, _before: String, _after: String): quests_changed.emit())
 	load_game()
 
 
@@ -94,6 +106,8 @@ func set_quest_stage(quest_id: String, stage: String) -> void:
 
 
 func start_quest(quest_id: String) -> void:
+	if has_completed_quest(quest_id):
+		return
 	set_quest_stage(quest_id, QUEST_STAGE_ACTIVE)
 
 
@@ -178,42 +192,342 @@ func has_completed_quiz(quiz_id: String) -> bool:
 	return bool(quiz_result(quiz_id).get("completed", false))
 
 
+# Journey ------------------------------------------------------------------------
+
+## Chapter-one story handoffs. Presentation and NPC placement live in the scene.
+func stage1_activity() -> String:
+	return str(_journey.get("stage1_activity", ""))
+
+
+func select_stage1_activity(activity_id: String) -> bool:
+	if activity_id not in ["garbage_quest", "fit_runner"] or has_time_stone(1):
+		return false
+	var previous := stage1_activity()
+	_journey["stage1_activity"] = activity_id
+	if previous != "" and previous != activity_id and not has_completed_quest(previous):
+		_quest_stages[previous] = QUEST_STAGE_INACTIVE
+	if not has_completed_quest(activity_id):
+		_quest_stages[activity_id] = QUEST_STAGE_ACTIVE
+	_quest_stages["reach_building_c"] = QUEST_STAGE_COMPLETE
+	_quest_stages["stage1_challenge"] = QUEST_STAGE_ACTIVE
+	save_game()
+	quests_changed.emit()
+	progression_changed.emit()
+	return true
+
+
+func can_claim_stage1_stone() -> bool:
+	return not has_time_stone(1) and (has_completed_quest("garbage_quest") or has_completed_quest("fit_runner"))
+
+
+## One save includes the stone, completed chapter, and next objective.
+func claim_stage1_stone() -> bool:
+	if not can_claim_stage1_stone():
+		return false
+	_flags["stage1_stone_collected"] = true
+	_quest_stages["reach_building_c"] = QUEST_STAGE_COMPLETE
+	_quest_stages["stage1_challenge"] = QUEST_STAGE_COMPLETE
+	if not has_completed_quest("enter_room_417"):
+		_quest_stages["enter_room_417"] = QUEST_STAGE_ACTIVE
+	for id in ["garbage_quest", "fit_runner"]:
+		if is_quest_active(id):
+			_quest_stages[id] = QUEST_STAGE_INACTIVE
+	save_game()
+	flag_changed.emit("stage1_stone_collected", true)
+	quests_changed.emit()
+	progression_changed.emit()
+	return true
+
+## Legacy dialogue flags remain the source of truth for stone ownership.
+func has_time_stone(number: int) -> bool:
+	return number >= 1 and number <= 4 and has_flag("stage%d_stone_collected" % number)
+
+
+func time_stone_count() -> int:
+	var count := 0
+	for number in range(1, 5):
+		if has_time_stone(number):
+			count += 1
+	return count
+
+
+## chapter 5 is the final gate. Unlocks are derived, never separately saved.
+func is_chapter_unlocked(chapter: int) -> bool:
+	if chapter < 1 or chapter > 5:
+		return false
+	for number in range(1, chapter):
+		if not has_time_stone(number):
+			return false
+	return true
+
+
+func award_time_stone(number: int) -> bool:
+	if not is_chapter_unlocked(number) or has_time_stone(number):
+		return false
+	set_flag("stage%d_stone_collected" % number)
+	progression_changed.emit()
+	return true
+
+
+func selected_skill() -> StringName:
+	return StringName(str(_journey.get("skill", "")))
+
+
+## The seating choice is permanent until New Game. Re-selecting it is harmless.
+func choose_skill(skill_id: StringName) -> bool:
+	if skill_id not in [&"fist", &"poison"] or not is_chapter_unlocked(2):
+		return false
+	if selected_skill() != &"" and selected_skill() != skill_id:
+		return false
+	_journey["skill"] = String(skill_id)
+	save_game()
+	progression_changed.emit()
+	return true
+
+
+func has_quest_item(item_id: String) -> bool:
+	var items: Dictionary = _journey.get("items", {})
+	return bool(items.get(item_id, false))
+
+
+func grant_quest_item(item_id: String) -> bool:
+	if item_id.is_empty() or has_quest_item(item_id) or has_flag("delivered:" + item_id):
+		return false
+	var items: Dictionary = _journey.get("items", {}).duplicate()
+	items[item_id] = true
+	_journey["items"] = items
+	save_game()
+	progression_changed.emit()
+	return true
+
+
+## Consumed items remain recorded as delivered and cannot be awarded again.
+func deliver_quest_item(item_id: String) -> bool:
+	if not has_quest_item(item_id) or has_flag("delivered:" + item_id):
+		return false
+	_flags["delivered:" + item_id] = true
+	var items: Dictionary = _journey.get("items", {}).duplicate()
+	items[item_id] = false
+	_journey["items"] = items
+	save_game()
+	flag_changed.emit("delivered:" + item_id, true)
+	progression_changed.emit()
+	return true
+
+
+func place_time_stone(number: int) -> bool:
+	if not has_time_stone(number) or has_flag("gate_stone_%d" % number):
+		return false
+	set_flag("gate_stone_%d" % number)
+	return true
+
+
+func complete_ending() -> bool:
+	for number in range(1, 5):
+		if not has_time_stone(number) or not has_flag("gate_stone_%d" % number):
+			return false
+	if has_flag("ending_complete"):
+		return false
+	set_flag("ending_complete")
+	return true
+
+
+func can_start_activity(activity_id: String) -> bool:
+	if activity_id not in ACTIVITY_IDS:
+		return false
+	if activity_id == "boss_fight":
+		return is_chapter_unlocked(4) and selected_skill() != &""
+	return true
+
+
+func activity_result(activity_id: String) -> Dictionary:
+	var value: Variant = _activity_results.get(activity_id, {})
+	return value.duplicate(true) if value is Dictionary else {}
+
+
+## Record once per emitted attempt, immediately (not on Continue).
+## Stone handover stays with story NPCs; an activity pass completes its quest.
+func record_activity_result(activity_id: String, result: Dictionary) -> bool:
+	if not can_start_activity(activity_id):
+		return false
+	var previous := activity_result(activity_id)
+	var passed := bool(result.get("passed", false))
+	var entry := {
+		"attempts": int(previous.get("attempts", 0)) + 1,
+		"failures": int(previous.get("failures", 0)) + (0 if passed else 1),
+		"passed": bool(previous.get("passed", false)) or passed,
+		"last_result": result.duplicate(true),
+		"best_stars": maxi(int(previous.get("best_stars", 0)), int(result.get("stars", 0))),
+	}
+	_activity_results[activity_id] = entry
+	var newly_complete := passed and not has_completed_quest(activity_id)
+	var previous_stage := quest_stage(activity_id)
+	if newly_complete:
+		_quest_stages[activity_id] = QUEST_STAGE_COMPLETE
+	save_game()
+	if newly_complete:
+		quest_stage_changed.emit(activity_id, previous_stage, QUEST_STAGE_COMPLETE)
+	progression_changed.emit()
+	return true
+
+
+## A checkpoint always names a host scene, never a minigame scene.
+func set_return_point(scene_path: String, position: Vector2) -> bool:
+	if not scene_path.begins_with("res://") or not ResourceLoader.exists(scene_path, "PackedScene"):
+		return false
+	_journey["return_point"] = {"scene": scene_path, "position": position}
+	save_game()
+	return true
+
+
+func return_point() -> Dictionary:
+	var value: Variant = _journey.get("return_point", {})
+	return value.duplicate(true) if value is Dictionary else {}
+
+
 # Save data ----------------------------------------------------------------------
 
 func save_game() -> void:
 	var save_file := ConfigFile.new()
+	save_file.set_value(STATE_SECTION, "version", SAVE_VERSION)
 	save_file.set_value(STATE_SECTION, "npc_stages", _npc_stages)
 	save_file.set_value(STATE_SECTION, "quest_stages", _quest_stages)
+	save_file.set_value(STATE_SECTION, "quest_details", _quest_details)
 	save_file.set_value(STATE_SECTION, "flags", _flags)
 	save_file.set_value(STATE_SECTION, "quiz_results", _quiz_results)
+	save_file.set_value(STATE_SECTION, "journey", _journey)
+	save_file.set_value(STATE_SECTION, "activity_results", _activity_results)
 
-	var error := save_file.save(SAVE_PATH)
+	var error := save_file.save(save_path)
+	last_save_error = error
 	if error != OK:
-		push_error("Could not save game state to %s (error %s)." % [SAVE_PATH, error])
+		push_error("Could not save game state to %s (error %s)." % [save_path, error])
+		save_failed.emit(error)
 		return
 	state_saved.emit()
 
 
 func load_game() -> void:
 	var save_file := ConfigFile.new()
-	if save_file.load(SAVE_PATH) != OK:
+	if save_file.load(save_path) != OK:
 		return # First launch: all accessors use their default values.
 
 	_npc_stages = _read_dictionary(save_file, "npc_stages")
 	_quest_stages = _read_dictionary(save_file, "quest_stages")
+	_quest_details = _read_dictionary(save_file, "quest_details")
 	_flags = _read_dictionary(save_file, "flags")
 	_quiz_results = _read_dictionary(save_file, "quiz_results")
+	_journey = _read_dictionary(save_file, "journey")
+	_activity_results = _read_dictionary(save_file, "activity_results")
+	quests_changed.emit()
 
 
 ## Starts a fresh game while keeping this autoload alive.
 func reset_progress() -> void:
 	_npc_stages.clear()
 	_quest_stages.clear()
+	_quest_details.clear()
+	quests_changed.emit()
 	_flags.clear()
 	_quiz_results.clear()
+	_journey.clear()
+	_activity_results.clear()
+	quiz_session_id = ""
+	quiz_session_score = 0
+	quiz_session_total = 0
 	save_game()
+	progression_changed.emit()
 
 
 func _read_dictionary(save_file: ConfigFile, key: String) -> Dictionary:
 	var value: Variant = save_file.get_value(STATE_SECTION, key, {})
 	return value.duplicate(true) if value is Dictionary else {}
+
+
+# QuestManager API: GameState remains the single persistent source of truth.
+const QUEST_CATALOG = {
+	"meet_minh": ["Một nơi xa lạ", "Di chuyển tới Minh gần cổng trường và tương tác để hỏi chuyện."],
+	"stage1_challenge": ["Viên đá đầu tiên", "Hoàn thành một thử thách rồi trở lại gặp giảng viên trước Nhà C."],
+	"reach_building_c": ["Đến Nhà C", "Đi tới tòa nhà màu xanh phía trên bản đồ và gặp giảng viên trước cửa."],
+	"enter_room_417": ["Phòng 417", "Đi đến phòng học 417."],
+	"garbage_quest": ["Dọn rác", "Hoàn thành thử thách phân loại rác."],
+	"fit_runner": ["Đường chạy FIT", "Hoàn thành thử thách chạy."],
+	"boss_fight": ["CON BUG", "Đánh bại CON BUG."],
+}
+
+
+func quest_info(id: String) -> Dictionary:
+	var defaults: Array = QUEST_CATALOG.get(id, [id.replace("_", " ").capitalize(), "Hoàn thành nhiệm vụ."])
+	var data: Dictionary = _quest_details.get(id, {}).duplicate(true)
+	data["id"] = id
+	data["title"] = data.get("title", defaults[0])
+	data["objective"] = data.get("objective", defaults[1])
+	data["target"] = maxi(int(data.get("target", 1)), 1)
+	data["completed"] = has_completed_quest(id)
+	data["progress"] = data["target"] if data["completed"] else clampi(int(data.get("progress", 0)), 0, int(data["target"]))
+	return data
+
+
+func tracked_quests() -> Array[Dictionary]:
+	var result: Array[Dictionary] = []
+	for id in _quest_stages:
+		if quest_stage(id) != QUEST_STAGE_INACTIVE:
+			var data := quest_info(id)
+			if not bool(data.get("hidden", false)):
+				result.append(data)
+	return result
+
+
+## Updates display metadata without reopening a completed quest.
+func add_quest(id: String, title: String, objective: String, target: int = 1) -> void:
+	if id.is_empty():
+		return
+	var data := quest_info(id)
+	data.merge({"title": title, "objective": objective, "target": maxi(target, 1)}, true)
+	data["progress"] = clampi(int(data["progress"]), 0, int(data["target"]))
+	_quest_details[id] = data
+	if quest_stage(id) == QUEST_STAGE_INACTIVE:
+		start_quest(id)
+	else:
+		quests_changed.emit()
+	save_game()
+
+
+## Absolute counter. Complex objectives may call complete_quest directly.
+func update_quest_progress(id: String, amount: int) -> void:
+	if not is_quest_active(id):
+		return
+	var data := quest_info(id)
+	data["progress"] = clampi(amount, 0, int(data["target"]))
+	_quest_details[id] = data
+	if int(data["progress"]) >= int(data["target"]):
+		complete_quest(id)
+	else:
+		quests_changed.emit()
+		save_game()
+
+
+func update_quest_objective(id: String, objective: String) -> void:
+	var data := quest_info(id)
+	data["objective"] = objective
+	_quest_details[id] = data
+	quests_changed.emit()
+	save_game()
+
+
+## Prefer hiding completed quests: their completion still gates story dialogues.
+func hide_quest(id: String, hidden: bool = true) -> void:
+	var data := quest_info(id)
+	data["hidden"] = hidden
+	_quest_details[id] = data
+	quests_changed.emit()
+	save_game()
+
+
+## Explicit deletion removes completion as well as display data.
+func remove_quest(id: String) -> void:
+	var previous := quest_stage(id)
+	_quest_details.erase(id)
+	_quest_stages.erase(id)
+	quest_stage_changed.emit(id, previous, QUEST_STAGE_INACTIVE)
+	save_game()

@@ -18,7 +18,7 @@ func load_settings():
 	set_master_volume(volume)
 	
 	var music_volume = config.get_value("audio", "music_volume", 1.0)
-	set_music_volume(volume)
+	set_music_volume(music_volume)
 
 
 
