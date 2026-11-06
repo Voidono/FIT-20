@@ -63,6 +63,7 @@ const BUTTONS := [
 	["Freeze", &"freeze"], ["Routes", &"routes"], ["Mode", &"mode"],
 	["End run", &"end"], ["New run", &"restart"],
 	["Magnet", &"give_magnet"], ["Sneakers", &"give_sneakers"], ["Shield", &"give_shield"],
+	["Reset State", &"reset_state"],
 ]
 
 var panel: PanelContainer

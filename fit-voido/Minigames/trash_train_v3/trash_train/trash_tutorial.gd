@@ -38,26 +38,23 @@ func run() -> void:
 
 	session_shown = true
 
-	var balloon_scene: PackedScene = _load_balloon()
-	if balloon_scene == null:
-		# Fall back to DialogueManager's default balloon (do NOT pass an empty path —
-		# that makes DialogueManager instantiate a null balloon and crash).
-		var manager := _get_dialogue_manager()
-		if is_instance_valid(manager) and manager.has_method("show_dialogue_balloon"):
-			await manager.show_dialogue_balloon(resource, CUE)
+	var manager = _get_dialogue_manager()
+	if not is_instance_valid(manager):
+		push_warning("TrashTutorial: DialogueManager singleton not found.")
 		return
 
-	_balloon_instance = balloon_scene.instantiate()
-	add_child(_balloon_instance)
+	var balloon: Node = null
+	if ResourceLoader.exists(BALLOON_PATH) and manager.has_method("show_dialogue_balloon_scene"):
+		balloon = manager.show_dialogue_balloon_scene(BALLOON_PATH, resource, CUE)
+	elif manager.has_method("show_dialogue_balloon"):
+		balloon = manager.show_dialogue_balloon(resource, CUE)
 
-	if _balloon_instance.has_method("start"):
-		await _balloon_instance.start(resource, CUE)
-	else:
-		push_warning("TrashTutorial: balloon has no start() method.")
-
-	if is_instance_valid(_balloon_instance):
-		_balloon_instance.queue_free()
-		_balloon_instance = null
+	if is_instance_valid(balloon):
+		# Wait until the player finishes the dialogue and the balloon closes
+		if balloon.is_inside_tree():
+			await balloon.tree_exited
+		elif manager.has_signal("dialogue_ended"):
+			await manager.dialogue_ended
 
 
 # ---------------------------------------------------------------------------

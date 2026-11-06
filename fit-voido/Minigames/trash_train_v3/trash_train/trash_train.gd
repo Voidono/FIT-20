@@ -205,15 +205,20 @@ func _on_continue() -> void:
 
 ## Override this in a subclass, or connect the [signal save_requested] signal,
 ## to hook into your game's save system when the player presses Continue / Tiếp tục.
-## The default implementation calls GameState.save() if that autoload exists.
+## The default implementation calls GameState.save_game() if that autoload exists.
 func _save_progress(result: TrashRunResult) -> void:
-	# If the project has a GameState autoload with a save() method, call it now.
 	var gs := get_node_or_null("/root/GameState")
-	if gs != null and gs.has_method("save"):
-		gs.save()
-		_last_event = "progress saved (GameState.save)"
+	if gs != null:
+		if gs.has_method("save_game"):
+			gs.save_game()
+			_last_event = "progress saved (GameState.save_game)"
+		elif gs.has_method("save"):
+			gs.save()
+			_last_event = "progress saved (GameState.save)"
+		else:
+			_last_event = "continue: GameState has no save method — connect save_requested"
 	else:
-		_last_event = "continue: no GameState.save() found — connect save_requested to save manually"
+		_last_event = "continue: no GameState found — connect save_requested to save manually"
 
 
 func _log_result(r: TrashRunResult) -> void:
@@ -538,6 +543,15 @@ func _on_action(action: StringName) -> void:
 		&"give_shield":
 			if _powerups != null:
 				_powerups.activate(TrashPowerups.SHIELD)
+		&"reset_state":
+			var gs := get_node_or_null("/root/GameState")
+			if gs != null and gs.has_method("reset_progress"):
+				gs.reset_progress()
+			failed_attempts = 0
+			if _tutorial != null:
+				_tutorial.session_shown = false
+			restart()
+			_last_event = "debug: game state reset"
 
 
 func _info_text() -> String:

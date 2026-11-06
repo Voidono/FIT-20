@@ -1,42 +1,29 @@
+# Trash Train Tutorial
+# Balloon: res://Dialogues/Bubbles/tutorial_balloon.tscn
+
 ~ start
+set locals.steps = 5
 => tut_movement
 
 ~ tut_movement
-if GameState.has_flag("tut_movement_seen")
-	=> END
-Dùng WASD hoặc cần joystick để di chuyển nhân vật.
-$> GameState.set_flag("tut_movement_seen", true)
-=> END
+Hướng dẫn: Dùng <WASD> hoặc <ARROWS> (hoặc chạm & kéo trên màn hình) để di chuyển nhân vật.
+=> tut_pickup
 
 ~ tut_pickup
-if GameState.has_flag("tut_pickup_seen")
-	=> END
-Di chuyển đến vật phẩm để nhặt lên.
-Vật phẩm bạn nhặt sẽ nối thành một hàng phía sau bạn.
-$> GameState.set_flag("tut_pickup_seen", true)
-=> END
+Hướng dẫn: Chạy qua các món rác để nhặt lên. Rác sẽ nối thành đoàn tàu phía sau bạn!
+=> tut_trash_bin
 
 ~ tut_trash_bin
-if GameState.has_flag("tut_trash_bin_seen")
-	=> END
-Mang vật phẩm đến đúng thùng rác tương ứng để ghi điểm.
-Hãy chọn thật chính xác nhé!
-$> GameState.set_flag("tut_trash_bin_seen", true)
-=> END
+Hướng dẫn: Kéo rác vào đúng thùng tương ứng để ghi điểm. Bỏ nhiều rác cùng lúc sẽ được nhân thêm điểm!
+=> tut_dodge
 
 ~ tut_dodge
-if GameState.has_flag("tut_dodge_seen")
-	=> END
-# TODO: the doc does not say what happens when a student touches the line. Add a consequence line if you want one.
-Các sinh viên khác sẽ cố chạm vào hàng rác của bạn.
-Hãy di chuyển khéo léo để né họ nhé!
-$> GameState.set_flag("tut_dodge_seen", true)
-=> END
+Hướng dẫn: Cẩn thận né tránh người đi bộ! Va chạm sẽ làm đứt đoàn tàu và rơi rác.
+=> tut_powerup
 
 ~ tut_powerup
-if GameState.has_flag("tut_powerup_seen")
+Hướng dẫn: Nhặt vật phẩm tăng sức mạnh trên đường: Nam Châm, Giày Nhanh hoặc Khiên bảo vệ.
+- Sẵn sàng dọn rác!
 	=> END
-Nhặt vật phẩm tăng sức mạnh để nhận hiệu ứng hỗ trợ.
-Hãy tận dụng chúng thật hợp lý nhé!
-$> GameState.set_flag("tut_powerup_seen", true)
-=> END
+- Xem lại hướng dẫn
+	=> start
