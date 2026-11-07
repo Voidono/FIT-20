@@ -41,7 +41,7 @@ func run() -> void:
 	state.enter_chapter2_room()
 	check(not state.is_quest_active("chapter2_quiz"), "Reentry does not reopen quiz")
 	var keypad = load("res://scenes/chapters/room416_keypad.tscn").instantiate()
-	var hallway = load("res://scenes/mapsides/t_2_c.tscn").instantiate()
+	var hallway = load("res://scenes/mapsides/t_2.tscn").instantiate()
 	check(hallway.get_node("Room417Door").position.x < 2800, "Room 417 remains west of Room 416")
 	check(hallway.get_node("Room416Keypad").position == Vector2(3100, 150), "Room 416 takes old entrance")
 	check(room.get_node("SceneDoor").target_position == Vector2(2750, 210), "Classroom exit returns to relocated door")

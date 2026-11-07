@@ -1,5 +1,6 @@
 class_name BattleDifficulty
 extends Resource
+@export_range(0.0, 5.0, 0.1) var score_multiplier := 1.5
 ## One difficulty preset. Everything in the fight that can be tuned is a multiplier here.
 
 ## Used to look a preset up by name: BossFightConfig.difficulty_id.

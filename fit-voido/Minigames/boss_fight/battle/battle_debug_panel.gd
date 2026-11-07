@@ -11,7 +11,7 @@ var battle: BossBattle
 
 
 func _ready() -> void:
-	if not OS.is_debug_build():
+	if not OS.is_debug_build() or not get_parent().debug_enabled:
 		queue_free()
 		return
 	battle = get_parent() as BossBattle

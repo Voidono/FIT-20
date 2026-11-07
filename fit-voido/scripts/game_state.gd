@@ -392,8 +392,20 @@ func complete_ending() -> bool:
 			return false
 	if has_flag("ending_complete"):
 		return false
-	set_flag("ending_complete")
+	_flags["ending_complete"] = true
+	_flags["hidden_ending_complete" if boss_resolution() == "spared" else "normal_ending_complete"] = true
+	if boss_resolution() == "spared":
+		_flags["badge_debug_together"] = true
+	_quest_stages["activate_time_gate"] = QUEST_STAGE_COMPLETE
+	save_game()
+	quests_changed.emit()
+	flag_changed.emit("ending_complete", true)
 	return true
+
+
+func boss_resolution() -> String:
+	# Old victorious saves keep their original normal route.
+	return str(_journey.get("boss_resolution", "win"))
 
 
 func can_start_activity(activity_id: String) -> bool:
@@ -422,6 +434,11 @@ func record_activity_result(activity_id: String, result: Dictionary) -> bool:
 			return false
 	var previous := activity_result(activity_id)
 	var passed := bool(result.get("passed", false))
+	if activity_id == "boss_fight":
+		var outcome := str(result.get("outcome", "win" if passed else ""))
+		passed = outcome in ["win", "spared"]
+		if passed and not _journey.has("boss_resolution"):
+			_journey["boss_resolution"] = "win" if has_completed_quest("boss_fight") else outcome
 	if activity_id == "fit_runner_race":
 		passed = passed and bool(result.get("completed", false)) and int(result.get("placement", 99)) <= 3
 	var entry := {
@@ -430,6 +447,7 @@ func record_activity_result(activity_id: String, result: Dictionary) -> bool:
 		"passed": bool(previous.get("passed", false)) or passed,
 		"last_result": result.duplicate(true),
 		"best_stars": maxi(int(previous.get("best_stars", 0)), int(result.get("stars", 0))),
+		"best_score": maxi(int(previous.get("best_score", 0)), maxi(0, int(result.get("score", 0)))) if passed else int(previous.get("best_score", 0)),
 	}
 	_activity_results[activity_id] = entry
 	var newly_complete := passed and not has_completed_quest(activity_id)
@@ -438,6 +456,8 @@ func record_activity_result(activity_id: String, result: Dictionary) -> bool:
 		_quest_stages[activity_id] = QUEST_STAGE_COMPLETE
 		if activity_id == "fit_runner_race":
 			_quest_stages["return_to_tuan"] = QUEST_STAGE_ACTIVE
+		if activity_id == "boss_fight":
+			_quest_stages["claim_boss_reward"] = QUEST_STAGE_ACTIVE
 	save_game()
 	if newly_complete:
 		quest_stage_changed.emit(activity_id, previous_stage, QUEST_STAGE_COMPLETE)
@@ -485,6 +505,21 @@ func hand_over_marathon_documents() -> bool:
 	save_game()
 	quests_changed.emit()
 	flag_changed.emit("stage3_stone_collected", true)
+	progression_changed.emit()
+	return true
+
+
+func claim_boss_rescue_stone() -> bool:
+	if not is_chapter_unlocked(4) or not has_completed_quest("boss_fight") or has_time_stone(4):
+		return false
+	_flags["stage4_stone_collected"] = true
+	_flags["faculty_head_rescued"] = true
+	_quest_stages["rescue_faculty_head"] = QUEST_STAGE_COMPLETE
+	_quest_stages["claim_boss_reward"] = QUEST_STAGE_COMPLETE
+	_quest_stages["activate_time_gate"] = QUEST_STAGE_ACTIVE
+	save_game()
+	quests_changed.emit()
+	flag_changed.emit("stage4_stone_collected", true)
 	progression_changed.emit()
 	return true
 
@@ -579,6 +614,8 @@ const QUEST_CATALOG = {
 	"return_to_tuan": ["Nhận tài liệu", "Trở lại gặp thầy Tuấn ở sân thể thao để nhận tài liệu."],
 	"deliver_marathon_documents": ["Giao tài liệu", "Mang chương trình lễ kỷ niệm tới giảng viên phụ trách lễ kỷ niệm, bên ngoài Văn phòng Khoa 210C."],
 	"rescue_faculty_head": ["Biến cố tại Văn phòng Khoa", "Tìm hiểu tiếng động tại Văn phòng Khoa 210C và đánh bại CON BUG để giải cứu thầy Trưởng khoa."],
+	"claim_boss_reward": ["Giải cứu thành công", "Trở lại cửa Văn phòng Khoa 210C để gặp thầy Trưởng khoa và nhận viên đá cuối cùng."],
+	"activate_time_gate": ["Cánh Cửa Thời Gian", "Mang đủ bốn Viên Đá Thời Gian tới cổng thời gian tại Văn phòng Khoa."],
 	"garbage_quest": ["Dọn rác", "Hoàn thành thử thách phân loại rác."],
 	"fit_runner": ["Đường chạy FIT", "Hoàn thành thử thách chạy."],
 	"boss_fight": ["CON BUG", "Đánh bại CON BUG."],

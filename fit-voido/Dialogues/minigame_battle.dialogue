@@ -2,10 +2,25 @@
 # Balloon: pixel_balloon.tscn
 
 ~ start
+if GameState.has_time_stone(4):
+	Trưởng khoa: Em đã cứu được thầy và nhận đủ bốn viên đá. Hãy tới Cánh Cửa Thời Gian tại Văn phòng Khoa để trở về năm 2006 nhé.
+	- Kích hoạt Cánh Cửa Thời Gian.
+		set SceneLoader.go_to("res://scenes/chapters/time_gate.tscn")
+		=> END
+	- Em muốn nhìn quanh thêm một chút.
+		=> END
+	=> END
+if GameState.has_completed_quest("boss_fight"):
+	=> rescue
 if not GameState.can_start_activity("boss_fight"):
 	Thầy Thắng: Em cần thu thập ba viên đá thời gian và chọn kỹ năng ở Phòng 417 trước khi vào trận chiến.
 	=> END
-Thầy Thắng: Cảnh báo khẩn cấp! Hệ thống Khoa FIT đang bị CON BUG tấn công dữ dội! [#mood=surprised]
+Thầy Thắng: CON BUG đang tấn công hệ thống trong Văn phòng Khoa! Thầy Trưởng khoa vẫn còn bên trong!
+if GameState.selected_skill() == "fist":
+	Thầy Thắng: Em đã chọn FIST ở Phòng 417. Kỹ năng đó sẽ được dùng trong trận chiến.
+else:
+	Thầy Thắng: Em đã chọn POISON ở Phòng 417. Kỹ năng đó sẽ được dùng trong trận chiến.
+Thầy Thắng: Chọn độ khó phù hợp. Em có thể thử lại khi thua hoặc trở về chuẩn bị. Giải quyết CON BUG rồi quay lại cửa 210C để gặp thầy Trưởng khoa nhé.
 Thầy Thắng: Em có muốn kích hoạt võ đài FIT Battle để bước vào chiến đấu, debug và giải cứu hệ thống ngay bây giờ không?
 - Vào chiến đấu ngay!
 	set SceneLoader.start_minigame("boss_fight")
@@ -13,3 +28,16 @@ Thầy Thắng: Em có muốn kích hoạt võ đài FIT Battle để bước v�
 - Em cần chuẩn bị thêm
 	Thầy Thắng: Cố gắng lên nhé! Hãy chuẩn bị kỹ năng thật tốt rồi quay lại tiêu diệt CON BUG!
 	=> END
+
+~ rescue
+if GameState.boss_resolution() == "spared":
+	CON BUG: Tôi không muốn phá buổi lễ… tôi chỉ không biết cách dừng lại.
+	Bạn: Vậy mình sửa cùng nhau nhé. Đừng chạy thêm file nào nữa là được.
+	Trưởng khoa: Hệ thống ổn định rồi! Em đã giúp CON BUG bình tĩnh lại và cứu thầy.
+else:
+	Trưởng khoa: Hệ thống ổn định rồi! Cảm ơn em đã đánh bại CON BUG và cứu thầy.
+Bạn: Em chỉ định về năm 2006 nộp bài, không ngờ còn phải debug năm 2026 nữa ạ.
+Trưởng khoa: Có những việc hai mươi năm vẫn chưa đổi nhỉ. Đây là Viên Đá Thời Gian thứ tư, cũng là viên cuối cùng.
+set GameState.claim_boss_rescue_stone()
+Trưởng khoa: Em đã có đủ bốn viên đá. Hãy mang tới Cánh Cửa Thời Gian tại Văn phòng Khoa. Đừng quên những người em đã gặp trong hành trình này nhé.
+=> END

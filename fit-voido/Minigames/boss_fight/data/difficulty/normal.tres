@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource("1_diff")
 id = &"normal"
+score_multiplier = 1.5
 display_name = "Normal"
 description = "Cân bằng. Trải nghiệm chuẩn."
 player_max_hp = 20

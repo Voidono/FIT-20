@@ -1,4 +1,5 @@
 extends Area2D
+@export_file("*.dialogue") var dialogue_path := "res://Dialogues/chapter3_room419.dialogue"
 ## A conversation through the closed door; no interior scene transition.
 
 var _player: Node2D
@@ -27,7 +28,7 @@ func _talk() -> void:
 	_player.set_can_move(false)
 	DialogueManager.show_dialogue_balloon_scene(
 		preload("res://Dialogues/Bubbles/pixel_balloon.tscn"),
-		load("res://Dialogues/chapter3_room419.dialogue"), "start")
+		load(dialogue_path), "start")
 	await DialogueManager.dialogue_ended
 	_talking = false
 	DialogueNPC.is_any_talking = false

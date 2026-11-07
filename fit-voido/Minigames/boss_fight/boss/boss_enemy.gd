@@ -46,6 +46,7 @@ func _ready() -> void:
 	assert(not phases.is_empty(), "Enemy needs at least one BossPhase under Phases")
 	phases.sort_custom(_by_threshold_descending)
 	phase = phases[0]
+	_apply_phase_art()
 	visual.self_modulate = phase.tint
 	hp_bar.hide()
 	_label_rest_y = damage_label.position.y
@@ -104,7 +105,15 @@ func update_phase() -> bool:
 	if target == phase:
 		return false
 	phase = target
+	_apply_phase_art()
 	return true
+
+
+func _apply_phase_art() -> void:
+	if visual is AssetSlot and phase.texture != null:
+		visual.texture = phase.texture
+		visual.show_placeholder = false
+	visual.scale = Vector2.ONE * phase.visual_scale
 
 
 func get_acts() -> Array[BattleOption]:

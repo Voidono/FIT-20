@@ -1,0 +1,40 @@
+~ start
+if GameState.has_time_stone(4):
+	Giảng viên: Em đã giải cứu thầy Trưởng khoa rồi! Hãy mang đủ bốn viên đá tới Cánh Cửa Thời Gian tại Văn phòng Khoa nhé.
+	=> END
+if GameState.has_time_stone(3):
+	if not GameState.has_flag("faculty_disturbance_seen"):
+		=> disturbance
+	Giảng viên: Tài liệu thầy nhận rồi. Em kiểm tra chuyện trong Văn phòng Khoa 210C giúp thầy nhé!
+	=> END
+if not GameState.is_chapter_unlocked(3):
+	Giảng viên: Thầy đang chuẩn bị lễ kỷ niệm. Em tiếp tục hành trình ở Nhà C trước nhé.
+	=> END
+if not GameState.has_quest_item("marathon_documents"):
+	Giảng viên: Thầy đang chờ chương trình lễ kỷ niệm từ thầy Tuấn ở sân thể thao. Khi nhận được, em mang tới đây giúp thầy nhé.
+	=> END
+Giảng viên: Em tìm thầy có việc gì không?
+- Em mang chương trình lễ kỷ niệm từ thầy Tuấn tới ạ.
+	=> handover
+- Để em kiểm tra lại tài liệu đã ạ.
+	=> END
+
+~ handover
+set GameState.hand_over_marathon_documents()
+Giảng viên: Tài liệu của thầy Tuấn đây rồi! Thầy đang chờ để hoàn thiện chương trình kỷ niệm.
+Bạn: Em vừa chạy hai vòng để chuyển tài liệu này đấy ạ.
+Giảng viên: Thầy bảo gửi nhanh, không ngờ em hiểu theo nghĩa đen.
+Giảng viên: Cảm ơn em. Đây là Viên Đá Thời Gian thứ ba. Em giữ cẩn thận nhé!
+=> disturbance
+
+~ disturbance
+set SceneLoader.show_faculty_disturbance()
+Bạn: Đèn vừa chớp phải không ạ? Có tiếng động trong văn phòng!
+Trưởng khoa: Ai vừa chạy cái file này?!
+Giảng viên: Có chuyện trong Văn phòng Khoa rồi. CON BUG đang tấn công! Em vào xem giúp thầy!
+set GameState.set_flag("faculty_disturbance_seen")
+- Em vào kiểm tra ngay.
+	=> END
+- Em cần chuẩn bị một chút.
+	Giảng viên: Được. Khi sẵn sàng, em tới cửa Văn phòng Khoa 210C nhé.
+	=> END

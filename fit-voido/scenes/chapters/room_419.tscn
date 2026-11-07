@@ -9,7 +9,7 @@
 
 [node name="Exit" parent="." instance=ExtResource("door")]
 position = Vector2(246, 102)
-target_scene = "res://scenes/mapsides/t_2_c.tscn"
+target_scene = "res://scenes/mapsides/t_4.tscn"
 target_position = Vector2(2850, 390)
 activation = 1
 prompt_text = "Phòng 419 — E / tương tác để ra hành lang"

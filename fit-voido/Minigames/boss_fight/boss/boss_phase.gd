@@ -8,6 +8,8 @@ extends Node
 @export_range(0.0, 1.0) var starts_at_hp_ratio := 1.0
 ## Multiplied onto the boss sprite. Lets one sprite look different per phase.
 @export var tint := Color(1, 1, 1, 1)
+@export var texture: Texture2D
+@export_range(0.1, 4.0, 0.05) var visual_scale := 1.0
 @export var random_order := false
 @export_group("Text")
 ## Shown in the box when this phase begins (empty = nothing). Not used for phase 1.

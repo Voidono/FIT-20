@@ -26,7 +26,7 @@ func pick(options: Array[BattleDifficulty], current: BattleDifficulty = null) ->
 	var labels := PackedStringArray()
 	var start := 0
 	for i in options.size():
-		labels.append(options[i].display_name)
+		labels.append("%s  ×%.1f" % [options[i].display_name, options[i].score_multiplier])
 		if options[i] == current:
 			start = i
 	show()
@@ -39,4 +39,4 @@ func pick(options: Array[BattleDifficulty], current: BattleDifficulty = null) ->
 
 func _on_focused(index: int) -> void:
 	if index >= 0 and index < _options.size():
-		description_label.text = _options[index].description
+		description_label.text = _options[index].description + "\nĐiểm thắng = (1000 + 1000 × HP còn lại / HP tối đa) × %.1f" % _options[index].score_multiplier

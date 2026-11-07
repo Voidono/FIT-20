@@ -80,14 +80,21 @@ func _on_run_finished(result: Variant) -> void:
 
 
 func _on_boss_finished(result: Variant) -> void:
-	# Proposal requires defeating CON BUG. Spare is retained as an outcome,
-	# but does not award story completion until that design choice is approved.
+	# Both outcomes rescue the head; only combat victory earns battle points.
 	GameState.record_activity_result(_id, {
-		"passed": result.won(), "outcome": String(result.outcome),
+		"passed": result.won() or result.spared(), "outcome": String(result.outcome),
 		"deaths": result.deaths, "seconds": result.seconds,
 		"skill": String(GameState.selected_skill()),
+		"difficulty": String(result.difficulty.id) if result.difficulty != null else "normal",
+		"score": result.score, "final_hp": result.final_hp, "max_hp": result.max_hp,
+		"base_points": result.base_points, "health_bonus": result.health_bonus,
+		"score_multiplier": result.score_multiplier,
 	})
-	_message.text = "Chiến thắng! Hãy trở về gặp giảng viên." if result.won() else "Đã kết thúc trận đấu."
+	_message.text = "Chiến thắng! Trở lại cửa 210C để gặp thầy Trưởng khoa và nhận viên đá cuối cùng." if result.won() else "Chưa giải cứu được thầy. Em có thể thử lại để đánh bại CON BUG."
+	if result.won():
+		_message.text += "\nĐiểm: %d = (%d + %d HP) × %.1f\nKỷ lục: %d" % [result.score, result.base_points, result.health_bonus, result.score_multiplier, int(GameState.activity_result(_id).get("best_score", 0))]
+	elif result.spared():
+		_message.text = "CON BUG đã dừng lại. Thầy Trưởng khoa an toàn! Trở lại cửa 210C để nhận viên đá cuối cùng."
 	_exit_button.grab_focus()
 
 

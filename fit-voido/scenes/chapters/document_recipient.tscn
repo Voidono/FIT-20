@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/Character/dialogue_npc.tscn" id="npc"]
+[ext_resource type="Resource" path="res://Dialogues/chapter3_delivery.dialogue" id="dialogue"]
+
+[node name="DocumentRecipient" instance=ExtResource("npc")]
+npc_skin = "NPC_2"
+npc_name = "Giảng viên phụ trách lễ kỷ niệm"
+dialogue = ExtResource("dialogue")
+prompt_text = "Nói chuyện"
+mode = 0

@@ -52,7 +52,7 @@ func _run() -> void:
 	_require(state.claim_stage1_stone(), "lecturer reward")
 	player.global_position = campus.to_global(Vector2(300, 100))
 	door.call("_on_body_entered", player)
-	if not await _wait_for_scene("res://scenes/mapsides/t_2_c.tscn"):
+	if not await _wait_for_scene("res://scenes/mapsides/t_2.tscn"):
 		return
 	var hall := current_scene
 	var hall_player := hall.get_node("Character") as Node2D
@@ -70,7 +70,7 @@ func _run() -> void:
 	print("PASS: locked entrance, hallway arrival, and Room 417 doorway")
 	var room_player := current_scene.get_node("Classroom/Character") as Node2D
 	current_scene.get_node("Exit").call("_on_body_entered", room_player)
-	if not await _wait_for_scene("res://scenes/mapsides/t_2_c.tscn"):
+	if not await _wait_for_scene("res://scenes/mapsides/t_2.tscn"):
 		return
 	hall = current_scene
 	hall_player = hall.get_node("Character")
@@ -88,7 +88,7 @@ func _run() -> void:
 	DirAccess.remove_absolute(state.save_path)
 	# The same outside entrance can be used again after returning.
 	current_scene.get_node("Area/Area2D").call("_on_body_entered", player)
-	if not await _wait_for_scene("res://scenes/mapsides/t_2_c.tscn"):
+	if not await _wait_for_scene("res://scenes/mapsides/t_2.tscn"):
 		return
 	_require(current_scene.get_node("Character").position == Vector2(2000, 100), "campus entrance supports reentry")
 	print("PASS: campus ↔ Nhà C hallway ↔ Room 417, including reentry")

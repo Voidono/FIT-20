@@ -19,6 +19,7 @@ const NEXT := &"next"
 
 ## Start by itself in _ready(). BossFight turns this off and calls begin() once it has configured us.
 @export var auto_start := true
+@export var debug_enabled := false
 ## The skill as a resource, or leave it empty and set `skill_id` (looked up in Library/Skills).
 @export var skill: BattleSkill
 @export var skill_id := "fist"

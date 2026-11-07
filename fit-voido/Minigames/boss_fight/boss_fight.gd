@@ -77,6 +77,7 @@ func game_to_screen(game_position: Vector2) -> Vector2:
 func _apply_config() -> void:
 	if config == null:
 		return
+	battle.debug_enabled = config.debug_enabled
 	if config.skill != null:
 		battle.skill = config.skill
 	elif config.skill_id != &"":
@@ -107,6 +108,9 @@ func _on_battle_finished(outcome: StringName) -> void:
 	result.deaths = battle.deaths
 	result.skill = battle.skill
 	result.difficulty = battle.difficulty
+	result.final_hp = battle.stats.hp
+	result.max_hp = battle.stats.max_hp
+	result.calculate_score()
 	result.seconds = float(Time.get_ticks_msec() - _started_msec) / 1000.0
 	music_player.stop()
 	finished.emit(result)

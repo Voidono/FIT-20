@@ -2,7 +2,7 @@ extends Area2D
 
 enum Activation { WALK_IN, INTERACT }
 @export_group("Destination")
-@export_file("*.tscn") var target_scene := "res://scenes/mapsides/t_2_c.tscn"
+@export_file("*.tscn") var target_scene := "res://scenes/mapsides/t_2.tscn"
 ## Coordinates relative to the destination scene's root, not this door.
 @export var target_position := Vector2(2000, 100)
 @export_group("Interaction")

@@ -28,12 +28,6 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 22
 text = "SV 2006"
 
-[node name="LvLabel" type="Label" parent="NameRow"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_font_sizes/font_size = 22
-text = "LV 1"
-
 [node name="HpRow" type="HBoxContainer" parent="."]
 offset_left = 212.0
 offset_right = 560.0

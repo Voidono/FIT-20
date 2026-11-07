@@ -9,6 +9,21 @@ var activity_id := ""
 var _restore_position := false
 var _scene_spawn: Dictionary = {}
 
+func show_faculty_disturbance() -> void:
+	var layer := CanvasLayer.new()
+	layer.layer = 80
+	get_tree().root.add_child(layer)
+	var shade := ColorRect.new()
+	shade.color = Color(0, 0, 0, 0)
+	shade.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	layer.add_child(shade)
+	shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	var tween := create_tween()
+	tween.tween_property(shade, "color:a", 0.3, 0.15)
+	tween.tween_property(shade, "color:a", 0.0, 0.3)
+	await tween.finished
+	layer.queue_free()
+
 func go_to(path: String) -> Error:
 	if not ResourceLoader.exists(path, "PackedScene"):
 		return ERR_FILE_NOT_FOUND

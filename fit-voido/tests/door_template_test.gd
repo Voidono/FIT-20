@@ -14,7 +14,7 @@ func _run() -> void:
 	assert(first.activation == 0)
 	first.activation = 1
 	assert(first.activation == 1)
-	var hallway = load("res://scenes/mapsides/t_2_c.tscn").instantiate()
+	var hallway = load("res://scenes/mapsides/t_2.tscn").instantiate()
 	var door = hallway.get_node("Room417Door")
 	assert(door.position == Vector2(3100, 150))
 	assert(door.target_scene == "res://scenes/chapters/room_417.tscn")

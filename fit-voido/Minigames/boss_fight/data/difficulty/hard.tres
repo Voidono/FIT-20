@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource("1_diff")
 id = &"hard"
+score_multiplier = 2.0
 display_name = "Hard"
 description = "Ít máu, đạn nhanh và dày, canh nhịp khó.
 Dành cho người chơi giỏi."

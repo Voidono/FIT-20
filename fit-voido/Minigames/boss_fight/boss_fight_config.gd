@@ -8,6 +8,7 @@ extends Resource
 @export var skill_id: StringName = &""
 @export var difficulty: BattleDifficulty
 @export var difficulty_id: StringName = &""
+@export var debug_enabled := false
 ## Shown in the status row. Empty = the battle's default.
 @export var player_name := ""
 ## Optional: fight another boss. Must be a scene whose root script extends BossEnemy.

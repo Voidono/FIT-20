@@ -1,5 +1,22 @@
 # boss_fight: CON BUG boss battle module (Godot 4.7)
 
+## Current project changes
+
+The three HP phases use `assets/Phase1.png`, `assets/phase2.png` and
+`assets/phase3.png`. Phase resources own the textures and display scale; neutral
+tint preserves their black-and-white art. Character level/LV is removed.
+
+Difficulty selection remains. Victory score is
+`round((1000 + round(1000 * remaining_hp / max_hp)) * multiplier)`:
+Easy ×1, Normal ×1.5, Hard ×2. HP is measured on the winning attempt after healing;
+Spare earns zero victory points. The main game stores the best score, not a
+cumulative replay reward. The development harness displays the result breakdown.
+
+Debug controls are opt-in via `BossFightConfig.debug_enabled` and are enabled by
+the development harness only. They are off in normal story launches.
+
+See `BOSS_FIGHT_REVIEW.md` in the project root for the source review and limitations.
+
 A self-contained Undertale-style boss fight. Copy this one folder into your project. It needs no autoloads, no
 Project Settings and no Input Map edits.
 

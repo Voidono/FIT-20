@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://dsnher3f8n8c6"
+path="res://.godot/imported/chapter3_delivery.dialogue-a034ee40a0e29c04adaa91f00b4755e5.tres"
+
+[deps]
+
+source_file="res://Dialogues/chapter3_delivery.dialogue"
+dest_files=["res://.godot/imported/chapter3_delivery.dialogue-a034ee40a0e29c04adaa91f00b4755e5.tres"]
+
+[params]
+
+defaults=true

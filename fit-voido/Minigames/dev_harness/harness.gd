@@ -28,13 +28,14 @@ func _loop() -> void:
 			pick = await choices.choose(labels)
 		ui.hide()
 		var config := BossFightConfig.new()
+		config.debug_enabled = true
 		config.skill_id = SEATS[labels[pick]]
 		var fight := BOSS_FIGHT.instantiate() as BossFight
 		fight.config = config
 		add_child(fight)
 		var result: BossFightResult = await fight.finished
-		message.text = "Kết quả: %s   |   chết %d lần   |   %.0f giây" \
-				% [result.outcome, result.deaths, result.seconds]
+		message.text = "Kết quả: %s | chết %d lần | %.0f giây | HP %d/%d | Điểm %d (×%.1f)" \
+				% [result.outcome, result.deaths, result.seconds, result.final_hp, result.max_hp, result.score, result.score_multiplier]
 		ui.show()
 		await get_tree().create_timer(3.0).timeout
 		message.text = ""

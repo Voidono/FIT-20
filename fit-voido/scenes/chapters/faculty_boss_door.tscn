@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3]
+[ext_resource type="Script" path="res://scenes/chapters/room419_door.gd" id="script"]
+[sub_resource type="RectangleShape2D" id="Range"]
+size = Vector2(80, 80)
+[node name="FacultyBossDoor" type="Area2D"]
+collision_layer = 0
+script = ExtResource("script")
+dialogue_path = "res://Dialogues/minigame_battle.dialogue"
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("Range")
+[node name="Sign" type="Label" parent="."]
+offset_left = -85.0
+offset_top = -65.0
+offset_right = 85.0
+text = "210C — VĂN PHÒNG KHOA\nE / Tương tác"
+horizontal_alignment = 1

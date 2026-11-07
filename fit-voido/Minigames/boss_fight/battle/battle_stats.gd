@@ -5,7 +5,6 @@ extends RefCounted
 signal hp_changed(hp: int, max_hp: int)
 
 var display_name := "SV 2006"
-var level := 1
 var max_hp := 20
 var hp := 20
 
