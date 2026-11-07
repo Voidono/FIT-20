@@ -15,6 +15,10 @@ var _options: Array[BattleDifficulty] = []
 
 func _ready() -> void:
 	title_label.text = title
+	if BattleInput.is_mobile():
+		choices.position.y = 120
+		description_label.offset_top = -156
+		$HintLabel.text = "Chạm vào độ khó để bắt đầu"
 	choices.focused.connect(_on_focused)
 	hide()
 

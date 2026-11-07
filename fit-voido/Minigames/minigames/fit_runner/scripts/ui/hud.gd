@@ -83,7 +83,7 @@ func _build_race_ui() -> void:
 	for i in range(2):
 		var button := Button.new()
 		button.text = "FR_MODE_PRACTICE" if i == 0 else "FR_MODE_RACE"
-		button.custom_minimum_size = Vector2(0, 38)
+		button.custom_minimum_size = Vector2(0, 44)
 		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		button.focus_mode = Control.FOCUS_NONE
 		button.pressed.connect(func() -> void: mode_selected.emit(i))
@@ -111,6 +111,9 @@ func _build_race_ui() -> void:
 	_race_info.add_theme_constant_override("outline_size", 4)
 	root.add_child(_race_info)
 	_progress.hide()
+	_pause_button.custom_minimum_size = Vector2(44, 44)
+	for button in _pause_menu.find_children("*", "Button", true, false):
+		button.custom_minimum_size.y = 44
 	var title := ready_box.get_node("StoryLabel") as Label
 	title.text = "FR_CIRCUIT_TITLE"
 	title.add_theme_font_size_override("font_size", 20)

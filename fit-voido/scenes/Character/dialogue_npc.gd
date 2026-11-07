@@ -42,7 +42,7 @@ static var is_any_talking: bool = false
 @export_group("Interaction")
 @export var player_group: StringName = &"player"
 @export var freeze_player: bool = true
-@export var prompt_text: String = "Talk"
+@export var prompt_text: String = "Nói chuyện"
 
 @export_group("Name Tag")
 ## The name shown above the NPC when the player walks close. Leave empty to hide the tag entirely.
@@ -53,17 +53,17 @@ static var is_any_talking: bool = false
 ## Whether to show the name tag at all (useful for NPCs that should stay anonymous).
 @export var show_name_tag: bool = true
 ## Background colour of the name tag panel.
-@export var name_tag_bg_color: Color = Color(0.18, 0.071, 0.141, 0.85):
+@export var name_tag_bg_color: Color = Color(0.102, 0.145, 0.141, 0.94):
 	set(value):
 		name_tag_bg_color = value
 		_apply_name_tag()
 ## Border colour of the name tag panel.
-@export var name_tag_border_color: Color = Color(0.969, 0.463, 0.133, 1):
+@export var name_tag_border_color: Color = Color(0.56, 0.49, 0.35, 0.9):
 	set(value):
 		name_tag_border_color = value
 		_apply_name_tag()
 ## Text colour of the name label.
-@export var name_tag_font_color: Color = Color(1, 0.914, 0.722, 1):
+@export var name_tag_font_color: Color = Color(0.96, 0.91, 0.78, 1):
 	set(value):
 		name_tag_font_color = value
 		_apply_name_tag()
@@ -209,6 +209,8 @@ func _ready() -> void:
 	action_label.text = prompt_text
 	_prompt_rest_y = prompt.position.y
 	_setup_prompt()
+	name_panel.minimum_size_changed.connect(_layout_name_tag)
+	_layout_name_tag.call_deferred()
 	_setup_animation()
 	_setup_movement()
 
@@ -349,6 +351,22 @@ func _apply_name_tag() -> void:
 	# In editor: always show when npc_name is set so you can preview it
 	if Engine.is_editor_hint():
 		anchor.visible = show_name_tag and npc_name != ""
+	elif is_inside_tree():
+		_layout_name_tag.call_deferred()
+
+
+func _layout_name_tag() -> void:
+	if not is_instance_valid(name_panel) or not is_instance_valid(name_label):
+		return
+	var font := name_label.get_theme_font("font")
+	var font_size := name_label.get_theme_font_size("font_size")
+	var width := clampf(font.get_string_size(npc_name, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x + 16, 60, 240)
+	name_panel.custom_minimum_size.x = width
+	name_panel.size.x = width
+	name_panel.size.y = name_panel.get_combined_minimum_size().y
+	# Name above the key prompt, both centered. Long names wrap instead of
+	# colliding with the action badge or extending far across the map.
+	name_panel.position = Vector2(-width / 2, -name_panel.size.y - 12).round()
 
 
 ## Applies the exported capsule size to the StaticBody child shape.
@@ -472,11 +490,9 @@ func _update_prompt() -> void:
 		name_tag_anchor.visible = show_name_tag and npc_name != "" and _in_range
 	if not should_show:
 		return
-	_hop_tween = create_tween().set_loops()
-	_hop_tween.tween_callback(func(): prompt.position.y = _prompt_rest_y - 2.0)
-	_hop_tween.tween_interval(0.4)
-	_hop_tween.tween_callback(func(): prompt.position.y = _prompt_rest_y)
-	_hop_tween.tween_interval(0.4)
+	prompt.modulate.a = 0.0
+	_hop_tween = create_tween()
+	_hop_tween.tween_property(prompt, "modulate:a", 1.0, 0.16)
 
 
 func _set_player_frozen(frozen: bool) -> void:

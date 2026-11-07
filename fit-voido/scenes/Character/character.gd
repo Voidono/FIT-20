@@ -84,7 +84,7 @@ func _spawn_keyboard_hint() -> void:
 			break
 
 	_keyboard_hint = Label.new()
-	_keyboard_hint.text = "WASD / Arrow keys: Move   |   E: Interact"
+	_keyboard_hint.text = "WASD / Mũi tên: Di chuyển   ·   E: Tương tác   ·   J: Nhật ký"
 	_keyboard_hint.add_theme_font_size_override("font_size", 13)
 	_keyboard_hint.add_theme_color_override("font_color", Color(1, 1, 1, 0.75))
 	_keyboard_hint.add_theme_color_override("font_outline_color", Color(0, 0, 0, 0.85))

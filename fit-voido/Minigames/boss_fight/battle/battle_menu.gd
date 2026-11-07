@@ -17,6 +17,8 @@ var _active := false
 
 func _ready() -> void:
 	for button in _get_buttons():
+		if BattleInput.is_mobile():
+			button.offset_top = -18
 		button.pressed.connect(_on_pressed.bind(button))
 		button.focus_entered.connect(_on_focus.bind(button))
 	deactivate()

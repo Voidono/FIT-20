@@ -1,4 +1,4 @@
-class_name DialogueNPC
+class_name LegacyDialogueNPC
 extends Area2D
 ## A talkable NPC. When the player stands close, a little key prompt appears above
 ## the NPC. Pressing the interact action starts a conversation in one of the Ember

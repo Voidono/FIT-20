@@ -6,12 +6,15 @@ const RUNNER_CONFIG = "res://Minigames/minigames/fit_runner/scripts/api/fit_runn
 const TRASH_SCENE = "res://Minigames/trash_train_v3/trash_train/trash_train.tscn"
 const BOSS_SCENE = "res://Minigames/boss_fight/boss_fight.tscn"
 const BOSS_CONFIG = "res://Minigames/boss_fight/boss_fight_config.gd"
+const INTRODUCTION = preload("res://Dialogues/activity_introductions.dialogue")
 
 var _id := ""
 var _game: Node
 var _leaving := false
 var _exit_button: Button
 var _message: Label
+var _intro_open := false
+var _intro_balloon: Node
 
 
 func _ready() -> void:
@@ -21,6 +24,31 @@ func _ready() -> void:
 	if not GameState.can_start_activity(_id):
 		_message.text = "Không thể bắt đầu thử thách. Hãy quay lại khuôn viên."
 		return
+	await _show_introduction()
+	if _leaving:
+		return
+	_launch_game()
+
+
+func _show_introduction() -> void:
+	_intro_open = true
+	var balloon = DialogueManager.show_dialogue_balloon_scene(preload("res://Dialogues/Bubbles/tutorial_balloon.tscn"), INTRODUCTION, _id)
+	balloon.process_mode = Node.PROCESS_MODE_ALWAYS
+	balloon.layer = 220
+	_intro_balloon = balloon
+	# Let the tutorial dim/card own the screen instead of the host overlay.
+	_exit_button.get_parent().hide()
+	await DialogueManager.dialogue_ended
+	if is_instance_valid(balloon):
+		await balloon.tree_exited
+	_intro_open = false
+	_intro_balloon = null
+	_exit_button.get_parent().show()
+	if is_instance_valid(_game) and _game.has_method("help_closed"):
+		_game.help_closed()
+
+
+func _launch_game() -> void:
 	var history := GameState.activity_result(_id)
 	match _id:
 		"fit_runner", "fit_runner_race":
@@ -34,6 +62,7 @@ func _ready() -> void:
 			_game.quit_requested.connect(_return_to_host)
 		"garbage_quest":
 			_game = load(TRASH_SCENE).instantiate()
+			_game.skip_tutorial = true # shared introduction replaces duplicate tutorial
 			_game.failed_attempts = int(history.get("failures", 0))
 			_game.run_finished.connect(_on_run_finished)
 			_game.closed.connect(func(_result: Variant) -> void: _return_to_host())
@@ -43,6 +72,8 @@ func _ready() -> void:
 			_game = load(BOSS_SCENE).instantiate()
 			_game.config = config
 			_game.finished.connect(_on_boss_finished)
+			_game.help_requested.connect(_show_introduction)
+			_game.quit_requested.connect(_return_to_host)
 	add_child(_game)
 
 
@@ -52,10 +83,12 @@ func _build_controls() -> void:
 	layer.layer = 100
 	add_child(layer)
 	var panel := VBoxContainer.new()
-	panel.set_anchors_and_offsets_preset(Control.PRESET_TOP_RIGHT)
-	panel.grow_horizontal = Control.GROW_DIRECTION_BEGIN
-	panel.position = Vector2(get_viewport().get_visible_rect().size.x - 220, 8)
 	layer.add_child(panel)
+	panel.set_anchors_and_offsets_preset(Control.PRESET_TOP_RIGHT)
+	panel.offset_left = -220
+	panel.offset_right = -12
+	panel.offset_top = 8
+	panel.grow_horizontal = Control.GROW_DIRECTION_BEGIN
 	_exit_button = Button.new()
 	_exit_button.text = "Về khuôn viên"
 	_exit_button.custom_minimum_size = Vector2(208, 48)

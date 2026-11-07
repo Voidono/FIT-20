@@ -124,6 +124,10 @@ var _key_cap: String = ""
 
 
 func _ready() -> void:
+	get_viewport().size_changed.connect(_layout)
+	_layout()
+	if DeviceInput.is_mobile():
+		continue_hint = "Chạm để tiếp tục"
 	card.hide()
 	dim.modulate.a = 0.0
 	pip_template.hide()
@@ -157,6 +161,14 @@ func _ready() -> void:
 	add_child(mutation_cooldown)
 
 	_reserve_text_height()
+
+
+func _layout() -> void:
+	card.custom_minimum_size.x = minf(560, get_viewport().get_visible_rect().size.x - 32)
+	var template := responses_menu.get_node_or_null("ResponseTemplate") as Button
+	if template != null:
+		template.custom_minimum_size.y = 44
+		template.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 
 
 func _unhandled_input(_event: InputEvent) -> void:

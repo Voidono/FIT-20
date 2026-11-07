@@ -24,9 +24,9 @@ unique_name_in_owner = true
 [node name="Sprite" type="AnimatedSprite2D" parent="Body" unique_id=991687022]
 unique_name_in_owner = true
 sprite_frames = ExtResource("5_runner_fra")
-animation = &"run"
+animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.22530842
+frame_progress = 0.741198
 centered = false
 offset = Vector2(-16, -48)
 

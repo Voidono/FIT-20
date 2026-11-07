@@ -47,7 +47,7 @@ func say(new_text: String, wait_for_confirm := true) -> void:
 		_wait_frame = Engine.get_process_frames()
 		await _confirmed
 	else:
-		await get_tree().create_timer(linger_time).timeout
+		await get_tree().create_timer(linger_time, false).timeout
 	clear_text()
 
 

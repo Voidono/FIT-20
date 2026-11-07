@@ -1,0 +1,108 @@
+Godot Engine v4.7.stable.official.5b4e0cb0f - https://godotengine.org
+
+ERROR: Resource file not found: res://Minigames/minigames/fit_runner/assets/character/runner_sheet.png (expected type: Texture2D)
+   at: _load (core/io/resource_loader.cpp:325)
+   GDScript backtrace (most recent call first):
+       [0] run (res://tests/responsive_audit.gd:110)
+       [1] capture (res://tests/responsive_audit.gd:25)
+       [2] settle (res://tests/responsive_audit.gd:21)
+ERROR: res://Minigames/minigames/fit_runner/assets/character/runner_frames.tres:19 - Parse Error: [ext_resource] referenced non-existent resource at: res://Minigames/minigames/fit_runner/assets/character/runner_sheet.png.
+   at: _printerr (scene/resources/resource_format_text.cpp:41)
+   GDScript backtrace (most recent call first):
+       [0] run (res://tests/responsive_audit.gd:110)
+       [1] capture (res://tests/responsive_audit.gd:25)
+       [2] settle (res://tests/responsive_audit.gd:21)
+ERROR: res://Minigames/minigames/fit_runner/assets/character/runner_frames.tres:19 - Parse Error: [ext_resource] referenced non-existent resource at: res://Minigames/minigames/fit_runner/assets/character/runner_sheet.png.
+   at: _printerr (scene/resources/resource_format_text.cpp:41)
+   GDScript backtrace (most recent call first):
+       [0] run (res://tests/responsive_audit.gd:110)
+       [1] capture (res://tests/responsive_audit.gd:25)
+       [2] settle (res://tests/responsive_audit.gd:21)
+ERROR: Failed loading resource: res://Minigames/minigames/fit_runner/assets/character/runner_frames.tres.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] run (res://tests/responsive_audit.gd:110)
+       [1] capture (res://tests/responsive_audit.gd:25)
+       [2] settle (res://tests/responsive_audit.gd:21)
+ERROR: res://Minigames/minigames/fit_runner/scenes/character/runner_character.tscn:26 - Parse Error: [ext_resource] referenced non-existent resource at: res://Minigames/minigames/fit_runner/assets/character/runner_frames.tres.
+   at: _printerr (scene/resources/resource_format_text.cpp:41)
+   GDScript backtrace (most recent call first):
+       [0] run (res://tests/responsive_audit.gd:110)
+       [1] capture (res://tests/responsive_audit.gd:25)
+       [2] settle (res://tests/responsive_audit.gd:21)
+ERROR: There is no animation with name 'run'.
+   at: set_animation (scene/2d/animated_sprite_2d.cpp:585)
+   GDScript backtrace (most recent call first):
+       [0] create (res://Minigames/minigames/fit_runner/scripts/api/fit_runner_launcher.gd:12)
+       [1] run (res://tests/responsive_audit.gd:110)
+       [2] capture (res://tests/responsive_audit.gd:25)
+       [3] settle (res://tests/responsive_audit.gd:21)
+ERROR: There is no animation with name 'run'.
+   at: set_animation (scene/2d/animated_sprite_2d.cpp:585)
+   GDScript backtrace (most recent call first):
+       [0] create (res://Minigames/minigames/fit_runner/scripts/api/fit_runner_launcher.gd:12)
+       [1] run (res://tests/responsive_audit.gd:110)
+       [2] capture (res://tests/responsive_audit.gd:25)
+       [3] settle (res://tests/responsive_audit.gd:21)
+AUDITED: 640x360
+ERROR: There is no animation with name 'run'.
+   at: set_animation (scene/2d/animated_sprite_2d.cpp:585)
+   GDScript backtrace (most recent call first):
+       [0] create (res://Minigames/minigames/fit_runner/scripts/api/fit_runner_launcher.gd:12)
+       [1] run (res://tests/responsive_audit.gd:110)
+       [2] capture (res://tests/responsive_audit.gd:25)
+       [3] settle (res://tests/responsive_audit.gd:21)
+ERROR: There is no animation with name 'run'.
+   at: set_animation (scene/2d/animated_sprite_2d.cpp:585)
+   GDScript backtrace (most recent call first):
+       [0] create (res://Minigames/minigames/fit_runner/scripts/api/fit_runner_launcher.gd:12)
+       [1] run (res://tests/responsive_audit.gd:110)
+       [2] capture (res://tests/responsive_audit.gd:25)
+       [3] settle (res://tests/responsive_audit.gd:21)
+AUDITED: 960x540
+ERROR: There is no animation with name 'run'.
+   at: set_animation (scene/2d/animated_sprite_2d.cpp:585)
+   GDScript backtrace (most recent call first):
+       [0] create (res://Minigames/minigames/fit_runner/scripts/api/fit_runner_launcher.gd:12)
+       [1] run (res://tests/responsive_audit.gd:110)
+       [2] capture (res://tests/responsive_audit.gd:25)
+       [3] settle (res://tests/responsive_audit.gd:21)
+ERROR: There is no animation with name 'run'.
+   at: set_animation (scene/2d/animated_sprite_2d.cpp:585)
+   GDScript backtrace (most recent call first):
+       [0] create (res://Minigames/minigames/fit_runner/scripts/api/fit_runner_launcher.gd:12)
+       [1] run (res://tests/responsive_audit.gd:110)
+       [2] capture (res://tests/responsive_audit.gd:25)
+       [3] settle (res://tests/responsive_audit.gd:21)
+AUDITED: 1280x720
+ERROR: There is no animation with name 'run'.
+   at: set_animation (scene/2d/animated_sprite_2d.cpp:585)
+   GDScript backtrace (most recent call first):
+       [0] create (res://Minigames/minigames/fit_runner/scripts/api/fit_runner_launcher.gd:12)
+       [1] run (res://tests/responsive_audit.gd:110)
+       [2] capture (res://tests/responsive_audit.gd:25)
+       [3] settle (res://tests/responsive_audit.gd:21)
+ERROR: There is no animation with name 'run'.
+   at: set_animation (scene/2d/animated_sprite_2d.cpp:585)
+   GDScript backtrace (most recent call first):
+       [0] create (res://Minigames/minigames/fit_runner/scripts/api/fit_runner_launcher.gd:12)
+       [1] run (res://tests/responsive_audit.gd:110)
+       [2] capture (res://tests/responsive_audit.gd:25)
+       [3] settle (res://tests/responsive_audit.gd:21)
+AUDITED: 1170x540
+ERROR: There is no animation with name 'run'.
+   at: set_animation (scene/2d/animated_sprite_2d.cpp:585)
+   GDScript backtrace (most recent call first):
+       [0] create (res://Minigames/minigames/fit_runner/scripts/api/fit_runner_launcher.gd:12)
+       [1] run (res://tests/responsive_audit.gd:110)
+       [2] capture (res://tests/responsive_audit.gd:25)
+       [3] settle (res://tests/responsive_audit.gd:21)
+ERROR: There is no animation with name 'run'.
+   at: set_animation (scene/2d/animated_sprite_2d.cpp:585)
+   GDScript backtrace (most recent call first):
+       [0] create (res://Minigames/minigames/fit_runner/scripts/api/fit_runner_launcher.gd:12)
+       [1] run (res://tests/responsive_audit.gd:110)
+       [2] capture (res://tests/responsive_audit.gd:25)
+       [3] settle (res://tests/responsive_audit.gd:21)
+AUDITED: 540x960
+PASS: responsive audit

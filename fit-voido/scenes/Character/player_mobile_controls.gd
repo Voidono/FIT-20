@@ -4,7 +4,7 @@ extends CanvasLayer
 ## Shows a floating VirtualJoystick on the left and an Interact button on the right.
 ## Visibility is decided once in _ready() based on DeviceInput.is_mobile().
 ##
-## The joystick feeds the move_left / move_right / move_up / move_down actions.
+## The joystick directly feeds the move_left / move_right / move_up / move_down actions.
 ## The interact button fires the "interact" action so NPCs can be talked to by tap.
 ##
 ## Scene setup:
@@ -29,10 +29,13 @@ func _ready() -> void:
 	visible = _should_show()
 	if not visible:
 		return
-	# Wire the joystick output into Godot's built-in move_* actions so
-	# character.gd's Input.get_vector() reads them automatically.
+	get_viewport().size_changed.connect(_layout)
+	_layout()
 	if _joystick != null:
-		_joystick.axis_changed.connect(_on_joystick_changed)
+		_joystick.action_left = &"move_left"
+		_joystick.action_right = &"move_right"
+		_joystick.action_up = &"move_up"
+		_joystick.action_down = &"move_down"
 	if _interact_btn != null:
 		_interact_btn.pressed.connect(_on_interact_pressed)
 
@@ -46,23 +49,6 @@ func _should_show() -> bool:
 	return DeviceInput.is_mobile()
 
 
-func _on_joystick_changed(axis_x: float, axis_y: float) -> void:
-	## Translate the joystick [-1,1] output into the four directional actions.
-	## We use action_strength via synthetic events so get_vector() works as-is.
-	_set_axis("move_right",  axis_x,  1.0)
-	_set_axis("move_left",   axis_x, -1.0)
-	_set_axis("move_down",   axis_y,  1.0)
-	_set_axis("move_up",     axis_y, -1.0)
-
-
-func _set_axis(action: StringName, raw: float, sign: float) -> void:
-	var strength := clampf(raw * sign, 0.0, 1.0)
-	if strength > 0.0:
-		Input.action_press(action, strength)
-	else:
-		Input.action_release(action)
-
-
 func _on_interact_pressed() -> void:
 	interact_pressed.emit()
 	## Also synthesise the interact InputEvent so character.gd's
@@ -71,3 +57,29 @@ func _on_interact_pressed() -> void:
 	ev.action = &"interact"
 	ev.pressed = true
 	Input.parse_input_event(ev)
+	ev = InputEventAction.new()
+	ev.action = &"interact"
+	ev.pressed = false
+	Input.parse_input_event(ev)
+
+
+func _layout() -> void:
+	var area := get_viewport().get_visible_rect().size
+	var extent := clampf(area.y * 0.42, 140, 220)
+	_joystick_container.offset_top = -extent
+	_joystick_container.offset_right = extent
+	_joystick.joystick_size = extent * 0.65
+	_joystick.tip_size = extent * 0.28
+	_interact_btn.offset_left = -156
+	_interact_btn.offset_top = -80
+	_interact_btn.offset_right = -16
+	_interact_btn.offset_bottom = -16
+	_interact_btn.text = "Tương tác"
+	_interact_btn.focus_mode = Control.FOCUS_NONE
+
+
+func _exit_tree() -> void:
+	# Scene changes must not carry a held virtual direction into the next map.
+	if visible:
+		for action in [&"move_left", &"move_right", &"move_up", &"move_down"]:
+			Input.action_release(action)

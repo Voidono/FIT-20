@@ -17,7 +17,7 @@ signal _picked(index: int)
 @export var prefix := "* "
 @export var highlight_color := Color(1, 1, 0, 1)
 ## Taller buttons on phones so options are easy to tap.
-@export var mobile_button_height := 44.0
+@export var mobile_button_height := 60.0
 
 @onready var template: Button = %Template
 @onready var heart: Node2D = %Heart

@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://birgxjsdsdu2m"
+path="res://.godot/imported/activity_introductions.dialogue-2f6baf5aa0408c1e6aa809c441e1b432.tres"
+
+[deps]
+
+source_file="res://Dialogues/activity_introductions.dialogue"
+dest_files=["res://.godot/imported/activity_introductions.dialogue-2f6baf5aa0408c1e6aa809c441e1b432.tres"]
+
+[params]
+
+defaults=true

@@ -148,7 +148,7 @@ func take_hit(amount: int, perfect := false) -> void:
 
 func miss() -> void:
 	_show_number("MISS", Color(0.7, 0.7, 0.7))
-	await get_tree().create_timer(0.6).timeout
+	await get_tree().create_timer(0.6, false).timeout
 
 
 func apply_poison(damage_per_turn: int, turns: int) -> void:
@@ -214,5 +214,5 @@ func _shake() -> void:
 
 
 func _hide_bar_later() -> void:
-	await get_tree().create_timer(0.6).timeout
+	await get_tree().create_timer(0.6, false).timeout
 	hp_bar.hide()

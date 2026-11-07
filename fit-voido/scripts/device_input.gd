@@ -15,7 +15,8 @@ extends Node
 ## running on a mobile browser.
 static func is_mobile() -> bool:
 	return (
-		OS.has_feature("mobile")
+		"--touch-controls" in OS.get_cmdline_user_args()
+		or OS.has_feature("mobile")
 		or OS.has_feature("android")
 		or OS.has_feature("ios")
 		or OS.has_feature("web_android")

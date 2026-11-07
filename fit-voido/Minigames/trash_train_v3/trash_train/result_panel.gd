@@ -13,6 +13,7 @@ var _title: Label
 var _stars: StarRow
 var _score: Label
 var _detail: Label
+var _panel: PanelContainer
 
 
 class StarRow:
@@ -54,12 +55,22 @@ func _ready() -> void:
 	dim.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	dim.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(dim)
+	var scroll := ScrollContainer.new()
+	add_child(scroll)
+	scroll.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	scroll.offset_left = 12
+	scroll.offset_top = 12
+	scroll.offset_right = -12
+	scroll.offset_bottom = -12
+	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	scroll.follow_focus = true
 	var center := CenterContainer.new()
-	center.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	center.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	center.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	center.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	add_child(center)
+	scroll.add_child(center)
 	var panel := PanelContainer.new()
-	panel.custom_minimum_size = Vector2(480.0, 0.0)
+	_panel = panel
 	center.add_child(panel)
 	var margin := MarginContainer.new()
 	for side in ["left", "right", "top", "bottom"]:
@@ -74,6 +85,7 @@ func _ready() -> void:
 	box.add_child(_stars)
 	_score = _label(box, 30)
 	_detail = _label(box, 18)
+	_detail.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	var row := HBoxContainer.new()
 	row.alignment = BoxContainer.ALIGNMENT_CENTER
 	row.add_theme_constant_override("separation", 16)
@@ -82,6 +94,16 @@ func _ready() -> void:
 	continue_button = _button(row)
 	retry_button.pressed.connect(func() -> void: retry_pressed.emit())
 	continue_button.pressed.connect(func() -> void: continue_pressed.emit())
+	resized.connect(_layout)
+	_layout()
+
+
+func _layout() -> void:
+	var width := minf(480, size.x - 32)
+	_panel.custom_minimum_size.x = width
+	for button in [retry_button, continue_button]:
+		button.custom_minimum_size = Vector2(maxf(100, (width - 64) * 0.5), 48)
+		button.add_theme_font_size_override("font_size", 20)
 
 
 func show_result(r: TrashRunResult, goal_points: float) -> void:
@@ -96,6 +118,7 @@ func show_result(r: TrashRunResult, goal_points: float) -> void:
 	continue_button.text = TrashStrings.t(&"next")
 	continue_button.visible = r.passed
 	visible = true
+	retry_button.grab_focus()
 
 
 func hide_panel() -> void:
@@ -114,6 +137,6 @@ func _button(parent: Control) -> Button:
 	var b := Button.new()
 	b.custom_minimum_size = Vector2(200.0, 64.0)
 	b.add_theme_font_size_override("font_size", 24)
-	b.focus_mode = Control.FOCUS_NONE  # Space stays free for the Pulse
+	b.focus_mode = Control.FOCUS_ALL
 	parent.add_child(b)
 	return b

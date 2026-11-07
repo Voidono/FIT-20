@@ -57,7 +57,7 @@ func run(p_box: BattleBox, p_soul: BattleSoul, p_bullets: Node, p_difficulty: Ba
 	_running = true
 	_on_start()
 	var length := duration * difficulty.attack_duration_multiplier * (1.0 - assist * 0.3)
-	get_tree().create_timer(length).timeout.connect(_on_duration_elapsed.bind(_run_id))
+	get_tree().create_timer(length, false).timeout.connect(_on_duration_elapsed.bind(_run_id))
 	await finished
 
 

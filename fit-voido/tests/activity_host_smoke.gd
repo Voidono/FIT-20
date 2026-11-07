@@ -27,11 +27,52 @@ func _run() -> void:
 			return
 		await create_timer(1.6).timeout
 		var host := current_scene
+		# The introduction must block game creation. Exercise the real skip branch.
+		if host._intro_open:
+			var balloon = host._intro_balloon
+			if "render" in OS.get_cmdline_user_args():
+				balloon.dialogue_label.skip_typing()
+				await process_frame
+				await RenderingServer.frame_post_draw
+				root.get_texture().get_image().save_png("res://tests/intro_%s.png" % id)
+			if "dialogue_line" in balloon and balloon.dialogue_line.responses.size() >= 2:
+				balloon.next(balloon.dialogue_line.responses[1].next_id)
+			await create_timer(0.5).timeout
 		if host.get("_game") == null:
 			push_error("Activity did not launch: " + id)
 			quit(1)
 			return
+		if id in ["garbage_quest", "boss_fight"]:
+			for dimensions in [Vector2i(640, 360), Vector2i(1170, 540), Vector2i(960, 540)]:
+				root.size = dimensions
+				root.content_scale_size = dimensions
+				await process_frame
+				await process_frame
+				if not Rect2(Vector2.ZERO, Vector2(dimensions)).encloses(host._exit_button.get_global_rect()):
+					push_error("Activity return button escaped viewport after resizing")
+					quit(1)
+					return
 		print("LAUNCHED: " + id)
+		if id == "boss_fight":
+			host._game.toggle_pause()
+			if "render" in OS.get_cmdline_user_args():
+				await process_frame
+				await RenderingServer.frame_post_draw
+				root.get_texture().get_image().save_png("res://tests/boss_pause.png")
+			var help_button = host._game._pause_panel.get_child(0).get_child(0).get_child(2)
+			help_button.pressed.emit()
+			await create_timer(0.2).timeout
+			if not host._intro_open or not paused:
+				push_error("Boss help must keep combat paused")
+				quit(1)
+				return
+			host._intro_balloon.next(host._intro_balloon.dialogue_line.responses[1].next_id)
+			await create_timer(0.3).timeout
+			if not host._game._pause_panel.visible or not paused:
+				push_error("Closing help must return to paused menu")
+				quit(1)
+				return
+			host._game.toggle_pause()
 		if id in ["fit_runner", "fit_runner_race"]:
 			var expected_mode := 1 if id == "fit_runner_race" else 0
 			if host._game.race_mode != expected_mode or not host._game.lock_mode:

@@ -1,0 +1,66 @@
+~ garbage_quest
+Hướng dẫn: Garbage Quest — Thu gom rác và đưa tới đúng thùng để ghi điểm.
+- Xem cách chơi
+	=> trash_help
+- Em đã biết cách chơi — bắt đầu
+	=> END
+~ trash_help
+set locals.steps = 4
+Hướng dẫn: Di chuyển bằng WASD, phím mũi tên hoặc điều khiển cảm ứng. Đi qua rác để nhặt vào đoàn tàu.
+Hướng dẫn: Mang rác tới đúng loại thùng để ghi điểm. Rác vẫn mang theo khi hết giờ không được tính.
+Hướng dẫn: Tránh người đi bộ — va chạm có thể làm đứt đoàn tàu. Nhặt vật phẩm hỗ trợ khi cần.
+Hướng dẫn: Đạt ít nhất một sao trước khi hết giờ. Sau đó trở lại giảng viên Nhà C để nhận viên đá.
+- Bắt đầu
+	=> END
+- Xem lại
+	=> trash_help
+
+~ fit_runner
+Hướng dẫn: FIT Runner — Practice. Hai vòng để làm quen với nhịp chạy.
+- Xem cách chơi
+	=> practice_help
+- Em đã biết cách chơi — bắt đầu
+	=> END
+~ practice_help
+set locals.steps = 3
+Hướng dẫn: Giữ Space, W, mũi tên lên hoặc nút RUN để tăng nỗ lực. Thả nút để giảm nhịp và hồi thể lực.
+Hướng dẫn: Tại điểm kiểm tra, bấm Enter, J, K, mũi tên xuống hoặc nút nhịp khi con trỏ vào vùng sáng để tăng tốc.
+Hướng dẫn: Hoàn thành hai vòng trước thời gian giới hạn. Đây là Practice; không cần tranh hạng. Dùng Esc, P hoặc nút tạm dừng nếu cần nghỉ.
+- Bắt đầu
+	=> END
+- Xem lại
+	=> practice_help
+
+~ fit_runner_race
+Hướng dẫn: FIT Runner — Ghost Race. Cuộc đua với năm đối thủ trên sân thể thao.
+- Xem cách chơi
+	=> race_help
+- Em đã biết cách chơi — bắt đầu
+	=> END
+~ race_help
+set locals.steps = 3
+Hướng dẫn: Giữ nút chạy để tăng nỗ lực, thả để hồi thể lực. Giữ sức cho cả hai vòng, đừng chạy hết tốc lực liên tục.
+Hướng dẫn: Bấm Enter, J, K, mũi tên xuống hoặc nút nhịp tại các điểm kiểm tra để được tăng tốc.
+Hướng dẫn: Về đích trong ba vị trí đầu trước khi hết giờ. Sau đó trở lại gặp thầy Tuấn để nhận tài liệu. Esc, P hoặc nút tạm dừng sẽ mở menu.
+- Bắt đầu
+	=> END
+- Xem lại
+	=> race_help
+
+~ boss_fight
+Hướng dẫn: CON BUG — Giải cứu thầy Trưởng khoa. Lựa chọn của em trong phòng 417 đã quyết định kỹ năng chiến đấu.
+- Xem cách chơi
+	=> boss_help
+- Em đã biết cách chơi — bắt đầu
+	=> END
+~ boss_help
+set locals.steps = 5
+Hướng dẫn: Chọn menu bằng phím mũi tên hoặc chạm. Z, Enter để xác nhận; X để quay lại.
+Hướng dẫn: FIGHT mở thanh canh nhịp. Dừng con trỏ gần tâm để gây sát thương cao. FIST đánh mạnh; POISON dễ canh hơn và gây độc qua nhiều lượt.
+Hướng dẫn: Khi CON BUG tấn công, di chuyển trái tim bằng WASD, mũi tên hoặc cần điều khiển cảm ứng. Né đạn và tránh chùm laser sau khi đường cảnh báo xuất hiện.
+Hướng dẫn: ITEM dùng đồ hồi máu có giới hạn. ACT tăng lòng khoan dung; khi đủ, MERCY cho phép Spare. Cả hai cách giải quyết đều cứu thầy.
+Hướng dẫn: Thắng bằng FIGHT được điểm dựa trên máu còn lại và độ khó. Esc, P hoặc nút tạm dừng mở menu nghỉ, xem lại hướng dẫn hoặc trở về khuôn viên.
+- Bắt đầu
+	=> END
+- Xem lại
+	=> boss_help

@@ -12,10 +12,12 @@ var _mode_menu: Button
 func _ready() -> void:
 	_mode_menu = Button.new()
 	_mode_menu.text = "FR_MODE_MENU"
-	_mode_menu.custom_minimum_size.y = 32
+	_mode_menu.custom_minimum_size.y = 44
 	_mode_menu.focus_mode = Control.FOCUS_NONE
 	_mode_menu.pressed.connect(func() -> void: mode_menu_requested.emit())
 	get_node("VBox").add_child(_mode_menu)
+	for button in get_node("VBox/Buttons").get_children():
+		button.custom_minimum_size.y = 44
 
 @export var star_full: Texture2D
 @export var star_empty: Texture2D

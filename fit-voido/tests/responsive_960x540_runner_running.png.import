@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c2cjqod0pcu6b"
-path="res://.godot/imported/runner_sheet.png-b800018c8a54aaf7a438077b738020bf.ctex"
+uid="uid://db2u2ohs0g132"
+path="res://.godot/imported/responsive_960x540_runner_running.png-c1ba5a9d4513d4af78ac4ef15ae2974b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Minigames/minigames/fit_runner/assets/character/runner_sheet.png"
-dest_files=["res://.godot/imported/runner_sheet.png-b800018c8a54aaf7a438077b738020bf.ctex"]
+source_file="res://tests/responsive_960x540_runner_running.png"
+dest_files=["res://.godot/imported/responsive_960x540_runner_running.png-c1ba5a9d4513d4af78ac4ef15ae2974b.ctex"]
 
 [params]
 

@@ -1,7 +1,5 @@
 [gd_scene format=3 uid="uid://1q3un777h5y"]
 
-[ext_resource type="Resource" path="res://Dialogues/chapter3_tuan.dialogue" id="chapter3_tuan"]
-
 [ext_resource type="PackedScene" uid="uid://cjd51hpkjfo4d" path="res://scenes/mapsides/map.tscn" id="1_tqdoe"]
 [ext_resource type="Texture2D" uid="uid://b206awfu4cnl2" path="res://Minigames/trash_train_v3/trash_train/levels/sussu.png" id="22_2wedu"]
 [ext_resource type="Texture2D" uid="uid://byrg3r5eym0is" path="res://assets/DrawAsset/1792488572423.png" id="32_xccqg"]
@@ -11,9 +9,9 @@
 [ext_resource type="Script" uid="uid://dj85aueh40i2t" path="res://scenes/mapsides/area_2d.gd" id="41_kuesd"]
 [ext_resource type="Resource" uid="uid://7b1wjkdfsk7m" path="res://Dialogues/tutorial_arrival.dialogue" id="arrival"]
 [ext_resource type="Script" uid="uid://dhpa62fnhs18p" path="res://scenes/chapters/chapter1.gd" id="chapter1"]
+[ext_resource type="Resource" uid="uid://butbhf7e54uy0" path="res://Dialogues/chapter3_tuan.dialogue" id="chapter3_tuan"]
 [ext_resource type="Resource" uid="uid://2qjoeganrbe5" path="res://Dialogues/npc_dung.dialogue" id="dlg_dung"]
 [ext_resource type="Resource" uid="uid://c5r6xk1wbmhwj" path="res://Dialogues/minigame_battle.dialogue" id="dlg_minigame_battle"]
-[ext_resource type="Resource" uid="uid://by6mhn33w07mh" path="res://Dialogues/minigame_runner.dialogue" id="dlg_minigame_runner"]
 [ext_resource type="Resource" uid="uid://bgwai5bc0hvp3" path="res://Dialogues/minigame_trash.dialogue" id="dlg_minigame_trash"]
 [ext_resource type="Resource" uid="uid://1xkevde5av6a" path="res://Dialogues/npc_ngoc.dialogue" id="dlg_ngoc"]
 [ext_resource type="Resource" uid="uid://b8jo7xg3ofl1d" path="res://Dialogues/npc_qkhanh.dialogue" id="dlg_qkhanh"]
@@ -112,27 +110,11 @@ npc_sprite = ExtResource("32_xccqg")
 dialogue = ExtResource("35_sgcmy")
 dialogue_balloon = ExtResource("34_gknmh")
 
-[node name="NPC_Minigame_Runner" parent="Map/SVD" unique_id=754943833 instance=ExtResource("npc_template")]
-position = Vector2(150, 640)
-npc_sprite = ExtResource("npc_tex_dung")
-dialogue = ExtResource("dlg_minigame_runner")
-prompt_text = "FIT Runner"
-npc_name = "Huấn luyện viên"
-mode = 0
-
 [node name="NPC_Minigame_Trash" parent="NPC" unique_id=83090953 instance=ExtResource("npc_template")]
 position = Vector2(1300, -20)
 npc_sprite = ExtResource("npc_tex_ngoc")
 dialogue = ExtResource("dlg_minigame_trash")
 prompt_text = "Trash Train"
-
-[node name="ThayTuan" parent="Map/SVD" instance=ExtResource("npc_template")]
-position = Vector2(190, 810)
-npc_sprite = ExtResource("npc_tex_thang")
-dialogue = ExtResource("chapter3_tuan")
-npc_name = "Thầy Tuấn — Marathon"
-prompt_text = "Nói chuyện"
-mode = 0
 
 [node name="NPC_Minigame_Battle" parent="NPC" unique_id=1637374103 instance=ExtResource("npc_template")]
 position = Vector2(1430, -20)
@@ -169,5 +151,10 @@ metadata/_edit_lock_ = true
 [node name="Sussu" type="Sprite2D" parent="." unique_id=2140558345]
 position = Vector2(10, 4)
 texture = ExtResource("22_2wedu")
+
+[node name="DialogueNPC" parent="." unique_id=1779454905 instance=ExtResource("npc_template")]
+position = Vector2(3260, 359)
+npc_sprite = ExtResource("npc_tex_tuan")
+dialogue = ExtResource("chapter3_tuan")
 
 [connection signal="body_entered" from="Area/Area2D" to="Area/Area2D" method="_on_body_entered"]

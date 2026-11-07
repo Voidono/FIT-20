@@ -99,6 +99,8 @@ var _portrait_cache: Dictionary = {}
 
 
 func _ready() -> void:
+	get_viewport().size_changed.connect(_layout)
+	_layout()
 	dock.hide()
 	_set_continue_arrow(false)
 
@@ -123,6 +125,16 @@ func _ready() -> void:
 	add_child(mutation_cooldown)
 
 	_reserve_text_height()
+
+
+func _layout() -> void:
+	var width := minf(600, get_viewport().get_visible_rect().size.x - 24)
+	dock.offset_left = -width * 0.5
+	dock.offset_right = width * 0.5
+	var template := responses_menu.get_node_or_null("ResponseTemplate") as Button
+	if template != null:
+		template.custom_minimum_size.y = 44
+		template.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 
 
 func _unhandled_input(_event: InputEvent) -> void:

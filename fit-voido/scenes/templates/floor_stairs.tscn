@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3]
+[ext_resource type="Script" path="res://scenes/mapsides/area_2d.gd" id="door"]
+[sub_resource type="RectangleShape2D" id="Range"]
+size = Vector2(175, 40)
+[node name="FloorStairs" type="Area2D"]
+collision_layer = 0
+script = ExtResource("door")
+prompt_text = "Nhấn E / nút tương tác để chuyển tầng"
+target_position = Vector2(1562.5, 170)
+required_chapter = 1
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("Range")
