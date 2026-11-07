@@ -1,0 +1,145 @@
+# Room 417 lecturer. Attach with cue: start and the standard pixel balloon.
+# Uses a dedicated quiz ID; a completed attempt is not necessarily a pass.
+# Five correct answers in one attempt earn Stone #2. No invented professor facts.
+
+~ start
+if GameState.has_time_stone(2):
+	=> reminder
+if not GameState.is_chapter_unlocked(2):
+	Giảng viên: Em gặp giảng viên ở cửa Nhà C và hoàn thành thử thách đầu tiên trước nhé.
+	=> END
+if GameState.selected_skill() == "":
+	Giảng viên: Em chọn chỗ ngồi trước nhé. Nhóm phía trước và nhóm cuối lớp đều còn chỗ.
+	Bạn: Em đứng làm bài được không ạ?
+	Giảng viên: Được, nhưng thầy không định kiểm tra sức bền của em.
+	=> END
+if GameState.quiz_best_score("chapter2_fit_quiz") >= 5:
+	=> reward
+if GameState.has_completed_quiz("chapter2_fit_quiz"):
+	Giảng viên: Điểm tốt nhất của em là {{GameState.quiz_best_score("chapter2_fit_quiz")}}/5. Mình thử lại nhé?
+	=> menu
+Giảng viên: Ổn định chỗ ngồi nhé. Bạn mới tới cũng làm cùng lớp luôn.
+Bạn: Dạ, em mới tới hơi xa. Từ năm 2006 ạ.
+Giảng viên: Vậy câu lịch sử chắc em có lợi thế rồi.
+Giảng viên: Bài có 5 câu về FIT và chuyện học ở đây. Đúng cả 5 câu trong một lượt thì em nhận Viên Đá Thời Gian thứ hai.
+Giảng viên: Chưa đủ điểm thì được làm lại. Thầy sẽ giải thích đáp án, em cứ đọc kỹ.
+=> menu
+
+~ menu
+- Em bắt đầu ạ.
+	set GameState.quiz_begin("chapter2_fit_quiz", 5)
+	=> q1
+- Cho em ôn lại một chút.
+	Giảng viên: Được. Hỏi các bạn, xem lại ghi chép rồi quay lại nhé.
+	=> END
+
+~ q1
+Giảng viên: Câu 1. Bạn đang đi dạo ở sân trường và bắt gặp một sinh viên khoa FIT đang làm nhiệm vụ hệ thống kiếm điểm Exp. Sinh viên đó đang học môn nào?
+- Machine Learning Applications (MLA)
+	Giảng viên: Chưa đúng. Đáp án là System Analysis and Design (SAD) nhé.
+	=> q2
+- Web Programming (WPR)
+	Giảng viên: Chưa đúng. Đáp án là System Analysis and Design (SAD) nhé.
+	=> q2
+- Principle of Operating Systems (POP)
+	Giảng viên: Chưa đúng. Đáp án là System Analysis and Design (SAD) nhé.
+	=> q2
+- System Analysis and Design (SAD) [#correct]
+	set GameState.quiz_mark(true)
+	Giảng viên: Chính xác. SAD nhé, nhớ tên môn chứ đừng chỉ nhớ điểm Exp.
+	=> q2
+
+~ q2
+Giảng viên: Câu 2. Vừa bước chân lên chuyên ngành, môn học nào khiến phần lớn sinh viên FIT bắt đầu hoài nghi về lựa chọn ngành học của mình?
+- PrOne [#correct]
+	set GameState.quiz_mark(true)
+	Giảng viên: Đúng đáp án câu này rồi. PrOne nhé. Hoài nghi một chút thì được, bài tập vẫn phải nộp.
+	=> q3
+- PCO
+	Giảng viên: Chưa đúng đáp án câu này. Đáp án là PrOne nhé.
+	=> q3
+- CAL
+	Giảng viên: Chưa đúng đáp án câu này. Đáp án là PrOne nhé.
+	=> q3
+- DMA
+	Giảng viên: Chưa đúng đáp án câu này. Đáp án là PrOne nhé.
+	=> q3
+
+~ q3
+Giảng viên: Câu 3. Khoa Công nghệ Thông tin (FIT) – Trường Đại học Hà Nội được thành lập vào năm nào?
+- 2004
+	Giảng viên: Chưa đúng. FIT thành lập năm 2006 nhé.
+	=> q4
+- 2006 [#correct]
+	set GameState.quiz_mark(true)
+	Giảng viên: Đúng. Cũng là năm em bắt đầu chuyến đi hơi dài này.
+	=> q4
+- 2008
+	Giảng viên: Chưa đúng. FIT thành lập năm 2006 nhé.
+	=> q4
+- 2010
+	Giảng viên: Chưa đúng. FIT thành lập năm 2006 nhé.
+	=> q4
+
+~ q4
+Giảng viên: Câu 4: Bạn có biết chương trình chào tân sinh viên hằng năm của Khoa FIT có tên là gì không?
+- Hello World [#correct]
+	set GameState.quiz_mark(true)
+	Giảng viên: Chính xác. Hello World, viết hoa H và W nhé.
+	=> q5
+- hello World
+	Giảng viên: Gần đúng tên rồi, nhưng đáp án cần đúng cách viết: Hello World, viết hoa H và W.
+	=> q5
+- Hello world
+	Giảng viên: Chú ý chữ W nhé. Đáp án là Hello World, viết hoa H và W.
+	=> q5
+- hello word
+	Giảng viên: Chưa đúng. Là Hello World, có chữ l trong World và viết hoa H, W nhé.
+	=> q5
+
+~ q5
+Giảng viên: Câu 5: FIT là viết tắt của cụm từ nào?
+- Faculty of Information Technology [#correct]
+	set GameState.quiz_mark(true)
+	Giảng viên: Chính xác. Faculty of Information Technology, Khoa Công nghệ Thông tin.
+	=> result
+- Foundation of Information Technology
+	Giảng viên: Chưa đúng. Chữ F ở đây là Faculty. Tên đầy đủ là Faculty of Information Technology.
+	=> result
+- Forum of Information Technology
+	Giảng viên: Chưa đúng. Đáp án là Faculty of Information Technology nhé.
+	=> result
+- Faculty of Internet Technology
+	Giảng viên: Chưa đúng. Chữ I là Information, không phải Internet. Đáp án là Faculty of Information Technology.
+	=> result
+
+~ result
+set GameState.quiz_finish()
+Giảng viên: Em trả lời đúng {{GameState.quiz_session_score}}/5 câu.
+if GameState.quiz_session_score == 5:
+	=> reward
+Giảng viên: Chưa đủ 5 câu rồi. Không sao, mình xem những chỗ nhầm để lượt sau làm tốt hơn.
+- Cho em thử lại ngay ạ.
+	set GameState.quiz_begin("chapter2_fit_quiz", 5)
+	=> q1
+- Em ôn thêm rồi quay lại.
+	Giảng viên: Được. Kết quả tốt nhất của em đã được lưu rồi nhé.
+	=> END
+
+~ reward
+if GameState.has_time_stone(2):
+	=> reminder
+Giảng viên: Đủ cả 5 câu. Tốt lắm! Đây là Viên Đá Thời Gian thứ hai của em.
+set GameState.award_time_stone(2)
+Bạn: Em cảm ơn thầy. Có cần ký nhận không ạ?
+Giảng viên: Không cần. Giữ cẩn thận, đừng bỏ quên trong ngăn bàn là được.
+Giảng viên: Tiếp theo, em sang [color=green]Phòng 416[/color] tìm giảng viên ở đó nhé. Thầy ấy có manh mối cho hành trình tiếp theo.
+- Dạ, em sang Phòng 416 ngay.
+	=> END
+- Thầy nhắc lại phòng giúp em với ạ.
+	Giảng viên: Phòng 416 nhé. Mình đang ở 417, em nhớ nhìn số trên cửa trước khi vào.
+	=> END
+
+~ reminder
+Giảng viên: Em đã nhận viên đá thứ hai rồi. Tiếp theo là [color=green]Phòng 416[/color], tìm giảng viên ở đó nhé.
+=> END

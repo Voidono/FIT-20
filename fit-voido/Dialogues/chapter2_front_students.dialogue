@@ -1,0 +1,78 @@
+# An and Huy — one shared conversation with the front-row students in Room 417.
+# Use cue: start and the standard pixel balloon. Both NPCs may share this resource.
+# Sitting here selects fist internally. Seating is permanent until New Game.
+
+~ start
+if GameState.selected_skill() == "fist":
+	=> repeat
+if GameState.selected_skill() == "poison":
+	An: Xuống dưới ngồi rồi à? Cần xem vở thì cứ lên đây nhé.
+	Huy: Xem của An ấy. Vở tôi có đoạn đang chép thì hết mực.
+	An: Ông hết mực từ tuần trước mà.
+	Huy: Ừ, nên thiếu hơi nhiều.
+	=> END
+if GameState.npc_stage("front_students_room417") != "new":
+	An: Chỗ cạnh tôi vẫn trống nhé. Ông muốn ngồi thì kéo ghế vào.
+	Huy: Tôi lau bảng rồi. Hôm nay nhìn đề rõ lắm, khỏi lo.
+	=> seating
+set GameState.mark_met("front_students_room417")
+An: Ông tìm chỗ à? Bàn này còn một ghế.
+Huy: Ngồi đây nhìn bảng rõ, nghe thầy rõ.
+Bạn: Thầy nhìn mình cũng rõ luôn?
+Huy: Ừ. Cái đấy tôi mới phát hiện buổi trước.
+An: Ông ngủ ngay trước mặt thầy thì ngồi đâu cũng thế thôi.
+=> questions
+
+~ questions
+- Hai ông chuẩn bị bài kỹ thế?
+	An: Tôi chia đề cương thành từng phần rồi. Phần nào chưa hiểu thì đánh dấu để hỏi.
+	Bạn: Còn ông?
+	Huy: Tôi mang bút đánh dấu.
+	An: Đề cương đâu?
+	Huy: Tôi tưởng ông mang hai bản.
+	=> seating
+- Lát kiểm tra có giúp nhau được không?
+	An: Giờ chưa kiểm tra thì hỏi thoải mái. Chỗ nào biết tôi giải thích cho.
+	Huy: Hỏi luôn đi. Lát phát đề là An che bài nhanh lắm.
+	An: Lần trước ông chép cả tên tôi.
+	Huy: Tại ông viết liền quá. Tôi tưởng vẫn là câu trả lời.
+	=> seating
+- Tôi từ năm 2006 tới, chắc không theo kịp đâu.
+	An: Thế ông tới đúng dịp rồi. Lát có câu hỏi về lịch sử Khoa đấy.
+	Huy: Bọn tôi phải học năm 2006. Ông có mặt luôn. Lợi thế quá còn gì.
+	Bạn: Tôi vừa đến đã phải kiểm tra à?
+	Huy: Ừ. Hai mươi năm rồi mà khoản đấy vẫn ổn định.
+	=> seating
+
+~ seating
+An: Ông ngồi cùng bọn tôi không? Trước giờ kiểm tra còn kịp xem lại một lượt.
+- Cho tôi ngồi cùng. [Chọn chỗ phía trước cho hành trình này]
+	if not GameState.is_chapter_unlocked(2):
+		An: Ông gặp thầy ở Nhà C trước nhé. Bọn tôi giữ chỗ cho.
+		=> END
+	set GameState.choose_skill("fist")
+	An: Đây, ông xem chung đề cương với tôi.
+	Huy: Có gì chưa hiểu cứ hỏi nhé.
+	Bạn: Hỏi ông à?
+	Huy: Hỏi An. Tôi nghe ké luôn.
+	An: Hai ông kéo ghế lại đây. Bắt đầu từ chỗ nào chưa hiểu?
+	Huy: Trang một.
+	=> END
+- Để tôi xuống cuối lớp xem sao.
+	An: Ừ, cần ôn bài thì quay lại nhé.
+	Huy: Nếu Bảo bảo dưới đấy có người học bài rồi thì đừng tin vội.
+	Bạn: Sao ông biết?
+	Huy: Nãy nó vừa lên hỏi tôi.
+	=> END
+- Cho tôi hỏi thêm chút.
+	=> questions
+
+~ repeat
+An: Ông xem đến đâu rồi?
+Bạn: Đang cố nhớ.
+Huy: Tôi vừa nhớ ra một chuyện khá quan trọng.
+An: Chuyện gì?
+Huy: Tôi để thẻ sinh viên trong cái quần vừa giặt.
+An: Thế lát thầy hỏi thì ông tự giới thiệu nhé.
+Huy: Tôi sợ thầy nhớ mặt rồi thôi.
+=> END

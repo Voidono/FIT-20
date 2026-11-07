@@ -1,0 +1,69 @@
+# Room 416 door / trapped lecturer. Use cue: start with the standard pixel balloon.
+# Door puzzle integration: set room416_unlocked only after the keypad accepts 2006.
+# This dialogue gives hints; it does not open the physical door or provide a keypad.
+# The same resource handles the rescue after room416_unlocked is saved.
+
+~ start
+if not GameState.is_chapter_unlocked(3):
+	Bạn: Phòng 416 đây rồi. Mình hoàn thành bài kiểm tra ở 417 rồi quay lại vậy.
+	=> END
+if GameState.has_flag("room416_unlocked"):
+	=> rescued
+if GameState.has_flag("room416_help_requested"):
+	=> returning
+Giảng viên: Có ai ngoài cửa không? Mở giúp thầy với!
+Bạn: Dạ, thầy bị kẹt trong đó ạ?
+Giảng viên: Ừ. Thầy đóng cửa cho đỡ ồn, giờ thì yên tĩnh quá mức cần thiết rồi.
+Bạn: Em vừa từ Phòng 417 sang. Thầy bên đó bảo em tìm thầy.
+Giảng viên: May quá. Em xem bên ngoài có bảng nhập mã không?
+Bạn: Dạ có. Bốn chữ số ạ.
+Giảng viên: Trên đó có ghi gợi ý gì không em?
+Bạn: "Hành trình của FIT bắt đầu từ năm nào?"
+Giảng viên: Vậy em vừa ôn ở phòng bên rồi đấy. Thử nhớ năm thành lập Khoa xem.
+set GameState.set_flag("room416_help_requested")
+=> hint_menu
+
+~ returning
+Giảng viên: Em vẫn ngoài đó chứ?
+Bạn: Dạ, em đang nghĩ mã.
+Giảng viên: Cứ bình tĩnh. Thầy thử đẩy rồi, cửa này không chấm điểm sức mạnh đâu.
+=> hint_menu
+
+~ hint_menu
+- Thầy gợi ý thêm cho em với.
+	Giảng viên: Năm 2026, Khoa mình kỷ niệm 20 năm thành lập. Em lùi lại 20 năm là ra.
+	Bạn: À, đúng năm em tới từ đó.
+	Giảng viên: Thế thì em có cách nhớ riêng rồi. Nhập năm đó vào bảng mã nhé.
+	=> END
+- Sao thầy không mở từ bên trong ạ?
+	Giảng viên: Nút mở bên trong không phản hồi. Thầy bấm đủ kiểu rồi.
+	Bạn: Kể cả giữ lâu ạ?
+	Giảng viên: Kể cả vừa bấm vừa nhờ nó hợp tác.
+	=> hint_menu
+- Dạ, để em thử nhập mã.
+	Giảng viên: Cảm ơn em. Bốn chữ số, năm thành lập FIT nhé.
+	=> END
+- Để em xem lại ghi chép một chút.
+	Giảng viên: Ừ, em cứ xem. Có gì quay lại gọi thầy nhé.
+	=> END
+
+~ rescued
+if GameState.has_flag("room416_rescue_complete"):
+	=> reminder
+Giảng viên: Mở được rồi! Cảm ơn em nhé.
+Bạn: Dạ. Thầy ở trong đó lâu chưa ạ?
+Giảng viên: Đủ lâu để đọc hết thông báo trên tường. Kể cả cái hết hạn từ học kỳ trước.
+Bạn: Em đang tìm những Viên Đá Thời Gian để trở về năm 2006. Thầy có biết manh mối nào không ạ?
+Giảng viên: Em lên [color=green]Phòng 419, tầng 4 Nhà C[/color], tìm giảng viên Truyền thông Đa phương tiện nhé.
+Giảng viên: Đó là phòng nghỉ của thầy cô bên ấy. Em hỏi về manh mối viên đá tiếp theo, thầy cô sẽ hướng dẫn tiếp.
+set GameState.finish_room416_rescue()
+- Dạ, em lên Phòng 419 ngay.
+	Giảng viên: Cảm ơn em lần nữa. Để thầy ra trước rồi hẵng đóng cửa nhé.
+	=> END
+- Phòng 419 ở đâu ạ?
+	Giảng viên: Tầng 4 Nhà C nhé. Em nhìn biển số phòng, tìm 419 rồi hỏi giảng viên Truyền thông Đa phương tiện.
+	=> END
+
+~ reminder
+Giảng viên: Em tìm đến [color=green]Phòng 419, tầng 4 Nhà C[/color], hỏi giảng viên Truyền thông Đa phương tiện về viên đá tiếp theo nhé.
+=> END

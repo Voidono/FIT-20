@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://f07cuafak2xd"
+path="res://.godot/imported/chapter3_room419.dialogue-6abcab833f6f532120136f9c18892757.tres"
+
+[deps]
+
+source_file="res://Dialogues/chapter3_room419.dialogue"
+dest_files=["res://.godot/imported/chapter3_room419.dialogue-6abcab833f6f532120136f9c18892757.tres"]
+
+[params]
+
+defaults=true

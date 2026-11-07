@@ -265,6 +265,9 @@ func award_time_stone(number: int) -> bool:
 	if not is_chapter_unlocked(number) or has_time_stone(number):
 		return false
 	set_flag("stage%d_stone_collected" % number)
+	if number == 2:
+		_sync_chapter2_quests()
+		save_game()
 	progression_changed.emit()
 	return true
 
@@ -280,14 +283,75 @@ func choose_skill(skill_id: StringName) -> bool:
 	if selected_skill() != &"" and selected_skill() != skill_id:
 		return false
 	_journey["skill"] = String(skill_id)
+	_sync_chapter2_quests()
 	save_game()
 	progression_changed.emit()
 	return true
 
 
+func enter_chapter2_room() -> void:
+	if not is_chapter_unlocked(2):
+		return
+	_quest_stages["enter_room_417"] = QUEST_STAGE_COMPLETE
+	_sync_chapter2_quests()
+	save_game()
+
+
+func _sync_chapter2_quests() -> void:
+	if not is_chapter_unlocked(2):
+		return
+	if has_time_stone(2):
+		_quest_stages["enter_room_417"] = QUEST_STAGE_COMPLETE
+		_quest_stages["choose_room417_seat"] = QUEST_STAGE_COMPLETE
+		_quest_stages["chapter2_quiz"] = QUEST_STAGE_COMPLETE
+		if not has_completed_quest("reach_room_416"):
+			_quest_stages["reach_room_416"] = QUEST_STAGE_ACTIVE
+	elif selected_skill() != &"":
+		_quest_stages["choose_room417_seat"] = QUEST_STAGE_COMPLETE
+		_quest_stages["chapter2_quiz"] = QUEST_STAGE_ACTIVE
+	elif has_completed_quest("enter_room_417"):
+		_quest_stages["choose_room417_seat"] = QUEST_STAGE_ACTIVE
+	quests_changed.emit()
+
+
 func has_quest_item(item_id: String) -> bool:
 	var items: Dictionary = _journey.get("items", {})
 	return bool(items.get(item_id, false))
+
+
+func try_room416_code(code: String) -> bool:
+	if not is_chapter_unlocked(3) or not has_flag("room416_help_requested") or code != "2006":
+		return false
+	_flags["room416_unlocked"] = true
+	save_game()
+	flag_changed.emit("room416_unlocked", true)
+	return true
+
+
+func finish_room416_rescue() -> void:
+	if not is_chapter_unlocked(3) or not has_flag("room416_unlocked"):
+		return
+	_flags["room416_rescue_complete"] = true
+	_quest_stages["reach_room_416"] = QUEST_STAGE_COMPLETE
+	_quest_stages["unlock_room_416"] = QUEST_STAGE_COMPLETE
+	if not has_completed_quest("reach_room_419"):
+		_quest_stages["reach_room_419"] = QUEST_STAGE_ACTIVE
+	save_game()
+	quests_changed.emit()
+	flag_changed.emit("room416_rescue_complete", true)
+
+
+func receive_room419_lead() -> bool:
+	if not is_chapter_unlocked(3) or not has_flag("room416_rescue_complete") or has_flag("room419_lead_received"):
+		return false
+	_flags["room419_lead_received"] = true
+	_quest_stages["reach_room_419"] = QUEST_STAGE_COMPLETE
+	if not has_completed_quest("find_thay_tuan"):
+		_quest_stages["find_thay_tuan"] = QUEST_STAGE_ACTIVE
+	save_game()
+	quests_changed.emit()
+	flag_changed.emit("room419_lead_received", true)
+	return true
 
 
 func grant_quest_item(item_id: String) -> bool:
@@ -419,6 +483,7 @@ func load_game() -> void:
 	_quiz_results = _read_dictionary(save_file, "quiz_results")
 	_journey = _read_dictionary(save_file, "journey")
 	_activity_results = _read_dictionary(save_file, "activity_results")
+	_sync_chapter2_quests()
 	quests_changed.emit()
 
 
@@ -450,6 +515,12 @@ const QUEST_CATALOG = {
 	"stage1_challenge": ["Viên đá đầu tiên", "Hoàn thành một thử thách rồi trở lại gặp giảng viên trước Nhà C."],
 	"reach_building_c": ["Đến Nhà C", "Đi tới tòa nhà màu xanh phía trên bản đồ và gặp giảng viên trước cửa."],
 	"enter_room_417": ["Phòng 417", "Đi đến phòng học 417."],
+	"choose_room417_seat": ["Chọn chỗ ngồi", "Trò chuyện với nhóm phía trước hoặc cuối lớp và chọn chỗ ngồi."],
+	"chapter2_quiz": ["Bài kiểm tra FIT", "Gặp giảng viên ở Phòng 417C, trả lời đúng 5/5 câu để nhận viên đá thứ hai."],
+	"reach_room_416": ["Đến Phòng 416", "Sang Phòng 416 tìm giảng viên để tiếp tục hành trình."],
+	"unlock_room_416": ["Mở cửa Phòng 416", "Nhập năm thành lập FIT vào bảng mã để giúp giảng viên mở cửa."],
+	"reach_room_419": ["Đến Phòng 419", "Tìm giảng viên Truyền thông Đa phương tiện ở Phòng 419, tầng 4 Nhà C."],
+	"find_thay_tuan": ["Tìm thầy Tuấn", "Tìm thầy Tuấn mặc áo marathon gần đường chạy ở sân thể thao."],
 	"garbage_quest": ["Dọn rác", "Hoàn thành thử thách phân loại rác."],
 	"fit_runner": ["Đường chạy FIT", "Hoàn thành thử thách chạy."],
 	"boss_fight": ["CON BUG", "Đánh bại CON BUG."],

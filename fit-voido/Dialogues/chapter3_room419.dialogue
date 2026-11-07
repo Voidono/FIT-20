@@ -1,0 +1,26 @@
+# Lecturer speaks from behind the closed Room 419 door.
+~ start
+if not GameState.is_chapter_unlocked(3):
+	Bạn: Mình hoàn thành bài kiểm tra ở Phòng 417 trước đã.
+	=> END
+if not GameState.has_flag("room416_rescue_complete"):
+	Bạn: Mình nên tìm giảng viên ở Phòng 416 trước.
+	=> END
+if GameState.has_flag("room419_lead_received"):
+	=> reminder
+Bạn: Cốc cốc. Có thầy cô trong phòng không ạ?
+Giảng viên: Ai đấy?
+Bạn: Dạ, thầy ở Phòng 416 bảo em tới hỏi về Viên Đá Thời Gian.
+Giảng viên: À, em tìm thầy Tuấn ở sân thể thao nhé. Thầy ấy đang mặc áo marathon, chắc vẫn đang ở gần đường chạy.
+Bạn: Thầy không ra ngoài ạ?
+Giảng viên: Thầy đang xuất video. Còn ba phút nữa… từ hai mươi phút trước rồi.
+set GameState.receive_room419_lead()
+- Dạ, em ra sân tìm thầy Tuấn.
+	Giảng viên: Ừ, em tìm chiếc áo marathon nhé. Chúc em may mắn!
+	=> END
+- Thầy nhắc lại giúp em chỗ cần tìm với ạ.
+	=> reminder
+
+~ reminder
+Giảng viên: Thầy Tuấn ở sân thể thao, gần đường chạy. Thầy ấy mặc áo marathon nhé.
+=> END

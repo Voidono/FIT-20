@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://bbcp8k8t6spty"
+path="res://.godot/imported/chapter2_bao.dialogue-e37a68eb5205ae6663a09f9c47ca162e.tres"
+
+[deps]
+
+source_file="res://Dialogues/chapter2_bao.dialogue"
+dest_files=["res://.godot/imported/chapter2_bao.dialogue-e37a68eb5205ae6663a09f9c47ca162e.tres"]
+
+[params]
+
+defaults=true

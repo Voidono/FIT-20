@@ -1,4 +1,10 @@
-[gd_resource type="Theme" load_steps=5 format=3]
+[gd_resource type="Theme" format=3 uid="uid://cnfy1efndt7cd"]
+
+[sub_resource type="StyleBoxFlat" id="Button"]
+content_margin_left = 2.0
+content_margin_right = 2.0
+bg_color = Color(0.18, 0.071, 0.141, 1)
+anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="Panel"]
 content_margin_left = 10.0
@@ -13,12 +19,6 @@ border_width_bottom = 3
 border_color = Color(0.18, 0.071, 0.141, 1)
 anti_aliasing = false
 
-[sub_resource type="StyleBoxFlat" id="Button"]
-content_margin_left = 2.0
-content_margin_right = 2.0
-bg_color = Color(0.18, 0.071, 0.141, 1)
-anti_aliasing = false
-
 [sub_resource type="StyleBoxFlat" id="Track"]
 bg_color = Color(0.54, 0.35, 0.17, 0.4)
 anti_aliasing = false
@@ -29,13 +29,13 @@ anti_aliasing = false
 
 [resource]
 default_font_size = 14
-Label/colors/font_color = Color(0.18, 0.071, 0.141, 1)
-PanelContainer/styles/panel = SubResource("Panel")
 Button/colors/font_color = Color(1, 0.914, 0.722, 1)
 Button/colors/font_hover_color = Color(0.996, 0.682, 0.204, 1)
 Button/colors/font_pressed_color = Color(0.996, 0.682, 0.204, 1)
-Button/styles/normal = SubResource("Button")
 Button/styles/hover = SubResource("Button")
+Button/styles/normal = SubResource("Button")
 Button/styles/pressed = SubResource("Button")
+Label/colors/font_color = Color(0.18, 0.071, 0.141, 1)
+PanelContainer/styles/panel = SubResource("Panel")
 ProgressBar/styles/background = SubResource("Track")
 ProgressBar/styles/fill = SubResource("Fill")

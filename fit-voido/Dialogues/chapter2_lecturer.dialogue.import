@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://coc1p0sixun60"
+path="res://.godot/imported/chapter2_lecturer.dialogue-48afc62026bfafc11b1b40769c58b726.tres"
+
+[deps]
+
+source_file="res://Dialogues/chapter2_lecturer.dialogue"
+dest_files=["res://.godot/imported/chapter2_lecturer.dialogue-48afc62026bfafc11b1b40769c58b726.tres"]
+
+[params]
+
+defaults=true

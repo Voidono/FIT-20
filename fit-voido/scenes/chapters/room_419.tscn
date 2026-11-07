@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/mapsides/văn_phòng.tscn" id="office"]
+[ext_resource type="PackedScene" path="res://scenes/templates/scene_door.tscn" id="door"]
+
+[node name="Room419" type="Node2D" groups=["quest_hud_host"]]
+
+[node name="Office" parent="." instance=ExtResource("office")]
+
+[node name="Exit" parent="." instance=ExtResource("door")]
+position = Vector2(246, 102)
+target_scene = "res://scenes/mapsides/t_2_c.tscn"
+target_position = Vector2(2850, 390)
+activation = 1
+prompt_text = "Phòng 419 — E / tương tác để ra hành lang"
+
+[node name="RoomNumber" type="Label" parent="."]
+offset_left = 180.0
+offset_top = 48.0
+offset_right = 340.0
+text = "PHÒNG 419\nRa hành lang: E / tương tác"

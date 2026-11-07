@@ -26,7 +26,7 @@ horizontal_alignment = 1
 position = Vector2(567, 674)
 script = ExtResource("3")
 target_scene = "res://scenes/mapsides/t_2_c.tscn"
-target_position = Vector2(3100, 210)
+target_position = Vector2(2750, 210)
 required_chapter = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Exit"]

@@ -7,8 +7,16 @@
 [ext_resource type="PackedScene" uid="uid://c43kdrqiv4a0n" path="res://scenes/Character/Character.tscn" id="5_wlo7b"]
 [ext_resource type="PackedScene" uid="uid://c0gjtr6ij3dyy" path="res://scenes/Character/dialogue_npc.tscn" id="6_0h1ix"]
 [ext_resource type="Texture2D" uid="uid://da882jd35otsq" path="res://assets/DrawAsset/NPC/Tùng.png" id="7_ergek"]
-[ext_resource type="Resource" uid="uid://bbu5n7rxwo21c" path="res://Dialogues/Quizlv2.dialogue" id="8_b6u1f"]
+[ext_resource type="Resource" uid="uid://coc1p0sixun60" path="res://Dialogues/chapter2_lecturer.dialogue" id="8_8q0hj"]
 [ext_resource type="PackedScene" uid="uid://bhie3pwx0kuav" path="res://Dialogues/Bubbles/quiz_balloon (1).tscn" id="9_6q857"]
+[ext_resource type="Texture2D" uid="uid://06youjlgtisq" path="res://assets/DrawAsset/NPC/boypho69.png" id="10_6q857"]
+[ext_resource type="Texture2D" uid="uid://2124v4kq8r5f" path="res://assets/DrawAsset/NPC/boysuda.png" id="11_iud5i"]
+[ext_resource type="Resource" uid="uid://bbcp8k8t6spty" path="res://Dialogues/chapter2_bao.dialogue" id="12_g8qdn"]
+[ext_resource type="Texture2D" uid="uid://de5r1dmsuj0rs" path="res://assets/DrawAsset/NPC/NPC_1_left_2.png" id="13_8q0hj"]
+[ext_resource type="Texture2D" uid="uid://b43i2bybbkptr" path="res://assets/DrawAsset/NPC/NPC_2_left_2.png" id="14_86e7r"]
+[ext_resource type="Resource" uid="uid://cgs6pg46fglk3" path="res://Dialogues/chapter2_front_students.dialogue" id="15_iv3kn"]
+[ext_resource type="PackedScene" uid="uid://b6ecnxvrpy3u1" path="res://scenes/templates/scene_door.tscn" id="17_iv3kn"]
+[ext_resource type="Script" uid="uid://cj7emb28r3js5" path="res://scenes/chapters/room_417.gd" id="chapter2_script"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_syxbb"]
 texture = ExtResource("1_tyvvd")
@@ -10704,7 +10712,8 @@ texture = ExtResource("3_wlo7b")
 sources/0 = SubResource("TileSetAtlasSource_cs1wn")
 sources/1 = SubResource("TileSetAtlasSource_wlo7b")
 
-[node name="phòng máy 2" type="Node2D" unique_id=954924037]
+[node name="phòng máy 2" type="Node2D" unique_id=954924037 groups=["quest_hud_host"]]
+script = ExtResource("chapter2_script")
 
 [node name="sàn" type="TileMapLayer" parent="." unique_id=1197351228]
 texture_filter = 1
@@ -10735,7 +10744,34 @@ position = Vector2(487, 617)
 [node name="DialogueNPC" parent="." unique_id=194546955 instance=ExtResource("6_0h1ix")]
 position = Vector2(342, 636)
 npc_sprite = ExtResource("7_ergek")
-dialogue = ExtResource("8_b6u1f")
+dialogue = ExtResource("8_8q0hj")
 dialogue_balloon = ExtResource("9_6q857")
 npc_name = "Mít tơ tùng"
 mode = 0
+
+[node name="DialogueNPC2" parent="." unique_id=1149021259 instance=ExtResource("6_0h1ix")]
+position = Vector2(127, 215)
+npc_sprite = ExtResource("10_6q857")
+mode = 0
+
+[node name="DialogueNPC3" parent="." unique_id=2117928277 instance=ExtResource("6_0h1ix")]
+position = Vector2(180, 216)
+npc_sprite = ExtResource("11_iud5i")
+dialogue = ExtResource("12_g8qdn")
+mode = 0
+
+[node name="DialogueNPC4" parent="." unique_id=284722502 instance=ExtResource("6_0h1ix")]
+position = Vector2(438, 512)
+npc_sprite = ExtResource("13_8q0hj")
+mode = 0
+
+[node name="DialogueNPC5" parent="." unique_id=1557594216 instance=ExtResource("6_0h1ix")]
+position = Vector2(437, 582)
+npc_sprite = ExtResource("14_86e7r")
+dialogue = ExtResource("15_iv3kn")
+mode = 0
+
+[node name="SceneDoor" parent="." unique_id=176558923 instance=ExtResource("17_iv3kn")]
+position = Vector2(528, 655)
+target_scene = "uid://cgg7os1kxs0wf"
+target_position = Vector2(2750, 210)

@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://cgs6pg46fglk3"
+path="res://.godot/imported/chapter2_front_students.dialogue-d3bf215c4a4cc16a3f8ced9387b092a1.tres"
+
+[deps]
+
+source_file="res://Dialogues/chapter2_front_students.dialogue"
+dest_files=["res://.godot/imported/chapter2_front_students.dialogue-d3bf215c4a4cc16a3f8ced9387b092a1.tres"]
+
+[params]
+
+defaults=true

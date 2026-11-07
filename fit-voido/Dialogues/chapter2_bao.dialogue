@@ -1,0 +1,83 @@
+# Bảo and Đạt — one shared Room 417 back-row conversation. Use cue: start.
+# Sitting here selects the existing poison skill internally; dialogue stays in character.
+# Both students can use this resource and share the same saved conversation state.
+
+~ start
+if GameState.selected_skill() == "poison":
+	=> repeat
+if GameState.selected_skill() == "fist":
+	Bảo: Đổi gió xuống cuối lớp à? Chỗ ông trên kia tôi vẫn trông hộ đấy.
+	Đạt: Nó trông hộ bằng cách để cặp tôi lên ghế ông.
+	=> END
+if GameState.npc_stage("bao_room417") != "new":
+	Bảo: Chọn được chỗ chưa? Tôi giữ ghế được, chứ thầy điểm danh thì tôi không giữ hộ đâu.
+	Đạt: Lần trước nó giữ hộ rồi. Thầy gọi cả hai đứa lên bảng.
+	=> seating
+set GameState.mark_met("bao_room417")
+Bảo: Ê, ngồi đây này. Còn chỗ.
+Đạt: Nhấc cái cặp ông ra đã. Mời người ta ngồi lên à?
+Bạn: Trên kia cũng còn mà?
+Bảo: Ngồi đây làm bài dễ trao đổi hơn.
+Bạn: Ý ông là quay cóp?
+Bảo: Ông nói bé thôi. Tôi đang xây dựng môi trường học tập hợp tác.
+Đạt: Hợp tác từ đầu buổi rồi mà chưa tìm được đứa nào học bài.
+=> questions
+
+~ questions
+- Hai ông học bài chưa?
+	Bảo: Rồi. Tôi đọc hết đề cương rồi.
+	Bạn: Thế ổn đấy.
+	Đạt: Nó đọc mỗi dòng "không được sử dụng tài liệu" rồi đóng lại.
+	Bảo: Đủ để biết phải ngồi cạnh người học bài.
+	=> seating
+- Ngồi cuối thầy không thấy à?
+	Bảo: Thấy chứ. Thầy còn biết tên tôi.
+	Bạn: Vì ông hay phát biểu?
+	Bảo: Vì thầy hay bảo "Bảo, cất điện thoại."
+	Đạt: Giờ thầy gọi mỗi tên thôi là nó tự cất. Có phản xạ rồi.
+	=> seating
+- Tôi từ năm 2006 tới, có biết gì đâu.
+	Bảo: ...Thế à?
+	Bảo: Nãy thấy ông nhìn trường xúc động, tưởng cựu sinh viên về học lại.
+	Đạt: Khoan, từ 2006 tới thì ông biết đề năm 2006 không?
+	Bạn: Biết để làm gì?
+	Đạt: Biết đâu thầy dùng lại.
+	Bạn: Vậy tôi ngồi đây được không?
+	Bảo: Được. Nhưng lát đừng nhìn bài tôi.
+	Đạt: Cũng đừng nhìn tôi. Tôi đang nhìn nó.
+	=> seating
+
+~ seating
+Bảo: Thế ông ngồi với bọn tôi không?
+- Cho tôi ngồi cùng. [Chọn chỗ cuối lớp cho hành trình này]
+	if not GameState.is_chapter_unlocked(2):
+		Bảo: Chưa tới giờ vào lớp đâu. Ông gặp thầy ở Nhà C trước đi.
+		=> END
+	set GameState.choose_skill("poison")
+	Bảo: Kéo ghế nhẹ thôi. Thầy đang nhìn.
+	Đạt: Cười tự nhiên lên. Đừng làm như vừa bàn chuyện gì.
+	Bạn: Có cần chuẩn bị gì không?
+	Bảo: Có bút không?
+	Bạn: Có.
+	Bảo: Tốt quá, cho tôi mượn một cái.
+	Đạt: Cho tôi mượn cái nữa.
+	Bạn: Hai ông đi học mang theo gì vậy?
+	Bảo: Cặp.
+	Đạt: Với tinh thần cầu tiến.
+	=> END
+- Thôi, tôi lên xem bàn đầu.
+	Bảo: Ừ. Lát thầy hỏi cả lớp hiểu chưa thì đừng gật vội nhé.
+	Bạn: Sao?
+	Bảo: Ông gật một cái là cả lớp mất quyền hỏi lại đấy.
+	Đạt: Hôm trước tôi gật vì buồn ngủ. Cả lớp vẫn chưa tha.
+	=> END
+- Để tôi hỏi thêm chút.
+	=> questions
+
+~ repeat
+Bảo: Ôn đến đâu rồi?
+Bạn: Chưa ôn.
+Đạt: Thế là cả bàn thống nhất rồi nhé.
+Bảo: Thống nhất cái gì? Ông hỏi bàn trên chưa?
+Đạt: Rồi. Họ bảo quay lên nghe giảng.
+=> END
