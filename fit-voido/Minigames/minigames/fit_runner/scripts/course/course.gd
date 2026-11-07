@@ -66,6 +66,11 @@ func _place_props() -> void:
 	for child: Node in _props.get_children():
 		var prop := child as FrCourseProp
 		if prop != null:
+			if String(prop.name).begins_with("Checkpoint"):
+				var index: int = int(String(prop.name).trim_prefix("Checkpoint")) - 1
+				prop.visible = index < _tuning.checkpoint_fractions.size()
+				if prop.visible:
+					prop.track_fraction = _tuning.checkpoint_fractions[index]
 			prop.place(_tuning, _profile, GROUND_Y)
 
 

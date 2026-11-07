@@ -39,7 +39,7 @@ enum InputMode { HOLD_RELEASE, TIERS }
 @export_group("Stamina")
 @export_range(20.0, 300.0, 1.0) var stamina_max: float = 100.0
 @export var anchor_paces: PackedFloat32Array = PackedFloat32Array([0.25, 0.60, 0.80, 0.95])  ## pace where each rate below applies; linear in between
-@export_range(0.0, 10.0, 0.1) var rate_recover: float = 0.0  ## passive coasting recovery (set to 0: recovery now happens at checkpoints)
+@export_range(0.0, 10.0, 0.1) var rate_recover: float = 2.5  ## easing off trades position for recovery, in both modes
 @export_range(-5.0, 0.0, 0.05) var rate_cruise: float = -0.6  ## yours
 @export_range(-10.0, 0.0, 0.05) var rate_push: float = -2.5  ## yours
 @export_range(-16.0, 0.0, 0.1) var rate_sprint: float = -8.0  ## yours was -5; the sim needs about -8 for pacing to matter
@@ -50,7 +50,7 @@ enum InputMode { HOLD_RELEASE, TIERS }
 @export_range(0.5, 1.0, 0.01) var assist_mult: float = 0.9  ## extra assist after repeated failed attempts
 
 @export_group("Checkpoints")
-@export var checkpoint_fractions: PackedFloat32Array = PackedFloat32Array([0.25, 0.50, 0.75])
+@export var checkpoint_fractions: PackedFloat32Array = PackedFloat32Array([0.125, 0.375, 0.625, 0.875])  ## two bends per lap
 @export_range(1.0, 2.0, 0.05) var boost_speed_mult: float = 1.25  ## speed multiplier on good/perfect QTE
 @export_range(0.5, 6.0, 0.1) var boost_duration: float = 2.5  ## boost duration in seconds
 
@@ -68,7 +68,7 @@ enum InputMode { HOLD_RELEASE, TIERS }
 @export_range(0.1, 1.0, 0.05) var spurt_drain_mult: float = 0.6  ## yours
 
 @export_group("Terrain")
-@export var course_points: PackedVector2Array = PackedVector2Array([Vector2(0.0, 0.0), Vector2(0.25, 0.0), Vector2(0.36, 90.0), Vector2(0.43, 90.0), Vector2(0.52, 0.0), Vector2(1.0, 0.0)])  ## x = fraction of the track, y = height in px
+@export var course_points: PackedVector2Array = PackedVector2Array([Vector2(0.0, 0.0), Vector2(1.0, 0.0)])  ## flat field circuit, displayed as two laps
 @export_range(0.02, 0.5, 0.01) var slope_ref: float = 0.12  ## slope that counts as "full" hill
 @export_range(0.0, 4.0, 0.1) var uphill_drain_extra: float = 1.5
 @export_range(0.0, 0.8, 0.01) var uphill_speed_penalty: float = 0.35

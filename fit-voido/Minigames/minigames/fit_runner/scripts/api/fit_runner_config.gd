@@ -1,5 +1,8 @@
 class_name FitRunnerConfig
 extends Resource
+enum RaceMode { PRACTICE, COMPETITION }
+@export var race_mode: RaceMode = RaceMode.PRACTICE
+@export var lock_mode: bool = false ## Story hosts keep the chapter's assigned mode.
 ## What the host game hands to FitRunner. Every field is optional; the defaults are the tuned baseline.
 ## Make one in code (FitRunnerConfig.new()) or save it as a .tres per level / per difficulty.
 

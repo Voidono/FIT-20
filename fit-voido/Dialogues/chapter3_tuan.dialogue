@@ -1,0 +1,74 @@
+~ start
+if not GameState.has_flag("room419_lead_received"):
+	Thầy Tuấn: Em muốn tập chạy thì gặp huấn luyện viên bên cạnh nhé. Thầy đang chờ người tới nhận tài liệu.
+	=> END
+if GameState.has_flag("tuan_documents_claimed"):
+	Thầy Tuấn: Em mang chương trình lễ kỷ niệm tới giảng viên phụ trách lễ kỷ niệm, đứng bên ngoài Văn phòng Khoa 210C nhé.
+	=> END
+if GameState.has_completed_quest("fit_runner_race"):
+	=> documents
+if GameState.has_flag("tuan_identity_verified"):
+	=> race_menu
+Bạn: Dạ, thầy ở Phòng 419 bảo em tới tìm thầy Tuấn mặc áo marathon.
+Thầy Tuấn: Đúng thầy rồi. Trước khi giao tài liệu, thầy hỏi ba câu để xác nhận em là sinh viên FIT nhé.
+- Dạ, em sẵn sàng.
+	=> quiz
+- Để em chuẩn bị thêm ạ.
+	=> END
+
+~ quiz
+set GameState.quiz_begin("tuan_identity", 3)
+Thầy Tuấn: Văn phòng Khoa CNTT – HANU có nằm ở phòng 210, Nhà C không?
+- Có [#correct]
+	set GameState.quiz_mark(true)
+	=> q2
+- Không
+	Thầy Tuấn: Văn phòng Khoa ở phòng 210, Nhà C nhé.
+	=> q2
+
+~ q2
+Thầy Tuấn: Năm 2026 đánh dấu kỷ niệm 20 năm thành lập Khoa Công nghệ Thông tin FIT đúng không?
+- Có [#correct]
+	set GameState.quiz_mark(true)
+	=> q3
+- Không
+	Thầy Tuấn: FIT thành lập năm 2006, nên năm 2026 là tròn 20 năm nhé.
+	=> q3
+
+~ q3
+Thầy Tuấn: Sinh viên FIT có sử dụng LMS để học tập và xem tài liệu môn học không?
+- Có [#correct]
+	set GameState.quiz_mark(true)
+	=> result
+- Không
+	Thầy Tuấn: Có nhé. Em nhớ kiểm tra LMS để theo dõi tài liệu môn học.
+	=> result
+
+~ result
+set GameState.quiz_finish()
+if GameState.quiz_session_score == 3:
+	set GameState.verify_tuan_identity()
+	Thầy Tuấn: Đúng cả ba câu rồi! Bây giờ em thử sức với cuộc đua ở sân nhé.
+	=> race_menu
+Thầy Tuấn: Em đúng {{GameState.quiz_session_score}}/3 câu. Mình ôn lại rồi thử tiếp nhé.
+- Cho em trả lời lại.
+	=> quiz
+- Em quay lại sau ạ.
+	=> END
+
+~ race_menu
+Thầy Tuấn: Ghost Race gồm hai vòng, em chạy cùng năm đối thủ. Về đích trong ba vị trí đầu trước khi hết giờ rồi quay lại nhận tài liệu nhé.
+- Bắt đầu Ghost Race.
+	set SceneLoader.start_minigame("fit_runner_race")
+	=> END
+- Nhắc em cách chạy với ạ.
+	Thầy Tuấn: Giữ nút chạy để tăng nỗ lực, thả để hồi thể lực. Bấm nút nhịp tại các điểm kiểm tra để được tăng tốc. Em có thể thử lại hoặc trở về sân khi cần.
+	=> race_menu
+- Để em chuẩn bị thêm.
+	=> END
+
+~ documents
+Thầy Tuấn: Chạy tốt lắm! Đây là chương trình lễ kỷ niệm. Em mang tới giảng viên phụ trách lễ kỷ niệm, đứng bên ngoài Văn phòng Khoa 210C nhé.
+set GameState.claim_tuan_documents()
+Bạn: Dạ, em sẽ mang tới ngay.
+=> END

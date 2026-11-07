@@ -1,4 +1,10 @@
-# FIT Runner (module) - Godot 4.4, GDScript only
+# FIT Runner — Campus Circuit
+
+The current redesign is documented in [DESIGN.md](DESIGN.md): two modes on one flat, two-lap campus field circuit. Choose **Practice** or **Ghost Race** on the ready screen, or use **Choose mode** after a result. The main game's coach launches this same scene; existing result and return-to-campus signals are preserved.
+
+The original module notes below are historical: their hills, water, rest-triggered QTE and balance tables no longer describe the default game. Current validation uses `tests/fit_runner_modes_test.gd` and `tests/fit_runner_preview.gd` with Godot 4.7.
+
+## Original module notes (before the campus redesign)
 
 A marathon-pacing minigame for *FIT: THE TIME STONE*. Hold to push, release to recover, tap a timing bar while resting to get stamina back
 faster. One input, one effort value (0-1). **To merge it into the main game, read `MERGE.md`.** Landscape 16:9 on a 640x360 canvas,

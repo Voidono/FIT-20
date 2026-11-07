@@ -24,13 +24,15 @@ var slope_norm: float = 0.0  ## -1 (steep down) .. +1 (steep up)
 var ground_speed: float = 0.0
 var boost_timer: float = 0.0
 var boost_speed_mult: float = 1.0
-var checkpoints_triggered: Array[bool] = [false, false, false]
+var checkpoints_triggered: Array[bool] = []
 
 
 func _init(p_tuning: FrTuning, p_course: FrCourseProfile = null) -> void:
 	tuning = p_tuning
 	course = p_course if p_course != null else FrCourseProfile.new(p_tuning)
 	stamina = tuning.stamina_max
+	checkpoints_triggered.resize(tuning.checkpoint_fractions.size())
+	checkpoints_triggered.fill(false)
 
 
 func progress() -> float:

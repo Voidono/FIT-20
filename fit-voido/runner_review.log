@@ -1,0 +1,6 @@
+Godot Engine v4.7.stable.official.5b4e0cb0f - https://godotengine.org
+
+RIVAL FINISH TIMES: [85.6009063720703, 89.0861511230469, 89.5816497802734, 92.2105255126953, 85.8188018798828]
+PERFECT PLAYER: { "completed": true, "race_mode": 1, "placement": 1, "entrants": 6, "passed": true, "time_sec": 84.3727299598772, "stars": 3, "walls_hit": 0, "attempt": 1, "par_time": 84.4130525854649, "input_mode": 0, "qte_perfect": 4, "qte_good": 0, "qte_miss": 0 }
+GOOD PLAYER: { "completed": true, "race_mode": 1, "placement": 3, "entrants": 6, "passed": true, "time_sec": 88.2172595203377, "stars": 1, "walls_hit": 0, "attempt": 2, "par_time": 84.4130525854649, "input_mode": 0, "qte_perfect": 0, "qte_good": 4, "qte_miss": 0 }
+PASS: FIT Runner modes, full races, timing, rank, pause, retry and recovery

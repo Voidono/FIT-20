@@ -14,9 +14,11 @@ func _run() -> void:
 	state.choose_skill(&"poison")
 	state.award_time_stone(2)
 	state.award_time_stone(3)
+	state.set_flag("room419_lead_received")
+	state.set_flag("tuan_identity_verified")
 	change_scene_to_file("res://tests/fixtures/return_scene.tscn")
 	await create_timer(0.1).timeout
-	for id in ["garbage_quest", "fit_runner", "boss_fight"]:
+	for id in ["garbage_quest", "fit_runner", "fit_runner_race", "boss_fight"]:
 		var player := get_first_node_in_group("player") as Node2D
 		player.global_position = Vector2(123, 456)
 		if loader.start_minigame(id) != OK:
@@ -30,6 +32,12 @@ func _run() -> void:
 			quit(1)
 			return
 		print("LAUNCHED: " + id)
+		if id in ["fit_runner", "fit_runner_race"]:
+			var expected_mode := 1 if id == "fit_runner_race" else 0
+			if host._game.race_mode != expected_mode or not host._game.lock_mode:
+				push_error("Incorrect story race mode: " + id)
+				quit(1)
+				return
 		# Exercise real result adapters, with a controlled synthetic success.
 		if id == "boss_fight":
 			var result = load("res://Minigames/boss_fight/boss_fight_result.gd").new()
@@ -40,6 +48,10 @@ func _run() -> void:
 			var result = load(result_path).new()
 			result.passed = true
 			result.stars = 2
+			if id == "fit_runner_race":
+				result.race_mode = 1
+				result.completed = true
+				result.placement = 2
 			host.call("_on_run_finished", result)
 		if not state.has_completed_quest(id):
 			push_error("Result did not complete quest: " + id)
@@ -55,5 +67,5 @@ func _run() -> void:
 		print("RETURNED: " + id)
 	loader.activity_id = ""
 	DirAccess.remove_absolute(state.save_path)
-	print("PASS: all three activities launched, results recorded, and return positions restored")
+	print("PASS: all four activities launched, story modes locked, results recorded, and return positions restored")
 	quit(0)

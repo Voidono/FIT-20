@@ -30,7 +30,7 @@ Thầy Giảng Viên: Cả hai thử thách đều nhận cùng một viên đá
 		=> END
 	- Xem lựa chọn còn lại
 		=> choose
-- FIT Runner — Điều tiết thể lực trên đường chạy
+- FIT Runner — Tập chạy Practice tại sân thể thao
 	Thầy Giảng Viên: Giữ nút chạy để tăng nỗ lực, thả ra để giảm nhịp. Chú ý thể lực và hoàn thành đường chạy trước thời gian giới hạn.
 	- Bắt đầu chạy!
 		set GameState.select_stage1_activity("fit_runner")

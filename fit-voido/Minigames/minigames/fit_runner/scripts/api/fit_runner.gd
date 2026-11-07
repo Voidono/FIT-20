@@ -20,6 +20,8 @@ const PREDICT_INTERVAL: float = 0.5
 const PREDICT_DT: float = 0.2
 const LOG_INTERVAL: float = 0.5
 const EFFORT_AVG_TIME: float = 1.5
+const FIELD_ART = preload("../course/field_circuit.gd")
+const CHARACTER_SCENE = preload("../../scenes/character/runner_character.tscn")
 
 @export var tuning: FrTuning
 @export_range(0.1, 0.6, 0.01) var camera_anchor_x: float = 0.33  ## runner stays near the left third of the screen
@@ -50,6 +52,11 @@ var cutoff_time: float = 0.0
 var attempt: int = 1
 var assist_level: int = 0
 var last_result: FitRunnerResult
+var race_mode: int = FitRunnerConfig.RaceMode.PRACTICE
+var lock_mode := false
+var rivals: Array[FrParBot] = []
+var _rival_nodes: Array[FrCharacter] = []
+var _field: Node2D
 
 var _hud_state := FrHudState.new()
 var _acc: float = 0.0
@@ -83,6 +90,7 @@ func _ready() -> void:
 	_ensure_input_action()
 	if tuning == null:
 		tuning = FrTuning.new()
+	tuning = tuning.duplicate(true)
 	if _config_qte != null:
 		_qte.settings = _config_qte
 	_avg_k = 1.0 - exp(-DT / EFFORT_AVG_TIME)
@@ -98,6 +106,11 @@ func _ready() -> void:
 		_hud.speed_button_down.connect(_on_speed_button_down)
 		_hud.speed_button_up.connect(_on_speed_button_up)
 		_hud.qte_button_pressed.connect(_on_qte_button_pressed)
+		_hud.mode_selected.connect(select_mode)
+	_field = FIELD_ART.new()
+	_field.z_index = -5
+	add_child(_field)
+	get_node("Background").hide()
 	get_window().size_changed.connect(_on_window_resized)
 	_on_window_resized()
 	if autostart:
@@ -115,9 +128,11 @@ func _exit_tree() -> void:
 func configure(config: FitRunnerConfig) -> void:
 	if config == null:
 		return
+	lock_mode = config.lock_mode
 	if config.tuning != null:
 		tuning = config.tuning
 	_config_qte = config.qte
+	race_mode = config.race_mode
 	attempt = config.attempt
 	assist_level = config.assist_level
 	debug_enabled = config.debug_enabled
@@ -149,7 +164,26 @@ func retry() -> void:
 	start()
 
 
+func select_mode(mode: int) -> void:
+	if lock_mode and mode != race_mode:
+		return
+	if phase != FrRunState.Phase.READY and phase != FrRunState.Phase.FINISHED:
+		return
+	race_mode = clampi(mode, 0, 1)
+	start()
+
+
+## Count competitors ahead by distance while racing, exact finish time at the line.
+func placement_at(time_sec: float, position: float, at_finish: bool = false) -> int:
+	var place: int = 1
+	for rival in rivals:
+		if (at_finish and rival.finish_time < time_sec - 0.0001) or (not at_finish and rival.position_at(time_sec) > position + 0.01):
+			place += 1
+	return place
+
+
 func toggle_pause() -> void:
+	_speed_button_held = false
 	if phase == FrRunState.Phase.RUNNING or phase == FrRunState.Phase.COUNTDOWN:
 		_phase_before_pause = phase
 		_push_held = false
@@ -226,8 +260,24 @@ func _prepare() -> void:
 		_par_key = key
 	par_time = tuning.par_time_override if tuning.par_time_override > 0.0 else par_bot.finish_time
 	cutoff_time = par_time * tuning.cutoff_mult
+	if race_mode == FitRunnerConfig.RaceMode.PRACTICE:
+		cutoff_time = par_time * maxf(tuning.cutoff_mult, 2.0)
+	_qte.settings = (_config_qte if _config_qte != null else _qte.preset_normal).duplicate(true)
+	if race_mode == FitRunnerConfig.RaceMode.PRACTICE:
+		_qte.settings.duration *= 1.35
+		_qte.settings.perfect_width = minf(0.5, _qte.settings.perfect_width * 1.6)
+		_qte.settings.good_width = minf(0.8, _qte.settings.good_width * 1.5)
+	_build_rivals()
 	_course.setup(tuning, profile)
+	for part in ["Ground", "Track", "LaneLine", "Posts"]:
+		_course.get_node(part).hide()
+	_field.race_length = tuning.track_length
 	_hud.configure(tuning, profile)
+	_hud.configure_mode(race_mode)
+	if lock_mode:
+		for button in _hud._mode_buttons:
+			button.hide()
+		_hud._result_panel._mode_menu.hide()
 	_acc = 0.0
 	_alpha = 1.0
 	_push_held = false
@@ -251,6 +301,33 @@ func _prepare() -> void:
 	_refresh_hud(0.0)
 
 
+func _build_rivals() -> void:
+	for runner in _rival_nodes:
+		runner.free()
+	_rival_nodes.clear()
+	rivals.clear()
+	_ghost.visible = race_mode == FitRunnerConfig.RaceMode.PRACTICE
+	if race_mode == FitRunnerConfig.RaceMode.PRACTICE:
+		return
+	var colors: Array[Color] = [Color("8ce1f1"), Color("ffbf87"), Color("c3a8f5"), Color("f6db7b"), Color("f4a9c7")]
+	for i in range(5):
+		rivals.append(FrParBot.build(tuning, i + 1))
+		var runner: FrCharacter = CHARACTER_SCENE.instantiate() as FrCharacter
+		runner.modulate = Color(colors[i], 0.65)
+		add_child(runner)
+		var tag := Label.new()
+		var names: Array[String] = ["FR_RIVAL_LEADER", "FR_RIVAL_STEADY", "FR_RIVAL_LATE", "FR_RIVAL_CAUTIOUS", "FR_RIVAL_CHASER"]
+		tag.text = names[i]
+		tag.position = Vector2(-35, -64)
+		tag.size.x = 70
+		tag.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		tag.add_theme_font_size_override("font_size", 10)
+		tag.add_theme_color_override("font_outline_color", Color("102c28"))
+		tag.add_theme_constant_override("outline_size", 3)
+		runner.add_child(tag)
+		_rival_nodes.append(runner)
+
+
 func _set_phase(p: int) -> void:
 	phase = p
 	_hud.set_phase(p, last_result)
@@ -272,6 +349,8 @@ func _begin_run() -> void:
 # ---------------------------------------------------------------- input
 
 func _input(event: InputEvent) -> void:
+	if event is InputEventKey and event.echo:
+		return
 	if event.is_action_pressed(qte_action):
 		_on_qte_button_pressed()
 	elif event.is_action_pressed(push_action):
@@ -404,6 +483,9 @@ func _update_outlook() -> void:
 	var walls_before: int = sim.walls_hit
 	var steps: int = 0
 	while (not sim.finished) and steps < 1500:
+		if sim.poll_checkpoint() >= 0:
+			# Forecast a GOOD checkpoint rather than ignoring every future recovery.
+			sim.add_stamina(_qte.settings.good_bonus)
 		sim.step(PREDICT_DT, _effort_avg)
 		steps += 1
 	_outlook_stamina = sim.stamina
@@ -425,6 +507,10 @@ func _stars_for(time_sec: float) -> int:
 
 func _finish_run(reached_finish: bool) -> void:
 	var result := FitRunnerResult.new()
+	result.completed = reached_finish
+	result.race_mode = race_mode
+	result.entrants = 6 if race_mode == FitRunnerConfig.RaceMode.COMPETITION else 1
+	result.placement = placement_at(model.finish_time if reached_finish else model.elapsed, model.pos, reached_finish)
 	result.attempt = attempt
 	result.walls_hit = model.walls_hit
 	result.par_time = par_time
@@ -433,16 +519,19 @@ func _finish_run(reached_finish: bool) -> void:
 	result.qte_good = _qte.good_count
 	result.qte_miss = _qte.miss_count
 	if reached_finish:
-		result.passed = true
+		result.passed = race_mode == FitRunnerConfig.RaceMode.PRACTICE or result.placement <= 3
 		result.time_sec = model.finish_time
-		result.stars = _stars_for(model.finish_time)
+		result.stars = _stars_for(model.finish_time) if race_mode == FitRunnerConfig.RaceMode.PRACTICE else maxi(0, 4 - result.placement)
 	else:
 		result.passed = false
 		result.time_sec = minf(model.elapsed, cutoff_time)
 		result.stars = 0
 	last_result = result
 	_push_held = false
+	_speed_button_held = false
 	_set_phase(FrRunState.Phase.FINISHED)
+	if lock_mode and result.passed:
+		_hud._result_panel._hint.text = ("Trở lại gặp thầy Tuấn để nhận tài liệu." if race_mode == 1 else "Trở lại gặp giảng viên Nhà C để nhận viên đá đầu tiên.") if TranslationServer.get_locale().begins_with("vi") else ("Return to Thầy Tuấn for the documents." if race_mode == 1 else "Return to the Nhà C lecturer for the first stone.")
 	run_finished.emit(result)
 
 
@@ -493,13 +582,24 @@ func _update_views(delta: float) -> void:
 	_camera.global_position = Vector2(px + view.x * (0.5 - camera_anchor_x), _cam_y)
 
 	_runner.position = Vector2(px, ground)
+	_runner.z_index = 2
 	_runner.apply(model.pace, model.walled, model.drinking, clampf(atan(-profile.slope_at(px)), -0.35, 0.35))
+	_field.distance = px
+	_field.boost = model.boost_timer > 0.0
 
 	var t_visual: float = _visual_time()
 	var gp: float = minf(par_bot.position_at(t_visual), tuning.track_length)
 	var g_pace: float = (par_bot.position_at(t_visual + 0.1) - par_bot.position_at(t_visual)) / 0.1 / tuning.max_speed
-	_ghost.position = Vector2(gp, _course.ground_y_at(gp))
+	_ghost.position = Vector2(gp, _course.ground_y_at(gp) + 18)
 	_ghost.apply(g_pace, false, false, clampf(atan(-profile.slope_at(gp)), -0.35, 0.35))
+	for i in range(rivals.size()):
+		var rival: FrParBot = rivals[i]
+		var pos: float = minf(rival.position_at(t_visual), tuning.track_length)
+		var pace: float = (rival.position_at(t_visual + 0.1) - rival.position_at(t_visual)) / 0.1 / tuning.max_speed
+		var lane: float = -8.0 + float(i) * 17.0
+		_rival_nodes[i].position = Vector2(pos, _course.ground_y_at(pos) + lane)
+		_rival_nodes[i].z_index = 1 if lane < 0 else 3 + i
+		_rival_nodes[i].apply(pace, false, false, 0)
 
 
 func _refresh_hud(delta: float) -> void:
@@ -514,6 +614,14 @@ func _refresh_hud(delta: float) -> void:
 	s.par_time = par_time
 	s.cutoff_time = cutoff_time
 	s.attempt = attempt
+	s.race_mode = race_mode
+	s.placement = placement_at(model.elapsed, model.pos)
+	s.rival_progress.clear()
+	if race_mode == FitRunnerConfig.RaceMode.PRACTICE:
+		s.rival_progress.append(minf(par_bot.position_at(_visual_time()) / tuning.track_length, 1.0))
+	else:
+		for rival in rivals:
+			s.rival_progress.append(minf(rival.position_at(_visual_time()) / tuning.track_length, 1.0))
 	s.qte_phase = _qte.phase
 	s.qte_cursor = _qte.cursor()
 	s.runner_screen_pos = get_viewport().get_canvas_transform() * _runner.global_position

@@ -23,8 +23,10 @@ func _ready() -> void:
 		return
 	var history := GameState.activity_result(_id)
 	match _id:
-		"fit_runner":
+		"fit_runner", "fit_runner_race":
 			var config = load(RUNNER_CONFIG).new()
+			config.race_mode = 1 if _id == "fit_runner_race" else 0
+			config.lock_mode = true
 			config.attempt = int(history.get("attempts", 0)) + 1
 			config.assist_level = 1 if int(history.get("failures", 0)) >= 2 else 0
 			_game = load(RUNNER_LAUNCHER).create(config)
@@ -59,6 +61,10 @@ func _build_controls() -> void:
 	_exit_button.custom_minimum_size = Vector2(208, 48)
 	_exit_button.pressed.connect(_return_to_host)
 	panel.add_child(_exit_button)
+	# FIT Runner provides Quit in its pause/results menus. Avoid placing the
+	# host button over the race placement and pause controls.
+	if _id in ["fit_runner", "fit_runner_race"]:
+		_exit_button.hide()
 	_message = Label.new()
 	_message.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_message.custom_minimum_size.x = 208
@@ -67,7 +73,7 @@ func _build_controls() -> void:
 
 func _on_run_finished(result: Variant) -> void:
 	GameState.record_activity_result(_id, result.to_dict())
-	if _id == "fit_runner" and is_instance_valid(_game):
+	if _id in ["fit_runner", "fit_runner_race"] and is_instance_valid(_game):
 		# The module reads this setting when rebuilding its next attempt.
 		var history := GameState.activity_result(_id)
 		_game.assist_level = 1 if int(history.get("failures", 0)) >= 2 else 0
@@ -86,6 +92,7 @@ func _on_boss_finished(result: Variant) -> void:
 
 
 func _on_save_failed(_error: int) -> void:
+	_exit_button.show()
 	_message.text = "Chưa lưu được tiến trình. Hãy thử lưu lại trước khi thoát."
 	_exit_button.text = "Lưu lại và trở về"
 
@@ -103,4 +110,5 @@ func _return_to_host() -> void:
 	var error := SceneLoader.return_from_minigame()
 	if error != OK:
 		_leaving = false
+		_exit_button.show()
 		_message.text = "Không thể trở về. Vui lòng thử lại."

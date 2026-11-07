@@ -17,10 +17,12 @@ var walls_hit: int = 0
 var _tuning: FrTuning
 var _high: bool = false
 var _phase: float = 0.0
+var strategy: int = 0  ## 0 pace guide, 1 early leader, 2 steady, 3 late kick, 4 cautious, 5 challenger
 
 
-static func build(tuning: FrTuning) -> FrParBot:
+static func build(tuning: FrTuning, race_strategy: int = 0) -> FrParBot:
 	var bot := FrParBot.new()
+	bot.strategy = race_strategy
 	bot._run(tuning)
 	return bot
 
@@ -37,12 +39,22 @@ func _run(tuning: FrTuning) -> void:
 			target = _target_tiers(model, input as FrEffortTiers)
 		else:
 			target = _target_hold_release(model)
+		if strategy > 0 and not model.walled and not model.in_spurt():
+			var progress: float = model.progress()
+			match strategy:
+				1: target += 0.10 if progress < 0.35 else -0.045
+				2: target -= 0.025
+				3: target += -0.055 if progress < 0.6 else 0.065
+				4: target -= 0.075
+				5: target += 0.025
 		var held: bool = input.effort < target
 		var effort: float = input.update(DT, held, clampf(model.progress(), 0.0, 1.0))
 		var cp: int = model.poll_checkpoint()
 		if cp >= 0:
-			model.add_stamina(35.0)
-			model.apply_speed_boost(tuning.boost_speed_mult, tuning.boost_duration)
+			var perfect: bool = strategy == 0 or (cp + strategy) % 3 == 0
+			model.add_stamina(35.0 if perfect else 20.0)
+			if perfect:
+				model.apply_speed_boost(tuning.boost_speed_mult, tuning.boost_duration)
 		model.step(DT, effort)
 		positions.append(model.pos)
 	finish_time = model.finish_time if model.finished else MAX_TIME

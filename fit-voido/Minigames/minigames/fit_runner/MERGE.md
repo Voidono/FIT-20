@@ -18,6 +18,7 @@ Every internal class starts with `Fr` (`FrHud`, `FrModel`...). The public ones a
 ## 3. Launch it
 ```gdscript
 var config := FitRunnerConfig.new()          # optional, every field has a default
+config.race_mode = FitRunnerConfig.RaceMode.PRACTICE  # or COMPETITION; ready-screen selection is also available
 config.attempt = attempt_number              # 1, 2, 3...
 config.assist_level = 1 if attempt_number > 3 else 0   # a little help after repeated fails
 var game: FitRunner = FitRunnerLauncher.create(config)  # create() lets you connect first; launch(parent, config) also adds it

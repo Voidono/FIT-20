@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://butbhf7e54uy0"
+path="res://.godot/imported/chapter3_tuan.dialogue-9375acf93bd595169240245ce15e16e5.tres"
+
+[deps]
+
+source_file="res://Dialogues/chapter3_tuan.dialogue"
+dest_files=["res://.godot/imported/chapter3_tuan.dialogue-9375acf93bd595169240245ce15e16e5.tres"]
+
+[params]
+
+defaults=true

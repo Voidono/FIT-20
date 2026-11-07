@@ -5,6 +5,17 @@ extends PanelContainer
 
 signal retry_pressed
 signal quit_pressed
+signal mode_menu_requested
+var _mode_menu: Button
+
+
+func _ready() -> void:
+	_mode_menu = Button.new()
+	_mode_menu.text = "FR_MODE_MENU"
+	_mode_menu.custom_minimum_size.y = 32
+	_mode_menu.focus_mode = Control.FOCUS_NONE
+	_mode_menu.pressed.connect(func() -> void: mode_menu_requested.emit())
+	get_node("VBox").add_child(_mode_menu)
 
 @export var star_full: Texture2D
 @export var star_empty: Texture2D
@@ -37,6 +48,15 @@ func show_result(r: FitRunnerResult) -> void:
 	_stone_row.visible = r.passed
 	_hint.text = tr("FR_STONE_GOT") if r.passed else tr("FR_FAIL_HINT")
 	_continue.text = tr("FR_BTN_CONTINUE") if r.passed else tr("FR_BTN_QUIT")
+	# Story rewards belong to the host. Practice and a podium both count as
+	# completion, but this reusable module must not promise an unawarded stone.
+	_stone_row.hide()
+	if r.race_mode == 1:
+		_title.text = tr("FR_RESULT_PODIUM") if r.passed else tr("FR_RESULT_FINISHED") if r.completed else tr("FR_RESULT_FAIL")
+		_par.text = tr("FR_POSITION") % [r.placement, r.entrants]
+		_hint.text = tr("FR_RACE_FIRST_HINT") if r.passed and r.placement == 1 else tr("FR_RACE_WON_HINT") if r.passed else tr("FR_RACE_RETRY_HINT")
+	else:
+		_hint.text = tr("FR_PRACTICE_DONE") if r.passed else tr("FR_FAIL_HINT")
 
 
 func _on_retry_pressed() -> void:

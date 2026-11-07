@@ -19,7 +19,7 @@ signal save_failed(error: int)
 const SAVE_PATH := "user://game_state.cfg"
 const STATE_SECTION := "progress"
 const SAVE_VERSION := 2
-const ACTIVITY_IDS := ["garbage_quest", "fit_runner", "boss_fight"]
+const ACTIVITY_IDS := ["garbage_quest", "fit_runner", "fit_runner_race", "boss_fight"]
 ## Override only for isolated tests. Normal gameplay uses SAVE_PATH.
 var save_path := SAVE_PATH
 var last_save_error: Error = OK
@@ -401,6 +401,8 @@ func can_start_activity(activity_id: String) -> bool:
 		return false
 	if activity_id == "boss_fight":
 		return is_chapter_unlocked(4) and selected_skill() != &""
+	if activity_id == "fit_runner_race":
+		return is_chapter_unlocked(3) and has_flag("room419_lead_received") and has_flag("tuan_identity_verified")
 	return true
 
 
@@ -414,8 +416,14 @@ func activity_result(activity_id: String) -> Dictionary:
 func record_activity_result(activity_id: String, result: Dictionary) -> bool:
 	if not can_start_activity(activity_id):
 		return false
+	if activity_id in ["fit_runner", "fit_runner_race"]:
+		var expected_mode := 1 if activity_id == "fit_runner_race" else 0
+		if int(result.get("race_mode", expected_mode)) != expected_mode:
+			return false
 	var previous := activity_result(activity_id)
 	var passed := bool(result.get("passed", false))
+	if activity_id == "fit_runner_race":
+		passed = passed and bool(result.get("completed", false)) and int(result.get("placement", 99)) <= 3
 	var entry := {
 		"attempts": int(previous.get("attempts", 0)) + 1,
 		"failures": int(previous.get("failures", 0)) + (0 if passed else 1),
@@ -428,9 +436,55 @@ func record_activity_result(activity_id: String, result: Dictionary) -> bool:
 	var previous_stage := quest_stage(activity_id)
 	if newly_complete:
 		_quest_stages[activity_id] = QUEST_STAGE_COMPLETE
+		if activity_id == "fit_runner_race":
+			_quest_stages["return_to_tuan"] = QUEST_STAGE_ACTIVE
 	save_game()
 	if newly_complete:
 		quest_stage_changed.emit(activity_id, previous_stage, QUEST_STAGE_COMPLETE)
+	progression_changed.emit()
+	return true
+
+
+func verify_tuan_identity() -> bool:
+	if not is_chapter_unlocked(3) or not has_flag("room419_lead_received") or quiz_session_id != "tuan_identity" or quiz_session_score != 3 or quiz_session_total != 3:
+		return false
+	_flags["tuan_identity_verified"] = true
+	_quest_stages["find_thay_tuan"] = QUEST_STAGE_COMPLETE
+	if not has_completed_quest("fit_runner_race"):
+		_quest_stages["fit_runner_race"] = QUEST_STAGE_ACTIVE
+	save_game()
+	quests_changed.emit()
+	return true
+
+
+func claim_tuan_documents() -> bool:
+	if not has_completed_quest("fit_runner_race") or not has_flag("tuan_identity_verified") or has_flag("tuan_documents_claimed"):
+		return false
+	_flags["tuan_documents_claimed"] = true
+	var items: Dictionary = _journey.get("items", {}).duplicate()
+	items["marathon_documents"] = true
+	_journey["items"] = items
+	_quest_stages["return_to_tuan"] = QUEST_STAGE_COMPLETE
+	_quest_stages["deliver_marathon_documents"] = QUEST_STAGE_ACTIVE
+	save_game()
+	quests_changed.emit()
+	progression_changed.emit()
+	return true
+
+
+func hand_over_marathon_documents() -> bool:
+	if not is_chapter_unlocked(3) or not has_quest_item("marathon_documents") or has_flag("delivered:marathon_documents") or has_time_stone(3):
+		return false
+	var items: Dictionary = _journey.get("items", {}).duplicate()
+	items["marathon_documents"] = false
+	_journey["items"] = items
+	_flags["delivered:marathon_documents"] = true
+	_flags["stage3_stone_collected"] = true
+	_quest_stages["deliver_marathon_documents"] = QUEST_STAGE_COMPLETE
+	_quest_stages["rescue_faculty_head"] = QUEST_STAGE_ACTIVE
+	save_game()
+	quests_changed.emit()
+	flag_changed.emit("stage3_stone_collected", true)
 	progression_changed.emit()
 	return true
 
@@ -521,6 +575,10 @@ const QUEST_CATALOG = {
 	"unlock_room_416": ["Mở cửa Phòng 416", "Nhập năm thành lập FIT vào bảng mã để giúp giảng viên mở cửa."],
 	"reach_room_419": ["Đến Phòng 419", "Tìm giảng viên Truyền thông Đa phương tiện ở Phòng 419, tầng 4 Nhà C."],
 	"find_thay_tuan": ["Tìm thầy Tuấn", "Tìm thầy Tuấn mặc áo marathon gần đường chạy ở sân thể thao."],
+	"fit_runner_race": ["Cuộc đua sân thể thao", "Về đích trong ba vị trí đầu ở Ghost Race rồi quay lại gặp thầy Tuấn."],
+	"return_to_tuan": ["Nhận tài liệu", "Trở lại gặp thầy Tuấn ở sân thể thao để nhận tài liệu."],
+	"deliver_marathon_documents": ["Giao tài liệu", "Mang chương trình lễ kỷ niệm tới giảng viên phụ trách lễ kỷ niệm, bên ngoài Văn phòng Khoa 210C."],
+	"rescue_faculty_head": ["Biến cố tại Văn phòng Khoa", "Tìm hiểu tiếng động tại Văn phòng Khoa 210C và đánh bại CON BUG để giải cứu thầy Trưởng khoa."],
 	"garbage_quest": ["Dọn rác", "Hoàn thành thử thách phân loại rác."],
 	"fit_runner": ["Đường chạy FIT", "Hoàn thành thử thách chạy."],
 	"boss_fight": ["CON BUG", "Đánh bại CON BUG."],

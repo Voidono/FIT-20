@@ -13,6 +13,13 @@ signal quit_pressed
 signal speed_button_down
 signal speed_button_up
 signal qte_button_pressed
+signal mode_selected(mode: int)
+
+const CIRCUIT_MAP = preload("circuit_map.gd")
+var _map: Control
+var _race_info: Label
+var _mode_buttons: Array[Button] = []
+var _mode: int = 0
 
 @onready var _time_label: Label = FrLookup.node(self, "TimeLabel") as Label
 @onready var _zone_icon: TextureRect = FrLookup.node(self, "ZoneIcon") as TextureRect
@@ -41,9 +48,109 @@ var _last_ahead: bool = true
 
 
 func _ready() -> void:
+	_build_race_ui()
 	set_phase(FrRunState.Phase.READY, null)
 	_update_button_texts()
 	_apply_device_ui()
+	_result_panel.mode_menu_requested.connect(func() -> void: mode_selected.emit(_mode))
+
+
+func _build_race_ui() -> void:
+	var root: Control = get_node("Root")
+	var theme: Theme = root.theme.duplicate(true)
+	var normal := _panel_style(Color("153b33"), Color("416357"))
+	var hover := _panel_style(Color("315c43"), Color("d7f59a"))
+	var pressed := _panel_style(Color("4b6b3d"), Color("d7f59a"))
+	theme.set_stylebox("panel", "PanelContainer", _panel_style(Color("102c28"), Color("628166")))
+	for type in ["Button", "OptionButton"]:
+		theme.set_stylebox("normal", type, normal)
+		theme.set_stylebox("hover", type, hover)
+		theme.set_stylebox("pressed", type, pressed)
+		theme.set_stylebox("focus", type, hover)
+	theme.set_constant("outline_size", "Label", 0)
+	root.theme = theme
+	_ready_overlay.reparent(root)
+	_ready_overlay.set_anchors_and_offsets_preset(Control.PRESET_CENTER)
+	_ready_overlay.offset_left = -205
+	_ready_overlay.offset_right = 205
+	_ready_overlay.offset_top = -112
+	_ready_overlay.offset_bottom = 112
+	var ready_box := _ready_overlay.get_node("VBox") as VBoxContainer
+	var modes := HBoxContainer.new()
+	modes.add_theme_constant_override("separation", 8)
+	ready_box.add_child(modes)
+	ready_box.move_child(modes, 2)
+	for i in range(2):
+		var button := Button.new()
+		button.text = "FR_MODE_PRACTICE" if i == 0 else "FR_MODE_RACE"
+		button.custom_minimum_size = Vector2(0, 38)
+		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		button.focus_mode = Control.FOCUS_NONE
+		button.pressed.connect(func() -> void: mode_selected.emit(i))
+		modes.add_child(button)
+		_mode_buttons.append(button)
+	_map = CIRCUIT_MAP.new()
+	_map.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_map.set_anchors_and_offsets_preset(Control.PRESET_CENTER_BOTTOM)
+	_map.offset_left = -92
+	_map.offset_right = 92
+	_map.offset_top = -100
+	_map.offset_bottom = -30
+	root.add_child(_map)
+	_race_info = Label.new()
+	_race_info.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_race_info.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_race_info.add_theme_font_size_override("font_size", 12)
+	_race_info.set_anchors_and_offsets_preset(Control.PRESET_CENTER_BOTTOM)
+	_race_info.offset_left = -180
+	_race_info.offset_right = 180
+	_race_info.offset_top = -122
+	_race_info.offset_bottom = -102
+	_race_info.add_theme_color_override("font_color", Color("ecf5d4"))
+	_race_info.add_theme_color_override("font_outline_color", Color("102c28"))
+	_race_info.add_theme_constant_override("outline_size", 4)
+	root.add_child(_race_info)
+	_progress.hide()
+	var title := ready_box.get_node("StoryLabel") as Label
+	title.text = "FR_CIRCUIT_TITLE"
+	title.add_theme_font_size_override("font_size", 20)
+	ready_box.get_node("Logo").hide()
+	var top: Control = get_node("Root/Margin/Row/Center/Top")
+	var center: Control = top.get_parent()
+	var scoreboard := PanelContainer.new()
+	scoreboard.name = "Scoreboard"
+	scoreboard.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	center.add_child(scoreboard)
+	center.move_child(scoreboard, 0)
+	top.reparent(scoreboard)
+	for key in ["FR_ENERGY_METER", "FR_EFFORT_METER"]:
+		var caption := Label.new()
+		caption.text = key
+		caption.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		caption.add_theme_font_size_override("font_size", 10)
+		caption.add_theme_color_override("font_color", Color("9fb6a6"))
+		top.add_child(caption)
+		top.move_child(caption, _stamina_bar.get_index() if key == "FR_ENERGY_METER" else _effort_gauge.get_index())
+
+
+func _panel_style(fill: Color, edge: Color) -> StyleBoxFlat:
+	var style := StyleBoxFlat.new()
+	style.bg_color = fill
+	style.border_color = edge
+	style.set_border_width_all(1)
+	style.set_corner_radius_all(8)
+	style.content_margin_left = 12
+	style.content_margin_right = 12
+	style.content_margin_top = 8
+	style.content_margin_bottom = 8
+	return style
+
+
+func configure_mode(mode: int) -> void:
+	_mode = mode
+	for i in range(_mode_buttons.size()):
+		_mode_buttons[i].modulate = Color("dcff98") if i == mode else Color("a8bbae")
+	_ready_overlay.get_node("VBox/HowLabel").text = "FR_PRACTICE_BRIEF" if mode == 0 else "FR_RACE_BRIEF"
 
 
 func _notification(what: int) -> void:
@@ -55,13 +162,18 @@ func _notification(what: int) -> void:
 ## On PC: buttons are hidden, a keyboard hint label is shown instead.
 ## On mobile: buttons remain visible (their default state).
 func _apply_device_ui() -> void:
-	var on_mobile := DeviceInput.is_mobile()
+	var on_mobile: bool = _is_mobile()
 	if _speed_button != null:
 		_speed_button.visible = on_mobile
 	if _qte_button != null:
 		_qte_button.visible = on_mobile
 	if not on_mobile:
 		_spawn_keyboard_hint()
+
+
+func _is_mobile() -> bool:
+	var device := get_node_or_null("/root/DeviceInput")
+	return bool(device.call("is_mobile")) if device != null else OS.has_feature("mobile")
 
 
 func _spawn_keyboard_hint() -> void:
@@ -110,8 +222,12 @@ func set_phase(phase: int, result: FitRunnerResult) -> void:
 	_result_panel.visible = phase == FrRunState.Phase.FINISHED
 	_ready_overlay.visible = is_ready
 	_countdown.visible = counting
+	get_node("Root/Margin/Row/Center/Scoreboard").visible = counting or running or phase == FrRunState.Phase.PAUSED
+	if _map != null:
+		_map.visible = counting or running
+		_race_info.visible = _map.visible
 	## Touch buttons only shown on mobile AND during active phases.
-	var on_mobile := DeviceInput.is_mobile()
+	var on_mobile: bool = _is_mobile()
 	if _speed_button != null:
 		_speed_button.visible = on_mobile and (is_ready or counting or running)
 	if _qte_button != null:
@@ -127,6 +243,7 @@ func set_portrait(is_portrait: bool) -> void:
 ## True when a point is on something clickable, so the runner does not treat that tap as "push".
 func is_point_over_ui(pos: Vector2) -> bool:
 	var ui_elements: Array[Control] = [_pause_button, _pause_menu, _result_panel]
+	ui_elements.append_array(_mode_buttons)
 	if _speed_button != null:
 		ui_elements.append(_speed_button)
 	if _qte_button != null:
@@ -145,6 +262,9 @@ func refresh(delta: float, s: FrHudState) -> void:
 	_blink += delta
 	var running: bool = s.phase == FrRunState.Phase.RUNNING
 	_time_label.text = FrFmt.time(m.elapsed)
+	var lap: int = mini(2, int(m.progress() * 2.0) + 1)
+	_race_info.text = tr("FR_RACE_INFO") % [lap, int(clampf(m.progress(), 0, 1) * t.track_length / 10.0)]
+	_map.update_race(m.progress(), s.rival_progress)
 
 	var zone: int = FrZones.for_pace(m.pace, m.walled)
 	var style: FrZoneStyle = _style(zone)
@@ -162,15 +282,19 @@ func refresh(delta: float, s: FrHudState) -> void:
 			_delta_label.add_theme_color_override("font_color", _style(FrZones.Id.CRUISE).color if ahead else _style(FrZones.Id.SPRINT).color)
 	else:
 		_delta_label.text = ""
+	if s.race_mode == 1:
+		_delta_label.text = tr("FR_POSITION") % [s.placement, 6]
+		_delta_label.add_theme_color_override("font_color", Color("dcff98"))
 
 	_stamina_bar.apply(m.stamina / t.stamina_max, style, m.walled, t.wall_release / t.stamina_max, _blink)
 	var band_hi: float = lerpf(t.band_hi_start, t.band_hi_end, clampf(m.progress(), 0.0, 1.0))
 	_effort_gauge.apply(s.effort, m.pace, t.band_lo, band_hi, t.input_mode == FrTuning.InputMode.TIERS, t.tier_values)
 	_progress.apply(m.progress(), s.ghost_progress)
 	_qte_prompt.apply(s.qte_phase, s.qte_cursor, s.runner_screen_pos)
+	_qte_prompt.visible = running and s.qte_phase != FrQteController.Phase.IDLE
 
-	if running and _qte_button != null:
-		_qte_button.set_qte_active(s.qte_phase == 1)
+	if _qte_button != null:
+		_qte_button.set_qte_active(running and s.qte_phase == 1)
 
 	if running and m.progress() < 0.97:
 		if s.outlook != _last_outlook:
@@ -201,11 +325,24 @@ func refresh(delta: float, s: FrHudState) -> void:
 			prompt = "FR_WALL_PROMPT"
 		elif m.drinking:
 			prompt = "FR_DRINKING"
-		elif m.in_station():
+		elif m.progress() >= 0.5 and m.progress() < 0.52:
+			prompt = "FR_FINAL_LAP"
+		elif t.water_amount > 0 and m.in_station():
 			prompt = "FR_WATER_PROMPT"
 		elif m.in_spurt() and m.progress() < t.spurt_start + 0.03:
 			prompt = "FR_SPURT_BANNER"
 	_prompt.text = prompt  # keys again, translated by the Label
+	if running and s.race_mode == 0 and prompt == "":
+		if s.qte_phase == 1:
+			_prompt.text = "FR_COACH_QTE"
+		elif m.elapsed < 7:
+			_prompt.text = "FR_COACH_PUSH"
+		elif m.stamina < 35:
+			_prompt.text = "FR_COACH_REST"
+		elif m.in_spurt():
+			_prompt.text = "FR_COACH_FINISH"
+		else:
+			_prompt.text = "FR_COACH_PACE"
 
 
 ## Connected from the FrQteController in fit_runner.tscn.

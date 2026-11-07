@@ -62,5 +62,10 @@ track_fraction = 0.85
 label_key = "FR_SIGN_SPURT"
 banner_color = Color(0.9333, 0.2588, 0.4, 1.0)
 
+[node name="Checkpoint4" parent="Props" instance=ExtResource("5_sign_flag")]
+track_fraction = 0.875
+label_key = "FR_SIGN_CP4"
+banner_color = Color(0.6, 0.8, 0.4, 1.0)
+
 [node name="FinishArch" parent="Props" instance=ExtResource("7_finish_arc")]
 track_fraction = 1.0

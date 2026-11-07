@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://1q3un777h5y"]
 
+[ext_resource type="Resource" path="res://Dialogues/chapter3_tuan.dialogue" id="chapter3_tuan"]
+
 [ext_resource type="PackedScene" uid="uid://cjd51hpkjfo4d" path="res://scenes/mapsides/map.tscn" id="1_tqdoe"]
 [ext_resource type="Texture2D" uid="uid://b206awfu4cnl2" path="res://Minigames/trash_train_v3/trash_train/levels/sussu.png" id="22_2wedu"]
 [ext_resource type="Texture2D" uid="uid://byrg3r5eym0is" path="res://assets/DrawAsset/1792488572423.png" id="32_xccqg"]
@@ -110,17 +112,27 @@ npc_sprite = ExtResource("32_xccqg")
 dialogue = ExtResource("35_sgcmy")
 dialogue_balloon = ExtResource("34_gknmh")
 
-[node name="NPC_Minigame_Runner" parent="NPC" unique_id=754943833 instance=ExtResource("npc_template")]
-position = Vector2(1170, -20)
+[node name="NPC_Minigame_Runner" parent="Map/SVD" unique_id=754943833 instance=ExtResource("npc_template")]
+position = Vector2(150, 640)
 npc_sprite = ExtResource("npc_tex_dung")
 dialogue = ExtResource("dlg_minigame_runner")
 prompt_text = "FIT Runner"
+npc_name = "Huấn luyện viên"
+mode = 0
 
 [node name="NPC_Minigame_Trash" parent="NPC" unique_id=83090953 instance=ExtResource("npc_template")]
 position = Vector2(1300, -20)
 npc_sprite = ExtResource("npc_tex_ngoc")
 dialogue = ExtResource("dlg_minigame_trash")
 prompt_text = "Trash Train"
+
+[node name="ThayTuan" parent="Map/SVD" instance=ExtResource("npc_template")]
+position = Vector2(190, 810)
+npc_sprite = ExtResource("npc_tex_thang")
+dialogue = ExtResource("chapter3_tuan")
+npc_name = "Thầy Tuấn — Marathon"
+prompt_text = "Nói chuyện"
+mode = 0
 
 [node name="NPC_Minigame_Battle" parent="NPC" unique_id=1637374103 instance=ExtResource("npc_template")]
 position = Vector2(1430, -20)
