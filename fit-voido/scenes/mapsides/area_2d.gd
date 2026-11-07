@@ -78,6 +78,8 @@ func _try_use(body: Node2D) -> void:
 
 func _change_scene() -> void:
 	var error := SceneLoader.go_to_spawn(target_scene, target_position)
+	if error == OK:
+		WorldSfx.play_door()
 	if error != OK:
 		_changing = false
 		_show_notice("Không thể mở khu vực này. Vui lòng thử lại.")

@@ -3,6 +3,10 @@ extends Area2D
 
 ## Target CanvasItem to fade (defaults to parent if not set).
 @export var target: CanvasItem
+## Trees reveal only the canopy directly covering the player, not the whole layer.
+@export var localized_canopy: bool = false
+var _canopy_materials: Array[ShaderMaterial] = []
+var _canopy_player: Node2D
 
 ## Extra CanvasItems to fade alongside target (e.g. companion roof/wall layers).
 @export var extra_targets: Array[CanvasItem] = []
@@ -44,8 +48,29 @@ func _ready() -> void:
 
 	if auto_generate_shape and not _has_collision_shape():
 		_generate_shapes_from_layers()
+	if localized_canopy:
+		var items: Array[CanvasItem] = []
+		if target is TileMapLayer:
+			items.append(target)
+		elif target != null:
+			for child in target.get_children():
+				if child is TileMapLayer: items.append(child)
+		for item in items:
+			var material := ShaderMaterial.new()
+			material.shader = preload("res://scripts/canopy_reveal.gdshader")
+			material.set_shader_parameter("reveal_strength", 0.0)
+			item.material = material
+			_canopy_materials.append(material)
+	set_process(localized_canopy)
 
 	_check_initial_overlap.call_deferred()
+
+func _process(_delta: float) -> void:
+	if not is_instance_valid(_canopy_player):
+		_canopy_player = get_tree().get_first_node_in_group(&"player") as Node2D
+	if is_instance_valid(_canopy_player):
+		for material in _canopy_materials:
+			material.set_shader_parameter("player_position", _canopy_player.global_position + Vector2(0, -18))
 
 
 func _exit_tree() -> void:
@@ -204,6 +229,12 @@ func _get_player_count() -> int:
 func _fade_to(target_alpha: float) -> void:
 	if _fade_tween and _fade_tween.is_valid():
 		_fade_tween.kill()
+	if localized_canopy:
+		_fade_tween = create_tween().set_parallel(true)
+		for material in _canopy_materials:
+			var strength: float = material.get_shader_parameter("reveal_strength")
+			_fade_tween.tween_method(func(value: float): material.set_shader_parameter("reveal_strength", value), strength, 1.0 if target_alpha < 1.0 else 0.0, fade_duration)
+		return
 
 	var targets: Array[CanvasItem] = []
 	if target and is_instance_valid(target):

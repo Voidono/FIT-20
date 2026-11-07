@@ -22,6 +22,35 @@ func run() -> void:
 		await create_timer(0.3).timeout
 		await RenderingServer.frame_post_draw
 		root.get_texture().get_image().save_png("res://tests/ambient_overview_%s.png" % ("campus" if id == "nửa đầu" else id))
+		if id == "nửa đầu":
+			root.size = Vector2i(960, 540)
+			root.content_scale_size = root.size
+			camera.zoom = Vector2.ONE
+			var player = map.get_node("Map/Character")
+			var npc = map.get_node("CampusLife/pho_anh_hai")
+			player.global_position = npc.global_position + Vector2(0, 26)
+			camera.global_position = npc.global_position + Vector2(100, 0)
+			await create_timer(0.3).timeout
+			await RenderingServer.frame_post_draw
+			root.get_texture().get_image().save_png("res://tests/ambient_campus_closeup.png")
+			npc._on_body_entered(player)
+			npc.talk()
+			await create_timer(0.2).timeout
+			var balloon: Node
+			for child in map.get_children():
+				if "dialogue_label" in child and "dock" in child:
+					balloon = child
+			if balloon != null:
+				balloon.dialogue_label.skip_typing()
+				await create_timer(0.2).timeout
+				await RenderingServer.frame_post_draw
+				root.get_texture().get_image().save_png("res://tests/ambient_food_dialogue.png")
+				while is_instance_valid(balloon) and balloon.dialogue_line != null:
+					balloon.next(balloon.dialogue_line.next_id)
+					await create_timer(0.1).timeout
+				await create_timer(0.4).timeout
+			root.size = Vector2i(1600, 1000)
+			root.content_scale_size = root.size
 		map.free()
 		await process_frame
 	DirAccess.remove_absolute(state.save_path)

@@ -41,6 +41,8 @@ func _ready() -> void:
 	_refresh()
 	_resize()
 	_update_scene.call_deferred()
+	var waypoint := preload("res://scenes/UI/quests/quest_waypoint.gd").new()
+	add_child(waypoint)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not visible or _in_dialogue:

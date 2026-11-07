@@ -177,3 +177,4 @@ tile_set = SubResource("TileSet_41286")
 
 [node name="OcclusionFader" type="Area2D" parent="." unique_id=208534029]
 script = ExtResource("3_fader")
+localized_canopy = false

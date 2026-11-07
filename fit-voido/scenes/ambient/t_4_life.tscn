@@ -1,0 +1,162 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/Character/dialogue_npc.tscn" id="npc"]
+[ext_resource type="Script" path="res://scenes/ambient/ambient_npc.gd" id="ambient"]
+[ext_resource type="Resource" path="res://Dialogues/campus_banter.dialogue" id="banter"]
+[ext_resource type="Texture2D" path="res://assets/DrawAsset/NPC/boysuda.png" id="tex_academic"]
+[ext_resource type="Texture2D" path="res://assets/DrawAsset/NPC/NPC_2_down_Idle.png" id="tex_focus"]
+[ext_resource type="Texture2D" path="res://assets/DrawAsset/NPC/T1.png" id="tex_rubber_duck"]
+[ext_resource type="Texture2D" path="res://assets/DrawAsset/NPC/NPC_1_down_Idle.png" id="tex_slide"]
+[ext_resource type="Texture2D" path="res://assets/DrawAsset/NPC/boykopho2.png" id="tex_cv"]
+[ext_resource type="Texture2D" path="res://assets/DrawAsset/NPC/boypho69.png" id="tex_manifest"]
+[ext_resource type="Texture2D" path="res://assets/DrawAsset/NPC/NPC_2_down_Idle.png" id="tex_outfit"]
+
+[node name="T_4Life" type="Node2D"]
+y_sort_enabled = true
+
+[node name="academic" parent="." instance=ExtResource("npc")]
+script = ExtResource("ambient")
+position = Vector2(160, 330)
+npc_sprite = ExtResource("tex_academic")
+npc_skin = ""
+dialogue = ExtResource("banter")
+cue = "academic_1"
+conversation_cues = PackedStringArray("academic_1", "academic_2")
+npc_name = "Học Thuật Hệ Tâm Linh"
+prompt_text = "Tám chuyện"
+walk_bob_height = 0.0
+flip_sprite = false
+animation_fps = 7
+speed = 28.0
+min_wait = 1.8
+max_wait = 4.5
+body_capsule_radius = 7.0
+body_capsule_height = 16.0
+mode = 0
+
+[node name="focus" parent="." instance=ExtResource("npc")]
+script = ExtResource("ambient")
+position = Vector2(580, 345)
+npc_sprite = ExtResource("tex_focus")
+npc_skin = "NPC_2"
+dialogue = ExtResource("banter")
+cue = "focus_1"
+conversation_cues = PackedStringArray("focus_1", "focus_2")
+npc_name = "Focus Mode Mở Quán Nước"
+prompt_text = "Tám chuyện"
+walk_bob_height = 0.0
+flip_sprite = false
+animation_fps = 7
+speed = 28.0
+min_wait = 1.8
+max_wait = 4.5
+body_capsule_radius = 7.0
+body_capsule_height = 16.0
+mode = 1
+wander_radius = 30.0
+
+[node name="rubber_duck" parent="." instance=ExtResource("npc")]
+script = ExtResource("ambient")
+position = Vector2(1060, 310)
+npc_sprite = ExtResource("tex_rubber_duck")
+npc_skin = ""
+dialogue = ExtResource("banter")
+cue = "rubber_duck_1"
+conversation_cues = PackedStringArray("rubber_duck_1", "rubber_duck_2")
+npc_name = "Vịt Cao Su Không Lương"
+prompt_text = "Tám chuyện"
+walk_bob_height = 0.0
+flip_sprite = false
+animation_fps = 7
+speed = 28.0
+min_wait = 1.8
+max_wait = 4.5
+body_capsule_radius = 7.0
+body_capsule_height = 16.0
+mode = 0
+
+[node name="slide" parent="." instance=ExtResource("npc")]
+script = ExtResource("ambient")
+position = Vector2(1510, 340)
+npc_sprite = ExtResource("tex_slide")
+npc_skin = "NPC_1"
+dialogue = ExtResource("banter")
+cue = "slide_1"
+conversation_cues = PackedStringArray("slide_1", "slide_2")
+npc_name = "Slide Chữ Tám Chấm"
+prompt_text = "Tám chuyện"
+walk_bob_height = 0.0
+flip_sprite = false
+animation_fps = 7
+speed = 28.0
+min_wait = 1.8
+max_wait = 4.5
+body_capsule_radius = 7.0
+body_capsule_height = 16.0
+mode = 2
+ping_pong = true
+patrol_points = Array[Vector2]([Vector2(-65, 0), Vector2(65, 0)])
+
+[node name="cv" parent="." instance=ExtResource("npc")]
+script = ExtResource("ambient")
+position = Vector2(2110, 360)
+npc_sprite = ExtResource("tex_cv")
+npc_skin = "boykopho"
+dialogue = ExtResource("banter")
+cue = "cv_1"
+conversation_cues = PackedStringArray("cv_1", "cv_2")
+npc_name = "CV Thành Thạo Mở Máy"
+prompt_text = "Tám chuyện"
+walk_bob_height = 0.0
+flip_sprite = false
+animation_fps = 7
+speed = 28.0
+min_wait = 1.8
+max_wait = 4.5
+body_capsule_radius = 7.0
+body_capsule_height = 16.0
+mode = 2
+ping_pong = true
+patrol_points = Array[Vector2]([Vector2(-65, 0), Vector2(65, 0)])
+
+[node name="manifest" parent="." instance=ExtResource("npc")]
+script = ExtResource("ambient")
+position = Vector2(2540, 295)
+npc_sprite = ExtResource("tex_manifest")
+npc_skin = ""
+dialogue = ExtResource("banter")
+cue = "manifest_1"
+conversation_cues = PackedStringArray("manifest_1", "manifest_2")
+npc_name = "Manifest Qua Môn"
+prompt_text = "Tám chuyện"
+walk_bob_height = 0.0
+flip_sprite = false
+animation_fps = 7
+speed = 28.0
+min_wait = 1.8
+max_wait = 4.5
+body_capsule_radius = 7.0
+body_capsule_height = 16.0
+mode = 0
+
+[node name="outfit" parent="." instance=ExtResource("npc")]
+script = ExtResource("ambient")
+position = Vector2(3060, 470)
+npc_sprite = ExtResource("tex_outfit")
+npc_skin = "NPC_2"
+dialogue = ExtResource("banter")
+cue = "outfit_1"
+conversation_cues = PackedStringArray("outfit_1", "outfit_2")
+npc_name = "Outfit Bảo Vệ Đồ Án"
+prompt_text = "Tám chuyện"
+walk_bob_height = 0.0
+flip_sprite = false
+animation_fps = 7
+speed = 28.0
+min_wait = 1.8
+max_wait = 4.5
+body_capsule_radius = 7.0
+body_capsule_height = 16.0
+mode = 2
+ping_pong = true
+patrol_points = Array[Vector2]([Vector2(0, -50), Vector2(0, 50)])

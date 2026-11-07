@@ -1,7 +1,5 @@
 [gd_scene format=4 uid="uid://cgg7os1kxs0wf"]
 
-[ext_resource type="PackedScene" path="res://scenes/templates/floor_stairs.tscn" id="floor_stairs"]
-
 [ext_resource type="Texture2D" uid="uid://dl7aom5gvq1hw" path="res://assets/room/Room_Builder_Office_32x32.png" id="1_tqiev"]
 [ext_resource type="Texture2D" uid="uid://b5dkbx3s4va6u" path="res://assets/room/Sprite-0004.png" id="2_ye4m0"]
 [ext_resource type="Texture2D" uid="uid://d00m8yyogxeyk" path="res://assets/building/32x32/Sprite-0001.png" id="3_ye4m0"]
@@ -12,7 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://cjakg4afa0wgi" path="res://assets/Sprite-0004.png" id="10_00umh"]
 [ext_resource type="Texture2D" uid="uid://knv0it3af1vj" path="res://assets/door1.png" id="11_702ny"]
 [ext_resource type="Texture2D" uid="uid://dg6xaiq2fboe8" path="res://assets/Sprite-0006.png" id="12_702ny"]
+[ext_resource type="PackedScene" path="res://scenes/ambient/t_4_life.tscn" id="ambient_life"]
 [ext_resource type="PackedScene" uid="uid://b6ecnxvrpy3u1" path="res://scenes/templates/scene_door.tscn" id="door_template"]
+[ext_resource type="PackedScene" path="res://scenes/templates/floor_stairs.tscn" id="floor_stairs"]
 [ext_resource type="PackedScene" path="res://scenes/chapters/room416_keypad.tscn" id="room416_keypad"]
 [ext_resource type="Script" uid="uid://brwem7mvrb42l" path="res://scenes/chapters/room419_door.gd" id="room419_script"]
 
@@ -5036,6 +5036,9 @@ tile_set = SubResource("TileSet_5iqjx")
 tile_map_data = PackedByteArray("AAC5AAgABgACABEAAAC5AAkABgACABIAAAC5AAoABgACABMAAAC6AAgABgADABEAAAC6AAkABgADABIAAAC6AAoABgADABMAAAC7AAgABgACABEAAAC7AAkABgACABIAAAC7AAoABgACABMAAAC8AAgABgADABEAAAC8AAkABgADABIAAAC8AAoABgADABMAAAC9AAgABgACABEAAAC9AAkABgACABIAAAC9AAoABgACABMAAAC+AAgABgADABEAAAC+AAkABgADABIAAAC+AAoABgADABMAAAB0AAkABAAAAAAAAAB0AAoABAAAAAEAAAB0AAsABAAAAAIAAAB0AAwABAAAAAMAAAB1AAkABAABAAAAAAB1AAoABAABAAEAAAB1AAsABAABAAIAAAB1AAwABAABAAMAAABqAAkABAAAAAAAAABqAAoABAAAAAEAAABqAAsABAAAAAIAAABqAAwABAAAAAMAAABrAAkABAABAAAAAABrAAoABAABAAEAAABrAAsABAABAAIAAABrAAwABAABAAMAAACQAAQAAAAAAAAAAACQAAUAAAAAAAEAAACQAAYAAAAAAAIAAACRAAQAAAABAAAAAACRAAUAAAABAAEAAACRAAYAAAABAAIAAAAlAA4AAAAAAAAAAAAlAA8AAAAAAAEAAAAlABAAAAAAAAIAAAAmAA4AAAABAAAAAAAmAA8AAAABAAEAAAAmABAAAAABAAIAAAADABEAAAAAAAAAAAADABIAAAAAAAEAAAADABMAAAAAAAIAAAAEABEAAAABAAAAAAAEABIAAAABAAEAAAAEABMAAAABAAIAAAAMAAsAAAAAAAAAAAAMAAwAAAAAAAEAAAAMAA0AAAAAAAIAAAANAAsAAAABAAAAAAANAAwAAAABAAEAAAANAA0AAAABAAIAAAA=")
 tile_set = SubResource("TileSet_jx8tp")
 
+[node name="CampusLife" parent="." unique_id=780023747 instance=ExtResource("ambient_life")]
+position = Vector2(-96, -70)
+
 [node name="Character" parent="." unique_id=1990053383 instance=ExtResource("7_fomqd")]
 position = Vector2(1070, 387)
 
@@ -5082,4 +5085,3 @@ offset_right = 65.0
 text = "419
 E / Tương tác"
 horizontal_alignment = 1
-

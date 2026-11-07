@@ -1,0 +1,1075 @@
+{
+  "campus": [
+    {
+      "id": "pho_anh_hai",
+      "name": "Tiệm Phở Anh Hai",
+      "asset": "boypho69",
+      "pos": [
+        650,
+        170
+      ],
+      "lines": [
+        [
+          "Tiệm Phở Anh Hai: Phở đặc biệt hôm nay có thêm RAM.",
+          "Bạn: RAM ăn với quẩy được à?",
+          "Tiệm Phở Anh Hai: Không. Để nhớ là mình đã ăn sáng, khỏi gọi bát thứ hai."
+        ],
+        [
+          "Tiệm Phở Anh Hai: Quán em không dùng AI để nấu nước dùng.",
+          "Bạn: Thế dùng gì?",
+          "Tiệm Phở Anh Hai: Dùng xương. Công nghệ này chạy ổn từ rất lâu rồi."
+        ]
+      ]
+    },
+    {
+      "id": "banh_mi",
+      "name": "Bánh Mì Bách Khoa",
+      "asset": "boysuda",
+      "pos": [
+        3100,
+        -220
+      ],
+      "lines": [
+        [
+          "Bánh Mì Bách Khoa: Bánh mì full topping, không full deadline.",
+          "Bạn: Cho mình một ổ không cay.",
+          "Bánh Mì Bách Khoa: Cay thì bỏ ớt. Cay vì điểm nhóm thì bên em chưa xử lý được."
+        ],
+        [
+          "Bánh Mì Bách Khoa: Mỗi ổ có ba lớp bảo mật: vỏ giòn, nhân nóng, túi buộc.",
+          "Bạn: Có mật khẩu không?",
+          "Bánh Mì Bách Khoa: Có. 'Cô ơi, nhiều pa-tê'."
+        ]
+      ]
+    },
+    {
+      "id": "wifi",
+      "name": "Wi-Fi Một Vạch",
+      "asset": "NPC_1",
+      "pos": [
+        1200,
+        170
+      ],
+      "move": "patrol",
+      "route": [
+        [
+          -85,
+          0
+        ],
+        [
+          85,
+          0
+        ]
+      ],
+      "lines": [
+        [
+          "Wi-Fi Một Vạch: Đừng đứng sát mình. Mình đang bắt được mạng.",
+          "Bạn: Cậu là ăng-ten à?",
+          "Wi-Fi Một Vạch: Không, nhưng chỉ cần nghiêng đầu một chút là tương lai sáng hơn một vạch."
+        ],
+        [
+          "Wi-Fi Một Vạch: Người ta có người yêu. Mình có mạng đã lưu.",
+          "Bạn: Có khác gì nhau?",
+          "Wi-Fi Một Vạch: Mạng cũ gặp lại vẫn hỏi mật khẩu. Lịch sự hơn nhiều."
+        ]
+      ]
+    },
+    {
+      "id": "nap",
+      "name": "Giấc Ngủ Hệ Số Hai",
+      "asset": "NPC_2",
+      "pos": [
+        1100,
+        -470
+      ],
+      "move": "wander",
+      "radius": 45,
+      "lines": [
+        [
+          "Giấc Ngủ Hệ Số Hai: Mình không ngủ gật. Mình đang render bài giảng.",
+          "Bạn: Sao render lại ngáy?",
+          "Giấc Ngủ Hệ Số Hai: Quạt tản nhiệt."
+        ],
+        [
+          "Giấc Ngủ Hệ Số Hai: Mình đặt bảy báo thức rồi.",
+          "Bạn: Dậy nổi không?",
+          "Giấc Ngủ Hệ Số Hai: Không. Nhưng đoạn remix lúc bảy giờ khá cuốn."
+        ]
+      ]
+    },
+    {
+      "id": "aura",
+      "name": "Chủ Tịch Aura Âm",
+      "asset": "boykopho",
+      "pos": [
+        2050,
+        170
+      ],
+      "move": "patrol",
+      "route": [
+        [
+          -90,
+          0
+        ],
+        [
+          90,
+          0
+        ]
+      ],
+      "lines": [
+        [
+          "Chủ Tịch Aura Âm: Vừa vẫy tay nhầm người. Trừ một nghìn aura.",
+          "Bạn: Aura là điểm rèn luyện à?",
+          "Chủ Tịch Aura Âm: Nếu thế mình bị đuổi học từ lúc đẩy cửa có chữ 'Kéo'."
+        ],
+        [
+          "Chủ Tịch Aura Âm: Mình tập bước vào lớp thật ngầu.",
+          "Bạn: Rồi sao?",
+          "Chủ Tịch Aura Âm: Vào nhầm lớp. Ngầu thêm hai tiếng vì không dám đứng dậy."
+        ]
+      ]
+    },
+    {
+      "id": "ctrl_z",
+      "name": "Thầy Ctrl Z",
+      "asset": "Dũng",
+      "pos": [
+        2050,
+        -820
+      ],
+      "lines": [
+        [
+          "Thầy Ctrl Z: Các em nhớ lưu bài trước khi thử cái mới.",
+          "Bạn: Nếu đã thử rồi ạ?",
+          "Thầy Ctrl Z: Thì em vừa học xong phần 'tại sao phải lưu bài'."
+        ],
+        [
+          "Thầy Ctrl Z: Hôm nay thầy không kiểm tra bất ngờ.",
+          "Bạn: Thật ạ?",
+          "Thầy Ctrl Z: Đúng. Thầy báo trước mười giây rồi."
+        ]
+      ]
+    },
+    {
+      "id": "deadline",
+      "name": "Thầy Deadline Dịu Dàng",
+      "asset": "Ngọc",
+      "pos": [
+        3900,
+        -1190
+      ],
+      "lines": [
+        [
+          "Thầy Deadline Dịu Dàng: Thầy cho nộp bài rất thoải mái.",
+          "Bạn: Đến bao giờ ạ?",
+          "Thầy Deadline Dịu Dàng: Trước hạn. Trong khoảng đó các em tự do tuyệt đối."
+        ],
+        [
+          "Thầy Deadline Dịu Dàng: Bài này chỉ mất năm phút.",
+          "Bạn: Em nghe câu này hơi sợ.",
+          "Thầy Deadline Dịu Dàng: Năm phút đọc đề. Thầy có nói phần còn lại đâu."
+        ]
+      ]
+    },
+    {
+      "id": "coffee_os",
+      "name": "Cà Phê Không Đường",
+      "asset": "boysuda",
+      "pos": [
+        3440,
+        -1030
+      ],
+      "lines": [
+        [
+          "Cà Phê Không Đường: Cà phê của mình không đắng.",
+          "Bạn: Cho mình uống thử được không?",
+          "Cà Phê Không Đường: Được. Sau đó deadline nào cũng có vị ngọt."
+        ],
+        [
+          "Cà Phê Không Đường: Mình đã bỏ thức khuya.",
+          "Bạn: Tiến bộ đấy!",
+          "Cà Phê Không Đường: Giờ mình thức tới sáng. Phải dùng từ cho chính xác."
+        ]
+      ]
+    },
+    {
+      "id": "chairman",
+      "name": "Hội Trưởng Ghế Nhựa",
+      "asset": "T1",
+      "pos": [
+        3800,
+        -290
+      ],
+      "lines": [
+        [
+          "Hội Trưởng Ghế Nhựa: Ghế này có người rồi.",
+          "Bạn: Mình có xin ngồi đâu.",
+          "Hội Trưởng Ghế Nhựa: Mình tập trước. Tí nữa quán đông."
+        ],
+        [
+          "Hội Trưởng Ghế Nhựa: Hội mình không có chức phó chủ tịch.",
+          "Bạn: Sao vậy?",
+          "Hội Trưởng Ghế Nhựa: Có đúng một cái ghế. Cơ cấu phải phù hợp cơ sở vật chất."
+        ]
+      ]
+    },
+    {
+      "id": "matcha",
+      "name": "Matcha Chạy Bằng Cơm",
+      "asset": "NPC_1",
+      "pos": [
+        2370,
+        -520
+      ],
+      "move": "wander",
+      "radius": 42,
+      "lines": [
+        [
+          "Matcha Chạy Bằng Cơm: Mình mua matcha để có năng lượng học.",
+          "Bạn: Học được nhiều chưa?",
+          "Matcha Chạy Bằng Cơm: Chụp được mười bảy tấm. Phần năng lượng đang chờ duyệt."
+        ],
+        [
+          "Matcha Chạy Bằng Cơm: Hôm nay mình sống xanh.",
+          "Bạn: Trồng cây à?",
+          "Matcha Chạy Bằng Cơm: Không, áo xanh, cốc xanh, số dư thì đỏ."
+        ]
+      ]
+    },
+    {
+      "id": "streak",
+      "name": "Bộ Trưởng Giữ Streak",
+      "asset": "NPC_2",
+      "pos": [
+        2700,
+        190
+      ],
+      "move": "patrol",
+      "route": [
+        [
+          -75,
+          0
+        ],
+        [
+          75,
+          0
+        ]
+      ],
+      "lines": [
+        [
+          "Bộ Trưởng Giữ Streak: Mình không thể để mất chuỗi.",
+          "Bạn: Chuỗi hạt à?",
+          "Bộ Trưởng Giữ Streak: Chuỗi nhắn tin. Hai đứa gửi ảnh trần nhà cho nhau để chứng minh tình bạn còn hoạt động."
+        ],
+        [
+          "Bộ Trưởng Giữ Streak: Mình giữ streak học ngoại ngữ ba trăm ngày rồi.",
+          "Bạn: Nói thử một câu đi.",
+          "Bộ Trưởng Giữ Streak: 'Nhắc tôi sau'. Mình thuộc nhất câu đó."
+        ]
+      ]
+    },
+    {
+      "id": "algorithm",
+      "name": "Thuật Toán Cơm Rang",
+      "asset": "boykopho",
+      "pos": [
+        4450,
+        -200
+      ],
+      "move": "wander",
+      "radius": 48,
+      "lines": [
+        [
+          "Thuật Toán Cơm Rang: Tối ưu thời gian bằng cách vừa ăn vừa xem bài giảng.",
+          "Bạn: Có hiệu quả không?",
+          "Thuật Toán Cơm Rang: Có. Giờ cứ nghe tới đệ quy là mình đói."
+        ],
+        [
+          "Thuật Toán Cơm Rang: Bữa trưa của mình có độ phức tạp O(1).",
+          "Bạn: Nghĩa là sao?",
+          "Thuật Toán Cơm Rang: Mở ví một lần, quyết định ăn mì luôn."
+        ]
+      ]
+    },
+    {
+      "id": "goalkeeper",
+      "name": "Thủ Môn Tab Ẩn Danh",
+      "asset": "boypho69",
+      "pos": [
+        3400,
+        1090
+      ],
+      "lines": [
+        [
+          "Thủ Môn Tab Ẩn Danh: Mình bắt bóng bằng trực giác.",
+          "Bạn: Tỉ lệ thành công thế nào?",
+          "Thủ Môn Tab Ẩn Danh: Bóng đi hướng nào mình có linh cảm rõ ràng... ngay sau đó."
+        ],
+        [
+          "Thủ Môn Tab Ẩn Danh: Hôm nay mình giữ sạch lưới.",
+          "Bạn: Đỉnh thế!",
+          "Thủ Môn Tab Ẩn Danh: Mình giặt nó. Trận đấu chưa bắt đầu."
+        ]
+      ]
+    },
+    {
+      "id": "cardio",
+      "name": "Cardio Bằng Deadline",
+      "asset": "NPC_1",
+      "pos": [
+        3950,
+        1490
+      ],
+      "move": "patrol",
+      "route": [
+        [
+          -110,
+          0
+        ],
+        [
+          110,
+          0
+        ]
+      ],
+      "lines": [
+        [
+          "Cardio Bằng Deadline: Nhịp tim mình lên một trăm tám mươi rồi.",
+          "Bạn: Cậu chạy nhanh thế?",
+          "Cardio Bằng Deadline: Không. Nhóm vừa hỏi 'file cuối đâu'."
+        ],
+        [
+          "Cardio Bằng Deadline: Mình có huấn luyện viên cá nhân.",
+          "Bạn: Ai vậy?",
+          "Cardio Bằng Deadline: Cái thông báo 'còn một phút để nộp'. Nó bắt mình chạy rất thật."
+        ]
+      ]
+    },
+    {
+      "id": "bench",
+      "name": "Ghế Dự Bị Premium",
+      "asset": "boysuda",
+      "pos": [
+        5000,
+        920
+      ],
+      "lines": [
+        [
+          "Ghế Dự Bị Premium: Mình không ngồi dự bị. Mình đang phân tích chiến thuật.",
+          "Bạn: Chiến thuật gì?",
+          "Ghế Dự Bị Premium: Đứng lên lúc nào để trông như vừa đá xong."
+        ],
+        [
+          "Ghế Dự Bị Premium: Đội mình đánh giá cao khả năng giữ vị trí của mình.",
+          "Bạn: Vị trí nào?",
+          "Ghế Dự Bị Premium: Chính xác cái ghế này, từ đầu tới cuối trận."
+        ]
+      ]
+    },
+    {
+      "id": "camera",
+      "name": "Camera Sau Có Tâm",
+      "asset": "NPC_2",
+      "pos": [
+        1570,
+        650
+      ],
+      "move": "wander",
+      "radius": 40,
+      "lines": [
+        [
+          "Camera Sau Có Tâm: Đứng yên, mình chụp cho cậu một tấm có tâm.",
+          "Bạn: Sao mặt mình ở góc ảnh?",
+          "Camera Sau Có Tâm: Cái cây mới là chủ thể. Cậu là bối cảnh có học phí."
+        ],
+        [
+          "Camera Sau Có Tâm: Mình chụp candid, cứ tự nhiên.",
+          "Bạn: Tự nhiên thế nào?",
+          "Camera Sau Có Tâm: Đi lại đoạn kia lần thứ tám, đừng nhìn máy."
+        ]
+      ]
+    },
+    {
+      "id": "touch_grass",
+      "name": "Trưởng Ban Chạm Cỏ",
+      "asset": "boykopho",
+      "pos": [
+        1850,
+        810
+      ],
+      "move": "patrol",
+      "route": [
+        [
+          -65,
+          0
+        ],
+        [
+          65,
+          0
+        ]
+      ],
+      "lines": [
+        [
+          "Trưởng Ban Chạm Cỏ: Hôm nay mình quyết định ra ngoài chạm cỏ.",
+          "Bạn: Chỗ cậu đứng là gạch mà.",
+          "Trưởng Ban Chạm Cỏ: Mình đang dùng bản dùng thử."
+        ],
+        [
+          "Trưởng Ban Chạm Cỏ: Ngoài đời đồ họa đẹp thật.",
+          "Bạn: Đồ họa là gì?",
+          "Trưởng Ban Chạm Cỏ: Là cách mình khen trời đẹp mà không phải đặt điện thoại xuống."
+        ]
+      ]
+    },
+    {
+      "id": "lunch",
+      "name": "Cơm Tấm Không Vỡ Kèo",
+      "asset": "T1",
+      "pos": [
+        5400,
+        -800
+      ],
+      "lines": [
+        [
+          "Cơm Tấm Không Vỡ Kèo: Nhóm mình hẹn ăn trưa mười hai giờ.",
+          "Bạn: Sao cậu ăn một mình?",
+          "Cơm Tấm Không Vỡ Kèo: Mọi người đang ở múi giờ 'sắp tới'."
+        ],
+        [
+          "Cơm Tấm Không Vỡ Kèo: Mình đặt tên nhóm là 'Mai ăn gì'.",
+          "Bạn: Vậy hôm nay ăn gì?",
+          "Cơm Tấm Không Vỡ Kèo: Đừng làm lệch chủ đề nhóm."
+        ]
+      ]
+    },
+    {
+      "id": "battery",
+      "name": "Pin Còn Một Phần Trăm",
+      "asset": "NPC_1",
+      "pos": [
+        5150,
+        150
+      ],
+      "move": "wander",
+      "radius": 40,
+      "lines": [
+        [
+          "Pin Còn Một Phần Trăm: Đừng nhắn nữa. Máy mình sắp tắt.",
+          "Bạn: Sao cậu vẫn xem video?",
+          "Pin Còn Một Phần Trăm: Phút cuối phải sống cho đáng."
+        ],
+        [
+          "Pin Còn Một Phần Trăm: Mình tiết kiệm pin bằng cách hạ độ sáng.",
+          "Bạn: Giờ cậu có nhìn thấy gì không?",
+          "Pin Còn Một Phần Trăm: Không. Nhưng tin nhắn chưa trả lời trông bớt đáng sợ."
+        ]
+      ]
+    },
+    {
+      "id": "podcast",
+      "name": "Podcast Hai Phút Rưỡi",
+      "asset": "NPC_2",
+      "pos": [
+        720,
+        -1600
+      ],
+      "move": "patrol",
+      "route": [
+        [
+          -65,
+          0
+        ],
+        [
+          65,
+          0
+        ]
+      ],
+      "lines": [
+        [
+          "Podcast Hai Phút Rưỡi: Mình nghe podcast để mở rộng góc nhìn.",
+          "Bạn: Tập này nói về gì?",
+          "Podcast Hai Phút Rưỡi: Không biết. Hai phút đầu mình đang gỡ dây tai nghe."
+        ],
+        [
+          "Podcast Hai Phút Rưỡi: Chào mừng tới podcast chữa lành của mình.",
+          "Bạn: Cậu có khách mời à?",
+          "Podcast Hai Phút Rưỡi: Có. Cậu vừa bị mời. Chủ đề: vì sao căn tin hết đá."
+        ]
+      ]
+    },
+    {
+      "id": "food_review",
+      "name": "Review Có Xin Miếng",
+      "asset": "boykopho",
+      "pos": [
+        5480,
+        -1400
+      ],
+      "move": "wander",
+      "radius": 40,
+      "lines": [
+        [
+          "Review Có Xin Miếng: Món này mình chấm chín điểm.",
+          "Bạn: Cậu còn chưa ăn mà.",
+          "Review Có Xin Miếng: Một điểm còn lại đang chờ cậu mời."
+        ],
+        [
+          "Review Có Xin Miếng: Mình review rất công tâm.",
+          "Bạn: Quán nào ngon nhất?",
+          "Review Có Xin Miếng: Quán cho thêm nước chấm mà không thở dài."
+        ]
+      ]
+    }
+  ],
+  "t_2": [
+    {
+      "id": "print",
+      "name": "Photocopy Không Kẹt Giấy",
+      "asset": "boypho69",
+      "pos": [
+        160,
+        335
+      ],
+      "lines": [
+        [
+          "Photocopy Không Kẹt Giấy: Bản này là bản cuối.",
+          "Bạn: Sao tên file có chữ 'cuối 7 thật sự'?",
+          "Photocopy Không Kẹt Giấy: Những bản trước cũng đã từng có ước mơ."
+        ],
+        [
+          "Photocopy Không Kẹt Giấy: In hai mặt tiết kiệm giấy.",
+          "Bạn: Còn bài của cậu?",
+          "Photocopy Không Kẹt Giấy: Mình in một mặt. Mặt sau dành cho cơ hội làm lại."
+        ]
+      ]
+    },
+    {
+      "id": "mail",
+      "name": "Email Xin Phép Dấu Chấm",
+      "asset": "NPC_1",
+      "pos": [
+        580,
+        350
+      ],
+      "move": "patrol",
+      "route": [
+        [
+          -70,
+          0
+        ],
+        [
+          70,
+          0
+        ]
+      ],
+      "lines": [
+        [
+          "Email Xin Phép Dấu Chấm: Mình viết mail cho thầy suốt nửa tiếng.",
+          "Bạn: Mail dài lắm à?",
+          "Email Xin Phép Dấu Chấm: Một dòng. Mình đang chọn giữa 'ạ' và 'ạ!'."
+        ],
+        [
+          "Email Xin Phép Dấu Chấm: Mình đã đọc lại thư năm lần rồi mới gửi.",
+          "Bạn: Vậy chắc không có lỗi.",
+          "Email Xin Phép Dấu Chấm: Đúng. Trừ file đính kèm, đang nằm yên trên máy mình."
+        ]
+      ]
+    },
+    {
+      "id": "attendance",
+      "name": "Điểm Danh Bằng Niềm Tin",
+      "asset": "boysuda",
+      "pos": [
+        1060,
+        300
+      ],
+      "lines": [
+        [
+          "Điểm Danh Bằng Niềm Tin: Thầy vừa gọi tên mình chưa?",
+          "Bạn: Cậu tên gì?",
+          "Điểm Danh Bằng Niềm Tin: Thôi, hỏi câu dễ hơn đi."
+        ],
+        [
+          "Điểm Danh Bằng Niềm Tin: Mình đi học rất đều.",
+          "Bạn: Hôm qua mình không thấy cậu.",
+          "Điểm Danh Bằng Niềm Tin: Đều trong nhóm chat. Không được phủ nhận hình thức hiện diện mới."
+        ]
+      ]
+    },
+    {
+      "id": "group",
+      "name": "Nhóm Trưởng Đang Nhập",
+      "asset": "NPC_2",
+      "pos": [
+        1510,
+        325
+      ],
+      "move": "patrol",
+      "route": [
+        [
+          -75,
+          0
+        ],
+        [
+          75,
+          0
+        ]
+      ],
+      "lines": [
+        [
+          "Nhóm Trưởng Đang Nhập: Cả nhóm đang làm việc rất tích cực.",
+          "Bạn: Mình chỉ thấy chữ 'đang nhập'.",
+          "Nhóm Trưởng Đang Nhập: Bọn mình có tiến độ hiển thị theo thời gian thực."
+        ],
+        [
+          "Nhóm Trưởng Đang Nhập: Mình chia việc theo sở trường.",
+          "Bạn: Cậu làm phần nào?",
+          "Nhóm Trưởng Đang Nhập: Sở trường của mình là làm nốt phần còn lại."
+        ]
+      ]
+    },
+    {
+      "id": "excel",
+      "name": "Excel Không Merge Ô",
+      "asset": "T1",
+      "pos": [
+        1980,
+        340
+      ],
+      "lines": [
+        [
+          "Excel Không Merge Ô: Mình ghép hai ô lại cho đẹp.",
+          "Bạn: Rồi sao?",
+          "Excel Không Merge Ô: Giờ cả nhóm ghép hai bàn tay lại cầu cho bảng sắp xếp được."
+        ],
+        [
+          "Excel Không Merge Ô: Đừng gọi mình là người tính toán.",
+          "Bạn: Vậy gọi là gì?",
+          "Excel Không Merge Ô: Người có hàm SUM nhưng vẫn bấm máy tính để tin tưởng."
+        ]
+      ]
+    },
+    {
+      "id": "pdf",
+      "name": "PDF Không Cho Copy",
+      "asset": "boykopho",
+      "pos": [
+        2370,
+        270
+      ],
+      "move": "wander",
+      "radius": 24,
+      "lines": [
+        [
+          "PDF Không Cho Copy: Tài liệu này chống sao chép tuyệt đối.",
+          "Bạn: Bảo mật tốt vậy?",
+          "PDF Không Cho Copy: Ảnh chụp nhòe. Người chụp cũng không đọc được."
+        ],
+        [
+          "PDF Không Cho Copy: Mình nén file từ hai trăm xuống hai mê.",
+          "Bạn: Hay thế!",
+          "PDF Không Cho Copy: Chữ biến thành phong cảnh trừu tượng rồi."
+        ]
+      ]
+    },
+    {
+      "id": "meeting",
+      "name": "Cuộc Họp Có Thể Là Tin Nhắn",
+      "asset": "NPC_1",
+      "pos": [
+        3060,
+        460
+      ],
+      "move": "patrol",
+      "route": [
+        [
+          0,
+          -60
+        ],
+        [
+          0,
+          60
+        ]
+      ],
+      "lines": [
+        [
+          "Cuộc Họp Có Thể Là Tin Nhắn: Bọn mình vừa họp xong một tiếng.",
+          "Bạn: Chốt được gì?",
+          "Cuộc Họp Có Thể Là Tin Nhắn: Chốt lịch họp tiếp. Thành quả rất rõ ràng."
+        ],
+        [
+          "Cuộc Họp Có Thể Là Tin Nhắn: Mình đã bật mic rồi.",
+          "Bạn: Mình có hỏi đâu.",
+          "Cuộc Họp Có Thể Là Tin Nhắn: Ừ, mình chỉ muốn có một lần được thông báo câu đó đúng lúc."
+        ]
+      ]
+    }
+  ],
+  "t_3": [
+    {
+      "id": "prompt",
+      "name": "Prompt Sư Chưa Tốt Nghiệp",
+      "asset": "NPC_2",
+      "pos": [
+        160,
+        330
+      ],
+      "move": "patrol",
+      "route": [
+        [
+          0,
+          -40
+        ],
+        [
+          0,
+          40
+        ]
+      ],
+      "lines": [
+        [
+          "Prompt Sư Chưa Tốt Nghiệp: Mình bảo AI trả lời như chuyên gia.",
+          "Bạn: Nó giỏi hơn à?",
+          "Prompt Sư Chưa Tốt Nghiệp: Nó tự tin hơn. Khá giống mình lúc thuyết trình."
+        ],
+        [
+          "Prompt Sư Chưa Tốt Nghiệp: Mình nhờ AI giải thích dễ hiểu.",
+          "Bạn: Rồi cậu hiểu chưa?",
+          "Prompt Sư Chưa Tốt Nghiệp: Chưa. Nhưng nó đã khen câu hỏi của mình rất hay ba lần."
+        ]
+      ]
+    },
+    {
+      "id": "cloud",
+      "name": "Đám Mây Hết Dung Lượng",
+      "asset": "T1",
+      "pos": [
+        580,
+        345
+      ],
+      "lines": [
+        [
+          "Đám Mây Hết Dung Lượng: Mình lưu bài trên mây rồi.",
+          "Bạn: Mưa thì có mất bài không?",
+          "Đám Mây Hết Dung Lượng: Không. Mất mật khẩu thì trời nắng cũng chịu."
+        ],
+        [
+          "Đám Mây Hết Dung Lượng: Ảnh của mình được sao lưu tự động.",
+          "Bạn: Yên tâm rồi.",
+          "Đám Mây Hết Dung Lượng: Cả tám mươi tấm chụp nhầm sàn nhà. Rất tận tâm."
+        ]
+      ]
+    },
+    {
+      "id": "git",
+      "name": "Git Đổ Tại Máy Em",
+      "asset": "boykopho",
+      "pos": [
+        1050,
+        310
+      ],
+      "move": "wander",
+      "radius": 30,
+      "lines": [
+        [
+          "Git Đổ Tại Máy Em: Máy mình chạy được mà.",
+          "Bạn: Máy khác thì sao?",
+          "Git Đổ Tại Máy Em: Mình đang cân nhắc nộp luôn cái máy."
+        ],
+        [
+          "Git Đổ Tại Máy Em: Mình vừa đặt tên nhánh là 'sửa-nhẹ'.",
+          "Bạn: Có mấy thay đổi?",
+          "Git Đổ Tại Máy Em: Bốn trăm tệp. Nhẹ là thái độ của mình lúc bắt đầu."
+        ]
+      ]
+    },
+    {
+      "id": "tab",
+      "name": "Tab Thứ Chín Mươi Chín",
+      "asset": "boypho69",
+      "pos": [
+        1510,
+        340
+      ],
+      "lines": [
+        [
+          "Tab Thứ Chín Mươi Chín: Đừng đóng cửa sổ đó!",
+          "Bạn: Có bài quan trọng à?",
+          "Tab Thứ Chín Mươi Chín: Không biết. Nhưng mình đã giữ nó mở ba tuần, chắc phải có lý do."
+        ],
+        [
+          "Tab Thứ Chín Mươi Chín: Có tab nào đang phát nhạc ấy.",
+          "Bạn: Cậu tìm chưa?",
+          "Tab Thứ Chín Mươi Chín: Tìm rồi. Tới lúc tìm ra mình thích bài đó luôn."
+        ]
+      ]
+    },
+    {
+      "id": "silent",
+      "name": "Chế Độ Im Lặng Rất To",
+      "asset": "NPC_1",
+      "pos": [
+        1980,
+        330
+      ],
+      "move": "patrol",
+      "route": [
+        [
+          -60,
+          0
+        ],
+        [
+          60,
+          0
+        ]
+      ],
+      "lines": [
+        [
+          "Chế Độ Im Lặng Rất To: Điện thoại mình để im lặng rồi.",
+          "Bạn: Tiếng gì trong túi cậu vậy?",
+          "Chế Độ Im Lặng Rất To: Bảy báo thức phản đối quyết định đó."
+        ],
+        [
+          "Chế Độ Im Lặng Rất To: Mình bật không làm phiền để tập trung.",
+          "Bạn: Hiệu quả không?",
+          "Chế Độ Im Lặng Rất To: Có. Không ai làm phiền mình lướt điện thoại nữa."
+        ]
+      ]
+    },
+    {
+      "id": "buffer",
+      "name": "Não Đang Buffer",
+      "asset": "boysuda",
+      "pos": [
+        2370,
+        300
+      ],
+      "lines": [
+        [
+          "Não Đang Buffer: Mình có câu trả lời rồi.",
+          "Bạn: Nói đi.",
+          "Não Đang Buffer: Đợi vòng tròn trong đầu mình quay xong đã."
+        ],
+        [
+          "Não Đang Buffer: Mình vừa hiểu bài cũ rồi!",
+          "Bạn: Bài nào?",
+          "Não Đang Buffer: Bài mà lúc hiểu xong lớp đã chuyển sang chương khác."
+        ]
+      ]
+    },
+    {
+      "id": "bluetooth",
+      "name": "Bluetooth Ghép Nhầm Loa",
+      "asset": "NPC_2",
+      "pos": [
+        3060,
+        460
+      ],
+      "move": "patrol",
+      "route": [
+        [
+          0,
+          -60
+        ],
+        [
+          0,
+          60
+        ]
+      ],
+      "lines": [
+        [
+          "Bluetooth Ghép Nhầm Loa: Tai nghe mình kết nối rồi mà không có tiếng.",
+          "Bạn: Ngoài sân đang mở nhạc giống cậu kìa.",
+          "Bluetooth Ghép Nhầm Loa: Mình xin phép chuyển trường trong ba phút."
+        ],
+        [
+          "Bluetooth Ghép Nhầm Loa: Mình đổi tên tai nghe thành 'Không phải của bạn'.",
+          "Bạn: Có bớt kết nối nhầm không?",
+          "Bluetooth Ghép Nhầm Loa: Không. Nhưng ai cũng đọc nó bằng giọng bị xúc phạm."
+        ]
+      ]
+    }
+  ],
+  "t_4": [
+    {
+      "id": "academic",
+      "name": "Học Thuật Hệ Tâm Linh",
+      "asset": "boysuda",
+      "pos": [
+        160,
+        330
+      ],
+      "lines": [
+        [
+          "Học Thuật Hệ Tâm Linh: Mình ôn bằng cách đặt sách dưới gối.",
+          "Bạn: Có nhớ bài không?",
+          "Học Thuật Hệ Tâm Linh: Không. Nhưng thuộc chính xác sách dày bao nhiêu xăng-ti-mét."
+        ],
+        [
+          "Học Thuật Hệ Tâm Linh: Mình chọn đáp án theo trực giác.",
+          "Bạn: Trực giác có đáng tin không?",
+          "Học Thuật Hệ Tâm Linh: Nó từng bảo mình ngủ thêm năm phút. Mình vẫn đang tha thứ."
+        ]
+      ]
+    },
+    {
+      "id": "focus",
+      "name": "Focus Mode Mở Quán Nước",
+      "asset": "NPC_2",
+      "pos": [
+        580,
+        345
+      ],
+      "move": "wander",
+      "radius": 30,
+      "lines": [
+        [
+          "Focus Mode Mở Quán Nước: Mình học theo phương pháp Pomodoro.",
+          "Bạn: Nghe như món mì.",
+          "Focus Mode Mở Quán Nước: Hai mươi lăm phút chọn nhạc, năm phút nhớ ra mình tới đây để học."
+        ],
+        [
+          "Focus Mode Mở Quán Nước: Mình cần không gian yên tĩnh.",
+          "Bạn: Để tập trung à?",
+          "Focus Mode Mở Quán Nước: Để nghe rõ tiếng deadline tới gần."
+        ]
+      ]
+    },
+    {
+      "id": "rubber_duck",
+      "name": "Vịt Cao Su Không Lương",
+      "asset": "T1",
+      "pos": [
+        1060,
+        310
+      ],
+      "lines": [
+        [
+          "Vịt Cao Su Không Lương: Cứ giải thích lỗi cho mình nghe.",
+          "Bạn: Cậu sửa được à?",
+          "Vịt Cao Su Không Lương: Không. Nhưng cậu nói tới câu thứ ba thường tự phát hiện rồi. Mình rất giỏi ngồi yên."
+        ],
+        [
+          "Vịt Cao Su Không Lương: Mình là cố vấn kỹ thuật của nhóm.",
+          "Bạn: Cậu có góp ý gì không?",
+          "Vịt Cao Su Không Lương: Có. 'Cậu thử đọc lại lỗi chưa?' Phần lớn sự nghiệp của mình nằm trong câu đó."
+        ]
+      ]
+    },
+    {
+      "id": "slide",
+      "name": "Slide Chữ Tám Chấm",
+      "asset": "NPC_1",
+      "pos": [
+        1510,
+        340
+      ],
+      "move": "patrol",
+      "route": [
+        [
+          -65,
+          0
+        ],
+        [
+          65,
+          0
+        ]
+      ],
+      "lines": [
+        [
+          "Slide Chữ Tám Chấm: Mình cho hết tài liệu vào một slide.",
+          "Bạn: Người ngồi cuối có đọc được không?",
+          "Slide Chữ Tám Chấm: Có. Nếu người đó ngồi cuối... bàn mình."
+        ],
+        [
+          "Slide Chữ Tám Chấm: Slide của mình theo phong cách tối giản.",
+          "Bạn: Nhưng toàn chữ mà.",
+          "Slide Chữ Tám Chấm: Tối giản số slide. Đừng áp đặt gu thẩm mỹ."
+        ]
+      ]
+    },
+    {
+      "id": "cv",
+      "name": "CV Thành Thạo Mở Máy",
+      "asset": "boykopho",
+      "pos": [
+        2110,
+        360
+      ],
+      "move": "patrol",
+      "route": [
+        [
+          -65,
+          0
+        ],
+        [
+          65,
+          0
+        ]
+      ],
+      "lines": [
+        [
+          "CV Thành Thạo Mở Máy: Mình ghi 'chịu áp lực tốt' trong CV.",
+          "Bạn: Có kinh nghiệm gì?",
+          "CV Thành Thạo Mở Máy: Ngồi cạnh máy in hết giấy mà vẫn bình tĩnh giả vờ không biết."
+        ],
+        [
+          "CV Thành Thạo Mở Máy: Kỹ năng nổi bật của mình là thích nghi nhanh.",
+          "Bạn: Ví dụ?",
+          "CV Thành Thạo Mở Máy: Nhóm đổi đề tài lần ba rồi. Mình đổi tên thư mục trong hai giây."
+        ]
+      ]
+    },
+    {
+      "id": "manifest",
+      "name": "Manifest Qua Môn",
+      "asset": "boypho69",
+      "pos": [
+        2540,
+        295
+      ],
+      "lines": [
+        [
+          "Manifest Qua Môn: Mình đang manifest điểm A.",
+          "Bạn: Là đăng ký điểm trước à?",
+          "Manifest Qua Môn: Không, là mong thật mạnh. Tối nay mình sẽ bổ sung phần học thật mạnh."
+        ],
+        [
+          "Manifest Qua Môn: Mình viết mục tiêu lên giấy rồi.",
+          "Bạn: Có thấy tiến triển chưa?",
+          "Manifest Qua Môn: Có. Chữ mình đẹp hơn hồi viết công thức."
+        ]
+      ]
+    },
+    {
+      "id": "outfit",
+      "name": "Outfit Bảo Vệ Đồ Án",
+      "asset": "NPC_2",
+      "pos": [
+        3060,
+        470
+      ],
+      "move": "patrol",
+      "route": [
+        [
+          0,
+          -50
+        ],
+        [
+          0,
+          50
+        ]
+      ],
+      "lines": [
+        [
+          "Outfit Bảo Vệ Đồ Án: Áo này làm mình trông hiểu bài hơn không?",
+          "Bạn: Cậu hiểu bài tới đâu?",
+          "Outfit Bảo Vệ Đồ Án: Tới đoạn chọn áo."
+        ],
+        [
+          "Outfit Bảo Vệ Đồ Án: Mình tập câu 'cảm ơn thầy cô đã lắng nghe' rất kỹ.",
+          "Bạn: Còn nội dung chính?",
+          "Outfit Bảo Vệ Đồ Án: Đang cố làm nó xứng đáng với câu kết."
+        ]
+      ]
+    }
+  ]
+}

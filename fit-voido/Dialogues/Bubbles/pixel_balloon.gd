@@ -99,6 +99,8 @@ var _portrait_cache: Dictionary = {}
 
 
 func _ready() -> void:
+	responses_panel.hide()
+	responses_menu.hide()
 	get_viewport().size_changed.connect(_layout)
 	_layout()
 	dock.hide()

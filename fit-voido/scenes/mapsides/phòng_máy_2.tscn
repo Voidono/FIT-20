@@ -10774,4 +10774,4 @@ mode = 0
 [node name="SceneDoor" parent="." unique_id=176558923 instance=ExtResource("17_iv3kn")]
 position = Vector2(528, 655)
 target_scene = "res://scenes/mapsides/t_4.tscn"
-target_position = Vector2(2723, 390)
+target_position = Vector2(2723, 300)

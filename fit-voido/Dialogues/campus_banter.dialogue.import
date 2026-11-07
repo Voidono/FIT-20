@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://c31cmi376n7fv"
+path="res://.godot/imported/campus_banter.dialogue-20ade4574e97dab25acc8c393ecd728b.tres"
+
+[deps]
+
+source_file="res://Dialogues/campus_banter.dialogue"
+dest_files=["res://.godot/imported/campus_banter.dialogue-20ade4574e97dab25acc8c393ecd728b.tres"]
+
+[params]
+
+defaults=true

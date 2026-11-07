@@ -1,0 +1,162 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/Character/dialogue_npc.tscn" id="npc"]
+[ext_resource type="Script" path="res://scenes/ambient/ambient_npc.gd" id="ambient"]
+[ext_resource type="Resource" path="res://Dialogues/campus_banter.dialogue" id="banter"]
+[ext_resource type="Texture2D" path="res://assets/DrawAsset/NPC/boypho69.png" id="tex_print"]
+[ext_resource type="Texture2D" path="res://assets/DrawAsset/NPC/NPC_1_down_Idle.png" id="tex_mail"]
+[ext_resource type="Texture2D" path="res://assets/DrawAsset/NPC/boysuda.png" id="tex_attendance"]
+[ext_resource type="Texture2D" path="res://assets/DrawAsset/NPC/NPC_2_down_Idle.png" id="tex_group"]
+[ext_resource type="Texture2D" path="res://assets/DrawAsset/NPC/T1.png" id="tex_excel"]
+[ext_resource type="Texture2D" path="res://assets/DrawAsset/NPC/boykopho2.png" id="tex_pdf"]
+[ext_resource type="Texture2D" path="res://assets/DrawAsset/NPC/NPC_1_down_Idle.png" id="tex_meeting"]
+
+[node name="T_2Life" type="Node2D"]
+y_sort_enabled = true
+
+[node name="print" parent="." instance=ExtResource("npc")]
+script = ExtResource("ambient")
+position = Vector2(160, 335)
+npc_sprite = ExtResource("tex_print")
+npc_skin = ""
+dialogue = ExtResource("banter")
+cue = "print_1"
+conversation_cues = PackedStringArray("print_1", "print_2")
+npc_name = "Photocopy Không Kẹt Giấy"
+prompt_text = "Tám chuyện"
+walk_bob_height = 0.0
+flip_sprite = false
+animation_fps = 7
+speed = 28.0
+min_wait = 1.8
+max_wait = 4.5
+body_capsule_radius = 7.0
+body_capsule_height = 16.0
+mode = 0
+
+[node name="mail" parent="." instance=ExtResource("npc")]
+script = ExtResource("ambient")
+position = Vector2(580, 350)
+npc_sprite = ExtResource("tex_mail")
+npc_skin = "NPC_1"
+dialogue = ExtResource("banter")
+cue = "mail_1"
+conversation_cues = PackedStringArray("mail_1", "mail_2")
+npc_name = "Email Xin Phép Dấu Chấm"
+prompt_text = "Tám chuyện"
+walk_bob_height = 0.0
+flip_sprite = false
+animation_fps = 7
+speed = 28.0
+min_wait = 1.8
+max_wait = 4.5
+body_capsule_radius = 7.0
+body_capsule_height = 16.0
+mode = 2
+ping_pong = true
+patrol_points = Array[Vector2]([Vector2(-70, 0), Vector2(70, 0)])
+
+[node name="attendance" parent="." instance=ExtResource("npc")]
+script = ExtResource("ambient")
+position = Vector2(1060, 300)
+npc_sprite = ExtResource("tex_attendance")
+npc_skin = ""
+dialogue = ExtResource("banter")
+cue = "attendance_1"
+conversation_cues = PackedStringArray("attendance_1", "attendance_2")
+npc_name = "Điểm Danh Bằng Niềm Tin"
+prompt_text = "Tám chuyện"
+walk_bob_height = 0.0
+flip_sprite = false
+animation_fps = 7
+speed = 28.0
+min_wait = 1.8
+max_wait = 4.5
+body_capsule_radius = 7.0
+body_capsule_height = 16.0
+mode = 0
+
+[node name="group" parent="." instance=ExtResource("npc")]
+script = ExtResource("ambient")
+position = Vector2(1510, 325)
+npc_sprite = ExtResource("tex_group")
+npc_skin = "NPC_2"
+dialogue = ExtResource("banter")
+cue = "group_1"
+conversation_cues = PackedStringArray("group_1", "group_2")
+npc_name = "Nhóm Trưởng Đang Nhập"
+prompt_text = "Tám chuyện"
+walk_bob_height = 0.0
+flip_sprite = false
+animation_fps = 7
+speed = 28.0
+min_wait = 1.8
+max_wait = 4.5
+body_capsule_radius = 7.0
+body_capsule_height = 16.0
+mode = 2
+ping_pong = true
+patrol_points = Array[Vector2]([Vector2(-75, 0), Vector2(75, 0)])
+
+[node name="excel" parent="." instance=ExtResource("npc")]
+script = ExtResource("ambient")
+position = Vector2(1980, 340)
+npc_sprite = ExtResource("tex_excel")
+npc_skin = ""
+dialogue = ExtResource("banter")
+cue = "excel_1"
+conversation_cues = PackedStringArray("excel_1", "excel_2")
+npc_name = "Excel Không Merge Ô"
+prompt_text = "Tám chuyện"
+walk_bob_height = 0.0
+flip_sprite = false
+animation_fps = 7
+speed = 28.0
+min_wait = 1.8
+max_wait = 4.5
+body_capsule_radius = 7.0
+body_capsule_height = 16.0
+mode = 0
+
+[node name="pdf" parent="." instance=ExtResource("npc")]
+script = ExtResource("ambient")
+position = Vector2(2370, 270)
+npc_sprite = ExtResource("tex_pdf")
+npc_skin = "boykopho"
+dialogue = ExtResource("banter")
+cue = "pdf_1"
+conversation_cues = PackedStringArray("pdf_1", "pdf_2")
+npc_name = "PDF Không Cho Copy"
+prompt_text = "Tám chuyện"
+walk_bob_height = 0.0
+flip_sprite = false
+animation_fps = 7
+speed = 28.0
+min_wait = 1.8
+max_wait = 4.5
+body_capsule_radius = 7.0
+body_capsule_height = 16.0
+mode = 1
+wander_radius = 24.0
+
+[node name="meeting" parent="." instance=ExtResource("npc")]
+script = ExtResource("ambient")
+position = Vector2(3060, 460)
+npc_sprite = ExtResource("tex_meeting")
+npc_skin = "NPC_1"
+dialogue = ExtResource("banter")
+cue = "meeting_1"
+conversation_cues = PackedStringArray("meeting_1", "meeting_2")
+npc_name = "Cuộc Họp Có Thể Là Tin Nhắn"
+prompt_text = "Tám chuyện"
+walk_bob_height = 0.0
+flip_sprite = false
+animation_fps = 7
+speed = 28.0
+min_wait = 1.8
+max_wait = 4.5
+body_capsule_radius = 7.0
+body_capsule_height = 16.0
+mode = 2
+ping_pong = true
+patrol_points = Array[Vector2]([Vector2(0, -60), Vector2(0, 60)])

@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://dogv1tntg3e1y"]
 
 [ext_resource type="PackedScene" path="res://scenes/templates/floor_stairs.tscn" id="floor_stairs"]
+[ext_resource type="PackedScene" path="res://scenes/ambient/t_3_life.tscn" id="ambient_life"]
 
 [ext_resource type="Texture2D" uid="uid://dl7aom5gvq1hw" path="res://assets/room/Room_Builder_Office_32x32.png" id="1_3shpd"]
 [ext_resource type="Texture2D" uid="uid://b5dkbx3s4va6u" path="res://assets/room/Sprite-0004.png" id="2_tbw20"]
@@ -14,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://knv0it3af1vj" path="res://assets/door1.png" id="10_gqmcb"]
 [ext_resource type="Texture2D" uid="uid://dg6xaiq2fboe8" path="res://assets/Sprite-0006.png" id="11_ptdnf"]
 [ext_resource type="PackedScene" path="res://scenes/chapters/document_recipient.tscn" id="12_j576k"]
-[ext_resource type="Texture2D" uid="uid://bvcmk5c874t4n" path="res://assets/DrawAsset/NPC/QKhánh.png" id="13_utjd0"]
+[ext_resource type="Texture2D" path="res://assets/DrawAsset/NPC/boykopho2.png" id="13_utjd0"]
 [ext_resource type="PackedScene" path="res://scenes/chapters/faculty_boss_door.tscn" id="14_rcw15"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eunbp"]
@@ -5033,6 +5034,8 @@ tile_set = SubResource("TileSet_5iqjx")
 [node name="others" type="TileMapLayer" parent="." unique_id=2031468080]
 tile_map_data = PackedByteArray("AAC5AAgABgACABEAAAC5AAkABgACABIAAAC5AAoABgACABMAAAC6AAgABgADABEAAAC6AAkABgADABIAAAC6AAoABgADABMAAAC7AAgABgACABEAAAC7AAkABgACABIAAAC7AAoABgACABMAAAC8AAgABgADABEAAAC8AAkABgADABIAAAC8AAoABgADABMAAAC9AAgABgACABEAAAC9AAkABgACABIAAAC9AAoABgACABMAAAC+AAgABgADABEAAAC+AAkABgADABIAAAC+AAoABgADABMAAAB0AAkABAAAAAAAAAB0AAoABAAAAAEAAAB0AAsABAAAAAIAAAB0AAwABAAAAAMAAAB1AAkABAABAAAAAAB1AAoABAABAAEAAAB1AAsABAABAAIAAAB1AAwABAABAAMAAABqAAkABAAAAAAAAABqAAoABAAAAAEAAABqAAsABAAAAAIAAABqAAwABAAAAAMAAABrAAkABAABAAAAAABrAAoABAABAAEAAABrAAsABAABAAIAAABrAAwABAABAAMAAACQAAQAAAAAAAAAAACQAAUAAAAAAAEAAACQAAYAAAAAAAIAAACRAAQAAAABAAAAAACRAAUAAAABAAEAAACRAAYAAAABAAIAAAAlAA4AAAAAAAAAAAAlAA8AAAAAAAEAAAAlABAAAAAAAAIAAAAmAA4AAAABAAAAAAAmAA8AAAABAAEAAAAmABAAAAABAAIAAAADABEAAAAAAAAAAAADABIAAAAAAAEAAAADABMAAAAAAAIAAAAEABEAAAABAAAAAAAEABIAAAABAAEAAAAEABMAAAABAAIAAAAMAAsAAAAAAAAAAAAMAAwAAAAAAAEAAAAMAA0AAAAAAAIAAAANAAsAAAABAAAAAAANAAwAAAABAAEAAAANAA0AAAABAAIAAAA=")
 tile_set = SubResource("TileSet_jx8tp")
+
+[node name="CampusLife" parent="." instance=ExtResource("ambient_life")]
 
 [node name="Character" parent="." unique_id=1990053383 instance=ExtResource("7_f8flq")]
 position = Vector2(1070, 387)

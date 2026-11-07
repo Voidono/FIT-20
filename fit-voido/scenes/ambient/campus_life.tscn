@@ -1,0 +1,467 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/Character/dialogue_npc.tscn" id="npc"]
+[ext_resource type="Script" path="res://scenes/ambient/ambient_npc.gd" id="ambient"]
+[ext_resource type="Resource" path="res://Dialogues/campus_banter.dialogue" id="banter"]
+[ext_resource type="Texture2D" path="res://assets/DrawAsset/NPC/boypho69.png" id="tex_pho_anh_hai"]
+[ext_resource type="Texture2D" path="res://assets/DrawAsset/NPC/boysuda.png" id="tex_banh_mi"]
+[ext_resource type="Texture2D" path="res://assets/DrawAsset/NPC/NPC_1_down_Idle.png" id="tex_wifi"]
+[ext_resource type="Texture2D" path="res://assets/DrawAsset/NPC/NPC_2_down_Idle.png" id="tex_nap"]
+[ext_resource type="Texture2D" path="res://assets/DrawAsset/NPC/boykopho2.png" id="tex_aura"]
+[ext_resource type="Texture2D" path="res://assets/DrawAsset/NPC/Dũng.png" id="tex_ctrl_z"]
+[ext_resource type="Texture2D" path="res://assets/DrawAsset/NPC/Ngọc.png" id="tex_deadline"]
+[ext_resource type="Texture2D" path="res://assets/DrawAsset/NPC/boysuda.png" id="tex_coffee_os"]
+[ext_resource type="Texture2D" path="res://assets/DrawAsset/NPC/T1.png" id="tex_chairman"]
+[ext_resource type="Texture2D" path="res://assets/DrawAsset/NPC/NPC_1_down_Idle.png" id="tex_matcha"]
+[ext_resource type="Texture2D" path="res://assets/DrawAsset/NPC/NPC_2_down_Idle.png" id="tex_streak"]
+[ext_resource type="Texture2D" path="res://assets/DrawAsset/NPC/boykopho2.png" id="tex_algorithm"]
+[ext_resource type="Texture2D" path="res://assets/DrawAsset/NPC/boypho69.png" id="tex_goalkeeper"]
+[ext_resource type="Texture2D" path="res://assets/DrawAsset/NPC/NPC_1_down_Idle.png" id="tex_cardio"]
+[ext_resource type="Texture2D" path="res://assets/DrawAsset/NPC/boysuda.png" id="tex_bench"]
+[ext_resource type="Texture2D" path="res://assets/DrawAsset/NPC/NPC_2_down_Idle.png" id="tex_camera"]
+[ext_resource type="Texture2D" path="res://assets/DrawAsset/NPC/boykopho2.png" id="tex_touch_grass"]
+[ext_resource type="Texture2D" path="res://assets/DrawAsset/NPC/T1.png" id="tex_lunch"]
+[ext_resource type="Texture2D" path="res://assets/DrawAsset/NPC/NPC_1_down_Idle.png" id="tex_battery"]
+[ext_resource type="Texture2D" path="res://assets/DrawAsset/NPC/NPC_2_down_Idle.png" id="tex_podcast"]
+[ext_resource type="Texture2D" path="res://assets/DrawAsset/NPC/boykopho2.png" id="tex_food_review"]
+
+[node name="CampusLife" type="Node2D"]
+y_sort_enabled = true
+
+[node name="pho_anh_hai" parent="." instance=ExtResource("npc")]
+script = ExtResource("ambient")
+position = Vector2(650, 170)
+npc_sprite = ExtResource("tex_pho_anh_hai")
+npc_skin = ""
+dialogue = ExtResource("banter")
+cue = "pho_anh_hai_1"
+conversation_cues = PackedStringArray("pho_anh_hai_1", "pho_anh_hai_2")
+npc_name = "Tiệm Phở Anh Hai"
+prompt_text = "Tám chuyện"
+walk_bob_height = 0.0
+flip_sprite = false
+animation_fps = 7
+speed = 28.0
+min_wait = 1.8
+max_wait = 4.5
+body_capsule_radius = 7.0
+body_capsule_height = 16.0
+mode = 0
+
+[node name="banh_mi" parent="." instance=ExtResource("npc")]
+script = ExtResource("ambient")
+position = Vector2(3100, -220)
+npc_sprite = ExtResource("tex_banh_mi")
+npc_skin = ""
+dialogue = ExtResource("banter")
+cue = "banh_mi_1"
+conversation_cues = PackedStringArray("banh_mi_1", "banh_mi_2")
+npc_name = "Bánh Mì Bách Khoa"
+prompt_text = "Tám chuyện"
+walk_bob_height = 0.0
+flip_sprite = false
+animation_fps = 7
+speed = 28.0
+min_wait = 1.8
+max_wait = 4.5
+body_capsule_radius = 7.0
+body_capsule_height = 16.0
+mode = 0
+
+[node name="wifi" parent="." instance=ExtResource("npc")]
+script = ExtResource("ambient")
+position = Vector2(1200, 170)
+npc_sprite = ExtResource("tex_wifi")
+npc_skin = "NPC_1"
+dialogue = ExtResource("banter")
+cue = "wifi_1"
+conversation_cues = PackedStringArray("wifi_1", "wifi_2")
+npc_name = "Wi-Fi Một Vạch"
+prompt_text = "Tám chuyện"
+walk_bob_height = 0.0
+flip_sprite = false
+animation_fps = 7
+speed = 28.0
+min_wait = 1.8
+max_wait = 4.5
+body_capsule_radius = 7.0
+body_capsule_height = 16.0
+mode = 2
+ping_pong = true
+patrol_points = Array[Vector2]([Vector2(-85, 0), Vector2(85, 0)])
+
+[node name="nap" parent="." instance=ExtResource("npc")]
+script = ExtResource("ambient")
+position = Vector2(1100, -470)
+npc_sprite = ExtResource("tex_nap")
+npc_skin = "NPC_2"
+dialogue = ExtResource("banter")
+cue = "nap_1"
+conversation_cues = PackedStringArray("nap_1", "nap_2")
+npc_name = "Giấc Ngủ Hệ Số Hai"
+prompt_text = "Tám chuyện"
+walk_bob_height = 0.0
+flip_sprite = false
+animation_fps = 7
+speed = 28.0
+min_wait = 1.8
+max_wait = 4.5
+body_capsule_radius = 7.0
+body_capsule_height = 16.0
+mode = 1
+wander_radius = 45.0
+
+[node name="aura" parent="." instance=ExtResource("npc")]
+script = ExtResource("ambient")
+position = Vector2(2050, 170)
+npc_sprite = ExtResource("tex_aura")
+npc_skin = "boykopho"
+dialogue = ExtResource("banter")
+cue = "aura_1"
+conversation_cues = PackedStringArray("aura_1", "aura_2")
+npc_name = "Chủ Tịch Aura Âm"
+prompt_text = "Tám chuyện"
+walk_bob_height = 0.0
+flip_sprite = false
+animation_fps = 7
+speed = 28.0
+min_wait = 1.8
+max_wait = 4.5
+body_capsule_radius = 7.0
+body_capsule_height = 16.0
+mode = 2
+ping_pong = true
+patrol_points = Array[Vector2]([Vector2(-90, 0), Vector2(90, 0)])
+
+[node name="ctrl_z" parent="." instance=ExtResource("npc")]
+script = ExtResource("ambient")
+position = Vector2(2050, -820)
+npc_sprite = ExtResource("tex_ctrl_z")
+npc_skin = ""
+dialogue = ExtResource("banter")
+cue = "ctrl_z_1"
+conversation_cues = PackedStringArray("ctrl_z_1", "ctrl_z_2")
+npc_name = "Thầy Ctrl Z"
+prompt_text = "Tám chuyện"
+walk_bob_height = 0.0
+flip_sprite = false
+animation_fps = 7
+speed = 28.0
+min_wait = 1.8
+max_wait = 4.5
+body_capsule_radius = 7.0
+body_capsule_height = 16.0
+mode = 0
+
+[node name="deadline" parent="." instance=ExtResource("npc")]
+script = ExtResource("ambient")
+position = Vector2(3900, -1190)
+npc_sprite = ExtResource("tex_deadline")
+npc_skin = ""
+dialogue = ExtResource("banter")
+cue = "deadline_1"
+conversation_cues = PackedStringArray("deadline_1", "deadline_2")
+npc_name = "Thầy Deadline Dịu Dàng"
+prompt_text = "Tám chuyện"
+walk_bob_height = 0.0
+flip_sprite = false
+animation_fps = 7
+speed = 28.0
+min_wait = 1.8
+max_wait = 4.5
+body_capsule_radius = 7.0
+body_capsule_height = 16.0
+mode = 0
+
+[node name="coffee_os" parent="." instance=ExtResource("npc")]
+script = ExtResource("ambient")
+position = Vector2(3440, -1030)
+npc_sprite = ExtResource("tex_coffee_os")
+npc_skin = ""
+dialogue = ExtResource("banter")
+cue = "coffee_os_1"
+conversation_cues = PackedStringArray("coffee_os_1", "coffee_os_2")
+npc_name = "Cà Phê Không Đường"
+prompt_text = "Tám chuyện"
+walk_bob_height = 0.0
+flip_sprite = false
+animation_fps = 7
+speed = 28.0
+min_wait = 1.8
+max_wait = 4.5
+body_capsule_radius = 7.0
+body_capsule_height = 16.0
+mode = 0
+
+[node name="chairman" parent="." instance=ExtResource("npc")]
+script = ExtResource("ambient")
+position = Vector2(3800, -290)
+npc_sprite = ExtResource("tex_chairman")
+npc_skin = ""
+dialogue = ExtResource("banter")
+cue = "chairman_1"
+conversation_cues = PackedStringArray("chairman_1", "chairman_2")
+npc_name = "Hội Trưởng Ghế Nhựa"
+prompt_text = "Tám chuyện"
+walk_bob_height = 0.0
+flip_sprite = false
+animation_fps = 7
+speed = 28.0
+min_wait = 1.8
+max_wait = 4.5
+body_capsule_radius = 7.0
+body_capsule_height = 16.0
+mode = 0
+
+[node name="matcha" parent="." instance=ExtResource("npc")]
+script = ExtResource("ambient")
+position = Vector2(2370, -520)
+npc_sprite = ExtResource("tex_matcha")
+npc_skin = "NPC_1"
+dialogue = ExtResource("banter")
+cue = "matcha_1"
+conversation_cues = PackedStringArray("matcha_1", "matcha_2")
+npc_name = "Matcha Chạy Bằng Cơm"
+prompt_text = "Tám chuyện"
+walk_bob_height = 0.0
+flip_sprite = false
+animation_fps = 7
+speed = 28.0
+min_wait = 1.8
+max_wait = 4.5
+body_capsule_radius = 7.0
+body_capsule_height = 16.0
+mode = 1
+wander_radius = 42.0
+
+[node name="streak" parent="." instance=ExtResource("npc")]
+script = ExtResource("ambient")
+position = Vector2(2700, 190)
+npc_sprite = ExtResource("tex_streak")
+npc_skin = "NPC_2"
+dialogue = ExtResource("banter")
+cue = "streak_1"
+conversation_cues = PackedStringArray("streak_1", "streak_2")
+npc_name = "Bộ Trưởng Giữ Streak"
+prompt_text = "Tám chuyện"
+walk_bob_height = 0.0
+flip_sprite = false
+animation_fps = 7
+speed = 28.0
+min_wait = 1.8
+max_wait = 4.5
+body_capsule_radius = 7.0
+body_capsule_height = 16.0
+mode = 2
+ping_pong = true
+patrol_points = Array[Vector2]([Vector2(-75, 0), Vector2(75, 0)])
+
+[node name="algorithm" parent="." instance=ExtResource("npc")]
+script = ExtResource("ambient")
+position = Vector2(4450, -200)
+npc_sprite = ExtResource("tex_algorithm")
+npc_skin = "boykopho"
+dialogue = ExtResource("banter")
+cue = "algorithm_1"
+conversation_cues = PackedStringArray("algorithm_1", "algorithm_2")
+npc_name = "Thuật Toán Cơm Rang"
+prompt_text = "Tám chuyện"
+walk_bob_height = 0.0
+flip_sprite = false
+animation_fps = 7
+speed = 28.0
+min_wait = 1.8
+max_wait = 4.5
+body_capsule_radius = 7.0
+body_capsule_height = 16.0
+mode = 1
+wander_radius = 48.0
+
+[node name="goalkeeper" parent="." instance=ExtResource("npc")]
+script = ExtResource("ambient")
+position = Vector2(3400, 1090)
+npc_sprite = ExtResource("tex_goalkeeper")
+npc_skin = ""
+dialogue = ExtResource("banter")
+cue = "goalkeeper_1"
+conversation_cues = PackedStringArray("goalkeeper_1", "goalkeeper_2")
+npc_name = "Thủ Môn Tab Ẩn Danh"
+prompt_text = "Tám chuyện"
+walk_bob_height = 0.0
+flip_sprite = false
+animation_fps = 7
+speed = 28.0
+min_wait = 1.8
+max_wait = 4.5
+body_capsule_radius = 7.0
+body_capsule_height = 16.0
+mode = 0
+
+[node name="cardio" parent="." instance=ExtResource("npc")]
+script = ExtResource("ambient")
+position = Vector2(3950, 1490)
+npc_sprite = ExtResource("tex_cardio")
+npc_skin = "NPC_1"
+dialogue = ExtResource("banter")
+cue = "cardio_1"
+conversation_cues = PackedStringArray("cardio_1", "cardio_2")
+npc_name = "Cardio Bằng Deadline"
+prompt_text = "Tám chuyện"
+walk_bob_height = 0.0
+flip_sprite = false
+animation_fps = 7
+speed = 28.0
+min_wait = 1.8
+max_wait = 4.5
+body_capsule_radius = 7.0
+body_capsule_height = 16.0
+mode = 2
+ping_pong = true
+patrol_points = Array[Vector2]([Vector2(-110, 0), Vector2(110, 0)])
+
+[node name="bench" parent="." instance=ExtResource("npc")]
+script = ExtResource("ambient")
+position = Vector2(5000, 920)
+npc_sprite = ExtResource("tex_bench")
+npc_skin = ""
+dialogue = ExtResource("banter")
+cue = "bench_1"
+conversation_cues = PackedStringArray("bench_1", "bench_2")
+npc_name = "Ghế Dự Bị Premium"
+prompt_text = "Tám chuyện"
+walk_bob_height = 0.0
+flip_sprite = false
+animation_fps = 7
+speed = 28.0
+min_wait = 1.8
+max_wait = 4.5
+body_capsule_radius = 7.0
+body_capsule_height = 16.0
+mode = 0
+
+[node name="camera" parent="." instance=ExtResource("npc")]
+script = ExtResource("ambient")
+position = Vector2(1570, 650)
+npc_sprite = ExtResource("tex_camera")
+npc_skin = "NPC_2"
+dialogue = ExtResource("banter")
+cue = "camera_1"
+conversation_cues = PackedStringArray("camera_1", "camera_2")
+npc_name = "Camera Sau Có Tâm"
+prompt_text = "Tám chuyện"
+walk_bob_height = 0.0
+flip_sprite = false
+animation_fps = 7
+speed = 28.0
+min_wait = 1.8
+max_wait = 4.5
+body_capsule_radius = 7.0
+body_capsule_height = 16.0
+mode = 1
+wander_radius = 40.0
+
+[node name="touch_grass" parent="." instance=ExtResource("npc")]
+script = ExtResource("ambient")
+position = Vector2(1850, 810)
+npc_sprite = ExtResource("tex_touch_grass")
+npc_skin = "boykopho"
+dialogue = ExtResource("banter")
+cue = "touch_grass_1"
+conversation_cues = PackedStringArray("touch_grass_1", "touch_grass_2")
+npc_name = "Trưởng Ban Chạm Cỏ"
+prompt_text = "Tám chuyện"
+walk_bob_height = 0.0
+flip_sprite = false
+animation_fps = 7
+speed = 28.0
+min_wait = 1.8
+max_wait = 4.5
+body_capsule_radius = 7.0
+body_capsule_height = 16.0
+mode = 2
+ping_pong = true
+patrol_points = Array[Vector2]([Vector2(-65, 0), Vector2(65, 0)])
+
+[node name="lunch" parent="." instance=ExtResource("npc")]
+script = ExtResource("ambient")
+position = Vector2(5400, -800)
+npc_sprite = ExtResource("tex_lunch")
+npc_skin = ""
+dialogue = ExtResource("banter")
+cue = "lunch_1"
+conversation_cues = PackedStringArray("lunch_1", "lunch_2")
+npc_name = "Cơm Tấm Không Vỡ Kèo"
+prompt_text = "Tám chuyện"
+walk_bob_height = 0.0
+flip_sprite = false
+animation_fps = 7
+speed = 28.0
+min_wait = 1.8
+max_wait = 4.5
+body_capsule_radius = 7.0
+body_capsule_height = 16.0
+mode = 0
+
+[node name="battery" parent="." instance=ExtResource("npc")]
+script = ExtResource("ambient")
+position = Vector2(5150, 150)
+npc_sprite = ExtResource("tex_battery")
+npc_skin = "NPC_1"
+dialogue = ExtResource("banter")
+cue = "battery_1"
+conversation_cues = PackedStringArray("battery_1", "battery_2")
+npc_name = "Pin Còn Một Phần Trăm"
+prompt_text = "Tám chuyện"
+walk_bob_height = 0.0
+flip_sprite = false
+animation_fps = 7
+speed = 28.0
+min_wait = 1.8
+max_wait = 4.5
+body_capsule_radius = 7.0
+body_capsule_height = 16.0
+mode = 1
+wander_radius = 40.0
+
+[node name="podcast" parent="." instance=ExtResource("npc")]
+script = ExtResource("ambient")
+position = Vector2(720, -1600)
+npc_sprite = ExtResource("tex_podcast")
+npc_skin = "NPC_2"
+dialogue = ExtResource("banter")
+cue = "podcast_1"
+conversation_cues = PackedStringArray("podcast_1", "podcast_2")
+npc_name = "Podcast Hai Phút Rưỡi"
+prompt_text = "Tám chuyện"
+walk_bob_height = 0.0
+flip_sprite = false
+animation_fps = 7
+speed = 28.0
+min_wait = 1.8
+max_wait = 4.5
+body_capsule_radius = 7.0
+body_capsule_height = 16.0
+mode = 2
+ping_pong = true
+patrol_points = Array[Vector2]([Vector2(-65, 0), Vector2(65, 0)])
+
+[node name="food_review" parent="." instance=ExtResource("npc")]
+script = ExtResource("ambient")
+position = Vector2(5480, -1400)
+npc_sprite = ExtResource("tex_food_review")
+npc_skin = "boykopho"
+dialogue = ExtResource("banter")
+cue = "food_review_1"
+conversation_cues = PackedStringArray("food_review_1", "food_review_2")
+npc_name = "Review Có Xin Miếng"
+prompt_text = "Tám chuyện"
+walk_bob_height = 0.0
+flip_sprite = false
+animation_fps = 7
+speed = 28.0
+min_wait = 1.8
+max_wait = 4.5
+body_capsule_radius = 7.0
+body_capsule_height = 16.0
+mode = 1
+wander_radius = 40.0

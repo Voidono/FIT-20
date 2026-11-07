@@ -38,6 +38,7 @@ var _nearby_dialogue_npcs: Array[DialogueNPC] = []
 var _mobile_controls: PlayerMobileControls = null
 ## Keyboard hint label shown on desktop.
 var _keyboard_hint: Label = null
+var _menu_panel: Control
 
 
 func _ready() -> void:
@@ -46,7 +47,20 @@ func _ready() -> void:
 	_ensure_input_actions()
 	_update_animation(false)
 	_setup_device_ui()
+	$ScreenUI/MenuButton.theme = preload("res://scenes/UI/quests/quest_theme.tres")
+	var menu_style := StyleBoxFlat.new()
+	menu_style.bg_color = Color("1a2524")
+	menu_style.border_color = Color("b6a16f")
+	menu_style.set_border_width_all(1)
+	menu_style.set_corner_radius_all(4)
+	$ScreenUI/MenuButton.add_theme_stylebox_override("normal", menu_style)
+	var menu_hover := menu_style.duplicate() as StyleBoxFlat
+	menu_hover.bg_color = Color("34433a")
+	$ScreenUI/MenuButton.add_theme_stylebox_override("hover", menu_hover)
+	$ScreenUI/MenuButton.add_theme_stylebox_override("pressed", menu_hover)
 	_footstep_player = AudioStreamPlayer.new()
+	if footstep_sounds.is_empty():
+		footstep_sounds.assign(WorldSfx.footsteps)
 	_footstep_player.bus = &"sound effect"
 	_footstep_player.max_polyphony = 2
 	add_child(_footstep_player)
@@ -73,16 +87,7 @@ func _spawn_mobile_controls() -> void:
 
 
 func _spawn_keyboard_hint() -> void:
-	## Small semi-transparent label at the bottom of the screen reminding the
-	## player which keys to use. Parented to the Camera2D child if one exists,
-	## otherwise to the character itself (CanvasLayer would be cleaner but we keep
-	## it self-contained here).
-	var camera: Camera2D = null
-	for child in get_children():
-		if child is Camera2D:
-			camera = child
-			break
-
+	# Screen-space UI stays readable above trees, roofs and camera movement.
 	_keyboard_hint = Label.new()
 	_keyboard_hint.text = "WASD / Mũi tên: Di chuyển   ·   E: Tương tác   ·   J: Nhật ký"
 	_keyboard_hint.add_theme_font_size_override("font_size", 13)
@@ -92,13 +97,12 @@ func _spawn_keyboard_hint() -> void:
 	_keyboard_hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_keyboard_hint.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
-	if camera != null:
-		# Position inside the camera's local coordinate space near the bottom.
-		_keyboard_hint.position = Vector2(-300, 190)
-		_keyboard_hint.size = Vector2(600, 24)
-		camera.add_child(_keyboard_hint)
-	else:
-		add_child(_keyboard_hint)
+	$ScreenUI.add_child(_keyboard_hint)
+	_keyboard_hint.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_WIDE)
+	_keyboard_hint.offset_left = 12
+	_keyboard_hint.offset_right = -12
+	_keyboard_hint.offset_top = -32
+	_keyboard_hint.offset_bottom = -8
 
 
 func _physics_process(_delta: float) -> void:
@@ -139,6 +143,10 @@ func _update_footsteps(distance: float) -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed and not event.echo and event.physical_keycode == KEY_ESCAPE:
+		_on_button_pressed()
+		get_viewport().set_input_as_handled()
+		return
 	if event.is_action_pressed(interact_action):
 		var npc := _closest_dialogue_npc()
 		if npc:
@@ -245,5 +253,15 @@ func _add_action(action: StringName, key: Key, axis: JoyAxis, axis_dir: float, d
 
 
 func _on_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/menu & options/menu.tscn")
-	pass # Replace with function body.
+	if not can_move or (is_instance_valid(_menu_panel) and not _menu_panel.is_queued_for_deletion()):
+		return
+	var layer := CanvasLayer.new()
+	layer.layer = 200
+	layer.process_mode = Node.PROCESS_MODE_ALWAYS
+	add_child(layer)
+	_menu_panel = preload("res://scenes/UI/audio_settings_panel.gd").new()
+	_menu_panel.in_game = true
+	layer.add_child(_menu_panel)
+	_menu_panel.closed.connect(layer.queue_free)
+	for action in [&"move_left", &"move_right", &"move_up", &"move_down"]:
+		Input.action_release(action)
