@@ -11,6 +11,13 @@ var _fade: Tween
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	# Loop the imported WAVs natively, avoiding a restart gap at finished.
+	var tracks: Array = [default_track] + activity_tracks.values() + scene_tracks.values()
+	for track in tracks:
+		if track is AudioStreamWAV:
+			track.loop_begin = 0
+			track.loop_end = roundi(track.get_length() * track.mix_rate)
+			track.loop_mode = AudioStreamWAV.LOOP_FORWARD
 	_player.finished.connect(_player.play)
 	get_tree().scene_changed.connect(_on_scene_changed)
 

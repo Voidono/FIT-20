@@ -1,15 +1,15 @@
 [gd_scene format=3 uid="uid://1q3un777h5y"]
 
 [ext_resource type="PackedScene" uid="uid://cjd51hpkjfo4d" path="res://scenes/mapsides/map.tscn" id="1_tqdoe"]
-[ext_resource type="PackedScene" path="res://scenes/ambient/campus_life.tscn" id="campus_life"]
 [ext_resource type="Texture2D" uid="uid://b206awfu4cnl2" path="res://Minigames/trash_train_v3/trash_train/levels/sussu.png" id="22_2wedu"]
 [ext_resource type="Script" uid="uid://dj85aueh40i2t" path="res://scenes/mapsides/area_2d.gd" id="41_kuesd"]
 [ext_resource type="Resource" uid="uid://7b1wjkdfsk7m" path="res://Dialogues/tutorial_arrival.dialogue" id="arrival"]
+[ext_resource type="PackedScene" path="res://scenes/ambient/campus_life.tscn" id="campus_life"]
 [ext_resource type="Script" uid="uid://dhpa62fnhs18p" path="res://scenes/chapters/chapter1.gd" id="chapter1"]
 [ext_resource type="Resource" uid="uid://butbhf7e54uy0" path="res://Dialogues/chapter3_tuan.dialogue" id="chapter3_tuan"]
 [ext_resource type="Resource" uid="uid://cqr0hddaxpm41" path="res://Dialogues/stage1_blind_bags.dialogue" id="lecturer"]
+[ext_resource type="Texture2D" uid="uid://cxj12dl41cuq8" path="res://assets/DrawAsset/NPC/NPC_1_down_Idle.png" id="minh_preview"]
 [ext_resource type="PackedScene" uid="uid://c0gjtr6ij3dyy" path="res://scenes/Character/dialogue_npc.tscn" id="npc_template"]
-[ext_resource type="Texture2D" path="res://assets/DrawAsset/NPC/NPC_1_down_Idle.png" id="minh_preview"]
 [ext_resource type="Texture2D" uid="uid://bmrkbm77sbroc" path="res://assets/DrawAsset/NPC/Thắng.png" id="npc_tex_thang"]
 [ext_resource type="Texture2D" uid="uid://dpeuwwhhawccf" path="res://assets/DrawAsset/NPC/Tuấn.png" id="npc_tex_tuan"]
 
@@ -25,8 +25,6 @@ metadata/_edit_horizontal_guides_ = [-2101.0, 1792.0]
 [node name="Map" parent="." unique_id=2025633542 instance=ExtResource("1_tqdoe")]
 
 [node name="NPC" type="Node2D" parent="." unique_id=711439941]
-
-[node name="CampusLife" parent="." instance=ExtResource("campus_life")]
 
 [node name="Minh" parent="NPC" unique_id=2050054754 instance=ExtResource("npc_template")]
 z_index = 2
@@ -48,6 +46,8 @@ prompt_text = "Thử thách / Nhận đá"
 npc_name = "Giảng viên Nhà C"
 mode = 0
 walk_bob_height = 0.0
+
+[node name="CampusLife" parent="." unique_id=928181532 instance=ExtResource("campus_life")]
 
 [node name="BuildingCSign" type="Label" parent="." unique_id=250271833]
 z_index = 3

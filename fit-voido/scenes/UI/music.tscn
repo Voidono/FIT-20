@@ -1,11 +1,24 @@
 [gd_scene format=3 uid="uid://70vsihg017kh"]
 
 [ext_resource type="Script" uid="uid://b6pniat5c8hdk" path="res://scenes/UI/music.gd" id="1_vjhnq"]
-[ext_resource type="AudioStream" uid="uid://ccehoo0cu5uso" path="res://soundtrack/001. Once Upon a Time (UNDERTALE Soundtrack) - Toby Fox - Toby Fox.mp3" id="2_vjhnq"]
+[ext_resource type="AudioStream" path="res://MainBGM.wav" id="2_vjhnq"]
+[ext_resource type="AudioStream" path="res://FinalBossfight.wav" id="boss"]
+[ext_resource type="AudioStream" path="res://Runnergame.wav" id="runner"]
 
 [node name="Music" type="CanvasLayer" unique_id=1382975793]
 script = ExtResource("1_vjhnq")
 default_track = ExtResource("2_vjhnq")
+activity_tracks = Dictionary[String, AudioStream]({
+"boss_fight": ExtResource("boss"),
+"fit_runner": ExtResource("runner"),
+"fit_runner_race": ExtResource("runner"),
+"garbage_quest": ExtResource("runner")
+})
+scene_tracks = Dictionary[String, AudioStream]({
+"res://Minigames/boss_fight/boss_fight.tscn": ExtResource("boss"),
+"res://Minigames/minigames/fit_runner/fit_runner.tscn": ExtResource("runner"),
+"res://Minigames/trash_train_v3/trash_train/trash_train.tscn": ExtResource("runner")
+})
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1094690081]
 bus = &"Music"
