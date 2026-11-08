@@ -6,8 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://tjx23y8mcxv4" path="res://assets/room/Modern_Office_MV_1_TILESETS_B-C-D-E.png" id="3_wlo7b"]
 [ext_resource type="PackedScene" uid="uid://c43kdrqiv4a0n" path="res://scenes/Character/Character.tscn" id="5_wlo7b"]
 [ext_resource type="PackedScene" uid="uid://c0gjtr6ij3dyy" path="res://scenes/Character/dialogue_npc.tscn" id="6_0h1ix"]
-[ext_resource type="Texture2D" uid="uid://da882jd35otsq" path="res://assets/DrawAsset/NPC/Tùng.png" id="7_ergek"]
 [ext_resource type="Resource" uid="uid://coc1p0sixun60" path="res://Dialogues/chapter2_lecturer.dialogue" id="8_8q0hj"]
+[ext_resource type="Texture2D" uid="uid://da882jd35otsq" path="res://assets/DrawAsset/NPC/Tùng.png" id="8_iv3kn"]
 [ext_resource type="PackedScene" uid="uid://bhie3pwx0kuav" path="res://Dialogues/Bubbles/quiz_balloon (1).tscn" id="9_6q857"]
 [ext_resource type="Texture2D" uid="uid://06youjlgtisq" path="res://assets/DrawAsset/NPC/boypho69.png" id="10_6q857"]
 [ext_resource type="Texture2D" uid="uid://2124v4kq8r5f" path="res://assets/DrawAsset/NPC/boysuda.png" id="11_iud5i"]
@@ -10713,6 +10713,7 @@ sources/0 = SubResource("TileSetAtlasSource_cs1wn")
 sources/1 = SubResource("TileSetAtlasSource_wlo7b")
 
 [node name="phòng máy 2" type="Node2D" unique_id=954924037 groups=["quest_hud_host"]]
+position = Vector2(141, -126)
 script = ExtResource("chapter2_script")
 
 [node name="sàn" type="TileMapLayer" parent="." unique_id=1197351228]
@@ -10739,19 +10740,20 @@ tile_map_data = PackedByteArray("AAADAA4AAAAkAA4AAAADAA8AAAAkAA8AAAADABAAAAAkABA
 tile_set = SubResource("TileSet_c3dk7")
 
 [node name="Character" parent="." unique_id=1990053383 instance=ExtResource("5_wlo7b")]
-position = Vector2(487, 617)
+position = Vector2(239, 399)
 
 [node name="DialogueNPC" parent="." unique_id=194546955 instance=ExtResource("6_0h1ix")]
 position = Vector2(342, 636)
-npc_sprite = ExtResource("7_ergek")
+npc_sprite = ExtResource("8_iv3kn")
 dialogue = ExtResource("8_8q0hj")
 dialogue_balloon = ExtResource("9_6q857")
-npc_name = "Mít tơ tùng"
+npc_name = "Mít tơ Tùng"
 mode = 0
 
 [node name="DialogueNPC2" parent="." unique_id=1149021259 instance=ExtResource("6_0h1ix")]
 position = Vector2(127, 215)
 npc_sprite = ExtResource("10_6q857")
+dialogue = ExtResource("12_g8qdn")
 mode = 0
 
 [node name="DialogueNPC3" parent="." unique_id=2117928277 instance=ExtResource("6_0h1ix")]
@@ -10763,6 +10765,7 @@ mode = 0
 [node name="DialogueNPC4" parent="." unique_id=284722502 instance=ExtResource("6_0h1ix")]
 position = Vector2(438, 512)
 npc_sprite = ExtResource("13_8q0hj")
+dialogue = ExtResource("15_iv3kn")
 mode = 0
 
 [node name="DialogueNPC5" parent="." unique_id=1557594216 instance=ExtResource("6_0h1ix")]

@@ -85,6 +85,7 @@ var _config_qte: FrQteSettings
 
 
 func _ready() -> void:
+	TranslationServer.set_locale("vi")
 	if FitRunnerStrings.install():
 		propagate_notification(NOTIFICATION_TRANSLATION_CHANGED)  # scene was instanced before the strings existed: refresh the labels
 	_ensure_input_action()
@@ -311,12 +312,17 @@ func _build_rivals() -> void:
 		return
 	var colors: Array[Color] = [Color("8ce1f1"), Color("ffbf87"), Color("c3a8f5"), Color("f6db7b"), Color("f4a9c7")]
 	for i in range(5):
-		rivals.append(FrParBot.build(tuning, i + 1))
+		# Khánh keeps the full training pace and hits every checkpoint; the
+		# other four retain the gentler race pace. Top three remains the goal.
+		rivals.append(FrParBot.build(tuning, 6, 1.0) if i == 0 else FrParBot.build(tuning, i + 1))
 		var runner: FrCharacter = CHARACTER_SCENE.instantiate() as FrCharacter
 		runner.modulate = Color(colors[i], 0.65)
 		add_child(runner)
+		if i == 0:
+			runner.use_khanh_skin()
+			runner.modulate = Color(1, 0.94, 0.78, 0.88)
 		var tag := Label.new()
-		var names: Array[String] = ["FR_RIVAL_LEADER", "FR_RIVAL_STEADY", "FR_RIVAL_LATE", "FR_RIVAL_CAUTIOUS", "FR_RIVAL_CHASER"]
+		var names: Array[String] = ["FR_RIVAL_KHANH", "FR_RIVAL_STEADY", "FR_RIVAL_LATE", "FR_RIVAL_CAUTIOUS", "FR_RIVAL_CHASER"]
 		tag.text = names[i]
 		tag.position = Vector2(-35, -64)
 		tag.size.x = 70

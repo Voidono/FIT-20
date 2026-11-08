@@ -16,7 +16,7 @@ Hướng dẫn: Đạt ít nhất một sao trước khi hết giờ. Sau đó t
 	=> trash_help
 
 ~ fit_runner
-Hướng dẫn: FIT Runner — Practice. Hai vòng để làm quen với nhịp chạy.
+Hướng dẫn: FIT Runner — Tập luyện. Hai vòng để làm quen với nhịp chạy.
 - Xem cách chơi
 	=> practice_help
 - Em đã biết cách chơi — bắt đầu
@@ -25,14 +25,14 @@ Hướng dẫn: FIT Runner — Practice. Hai vòng để làm quen với nhịp 
 set locals.steps = 3
 Hướng dẫn: Giữ Space, W, mũi tên lên hoặc nút RUN để tăng nỗ lực. Thả nút để giảm nhịp và hồi thể lực.
 Hướng dẫn: Tại điểm kiểm tra, bấm Enter, J, K, mũi tên xuống hoặc nút nhịp khi con trỏ vào vùng sáng để tăng tốc.
-Hướng dẫn: Hoàn thành hai vòng trước thời gian giới hạn. Đây là Practice; không cần tranh hạng. Dùng Esc, P hoặc nút tạm dừng nếu cần nghỉ.
+Hướng dẫn: Hoàn thành hai vòng trước thời gian giới hạn. Đây là Tập luyện; không cần tranh hạng. Dùng Esc, P hoặc nút tạm dừng nếu cần nghỉ.
 - Bắt đầu
 	=> END
 - Xem lại
 	=> practice_help
 
 ~ fit_runner_race
-Hướng dẫn: FIT Runner — Ghost Race. Cuộc đua với năm đối thủ trên sân thể thao.
+Hướng dẫn: FIT Runner — Đua bóng ma. Cuộc đua với năm đối thủ trên sân thể thao.
 - Xem cách chơi
 	=> race_help
 - Em đã biết cách chơi — bắt đầu
@@ -41,7 +41,7 @@ Hướng dẫn: FIT Runner — Ghost Race. Cuộc đua với năm đối thủ t
 set locals.steps = 3
 Hướng dẫn: Giữ nút chạy để tăng nỗ lực, thả để hồi thể lực. Giữ sức cho cả hai vòng, đừng chạy hết tốc lực liên tục.
 Hướng dẫn: Bấm Enter, J, K, mũi tên xuống hoặc nút nhịp tại các điểm kiểm tra để được tăng tốc.
-Hướng dẫn: Về đích trong ba vị trí đầu trước khi hết giờ. Sau đó trở lại gặp thầy Tuấn để nhận tài liệu. Esc, P hoặc nút tạm dừng sẽ mở menu.
+Hướng dẫn: Về đích trong ba vị trí đầu trước khi hết giờ. Sau đó trở lại gặp thầy Khánh để nhận tài liệu. Esc, P hoặc nút tạm dừng sẽ mở menu.
 - Bắt đầu
 	=> END
 - Xem lại

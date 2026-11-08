@@ -28,6 +28,27 @@ extends Node2D
 var _was_drinking: bool = false
 
 
+func use_khanh_skin() -> void:
+	# Build a separate resource so the player and the other ghosts keep their art.
+	var frames := SpriteFrames.new()
+	frames.remove_animation("default")
+	var folder := "res://Minigames/minigames/fit_runner/assets/character/"
+	for animation in [anim_idle, anim_jog, anim_run, anim_push, anim_sprint, anim_stumble, anim_drink]:
+		frames.add_animation(animation)
+		frames.set_animation_speed(animation, 8.0)
+		if animation == anim_idle:
+			frames.add_frame(animation, load(folder + "khanh.png"))
+		else:
+			for i in range(1, 4):
+				frames.add_frame(animation, load(folder + "khanhrun%d.png" % i))
+	_sprite.sprite_frames = frames
+	var texture := frames.get_frame_texture(anim_run, 0)
+	# Character PNGs need not have the same canvas size as the player frames.
+	_sprite.scale = Vector2.ONE * 48.0 / texture.get_height()
+	_sprite.offset = Vector2(-texture.get_width() * 0.5, -texture.get_height())
+	_sprite.play(anim_idle)
+
+
 ## pace: fraction of max speed. slope_angle: radians, negative = nose up.
 func apply(pace: float, walled: bool, drinking: bool, slope_angle: float) -> void:
 	var anim: StringName = _animation_for(pace, walled, drinking)

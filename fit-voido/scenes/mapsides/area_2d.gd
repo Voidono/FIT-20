@@ -64,6 +64,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if DialogueNPC.is_any_talking or ("can_move" in _nearby_player and not _nearby_player.can_move):
 		return
 	if event.is_action_pressed("interact") and _armed and not _initializing:
+		if not SceneLoader.is_nearest_door(self, _nearby_player): return
 		get_viewport().set_input_as_handled()
 		_try_use(_nearby_player)
 

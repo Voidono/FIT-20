@@ -1,0 +1,6 @@
+[gd_scene format=3]
+[ext_resource type="Script" path="res://scenes/templates/room_sign.gd" id="sign"]
+[node name="RoomSign" type="Node2D"]
+z_index = 4
+texture_filter = 1
+script = ExtResource("sign")

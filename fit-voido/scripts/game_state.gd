@@ -600,7 +600,7 @@ func _read_dictionary(save_file: ConfigFile, key: String) -> Dictionary:
 
 # QuestManager API: GameState remains the single persistent source of truth.
 const QUEST_CATALOG = {
-	"meet_minh": ["Một nơi xa lạ", "Di chuyển tới Minh gần cổng trường và tương tác để hỏi chuyện."],
+	"meet_minh": ["Một nơi xa lạ", "Di chuyển tới thầy Dũng gần cổng trường và tương tác để hỏi chuyện."],
 	"stage1_challenge": ["Viên đá đầu tiên", "Hoàn thành một thử thách rồi trở lại gặp giảng viên trước Nhà C."],
 	"reach_building_c": ["Đến Nhà C", "Đi tới tòa nhà màu xanh phía trên bản đồ và gặp giảng viên trước cửa."],
 	"enter_room_417": ["Phòng 417", "Đi đến phòng học 417."],
@@ -609,9 +609,9 @@ const QUEST_CATALOG = {
 	"reach_room_416": ["Đến Phòng 416", "Sang Phòng 416 tìm giảng viên để tiếp tục hành trình."],
 	"unlock_room_416": ["Mở cửa Phòng 416", "Nhập năm thành lập FIT vào bảng mã để giúp giảng viên mở cửa."],
 	"reach_room_419": ["Đến Phòng 419", "Tìm giảng viên Truyền thông Đa phương tiện ở Phòng 419, tầng 4 Nhà C."],
-	"find_thay_tuan": ["Tìm thầy Tuấn", "Tìm thầy Tuấn mặc áo marathon gần đường chạy ở sân thể thao."],
-	"fit_runner_race": ["Cuộc đua sân thể thao", "Về đích trong ba vị trí đầu ở Ghost Race rồi quay lại gặp thầy Tuấn."],
-	"return_to_tuan": ["Nhận tài liệu", "Trở lại gặp thầy Tuấn ở sân thể thao để nhận tài liệu."],
+	"find_thay_tuan": ["Tìm thầy Khánh", "Tìm thầy Khánh mặc áo marathon gần đường chạy ở sân thể thao."],
+	"fit_runner_race": ["Cuộc đua sân thể thao", "Về đích trong ba vị trí đầu ở Ghost Race rồi quay lại gặp thầy Khánh."],
+	"return_to_tuan": ["Nhận tài liệu", "Trở lại gặp thầy Khánh ở sân thể thao để nhận tài liệu."],
 	"deliver_marathon_documents": ["Giao tài liệu", "Mang chương trình lễ kỷ niệm tới giảng viên phụ trách lễ kỷ niệm, bên ngoài Văn phòng Khoa 210C."],
 	"rescue_faculty_head": ["Biến cố tại Văn phòng Khoa", "Tìm hiểu tiếng động tại Văn phòng Khoa 210C và đánh bại CON BUG để giải cứu thầy Trưởng khoa."],
 	"claim_boss_reward": ["Giải cứu thành công", "Trở lại cửa Văn phòng Khoa 210C để gặp thầy Trưởng khoa và nhận viên đá cuối cùng."],

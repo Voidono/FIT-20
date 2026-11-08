@@ -51,9 +51,9 @@ func run() -> void:
 	check(not game._hud._mode_buttons[0].visible and not game._hud._result_panel._mode_menu.visible, "Story mode selectors hidden")
 	var manager = root.get_node("DialogueManager")
 	var resource = manager.create_resource_from_text(FileAccess.get_file_as_string("res://Dialogues/chapter3_tuan.dialogue"))
-	check(resource != null, "Thay Tuan dialogue compiles")
+	check(resource != null, "Khánh field dialogue compiles")
 	var line = await manager.get_next_dialogue_line(resource, "start")
-	check(line != null and line.text.contains("tài liệu"), "Repeat dialogue directs document delivery")
+	check(line != null and line.character == "Thầy Khánh" and line.text.contains("thầy Ngọc"), "Khánh directs document delivery to Ngọc")
 	game.queue_free()
 	DirAccess.remove_absolute(state.save_path)
 	await process_frame

@@ -1,5 +1,7 @@
 # Chapter 1 implementation
 
+Current cast: thầy Dũng replaces Minh at the entrance, and thầy Tùng is the Nhà C lecturer. Legacy node and quest IDs are retained for saves; see `NPC_CAST.md`.
+
 Confirmed choices: named activities; return to the lecturer for Stone #1; Minh near the right-side gate/start; lecturer beside the blue Nhà C building.
 
 ## Playable route

@@ -1,13 +1,20 @@
 [gd_scene format=3 uid="uid://c1qdxc82i26n8"]
 
-[ext_resource type="Texture2D" uid="uid://dl7aom5gvq1hw" path="res://assets/room/Room_Builder_Office_32x32.png" id="1_afda2"]
-[ext_resource type="Texture2D" uid="uid://c0aj3n2hhlwrb" path="res://assets/room/Modern_Office_48x48.png" id="2_kb5ep"]
-[ext_resource type="Texture2D" uid="uid://d00m8yyogxeyk" path="res://assets/building/32x32/Sprite-0001.png" id="3_kb3v2"]
-[ext_resource type="Texture2D" uid="uid://bufeoifrgkacr" path="res://assets/room/Modern_Office_32x32.png" id="3_kvibg"]
-[ext_resource type="PackedScene" uid="uid://c43kdrqiv4a0n" path="res://scenes/Character/Character.tscn" id="5_4hjnm"]
+[ext_resource type="Texture2D" uid="uid://dl7aom5gvq1hw" path="res://assets/room/Room_Builder_Office_32x32.png" id="1_wk577"]
+[ext_resource type="Texture2D" uid="uid://c0aj3n2hhlwrb" path="res://assets/room/Modern_Office_48x48.png" id="2_rp7ns"]
+[ext_resource type="Texture2D" uid="uid://bufeoifrgkacr" path="res://assets/room/Modern_Office_32x32.png" id="3_essii"]
+[ext_resource type="Texture2D" uid="uid://d00m8yyogxeyk" path="res://assets/building/32x32/Sprite-0001.png" id="4_6tdjr"]
+[ext_resource type="PackedScene" uid="uid://c43kdrqiv4a0n" path="res://scenes/Character/Character.tscn" id="5_5ebj6"]
+[ext_resource type="PackedScene" uid="uid://c0gjtr6ij3dyy" path="res://scenes/Character/dialogue_npc.tscn" id="6_cd0xn"]
+[ext_resource type="Texture2D" uid="uid://bmrkbm77sbroc" path="res://assets/DrawAsset/NPC/Thắng.png" id="7_rp7ns"]
+[ext_resource type="Script" path="res://scenes/chapters/office210.gd" id="office_story"]
+[ext_resource type="Resource" path="res://Dialogues/office210.dialogue" id="office_dialogue"]
+[ext_resource type="Texture2D" uid="uid://dys1l7tih8wj2" path="res://assets/Phase1.png" id="8_essii"]
+[sub_resource type="RectangleShape2D" id="OfficeExit"]
+size = Vector2(90, 80)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kb3v2"]
-texture = ExtResource("1_afda2")
+texture = ExtResource("1_wk577")
 2:0/0 = 0
 3:0/0 = 0
 4:0/0 = 0
@@ -628,7 +635,7 @@ texture = ExtResource("1_afda2")
 31:25/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kvibg"]
-texture = ExtResource("2_kb5ep")
+texture = ExtResource("2_rp7ns")
 0:1/0 = 0
 1:1/0 = 0
 2:1/0 = 0
@@ -5286,7 +5293,7 @@ texture = ExtResource("2_kb5ep")
 8:155/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p4cdr"]
-texture = ExtResource("3_kvibg")
+texture = ExtResource("3_essii")
 0:1/0 = 0
 1:1/0 = 0
 2:1/0 = 0
@@ -7459,7 +7466,7 @@ texture = ExtResource("3_kvibg")
 5:103/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4hjnm"]
-texture = ExtResource("3_kb3v2")
+texture = ExtResource("4_6tdjr")
 0:0/0 = 0
 1:0/0 = 0
 0:1/0 = 0
@@ -7475,6 +7482,7 @@ sources/3 = SubResource("TileSetAtlasSource_4hjnm")
 sources/2 = SubResource("TileSetAtlasSource_p4cdr")
 
 [node name="văn phòng" type="Node2D" unique_id=838920267]
+script = ExtResource("office_story")
 
 [node name="TileMap" type="TileMap" parent="." unique_id=62419938]
 tile_set = SubResource("TileSet_bx8n8")
@@ -7497,6 +7505,36 @@ layer_5/name = "kệ"
 layer_5/z_index = 6
 layer_5/tile_data = PackedInt32Array(262144, 1376257, 46, 327680, 1376257, 47, 393216, 1376257, 48, 458752, 1376257, 49, 327681, 1441793, 47, 393217, 1441793, 48, 458753, 1441793, 49, 327682, 1507329, 47, 393218, 1507329, 48, 458754, 1507329, 49, 327683, 1507329, 47, 393219, 1507329, 48, 458755, 1507329, 49, 327684, 1507329, 47, 393220, 1507329, 48, 458756, 1507329, 49, 327685, 1507329, 47, 393221, 1507329, 48, 458757, 1507329, 49, 327686, 1507329, 47, 393222, 1507329, 48, 458758, 1507329, 49, 327687, 1507329, 47, 393223, 1507329, 48, 458759, 1507329, 49, 327688, 1507329, 47, 393224, 1507329, 48, 458760, 1507329, 49, 327689, 1507329, 47, 393225, 1507329, 48, 458761, 1507329, 49, 327690, 1507329, 47, 393226, 1507329, 48, 458762, 1507329, 49, 327691, 1507329, 47, 393227, 1507329, 48, 458763, 1507329, 49, 262156, 1572865, 46, 327692, 1572865, 47, 393228, 1572865, 48, 458764, 1572865, 49)
 
-[node name="Character" parent="." unique_id=1990053383 instance=ExtResource("5_4hjnm")]
+[node name="Character" parent="." unique_id=1990053383 instance=ExtResource("5_5ebj6")]
 z_index = 4
-position = Vector2(246, 102)
+position = Vector2(256, 280)
+
+[node name="DialogueNPC" parent="." unique_id=194546955 instance=ExtResource("6_cd0xn")]
+position = Vector2(464, 31)
+npc_sprite = ExtResource("7_rp7ns")
+mode = 0
+
+[node name="DialogueNPC2" parent="." unique_id=77132727 instance=ExtResource("6_cd0xn")]
+position = Vector2(269, 120)
+scale = Vector2(2.0220838, 2.0220838)
+npc_sprite = ExtResource("8_essii")
+mode = 0
+dialogue = ExtResource("office_dialogue")
+speed = 106.0
+wander_radius = 183.0
+
+[node name="Exit" type="Area2D" parent="."]
+position = Vector2(256, 322)
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Exit"]
+shape = SubResource("OfficeExit")
+
+[node name="Label" type="Label" parent="Exit"]
+offset_left = 40.0
+offset_top = -12.0
+offset_right = 232.0
+offset_bottom = 12.0
+text = "RA HÀNH LANG · E / Tương tác"
+horizontal_alignment = 0
+theme_override_font_sizes/font_size = 11

@@ -46,7 +46,7 @@ func _draw() -> void:
 		draw_line(Vector2(tile * 580 + 140, 360), Vector2(tile * 580 + 140, 600), Color("92988a"), 1)
 		_spectators(Vector2(tile * 580 + 260, 380))
 		var section: int = posmod(tile, 4)
-		var words: Array[String] = ["FIT  /  CAMPUS RUN", "KEEP YOUR RHYTHM", "ONE FIELD. ONE FINISH.", "MAKE YOUR MOVE"]
+		var words: Array[String] = ["FIT  /  ĐƯỜNG CHẠY", "GIỮ NHỊP CỦA BẠN", "CÙNG CHẠY. CÙNG VỀ ĐÍCH.", "ĐẾN LÚC BỨT TỐC"]
 		draw_rect(Rect2(tile * 580 + 330, 354, 220, 24), Color("153d34"))
 		draw_string(ThemeDB.fallback_font, Vector2(tile * 580 + 341, 371), words[section], HORIZONTAL_ALIGNMENT_LEFT, -1, 12, Color("e7f4ba"))
 	# The same start/finish line returns at the end of each lap.

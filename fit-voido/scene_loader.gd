@@ -8,6 +8,28 @@ var previous_scene := MENU
 var activity_id := ""
 var _restore_position := false
 var _scene_spawn: Dictionary = {}
+## Session-local hallway return; the boss checkpoint separately returns inside 210.
+var office210_return: Dictionary = {}
+
+func leave_office210() -> Error:
+	return go_to_spawn(str(office210_return.get("scene", "res://scenes/mapsides/t_2.tscn")), office210_return.get("position", Vector2(2436, 296)))
+
+func is_nearest_door(door: Area2D, player: Node2D) -> bool:
+	# Opposing hallway doors have overlapping interaction ranges. Resolve by
+	# distance, rather than whichever node receives the input first.
+	var scene := get_tree().current_scene
+	if scene == null: return true
+	var shape := door.get_node_or_null("CollisionShape2D") as Node2D
+	var center := shape.global_position if shape != null else door.global_position
+	var distance := player.global_position.distance_squared_to(center)
+	for candidate in scene.find_children("*", "Area2D", true, false):
+		if candidate == door or not candidate.is_visible_in_tree(): continue
+		if not (candidate.has_method("_try_use") or candidate.has_method("_locked") or candidate.has_method("_open_keypad") or candidate.has_method("_talk")): continue
+		if not candidate.get_overlapping_bodies().has(player): continue
+		var other_shape := candidate.get_node_or_null("CollisionShape2D") as Node2D
+		var other_center: Vector2 = other_shape.global_position if other_shape != null else candidate.global_position
+		if player.global_position.distance_squared_to(other_center) < distance - 0.01: return false
+	return true
 
 func show_faculty_disturbance() -> void:
 	var layer := CanvasLayer.new()

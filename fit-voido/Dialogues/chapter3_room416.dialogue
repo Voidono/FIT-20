@@ -54,16 +54,16 @@ Giảng viên: Mở được rồi! Cảm ơn em nhé.
 Bạn: Dạ. Thầy ở trong đó lâu chưa ạ?
 Giảng viên: Đủ lâu để đọc hết thông báo trên tường. Kể cả cái hết hạn từ học kỳ trước.
 Bạn: Em đang tìm những Viên Đá Thời Gian để trở về năm 2006. Thầy có biết manh mối nào không ạ?
-Giảng viên: Em lên [color=green]Phòng 419, tầng 4 Nhà C[/color], tìm giảng viên Truyền thông Đa phương tiện nhé.
+Giảng viên: Em tới [color=green]Phòng 419, tầng 4 Nhà C[/color], tìm [color=yellow]thầy Tuấn[/color] bên Truyền thông Đa phương tiện nhé.
 Giảng viên: Đó là phòng nghỉ của thầy cô bên ấy. Em hỏi về manh mối viên đá tiếp theo, thầy cô sẽ hướng dẫn tiếp.
 set GameState.finish_room416_rescue()
 - Dạ, em lên Phòng 419 ngay.
 	Giảng viên: Cảm ơn em lần nữa. Để thầy ra trước rồi hẵng đóng cửa nhé.
 	=> END
 - Phòng 419 ở đâu ạ?
-	Giảng viên: Tầng 4 Nhà C nhé. Em nhìn biển số phòng, tìm 419 rồi hỏi giảng viên Truyền thông Đa phương tiện.
+	Giảng viên: Tầng 4 Nhà C nhé. Em nhìn biển số phòng, tìm 419 rồi gõ cửa hỏi thầy Tuấn.
 	=> END
 
 ~ reminder
-Giảng viên: Em tìm đến [color=green]Phòng 419, tầng 4 Nhà C[/color], hỏi giảng viên Truyền thông Đa phương tiện về viên đá tiếp theo nhé.
+Giảng viên: Em tìm đến [color=green]Phòng 419, tầng 4 Nhà C[/color], hỏi thầy Tuấn về viên đá tiếp theo nhé.
 => END

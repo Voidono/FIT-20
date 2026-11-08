@@ -6,6 +6,7 @@ extends RefCounted
 
 const TABLE: Dictionary = {
 	"vi": {
+		"FR_RIVAL_KHANH": "THẦY KHÁNH · KHÓ",
 		"FR_RACE_FIRST_HINT": "Hạng nhất! Thử phá kỷ lục thời gian của bạn.",
 		"FR_ENERGY_METER": "THỂ LỰC   /   THẢ ĐỂ HỒI SỨC",
 		"FR_EFFORT_METER": "NỖ LỰC   /   GIỮ NHỊP TRONG VÙNG XANH",
@@ -21,7 +22,7 @@ const TABLE: Dictionary = {
 		"FR_MODE_RACE": "02  ĐUA BÓNG MA",
 		"FR_MODE_MENU": "Chọn chế độ",
 		"FR_PRACTICE_BRIEF": "2 vòng • 1 km • Theo bóng ma dẫn nhịp\nVề đích để hoàn thành. Không cần thắng bóng ma.",
-		"FR_RACE_BRIEF": "2 vòng • 5 đối thủ • Về đích trong top 3\nGiữ sức, vượt đối thủ và bứt tốc ở đoạn cuối.",
+		"FR_RACE_BRIEF": "2 vòng • 5 đối thủ • Về đích trong ba hạng đầu\nGiữ sức, vượt đối thủ và bứt tốc ở đoạn cuối.",
 		"FR_RACE_INFO": "VÒNG %d / 2     •     %d / 1000 m",
 		"FR_POSITION": "HẠNG %d / %d",
 		"FR_COACH_PUSH": "Giữ Space / nút chạy để tăng tốc.",
@@ -32,7 +33,7 @@ const TABLE: Dictionary = {
 		"FR_RESULT_PODIUM": "LÊN BỤC VINH QUANG!",
 		"FR_RESULT_FINISHED": "ĐÃ VỀ ĐÍCH",
 		"FR_RACE_WON_HINT": "Một cuộc đua tốt! Thử giành hạng nhất lần tới.",
-		"FR_RACE_RETRY_HINT": "Cần vào top 3. Giữ nhịp và tận dụng các trạm.",
+		"FR_RACE_RETRY_HINT": "Cần vào ba hạng đầu. Giữ nhịp và tận dụng các trạm.",
 		"FR_PRACTICE_DONE": "Hoàn thành tập luyện! Chọn Đua bóng ma khi đã sẵn sàng.",
 		"FR_ZONE_RECOVER": "Hồi sức",
 		"FR_ZONE_CRUISE": "Giữ nhịp",
@@ -57,7 +58,7 @@ const TABLE: Dictionary = {
 		"FR_BTN_CONTINUE": "Tiếp tục",
 		"FR_BTN_SPEED": "⚡ TĂNG TỐC",
 		"FR_BTN_SPEED_SUB": "[ GIỮ ĐỂ CHẠY ]",
-		"FR_BTN_QTE": "🎯 CHẠM QTE",
+		"FR_BTN_QTE": "🎯 CANH NHỊP",
 		"FR_BTN_QTE_SUB": "[ KHI TỚI TRẠM ]",
 		"FR_BTN_QTE_ACTIVE_TITLE": "⚡ CHẠM NGAY!",
 		"FR_BTN_QTE_ACTIVE_SUB": "[ BỨT TỐC! ]",
@@ -73,7 +74,7 @@ const TABLE: Dictionary = {
 		"FR_QTE_PERFECT": "HOÀN HẢO! BỨT TỐC!",
 		"FR_QTE_GOOD": "TỐT! HỒI SỨC",
 		"FR_QTE_MISS": "TRƯỢT!",
-		"FR_RESULT_QTE": "QTE: %d hoàn hảo, %d tốt, %d hụt",
+		"FR_RESULT_QTE": "Canh nhịp: %d hoàn hảo, %d tốt, %d hụt",
 		"FR_SIGN_START": "XUẤT PHÁT",
 		"FR_SIGN_HILL": "DỐC",
 		"FR_SIGN_WATER": "TRẠM NĂNG LƯỢNG",
@@ -84,6 +85,7 @@ const TABLE: Dictionary = {
 		"FR_SIGN_FINISH": "VỀ ĐÍCH",
 	},
 	"en": {
+		"FR_RIVAL_KHANH": "THẦY KHÁNH · HARD",
 		"FR_RACE_FIRST_HINT": "First place! Try beating your finishing time next.",
 		"FR_ENERGY_METER": "ENERGY   /   RELEASE TO RECOVER",
 		"FR_EFFORT_METER": "EFFORT   /   FIND YOUR GREEN RHYTHM",

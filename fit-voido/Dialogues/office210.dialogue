@@ -1,0 +1,57 @@
+# Automatic Chapter 4 entrance. The room controller advances cinematic lines;
+# Enter / tap can still advance sooner. Battle launch happens after the balloon closes.
+~ locked
+Bạn: Tiếng gì trong phòng vậy? Mình cần đủ ba viên đá và kỹ năng ở phòng 417 trước khi vào giúp thầy.
+=> END
+
+~ intro
+Thầy Thắng: Đừng lại gần cái máy! Nó vừa tự mở thêm ba mươi cửa sổ!
+CON BUG: KHÔNG PHẢI LỖI. ĐÂY LÀ TÍNH NĂNG.
+Bạn: Dạ, tính năng này có nhất thiết phải đuổi thầy vào góc không ạ?
+Thầy Thắng: Thầy lùi để lấy khoảng trống xử lý. Hết khoảng trống rồi!
+CON BUG: ĐANG TỐI ƯU… XÓA NÚT THOÁT.
+Thầy Thắng: Không! Cái đó thầy còn dùng! Em ơi, cứu thầy với!
+Bạn: Thầy đứng yên nhé. Em có kỹ năng từ phòng 417 rồi.
+if GameState.selected_skill() == "fist":
+	Bạn: Lần này em xin phép xử lý lỗi bằng… nắm đấm ạ.
+else:
+	Bạn: Em sẽ làm nó yếu dần. Thầy tránh xa vùng xanh giúp em nhé!
+Thầy Thắng: Thầy đang tránh tất cả các vùng rồi! Cẩn thận đấy em!
+Thầy Thắng: Chọn độ khó phù hợp nhé. Nếu cần xem cách chơi, em mở Hướng dẫn trong menu tạm dừng.
+CON BUG: PHÁT HIỆN NGƯỜI DÙNG. BẮT ĐẦU KIỂM TRA SỨC CHỊU ĐỰNG.
+=> END
+
+~ retry
+Thầy Thắng: Em quay lại rồi! Thầy vẫn đang ở chế độ… giữ nguyên hiện trạng.
+Bạn: Thầy chờ thêm một chút. Em xử lý CON BUG ngay đây!
+=> END
+
+~ rescue
+if GameState.boss_resolution() == "spared":
+	CON BUG: Tôi… dừng lại được rồi. Tôi làm thầy sợ à?
+	Thầy Thắng: Không, thầy chỉ đang kiểm tra nhịp tim. Hơi kỹ một chút.
+	Bạn: Mình sửa cùng nhau nhé. Trước hết, đừng xóa nút thoát nữa.
+else:
+	Thầy Thắng: Nó dừng rồi phải không? Thầy ra khỏi góc được chưa?
+	Bạn: Dạ, an toàn rồi ạ. CON BUG không còn tấn công nữa.
+	Thầy Thắng: Tốt quá. Thầy vừa tính chuyển văn phòng sang hành lang.
+Thầy Thắng: Cảm ơn em đã cứu thầy và hệ thống của Khoa. Đây là viên đá thời gian thứ tư.
+set GameState.claim_boss_rescue_stone()
+Bạn: Đủ bốn viên rồi… Em còn kịp về năm 2006 nộp bài không ạ?
+Thầy Thắng: Có chứ. Khi sẵn sàng, nói chuyện với thầy để mở Cánh Cửa Thời Gian nhé.
+=> END
+
+~ after
+Thầy Thắng: Hệ thống đã ổn định. Em có đủ bốn viên đá để mở Cánh Cửa Thời Gian rồi.
+- Mở Cánh Cửa Thời Gian.
+	set SceneLoader.go_to("res://scenes/chapters/time_gate.tscn")
+	=> END
+
+- Em muốn nhìn quanh thêm một chút.
+	Thầy Thắng: Cứ tự nhiên. Chỉ cần đừng bấm vào tệp có tên "chạy_thử_lần_cuối".
+	=> END
+
+~ bug_calm
+CON BUG: Tôi đã đổi tên tệp thành "đừng_chạy_nữa". Lần này tên tệp là tài liệu hướng dẫn.
+Bạn: Tiến bộ rồi đấy. Cứ giữ nguyên như vậy nhé.
+=> END

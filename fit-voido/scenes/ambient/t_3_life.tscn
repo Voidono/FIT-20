@@ -4,12 +4,7 @@
 [ext_resource type="Script" path="res://scenes/ambient/ambient_npc.gd" id="ambient"]
 [ext_resource type="Resource" path="res://Dialogues/campus_banter.dialogue" id="banter"]
 [ext_resource type="Texture2D" path="res://assets/DrawAsset/NPC/NPC_2_down_Idle.png" id="tex_prompt"]
-[ext_resource type="Texture2D" path="res://assets/DrawAsset/NPC/T1.png" id="tex_cloud"]
 [ext_resource type="Texture2D" path="res://assets/DrawAsset/NPC/boykopho2.png" id="tex_git"]
-[ext_resource type="Texture2D" path="res://assets/DrawAsset/NPC/boypho69.png" id="tex_tab"]
-[ext_resource type="Texture2D" path="res://assets/DrawAsset/NPC/NPC_1_down_Idle.png" id="tex_silent"]
-[ext_resource type="Texture2D" path="res://assets/DrawAsset/NPC/boysuda.png" id="tex_buffer"]
-[ext_resource type="Texture2D" path="res://assets/DrawAsset/NPC/NPC_2_down_Idle.png" id="tex_bluetooth"]
 
 [node name="T_3Life" type="Node2D"]
 y_sort_enabled = true
@@ -22,7 +17,7 @@ npc_skin = "NPC_2"
 dialogue = ExtResource("banter")
 cue = "prompt_1"
 conversation_cues = PackedStringArray("prompt_1", "prompt_2")
-npc_name = "Prompt Sư Chưa Tốt Nghiệp"
+npc_name = "Prompt Có Tâm"
 prompt_text = "Tám chuyện"
 walk_bob_height = 0.0
 flip_sprite = false
@@ -34,37 +29,17 @@ body_capsule_radius = 7.0
 body_capsule_height = 16.0
 mode = 2
 ping_pong = true
-patrol_points = Array[Vector2]([Vector2(0, -40), Vector2(0, 40)])
-
-[node name="cloud" parent="." instance=ExtResource("npc")]
-script = ExtResource("ambient")
-position = Vector2(580, 345)
-npc_sprite = ExtResource("tex_cloud")
-npc_skin = ""
-dialogue = ExtResource("banter")
-cue = "cloud_1"
-conversation_cues = PackedStringArray("cloud_1", "cloud_2")
-npc_name = "Đám Mây Hết Dung Lượng"
-prompt_text = "Tám chuyện"
-walk_bob_height = 0.0
-flip_sprite = false
-animation_fps = 7
-speed = 28.0
-min_wait = 1.8
-max_wait = 4.5
-body_capsule_radius = 7.0
-body_capsule_height = 16.0
-mode = 0
+patrol_points = Array[Vector2]([Vector2(-64, 0), Vector2(64, 0)])
 
 [node name="git" parent="." instance=ExtResource("npc")]
 script = ExtResource("ambient")
-position = Vector2(1050, 310)
+position = Vector2(1000, 310)
 npc_sprite = ExtResource("tex_git")
 npc_skin = "boykopho"
 dialogue = ExtResource("banter")
 cue = "git_1"
 conversation_cues = PackedStringArray("git_1", "git_2")
-npc_name = "Git Đổ Tại Máy Em"
+npc_name = "Khách Tham Quan Đã Commit"
 prompt_text = "Tám chuyện"
 walk_bob_height = 0.0
 flip_sprite = false
@@ -75,88 +50,4 @@ max_wait = 4.5
 body_capsule_radius = 7.0
 body_capsule_height = 16.0
 mode = 1
-wander_radius = 30.0
-
-[node name="tab" parent="." instance=ExtResource("npc")]
-script = ExtResource("ambient")
-position = Vector2(1510, 340)
-npc_sprite = ExtResource("tex_tab")
-npc_skin = ""
-dialogue = ExtResource("banter")
-cue = "tab_1"
-conversation_cues = PackedStringArray("tab_1", "tab_2")
-npc_name = "Tab Thứ Chín Mươi Chín"
-prompt_text = "Tám chuyện"
-walk_bob_height = 0.0
-flip_sprite = false
-animation_fps = 7
-speed = 28.0
-min_wait = 1.8
-max_wait = 4.5
-body_capsule_radius = 7.0
-body_capsule_height = 16.0
-mode = 0
-
-[node name="silent" parent="." instance=ExtResource("npc")]
-script = ExtResource("ambient")
-position = Vector2(1980, 330)
-npc_sprite = ExtResource("tex_silent")
-npc_skin = "NPC_1"
-dialogue = ExtResource("banter")
-cue = "silent_1"
-conversation_cues = PackedStringArray("silent_1", "silent_2")
-npc_name = "Chế Độ Im Lặng Rất To"
-prompt_text = "Tám chuyện"
-walk_bob_height = 0.0
-flip_sprite = false
-animation_fps = 7
-speed = 28.0
-min_wait = 1.8
-max_wait = 4.5
-body_capsule_radius = 7.0
-body_capsule_height = 16.0
-mode = 2
-ping_pong = true
-patrol_points = Array[Vector2]([Vector2(-60, 0), Vector2(60, 0)])
-
-[node name="buffer" parent="." instance=ExtResource("npc")]
-script = ExtResource("ambient")
-position = Vector2(2370, 300)
-npc_sprite = ExtResource("tex_buffer")
-npc_skin = ""
-dialogue = ExtResource("banter")
-cue = "buffer_1"
-conversation_cues = PackedStringArray("buffer_1", "buffer_2")
-npc_name = "Não Đang Buffer"
-prompt_text = "Tám chuyện"
-walk_bob_height = 0.0
-flip_sprite = false
-animation_fps = 7
-speed = 28.0
-min_wait = 1.8
-max_wait = 4.5
-body_capsule_radius = 7.0
-body_capsule_height = 16.0
-mode = 0
-
-[node name="bluetooth" parent="." instance=ExtResource("npc")]
-script = ExtResource("ambient")
-position = Vector2(3060, 460)
-npc_sprite = ExtResource("tex_bluetooth")
-npc_skin = "NPC_2"
-dialogue = ExtResource("banter")
-cue = "bluetooth_1"
-conversation_cues = PackedStringArray("bluetooth_1", "bluetooth_2")
-npc_name = "Bluetooth Ghép Nhầm Loa"
-prompt_text = "Tám chuyện"
-walk_bob_height = 0.0
-flip_sprite = false
-animation_fps = 7
-speed = 28.0
-min_wait = 1.8
-max_wait = 4.5
-body_capsule_radius = 7.0
-body_capsule_height = 16.0
-mode = 2
-ping_pong = true
-patrol_points = Array[Vector2]([Vector2(0, -60), Vector2(0, 60)])
+wander_radius = 24.0

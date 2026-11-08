@@ -20,6 +20,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if _panel != null or not is_instance_valid(_player) or DialogueNPC.is_any_talking:
 		return
 	if event.is_action_pressed("interact"):
+		if not SceneLoader.is_nearest_door(self, _player): return
 		get_viewport().set_input_as_handled()
 		if not GameState.is_chapter_unlocked(3):
 			_show_dialogue()

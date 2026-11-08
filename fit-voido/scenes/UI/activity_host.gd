@@ -15,6 +15,7 @@ var _exit_button: Button
 var _message: Label
 var _intro_open := false
 var _intro_balloon: Node
+var _result_screen: Control
 
 
 func _ready() -> void:
@@ -23,6 +24,10 @@ func _ready() -> void:
 	GameState.save_failed.connect(_on_save_failed)
 	if not GameState.can_start_activity(_id):
 		_message.text = "Không thể bắt đầu thử thách. Hãy quay lại khuôn viên."
+		return
+	# The office entrance already delivered the Chapter 4 introduction.
+	if _id == "boss_fight" and SceneLoader.previous_scene == "res://scenes/mapsides/phòng210.tscn":
+		_launch_game()
 		return
 	await _show_introduction()
 	if _leaving:
@@ -91,6 +96,7 @@ func _build_controls() -> void:
 	panel.grow_horizontal = Control.GROW_DIRECTION_BEGIN
 	_exit_button = Button.new()
 	_exit_button.text = "Về khuôn viên"
+	if _id == "boss_fight": _exit_button.text = "Trở lại phòng 210C"
 	_exit_button.custom_minimum_size = Vector2(208, 48)
 	_exit_button.pressed.connect(_return_to_host)
 	panel.add_child(_exit_button)
@@ -123,15 +129,27 @@ func _on_boss_finished(result: Variant) -> void:
 		"base_points": result.base_points, "health_bonus": result.health_bonus,
 		"score_multiplier": result.score_multiplier,
 	})
-	_message.text = "Chiến thắng! Trở lại cửa 210C để gặp thầy Trưởng khoa và nhận viên đá cuối cùng." if result.won() else "Chưa giải cứu được thầy. Em có thể thử lại để đánh bại CON BUG."
+	_message.text = "Chiến thắng! Trở lại bên trong phòng 210C để gặp thầy Thắng và nhận viên đá cuối cùng." if result.won() else "Chưa giải cứu được thầy. Em có thể thử lại để đánh bại CON BUG."
 	if result.won():
 		_message.text += "\nĐiểm: %d = (%d + %d HP) × %.1f\nKỷ lục: %d" % [result.score, result.base_points, result.health_bonus, result.score_multiplier, int(GameState.activity_result(_id).get("best_score", 0))]
 	elif result.spared():
-		_message.text = "CON BUG đã dừng lại. Thầy Trưởng khoa an toàn! Trở lại cửa 210C để nhận viên đá cuối cùng."
+		_message.text = "CON BUG đã dừng lại. Thầy Thắng an toàn! Trở lại bên trong phòng 210C để nhận viên đá cuối cùng."
 	_exit_button.grab_focus()
+	_exit_button.get_parent().hide()
+	if is_instance_valid(_result_screen): _result_screen.queue_free()
+	_result_screen = preload("res://scenes/UI/boss_result_screen.gd").new()
+	_result_screen.result = result
+	_result_screen.best_score = int(GameState.activity_result(_id).get("best_score", 0))
+	var layer := CanvasLayer.new()
+	layer.layer = 180
+	layer.process_mode = Node.PROCESS_MODE_ALWAYS
+	add_child(layer)
+	layer.add_child(_result_screen)
+	_result_screen.return_requested.connect(_return_to_host)
 
 
 func _on_save_failed(_error: int) -> void:
+	if is_instance_valid(_result_screen): _result_screen.show_notice("Chưa lưu được tiến trình. Hãy nhấn trở lại để thử lưu lại.")
 	_exit_button.show()
 	_message.text = "Chưa lưu được tiến trình. Hãy thử lưu lại trước khi thoát."
 	_exit_button.text = "Lưu lại và trở về"
@@ -152,3 +170,4 @@ func _return_to_host() -> void:
 		_leaving = false
 		_exit_button.show()
 		_message.text = "Không thể trở về. Vui lòng thử lại."
+		if is_instance_valid(_result_screen): _result_screen.show_notice(_message.text)

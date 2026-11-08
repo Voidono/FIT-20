@@ -45,7 +45,7 @@ func _draw() -> void:
 	for item in targets:
 		if not is_instance_valid(item.node): continue
 		var foot: Vector2 = camera * item.node.global_position
-		var point: Vector2 = camera * (item.node.global_position + Vector2(0, -58))
+		var point: Vector2 = camera * (item.node.global_position + item.get("offset", Vector2(0, -58)))
 		if Rect2(Vector2(24, 76), screen - Vector2(48, 130)).has_point(point) and not journal_rect.has_point(point):
 			any_on_screen = true
 			# The NPC's own name/E prompt takes over at interaction distance.

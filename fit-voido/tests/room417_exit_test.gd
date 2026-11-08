@@ -29,7 +29,7 @@ func run() -> void:
 		await process_frame
 	await create_timer(0.5).timeout
 	player = get_first_node_in_group("player")
-	if current_scene == null or current_scene.scene_file_path != "res://scenes/mapsides/t_4.tscn" or player.position.distance_to(Vector2(2723, 390)) > 2:
+	if current_scene == null or current_scene.scene_file_path != "res://scenes/mapsides/t_4.tscn" or player.position.distance_to(Vector2(2723, 300)) > 2:
 		push_error("Classroom exit did not arrive at corrected hallway position")
 		quit(1)
 		return
@@ -45,13 +45,15 @@ func run() -> void:
 		quit(1)
 		return
 	var start: Vector2 = player.position
-	player.velocity = Vector2(0, 100)
-	player.move_and_collide(Vector2(0, 24))
-	if player.position.y < start.y + 20:
+	# The current spawn sits inside the horizontal corridor above the door.
+	player.velocity = Vector2(100, 0)
+	var hit = player.move_and_collide(Vector2(24, 0))
+	if player.position.x < start.x + 20:
+		print("Blocked by ", hit.get_collider().get_path() if hit != null else "none", " start=", start, " end=", player.position)
 		push_error("Cannot walk away from the classroom exit")
 		quit(1)
 		return
-	player.position = Vector2(2723, 390)
+	player.position = Vector2(2723, 300)
 	await create_timer(0.2).timeout
 	Input.parse_input_event(press)
 	deadline = Time.get_ticks_msec() + 15000

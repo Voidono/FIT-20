@@ -1,7 +1,7 @@
 ~ start
-Huấn luyện viên: Em muốn tập chạy FIT Runner không? Đây là chế độ Practice dành cho thử thách đầu tiên. Giữ nút chạy để tăng nỗ lực, thả ra để hồi thể lực.
+Huấn luyện viên: Em muốn tập chạy FIT Runner không? Đây là chế độ Tập luyện dành cho thử thách đầu tiên. Giữ nút chạy để tăng nỗ lực, thả ra để hồi thể lực.
 Huấn luyện viên: Hoàn thành đường chạy trước thời gian giới hạn để vượt qua thử thách. Em có thể quay lại khuôn viên bất cứ lúc nào.
-- Bắt đầu Practice!
+- Bắt đầu Tập luyện!
 	set SceneLoader.start_minigame("fit_runner")
 	=> END
 - Để em chuẩn bị thêm

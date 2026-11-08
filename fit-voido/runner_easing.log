@@ -1,0 +1,8 @@
+Godot Engine v4.7.stable.official.5b4e0cb0f - https://godotengine.org
+
+Ghost 1: 85.6009096180855 -> 91.0647974660484
+Ghost 2: 89.0861547179449 -> 94.7725050190903
+Ghost 3: 89.5816479197169 -> 95.2996254465074
+Ghost 4: 92.2105287094306 -> 98.0963071376921
+Ghost 5: 85.818799443305 -> 91.2965951524521
+PASS: all rivals 6% slower, guide unchanged, Vietnamese default and translations

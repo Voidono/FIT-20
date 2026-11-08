@@ -1,14 +1,14 @@
-﻿# Chapter 1 lecturer: named activity choice and reward handover.
+# Chapter 1 lecturer: named activity choice and reward handover.
 ~ start
 if GameState.has_time_stone(1):
-	Thầy Giảng Viên: Em đã nhận Viên Đá Thời Gian #1. Cửa Nhà C đã mở! Hãy vào Phòng 417 để tiếp tục hành trình.
+	Thầy Tùng: Em đã nhận Viên Đá Thời Gian #1. Cửa Nhà C đã mở! Hãy vào Phòng 417 để tiếp tục hành trình.
 	=> END
 if GameState.can_claim_stage1_stone():
 	=> reward
 set GameState.complete_quest("reach_building_c")
 set GameState.start_quest("stage1_challenge")
 if GameState.stage1_activity() != "":
-	Thầy Giảng Viên: Em có thể thử lại hoặc đổi sang thử thách khác. Hoàn thành một thử thách rồi trở lại đây nhận viên đá nhé!
+	Thầy Tùng: Em có thể thử lại hoặc đổi sang thử thách khác. Hoàn thành một thử thách rồi trở lại đây nhận viên đá nhé!
 	- Thử lại thử thách đã chọn
 		set SceneLoader.start_minigame(GameState.stage1_activity())
 		=> END
@@ -16,14 +16,14 @@ if GameState.stage1_activity() != "":
 		=> choose
 	- Để em chuẩn bị thêm
 		=> END
-Thầy Giảng Viên: Chào mừng em đến Nhà C! Minh đã kể về sinh viên du hành từ năm 2006 rồi.
-Thầy Giảng Viên: Muốn mở cửa Nhà C và nhận Viên Đá Thời Gian #1, em hãy hoàn thành một trong hai thử thách sau.
+Thầy Tùng: Chào mừng em đến Nhà C! Thầy Dũng đã kể về sinh viên du hành từ năm 2006 rồi.
+Thầy Tùng: Muốn mở cửa Nhà C và nhận Viên Đá Thời Gian #1, em hãy hoàn thành một trong hai thử thách sau.
 => choose
 
 ~ choose
-Thầy Giảng Viên: Cả hai thử thách đều nhận cùng một viên đá. Em thích thử thách nào?
+Thầy Tùng: Cả hai thử thách đều nhận cùng một viên đá. Em thích thử thách nào?
 - Garbage Quest — Thu gom và phân loại rác
-	Thầy Giảng Viên: Thu gom rác, mang tới đúng thùng và đạt ít nhất một sao trước khi hết giờ. Rác còn mang theo khi hết giờ sẽ không được tính điểm.
+	Thầy Tùng: Thu gom rác, mang tới đúng thùng và đạt ít nhất một sao trước khi hết giờ. Rác còn mang theo khi hết giờ sẽ không được tính điểm.
 	- Bắt đầu dọn rác!
 		set GameState.select_stage1_activity("garbage_quest")
 		set SceneLoader.start_minigame("garbage_quest")
@@ -31,7 +31,7 @@ Thầy Giảng Viên: Cả hai thử thách đều nhận cùng một viên đá
 	- Xem lựa chọn còn lại
 		=> choose
 - FIT Runner — Tập chạy Practice tại sân thể thao
-	Thầy Giảng Viên: Giữ nút chạy để tăng nỗ lực, thả ra để giảm nhịp. Chú ý thể lực và hoàn thành đường chạy trước thời gian giới hạn.
+	Thầy Tùng: Giữ nút chạy để tăng nỗ lực, thả ra để giảm nhịp. Chú ý thể lực và hoàn thành đường chạy trước thời gian giới hạn.
 	- Bắt đầu chạy!
 		set GameState.select_stage1_activity("fit_runner")
 		set SceneLoader.start_minigame("fit_runner")
@@ -42,7 +42,7 @@ Thầy Giảng Viên: Cả hai thử thách đều nhận cùng một viên đá
 	=> END
 
 ~ reward
-Thầy Giảng Viên: Xuất sắc! Em đã hoàn thành thử thách. Đây là Viên Đá Thời Gian #1 của em!
+Thầy Tùng: Xuất sắc! Em đã hoàn thành thử thách. Đây là Viên Đá Thời Gian #1 của em!
 set GameState.claim_stage1_stone()
-Thầy Giảng Viên: Cửa Nhà C đã mở. Hãy vào Phòng 417 để gặp các bạn và tiếp tục hành trình!
+Thầy Tùng: Cửa Nhà C đã mở. Hãy vào Phòng 417 để gặp các bạn và tiếp tục hành trình!
 => END

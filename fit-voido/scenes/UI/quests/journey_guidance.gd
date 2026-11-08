@@ -2,9 +2,9 @@ extends RefCounted
 ## Read-only presentation of the next story action. Does not reopen or mutate quests.
 const CHAPTERS := ["KHỞI ĐẦU", "NHỮNG NGƯỜI BẠN", "DẤU VẾT THỜI GIAN", "CON BUG", "ĐƯỜNG TRỞ VỀ"]
 const COPY := {
-	"meet_minh": [1, "Gặp Minh", "Hỏi chuyện Minh ở gần cổng trường.", "CỔNG TRƯỜNG"],
-	"reach_building_c": [1, "Tìm đến Nhà C", "Gặp giảng viên trước tòa nhà màu xanh.", "SÂN TRƯỜNG · NHÀ C"],
-	"stage1_challenge": [1, "Nhận viên đá đầu tiên", "Trở lại gặp giảng viên trước Nhà C.", "NHÀ C"],
+	"meet_minh": [1, "Gặp thầy Dũng", "Hỏi chuyện thầy Dũng ở gần cổng trường.", "CỔNG TRƯỜNG"],
+	"reach_building_c": [1, "Tìm đến Nhà C", "Gặp thầy Tùng trước tòa nhà màu xanh.", "SÂN TRƯỜNG · NHÀ C"],
+	"stage1_challenge": [1, "Nhận viên đá đầu tiên", "Trở lại gặp thầy Tùng trước Nhà C.", "NHÀ C"],
 	"garbage_quest": [1, "Một sân trường sạch hơn", "Hoàn thành Dọn rác với ít nhất một sao.", "THỬ THÁCH DỌN RÁC"],
 	"fit_runner": [1, "Tìm nhịp chạy của bạn", "Hoàn thành hai vòng ở chế độ Practice.", "SÂN THỂ THAO"],
 	"enter_room_417": [2, "Một chỗ ngồi ở 417C", "Lên tầng 4 Nhà C, vào phòng máy 417C.", "NHÀ C · TẦNG 4"],
@@ -12,14 +12,14 @@ const COPY := {
 	"chapter2_quiz": [2, "Bạn hiểu FIT đến đâu?", "Gặp giảng viên và trả lời đúng cả 5 câu hỏi.", "PHÒNG MÁY 417C"],
 	"reach_room_416": [3, "Tiếng gọi từ phòng 416", "Tới cửa phòng 416 và hỏi chuyện giảng viên.", "NHÀ C · TẦNG 4"],
 	"unlock_room_416": [3, "Một năm đáng nhớ", "Dùng manh mối của giảng viên để nhập mã cửa 416.", "PHÒNG 416"],
-	"reach_room_419": [3, "Gõ cửa phòng 419", "Hỏi giảng viên Truyền thông Đa phương tiện về viên đá tiếp theo.", "NHÀ C · TẦNG 4"],
-	"find_thay_tuan": [3, "Người thầy trên đường chạy", "Tìm thầy Tuấn mặc áo marathon, gần đường chạy.", "SÂN THỂ THAO"],
-	"fit_runner_race": [3, "Một cuộc đua cùng FIT", "Gặp thầy Tuấn. Về đích trong ba vị trí đầu ở Ghost Race.", "SÂN THỂ THAO"],
-	"return_to_tuan": [3, "Tài liệu đang chờ bạn", "Trở lại gặp thầy Tuấn để nhận chương trình lễ kỷ niệm.", "SÂN THỂ THAO"],
-	"deliver_marathon_documents": [3, "Chuyển một lời nhắn", "Giao chương trình cho giảng viên phụ trách lễ kỷ niệm, bên ngoài 210C.", "NHÀ C · VĂN PHÒNG KHOA"],
-	"rescue_faculty_head": [4, "Có chuyện ở văn phòng", "Tương tác với cửa 210C. Giúp thầy Trưởng khoa giải quyết CON BUG.", "VĂN PHÒNG KHOA · 210C"],
-	"claim_boss_reward": [4, "Sau cơn hỗn loạn", "Trở lại cửa 210C để gặp thầy Trưởng khoa và nhận viên đá cuối.", "VĂN PHÒNG KHOA · 210C"],
-	"activate_time_gate": [5, "Đã đến lúc trở về", "Tương tác với cửa 210C, mở Cánh Cửa Thời Gian và đặt bốn viên đá.", "VĂN PHÒNG KHOA · 210C"],
+	"reach_room_419": [3, "Gõ cửa phòng 419", "Gõ cửa gặp thầy Tuấn để hỏi về viên đá tiếp theo.", "NHÀ C · TẦNG 4"],
+	"find_thay_tuan": [3, "Người thầy trên đường chạy", "Tìm thầy Khánh mặc áo marathon, gần đường chạy.", "SÂN THỂ THAO"],
+	"fit_runner_race": [3, "Một cuộc đua cùng FIT", "Gặp thầy Khánh. Về đích trong ba vị trí đầu ở Ghost Race.", "SÂN THỂ THAO"],
+	"return_to_tuan": [3, "Tài liệu đang chờ bạn", "Trở lại gặp thầy Khánh để nhận chương trình lễ kỷ niệm.", "SÂN THỂ THAO"],
+	"deliver_marathon_documents": [3, "Chuyển một lời nhắn", "Giao chương trình cho thầy Ngọc, bên ngoài 210C.", "NHÀ C · VĂN PHÒNG KHOA"],
+	"rescue_faculty_head": [4, "Có chuyện ở văn phòng", "Vào phòng 210C. Giúp thầy Thắng đang bị CON BUG dồn vào góc phòng.", "VĂN PHÒNG KHOA · 210C"],
+	"claim_boss_reward": [4, "Sau cơn hỗn loạn", "Trở lại bên trong phòng 210C để gặp thầy Thắng và nhận viên đá cuối.", "VĂN PHÒNG KHOA · 210C"],
+	"activate_time_gate": [5, "Đã đến lúc trở về", "Nói chuyện với thầy Thắng trong phòng 210C để mở Cánh Cửa Thời Gian và đặt bốn viên đá.", "VĂN PHÒNG KHOA · 210C"],
 }
 
 static func resolve(state: Node) -> Dictionary:

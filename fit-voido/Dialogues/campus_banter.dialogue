@@ -1,505 +1,281 @@
 # Optional campus conversations. No progression mutations.
 
-~ pho_anh_hai_1
-Tiệm Phở Anh Hai: Phở đặc biệt hôm nay có thêm RAM.
-Bạn: RAM ăn với quẩy được à?
-Tiệm Phở Anh Hai: Không. Để nhớ là mình đã ăn sáng, khỏi gọi bát thứ hai.
-=> END
-
-~ pho_anh_hai_2
-Tiệm Phở Anh Hai: Quán em không dùng AI để nấu nước dùng.
-Bạn: Thế dùng gì?
-Tiệm Phở Anh Hai: Dùng xương. Công nghệ này chạy ổn từ rất lâu rồi.
-=> END
-
-~ banh_mi_1
-Bánh Mì Bách Khoa: Bánh mì full topping, không full deadline.
-Bạn: Cho mình một ổ không cay.
-Bánh Mì Bách Khoa: Cay thì bỏ ớt. Cay vì điểm nhóm thì bên em chưa xử lý được.
-=> END
-
-~ banh_mi_2
-Bánh Mì Bách Khoa: Mỗi ổ có ba lớp bảo mật: vỏ giòn, nhân nóng, túi buộc.
-Bạn: Có mật khẩu không?
-Bánh Mì Bách Khoa: Có. 'Cô ơi, nhiều pa-tê'.
-=> END
-
 ~ wifi_1
-Wi-Fi Một Vạch: Đừng đứng sát mình. Mình đang bắt được mạng.
-Bạn: Cậu là ăng-ten à?
-Wi-Fi Một Vạch: Không, nhưng chỉ cần nghiêng đầu một chút là tương lai sáng hơn một vạch.
+Wi-Fi Một Vạch: Mình đang tìm chỗ vừa bắt được Wi-Fi vừa bắt được kiến thức. Hiện tại chỉ bắt được muỗi.
+- Năm 2006 mình dùng mạng dây.
+	Wi-Fi Một Vạch: Bạn đi học hay đi khảo cổ vậy?
+	Bạn: Ít nhất dây mạng không bỏ mình lúc nộp bài.
+	Wi-Fi Một Vạch: Chuẩn. Quan hệ có dây nghe lại đáng tin.
+- Bạn học FIT à?
+	Wi-Fi Một Vạch: Ừ. Áo trắng, deadline đỏ. Nhận diện bằng mắt thường được luôn.
 => END
 
 ~ wifi_2
-Wi-Fi Một Vạch: Người ta có người yêu. Mình có mạng đã lưu.
-Bạn: Có khác gì nhau?
-Wi-Fi Một Vạch: Mạng cũ gặp lại vẫn hỏi mật khẩu. Lịch sự hơn nhiều.
+Wi-Fi Một Vạch: Bạn có dùng AI làm bài không? Mình hỏi nó cách qua môn, nó bảo xem lại đề cương.
+- AI là tên lớp à?
+	Wi-Fi Một Vạch: Không, trợ lý ảo.
+	Bạn: Thế có điểm danh hộ không?
+	Wi-Fi Một Vạch: Hộ được thì cả lớp đã có mặt 200% rồi.
+- Đề cương là đáp án cuối cùng rồi.
+	Wi-Fi Một Vạch: Tốn ba tiếng hỏi máy để nhận lời khuyên cô dặn từ tiết đầu.
 => END
 
 ~ nap_1
-Giấc Ngủ Hệ Số Hai: Mình không ngủ gật. Mình đang render bài giảng.
-Bạn: Sao render lại ngáy?
-Giấc Ngủ Hệ Số Hai: Quạt tản nhiệt.
+Nạp Pin Bằng Trà Đá: Mình vừa đặt mục tiêu ngủ đủ tám tiếng. Đã đạt được bốn, chia đều cả tuần.
+- Thế sao còn tỉnh được?
+	Nạp Pin Bằng Trà Đá: Nhờ trà đá HANU và nỗi sợ giảng viên gọi tên.
+	Bạn: Hai mươi năm rồi vẫn dùng cách đó à?
+	Nạp Pin Bằng Trà Đá: Công nghệ lõi thì khó thay.
+- Áo đỏ của bạn là đồng phục à?
+	Nạp Pin Bằng Trà Đá: Ừ, sinh viên trường mình. Vừa dễ nhận nhau vừa giúp mẹ nhận ra mình còn đi học.
 => END
 
 ~ nap_2
-Giấc Ngủ Hệ Số Hai: Mình đặt bảy báo thức rồi.
-Bạn: Dậy nổi không?
-Giấc Ngủ Hệ Số Hai: Không. Nhưng đoạn remix lúc bảy giờ khá cuốn.
+Nạp Pin Bằng Trà Đá: Cục đá bạn cầm là đồ án môn nào? Nhìn không có cổng sạc mà vẫn sáng.
+- Đá giúp mình về nhà.
+	Nạp Pin Bằng Trà Đá: Xịn. Mình chỉ cần cái thẻ xe để về mà còn làm mất.
+- Bạn muốn cầm thử không?
+	Nạp Pin Bằng Trà Đá: Thôi. Cầm thêm trách nhiệm là mình hết pin thật.
 => END
 
 ~ aura_1
-Chủ Tịch Aura Âm: Vừa vẫy tay nhầm người. Trừ một nghìn aura.
-Bạn: Aura là điểm rèn luyện à?
-Chủ Tịch Aura Âm: Nếu thế mình bị đuổi học từ lúc đẩy cửa có chữ 'Kéo'.
+Khách Mời Hệ Đi Lạc: Mình tới dự lễ kỷ niệm, đi theo bản đồ rồi đến đúng chỗ bắt đầu. Chắc vừa hoàn thành một vòng campus.
+- Bạn học khoa nào?
+	Khách Mời Hệ Đi Lạc: Mình là khách thôi. Bộ vest này không mở khóa được kiến thức FIT đâu.
+	Bạn: May quá, mình còn đang tìm xem hôm nay là năm nào.
+	Khách Mời Hệ Đi Lạc: Mình tìm nhà vệ sinh còn chưa xong, bạn chơi chế độ khó hơn rồi.
+- Đi theo mình không?
+	Khách Mời Hệ Đi Lạc: Bạn cầm đá phát sáng, nghe cũng giống người có nhiệm vụ. Nhưng mình xin xem biển chỉ đường trước.
 => END
 
 ~ aura_2
-Chủ Tịch Aura Âm: Mình tập bước vào lớp thật ngầu.
-Bạn: Rồi sao?
-Chủ Tịch Aura Âm: Vào nhầm lớp. Ngầu thêm hai tiếng vì không dám đứng dậy.
+Khách Mời Hệ Đi Lạc: Sinh viên bảo đi chụp ảnh cho có aura. Mình đứng cạnh cây mười phút, chỉ có kiến.
+- Aura là môn mới à?
+	Khách Mời Hệ Đi Lạc: Mình cũng chưa rõ. Nếu có thi cuối kỳ thì mình xin vắng.
+- Bạn thử đứng cạnh viên đá này.
+	Khách Mời Hệ Đi Lạc: Không biết tăng aura không, nhưng bảo vệ nhìn sang ba lần rồi.
 => END
 
-~ ctrl_z_1
-Thầy Ctrl Z: Các em nhớ lưu bài trước khi thử cái mới.
-Bạn: Nếu đã thử rồi ạ?
-Thầy Ctrl Z: Thì em vừa học xong phần 'tại sao phải lưu bài'.
+~ attendance_spirit_1
+Điểm Danh Hệ Tâm Linh: Mình có mặt ở trường từ bảy giờ. Chỉ là tiết của mình bắt đầu từ sáu rưỡi.
+- Thế có được tính chuyên cần không?
+	Điểm Danh Hệ Tâm Linh: Tâm hồn mình đến đúng giờ. Thân xác thì tắc đường.
+	Bạn: Hồi mình thầy gọi tên mới tính.
+	Điểm Danh Hệ Tâm Linh: Hai mươi năm rồi, tâm hồn vẫn chưa được cấp mã sinh viên.
+- Bạn đứng đây làm gì?
+	Điểm Danh Hệ Tâm Linh: Đợi bạn cùng lớp. Nó bảo 'đang tới', nhưng chấm xanh đang ở nhà.
 => END
 
-~ ctrl_z_2
-Thầy Ctrl Z: Hôm nay thầy không kiểm tra bất ngờ.
-Bạn: Thật ạ?
-Thầy Ctrl Z: Đúng. Thầy báo trước mười giây rồi.
+~ attendance_spirit_2
+Điểm Danh Hệ Tâm Linh: CLB hỏi mình có kỹ năng gì. Mình bảo nhận ra tiếng giảng viên từ cuối hành lang.
+- Nghe hữu ích đấy.
+	Điểm Danh Hệ Tâm Linh: Có, cả nhóm lập tức chuyển từ bàn chuyện trà sữa sang bàn chuyện đồ án.
+- Mình chỉ nghe thấy tiếng deadline.
+	Điểm Danh Hệ Tâm Linh: Vậy bạn làm trưởng ban âm thanh được rồi. Âm thanh đó ở đâu cũng có.
 => END
 
-~ deadline_1
-Thầy Deadline Dịu Dàng: Thầy cho nộp bài rất thoải mái.
-Bạn: Đến bao giờ ạ?
-Thầy Deadline Dịu Dàng: Trước hạn. Trong khoảng đó các em tự do tuyệt đối.
+~ seen_1
+Đã Seen Chưa Hiểu: Nhóm hỏi 'mọi người hiểu đề chưa'. Mình thả tim để thể hiện tình cảm, không thể hiện năng lực.
+- Sao không hỏi lại?
+	Đã Seen Chưa Hiểu: Bạn trước hỏi rồi. Cả nhóm lại thả tim.
+	Bạn: Thế là mọi người yêu thương nhau.
+	Đã Seen Chưa Hiểu: Ừ, đồ án thì đang thiếu người yêu nó.
+- Hồi mình toàn buzz Yahoo.
+	Đã Seen Chưa Hiểu: Buzz là báo động à?
+	Bạn: Gần thế.
+	Đã Seen Chưa Hiểu: Nhóm mình cần cái đó, nhưng phải rung được cả lương tâm.
 => END
 
-~ deadline_2
-Thầy Deadline Dịu Dàng: Bài này chỉ mất năm phút.
-Bạn: Em nghe câu này hơi sợ.
-Thầy Deadline Dịu Dàng: Năm phút đọc đề. Thầy có nói phần còn lại đâu.
+~ seen_2
+Đã Seen Chưa Hiểu: Mình vừa đăng story 'healing ở HANU'. Phía ngoài khung hình là laptop đang chạy bài chưa xong.
+- Vậy là bạn vẫn đang học.
+	Đã Seen Chưa Hiểu: Đúng, học cách chọn góc chụp để che deadline.
+- Đá của mình có ánh sáng đẹp này.
+	Đã Seen Chưa Hiểu: Đừng đưa sát laptop nhé. Nó đã nóng như có cổng thời gian bên trong rồi.
 => END
 
-~ coffee_os_1
-Cà Phê Không Đường: Cà phê của mình không đắng.
-Bạn: Cho mình uống thử được không?
-Cà Phê Không Đường: Được. Sau đó deadline nào cũng có vị ngọt.
+~ deadline_runner_1
+Deadline Chạy Bộ: Mình ra sân tập chạy để khỏe hơn. Bây giờ khỏe đủ để chạy về làm bài.
+- Bạn chạy nhanh không?
+	Deadline Chạy Bộ: Nhanh khi thấy căng tin sắp đóng. Chậm khi thấy giảng viên gọi.
+	Bạn: Thế tập thế nào?
+	Deadline Chạy Bộ: Tưởng tượng thầy đứng trước căng tin. Hai hệ thống đang xung đột.
+- Thầy Khánh có ở gần đây không?
+	Deadline Chạy Bộ: Có, gần đường chạy đấy. Thầy gọi là khởi động, đồng hồ mình gọi là thành tích cá nhân.
 => END
 
-~ coffee_os_2
-Cà Phê Không Đường: Mình đã bỏ thức khuya.
-Bạn: Tiến bộ đấy!
-Cà Phê Không Đường: Giờ mình thức tới sáng. Phải dùng từ cho chính xác.
+~ deadline_runner_2
+Deadline Chạy Bộ: Đồng hồ bảo hôm nay mình đi được tám nghìn bước. Sáu nghìn bước là đi tìm phòng học.
+- Có tính thể chất không?
+	Deadline Chạy Bộ: Nếu tính thì sinh viên HANU tốt nghiệp kèm huy chương hết rồi.
+- Mình đi tìm đá cũng khá xa.
+	Deadline Chạy Bộ: Bạn nhặt đá, mình nhặt lại hơi thở. Mỗi người một bộ sưu tập.
 => END
 
-~ chairman_1
-Hội Trưởng Ghế Nhựa: Ghế này có người rồi.
-Bạn: Mình có xin ngồi đâu.
-Hội Trưởng Ghế Nhựa: Mình tập trước. Tí nữa quán đông.
+~ milk_tea_1
+Trà Sữa Không Trân Châu: Mình vừa chia tiền trà sữa cho cả nhóm. Đồ án chưa có bảng dữ liệu, nhưng tiền topping đã có bảng tổng hợp.
+- Ai làm bảng vậy?
+	Trà Sữa Không Trân Châu: Người bảo không biết Excel. Gặp tiền là tự nhiên biết cả hàm.
+	Bạn: Đây mới là động lực học tập.
+	Trà Sữa Không Trân Châu: Kỳ sau trường nên ra bài tập có hoàn tiền.
+- Cho mình một cốc với.
+	Trà Sữa Không Trân Châu: Mình là sinh viên, không phải quán đâu. Tên là do lần nào đặt cũng bị quên trân châu.
 => END
 
-~ chairman_2
-Hội Trưởng Ghế Nhựa: Hội mình không có chức phó chủ tịch.
-Bạn: Sao vậy?
-Hội Trưởng Ghế Nhựa: Có đúng một cái ghế. Cơ cấu phải phù hợp cơ sở vật chất.
+~ milk_tea_2
+Trà Sữa Không Trân Châu: Bạn cầm đá mà không có cốc à? Nhìn như vừa gọi trà sữa size thời gian.
+- Đây là đá để về năm 2006.
+	Trà Sữa Không Trân Châu: Về rồi xem giúp mình hồi đó có trà sữa chưa. Nhớ đừng đặt qua nhóm lớp, hai mươi năm nữa mới có người seen.
+- Đá này không tan.
+	Trà Sữa Không Trân Châu: Hay đấy. Đá quán mình thì tan, còn nợ bạn bè thì nguyên khối.
 => END
 
-~ matcha_1
-Matcha Chạy Bằng Cơm: Mình mua matcha để có năng lượng học.
-Bạn: Học được nhiều chưa?
-Matcha Chạy Bằng Cơm: Chụp được mười bảy tấm. Phần năng lượng đang chờ duyệt.
+~ lunch_drive_1
+Ổ Cứng Mang Cơm: Trong ba lô có laptop, sạc và hộp cơm. Hai cái đầu hết pin vẫn sống, cái cuối quên là mình tắt nguồn.
+- Bạn học cả ngày à?
+	Ổ Cứng Mang Cơm: Ừ. Sáng học trên lớp, chiều ngồi trường sửa lỗi, tối về mới phát hiện thiếu dấu chấm phẩy.
+	Bạn: Lỗi đó thời mình cũng có.
+	Ổ Cứng Mang Cơm: Di sản ngành, phải bảo tồn bằng cách mắc lại mỗi tuần.
+- Hộp cơm có gì vậy?
+	Ổ Cứng Mang Cơm: Trứng. Món duy nhất mình biết đảo mà không bị lạc như đảo mảng.
 => END
 
-~ matcha_2
-Matcha Chạy Bằng Cơm: Hôm nay mình sống xanh.
-Bạn: Trồng cây à?
-Matcha Chạy Bằng Cơm: Không, áo xanh, cốc xanh, số dư thì đỏ.
+~ lunch_drive_2
+Ổ Cứng Mang Cơm: Mình mua thêm dung lượng lưu trữ. Ảnh chụp slide chiếm gần hết, kiến thức thì vẫn đang chờ tải.
+- Bạn có mở ảnh ra học không?
+	Ổ Cứng Mang Cơm: Có. Khi cần tìm ảnh con mèo thì vô tình thấy slide.
+- Viên đá này lưu được hai mươi năm.
+	Ổ Cứng Mang Cơm: Vậy lưu giúp mình bản bài tập trước lúc sửa hỏng nhé. File mình tên final mà số phận chưa chốt.
 => END
 
-~ streak_1
-Bộ Trưởng Giữ Streak: Mình không thể để mất chuỗi.
-Bạn: Chuỗi hạt à?
-Bộ Trưởng Giữ Streak: Chuỗi nhắn tin. Hai đứa gửi ảnh trần nhà cho nhau để chứng minh tình bạn còn hoạt động.
+~ chairman_afk_1
+Chủ Tịch AFK: Chào mừng đến văn phòng Chủ Tịch AFK. Chức vụ tự phong, quyền hạn hiện tại là chọn quán ăn trưa.
+- Anh là giảng viên ở đây ạ?
+	Chủ Tịch AFK: Không, mình là khách dự lễ kỷ niệm. Bộ cosplay trông có quyền lực thôi, chứ xin thêm miếng thịt còn phải trả tiền.
+	Bạn: Vậy em khỏi xin miễn bài tập.
+	Chủ Tịch AFK: Mình còn chưa miễn được tiền gửi xe.
+- AFK là khoa mới à?
+	Chủ Tịch AFK: Là tạm rời bàn phím. Còn mình tạm rời mọi cuộc họp có câu 'chỉ năm phút'.
+	Bạn: Hồi năm 2006 họp cũng nói thế.
+	Chủ Tịch AFK: Hai mươi năm phát triển, thời lượng dự kiến vẫn là thể loại giả tưởng.
 => END
 
-~ streak_2
-Bộ Trưởng Giữ Streak: Mình giữ streak học ngoại ngữ ba trăm ngày rồi.
-Bạn: Nói thử một câu đi.
-Bộ Trưởng Giữ Streak: 'Nhắc tôi sau'. Mình thuộc nhất câu đó.
-=> END
-
-~ algorithm_1
-Thuật Toán Cơm Rang: Tối ưu thời gian bằng cách vừa ăn vừa xem bài giảng.
-Bạn: Có hiệu quả không?
-Thuật Toán Cơm Rang: Có. Giờ cứ nghe tới đệ quy là mình đói.
-=> END
-
-~ algorithm_2
-Thuật Toán Cơm Rang: Bữa trưa của mình có độ phức tạp O(1).
-Bạn: Nghĩa là sao?
-Thuật Toán Cơm Rang: Mở ví một lần, quyết định ăn mì luôn.
-=> END
-
-~ goalkeeper_1
-Thủ Môn Tab Ẩn Danh: Mình bắt bóng bằng trực giác.
-Bạn: Tỉ lệ thành công thế nào?
-Thủ Môn Tab Ẩn Danh: Bóng đi hướng nào mình có linh cảm rõ ràng... ngay sau đó.
-=> END
-
-~ goalkeeper_2
-Thủ Môn Tab Ẩn Danh: Hôm nay mình giữ sạch lưới.
-Bạn: Đỉnh thế!
-Thủ Môn Tab Ẩn Danh: Mình giặt nó. Trận đấu chưa bắt đầu.
-=> END
-
-~ cardio_1
-Cardio Bằng Deadline: Nhịp tim mình lên một trăm tám mươi rồi.
-Bạn: Cậu chạy nhanh thế?
-Cardio Bằng Deadline: Không. Nhóm vừa hỏi 'file cuối đâu'.
-=> END
-
-~ cardio_2
-Cardio Bằng Deadline: Mình có huấn luyện viên cá nhân.
-Bạn: Ai vậy?
-Cardio Bằng Deadline: Cái thông báo 'còn một phút để nộp'. Nó bắt mình chạy rất thật.
-=> END
-
-~ bench_1
-Ghế Dự Bị Premium: Mình không ngồi dự bị. Mình đang phân tích chiến thuật.
-Bạn: Chiến thuật gì?
-Ghế Dự Bị Premium: Đứng lên lúc nào để trông như vừa đá xong.
-=> END
-
-~ bench_2
-Ghế Dự Bị Premium: Đội mình đánh giá cao khả năng giữ vị trí của mình.
-Bạn: Vị trí nào?
-Ghế Dự Bị Premium: Chính xác cái ghế này, từ đầu tới cuối trận.
-=> END
-
-~ camera_1
-Camera Sau Có Tâm: Đứng yên, mình chụp cho cậu một tấm có tâm.
-Bạn: Sao mặt mình ở góc ảnh?
-Camera Sau Có Tâm: Cái cây mới là chủ thể. Cậu là bối cảnh có học phí.
-=> END
-
-~ camera_2
-Camera Sau Có Tâm: Mình chụp candid, cứ tự nhiên.
-Bạn: Tự nhiên thế nào?
-Camera Sau Có Tâm: Đi lại đoạn kia lần thứ tám, đừng nhìn máy.
-=> END
-
-~ touch_grass_1
-Trưởng Ban Chạm Cỏ: Hôm nay mình quyết định ra ngoài chạm cỏ.
-Bạn: Chỗ cậu đứng là gạch mà.
-Trưởng Ban Chạm Cỏ: Mình đang dùng bản dùng thử.
-=> END
-
-~ touch_grass_2
-Trưởng Ban Chạm Cỏ: Ngoài đời đồ họa đẹp thật.
-Bạn: Đồ họa là gì?
-Trưởng Ban Chạm Cỏ: Là cách mình khen trời đẹp mà không phải đặt điện thoại xuống.
-=> END
-
-~ lunch_1
-Cơm Tấm Không Vỡ Kèo: Nhóm mình hẹn ăn trưa mười hai giờ.
-Bạn: Sao cậu ăn một mình?
-Cơm Tấm Không Vỡ Kèo: Mọi người đang ở múi giờ 'sắp tới'.
-=> END
-
-~ lunch_2
-Cơm Tấm Không Vỡ Kèo: Mình đặt tên nhóm là 'Mai ăn gì'.
-Bạn: Vậy hôm nay ăn gì?
-Cơm Tấm Không Vỡ Kèo: Đừng làm lệch chủ đề nhóm.
-=> END
-
-~ battery_1
-Pin Còn Một Phần Trăm: Đừng nhắn nữa. Máy mình sắp tắt.
-Bạn: Sao cậu vẫn xem video?
-Pin Còn Một Phần Trăm: Phút cuối phải sống cho đáng.
-=> END
-
-~ battery_2
-Pin Còn Một Phần Trăm: Mình tiết kiệm pin bằng cách hạ độ sáng.
-Bạn: Giờ cậu có nhìn thấy gì không?
-Pin Còn Một Phần Trăm: Không. Nhưng tin nhắn chưa trả lời trông bớt đáng sợ.
-=> END
-
-~ podcast_1
-Podcast Hai Phút Rưỡi: Mình nghe podcast để mở rộng góc nhìn.
-Bạn: Tập này nói về gì?
-Podcast Hai Phút Rưỡi: Không biết. Hai phút đầu mình đang gỡ dây tai nghe.
-=> END
-
-~ podcast_2
-Podcast Hai Phút Rưỡi: Chào mừng tới podcast chữa lành của mình.
-Bạn: Cậu có khách mời à?
-Podcast Hai Phút Rưỡi: Có. Cậu vừa bị mời. Chủ đề: vì sao căn tin hết đá.
-=> END
-
-~ food_review_1
-Review Có Xin Miếng: Món này mình chấm chín điểm.
-Bạn: Cậu còn chưa ăn mà.
-Review Có Xin Miếng: Một điểm còn lại đang chờ cậu mời.
-=> END
-
-~ food_review_2
-Review Có Xin Miếng: Mình review rất công tâm.
-Bạn: Quán nào ngon nhất?
-Review Có Xin Miếng: Quán cho thêm nước chấm mà không thở dài.
-=> END
-
-~ print_1
-Photocopy Không Kẹt Giấy: Bản này là bản cuối.
-Bạn: Sao tên file có chữ 'cuối 7 thật sự'?
-Photocopy Không Kẹt Giấy: Những bản trước cũng đã từng có ước mơ.
-=> END
-
-~ print_2
-Photocopy Không Kẹt Giấy: In hai mặt tiết kiệm giấy.
-Bạn: Còn bài của cậu?
-Photocopy Không Kẹt Giấy: Mình in một mặt. Mặt sau dành cho cơ hội làm lại.
+~ chairman_afk_2
+Chủ Tịch AFK: Bạn đang ngắm mấy vòng sáng à? Đèn của bộ cosplay đấy. Nhìn như triệu hồi được đáp án, thực tế chỉ triệu hồi người xin chụp ảnh.
+- Có triệu hồi được điểm qua môn không?
+	Chủ Tịch AFK: Đã thử. Giảng viên bảo ánh sáng không thay thế được lập luận.
+	Bạn: Thế dùng vào việc gì?
+	Chủ Tịch AFK: Khi bí câu trả lời thì ít nhất mình vẫn tỏa sáng.
+- Đá của mình cũng phát sáng này.
+	Chủ Tịch AFK: Đẹp đấy. Bạn tìm bốn viên để về nhà, mình tìm bốn người để chụp ảnh nhóm. Cả hai đều kẹt vì có người bảo 'sắp tới'.
+	Bạn: Mình có thể phải đợi hai mươi năm.
+	Chủ Tịch AFK: Vậy chắc cùng nhóm với mình rồi.
 => END
 
 ~ mail_1
-Email Xin Phép Dấu Chấm: Mình viết mail cho thầy suốt nửa tiếng.
-Bạn: Mail dài lắm à?
-Email Xin Phép Dấu Chấm: Một dòng. Mình đang chọn giữa 'ạ' và 'ạ!'.
+Email Chưa Đính Kèm: Mình vừa gửi mail 'em gửi thầy bài tập' rồi ngắm cái file vẫn nằm trên màn hình.
+- Gửi thêm mail xin lỗi đi.
+	Email Chưa Đính Kèm: Đã gửi. Lần đó quên đính kèm lời xin lỗi.
+	Bạn: Thế là phải gửi lá thư thứ ba?
+	Email Chưa Đính Kèm: Inbox của thầy sắp thành bộ ba phim.
+- Hồi mình toàn nộp bằng đĩa.
+	Email Chưa Đính Kèm: Đĩa không có file cũng rất nghệ thuật. Chỉ là thầy không chấm nghệ thuật.
 => END
 
 ~ mail_2
-Email Xin Phép Dấu Chấm: Mình đã đọc lại thư năm lần rồi mới gửi.
-Bạn: Vậy chắc không có lỗi.
-Email Xin Phép Dấu Chấm: Đúng. Trừ file đính kèm, đang nằm yên trên máy mình.
-=> END
-
-~ attendance_1
-Điểm Danh Bằng Niềm Tin: Thầy vừa gọi tên mình chưa?
-Bạn: Cậu tên gì?
-Điểm Danh Bằng Niềm Tin: Thôi, hỏi câu dễ hơn đi.
-=> END
-
-~ attendance_2
-Điểm Danh Bằng Niềm Tin: Mình đi học rất đều.
-Bạn: Hôm qua mình không thấy cậu.
-Điểm Danh Bằng Niềm Tin: Đều trong nhóm chat. Không được phủ nhận hình thức hiện diện mới.
-=> END
-
-~ group_1
-Nhóm Trưởng Đang Nhập: Cả nhóm đang làm việc rất tích cực.
-Bạn: Mình chỉ thấy chữ 'đang nhập'.
-Nhóm Trưởng Đang Nhập: Bọn mình có tiến độ hiển thị theo thời gian thực.
-=> END
-
-~ group_2
-Nhóm Trưởng Đang Nhập: Mình chia việc theo sở trường.
-Bạn: Cậu làm phần nào?
-Nhóm Trưởng Đang Nhập: Sở trường của mình là làm nốt phần còn lại.
-=> END
-
-~ excel_1
-Excel Không Merge Ô: Mình ghép hai ô lại cho đẹp.
-Bạn: Rồi sao?
-Excel Không Merge Ô: Giờ cả nhóm ghép hai bàn tay lại cầu cho bảng sắp xếp được.
-=> END
-
-~ excel_2
-Excel Không Merge Ô: Đừng gọi mình là người tính toán.
-Bạn: Vậy gọi là gì?
-Excel Không Merge Ô: Người có hàm SUM nhưng vẫn bấm máy tính để tin tưởng.
+Email Chưa Đính Kèm: LMS báo hạn nộp 23:59. Mình hiểu là bắt đầu làm lúc 23:58.
+- Một phút đủ à?
+	Email Chưa Đính Kèm: Đủ đổi tên file từ final sang final_thật.
+- Bạn cần mình quay ngược thời gian không?
+	Email Chưa Đính Kèm: Không cần nhiều. Cho mình quay lại lúc bấm 'mai làm'.
 => END
 
 ~ pdf_1
-PDF Không Cho Copy: Tài liệu này chống sao chép tuyệt đối.
-Bạn: Bảo mật tốt vậy?
-PDF Không Cho Copy: Ảnh chụp nhòe. Người chụp cũng không đọc được.
+Khách In Hộ Không In Hộ: Mình giao giấy cho văn phòng. Có bạn hỏi tiện in hộ luận văn không. Mình có giấy, chứ không có nhà máy.
+- Bạn không phải sinh viên à?
+	Khách In Hộ Không In Hộ: Không, mình bên giao hàng. Đi nhầm một hành lang là tự nhiên được giao thêm đồ án.
+- In hộ một trang thôi nhé?
+	Khách In Hộ Không In Hộ: Nếu viết tay thì được. Font chữ của mình tên là 'cố đọc giúp'.
 => END
 
 ~ pdf_2
-PDF Không Cho Copy: Mình nén file từ hai trăm xuống hai mê.
-Bạn: Hay thế!
-PDF Không Cho Copy: Chữ biến thành phong cảnh trừu tượng rồi.
-=> END
-
-~ meeting_1
-Cuộc Họp Có Thể Là Tin Nhắn: Bọn mình vừa họp xong một tiếng.
-Bạn: Chốt được gì?
-Cuộc Họp Có Thể Là Tin Nhắn: Chốt lịch họp tiếp. Thành quả rất rõ ràng.
-=> END
-
-~ meeting_2
-Cuộc Họp Có Thể Là Tin Nhắn: Mình đã bật mic rồi.
-Bạn: Mình có hỏi đâu.
-Cuộc Họp Có Thể Là Tin Nhắn: Ừ, mình chỉ muốn có một lần được thông báo câu đó đúng lúc.
+Khách In Hộ Không In Hộ: Mã nhận hàng ghi 210. Mình đọc thành 2:10 rồi ngồi chờ đúng giờ.
+- Bạn chờ lâu chưa?
+	Khách In Hộ Không In Hộ: Đủ lâu để biết sinh viên nói 'em xuống ngay' cũng có độ trễ.
+- Viên đá mình có thể chỉnh giờ.
+	Khách In Hộ Không In Hộ: Vậy chỉnh giúp giờ giao hàng thành giờ làm việc đi.
 => END
 
 ~ prompt_1
-Prompt Sư Chưa Tốt Nghiệp: Mình bảo AI trả lời như chuyên gia.
-Bạn: Nó giỏi hơn à?
-Prompt Sư Chưa Tốt Nghiệp: Nó tự tin hơn. Khá giống mình lúc thuyết trình.
+Prompt Có Tâm: Mình nhờ AI viết lời chúc sinh nhật. Nó chúc mình bảo vệ đồ án thành công. Đúng nỗi sợ, sai đối tượng.
+- Bạn sửa prompt chưa?
+	Prompt Có Tâm: Có. Thêm 'đừng nhắc deadline'. Nó trả lời 'chúc bạn sống lâu'.
+- Hồi mình gửi thiệp điện tử.
+	Prompt Có Tâm: Cái có nhạc tự phát ấy hả?
+	Bạn: Ừ.
+	Prompt Có Tâm: Bây giờ mở trong thư viện vẫn là kỹ năng sinh tồn cấp thấp.
 => END
 
 ~ prompt_2
-Prompt Sư Chưa Tốt Nghiệp: Mình nhờ AI giải thích dễ hiểu.
-Bạn: Rồi cậu hiểu chưa?
-Prompt Sư Chưa Tốt Nghiệp: Chưa. Nhưng nó đã khen câu hỏi của mình rất hay ba lần.
-=> END
-
-~ cloud_1
-Đám Mây Hết Dung Lượng: Mình lưu bài trên mây rồi.
-Bạn: Mưa thì có mất bài không?
-Đám Mây Hết Dung Lượng: Không. Mất mật khẩu thì trời nắng cũng chịu.
-=> END
-
-~ cloud_2
-Đám Mây Hết Dung Lượng: Ảnh của mình được sao lưu tự động.
-Bạn: Yên tâm rồi.
-Đám Mây Hết Dung Lượng: Cả tám mươi tấm chụp nhầm sàn nhà. Rất tận tâm.
+Prompt Có Tâm: Bạn ôm mấy viên đá vậy? Mình tưởng trường phát quà lưu niệm, suýt xếp hàng theo.
+- Mình đang tìm đường về 2006.
+	Prompt Có Tâm: Nhớ lưu bài trước khi về. Máy đời đó không tự lưu hộ bạn đâu.
+- Quà này phải làm nhiệm vụ mới có.
+	Prompt Có Tâm: Vậy giống điểm chuyên cần rồi. Nhỏ thôi nhưng thiếu là biết ngay.
 => END
 
 ~ git_1
-Git Đổ Tại Máy Em: Máy mình chạy được mà.
-Bạn: Máy khác thì sao?
-Git Đổ Tại Máy Em: Mình đang cân nhắc nộp luôn cái máy.
+Khách Tham Quan Đã Commit: Mình đi cùng bạn học FIT. Nó bảo đang commit, mình tưởng hai đứa sắp có cam kết lâu dài.
+- Rồi hai bạn sao rồi?
+	Khách Tham Quan Đã Commit: Nó push xong rồi đi ăn một mình. Mình còn đứng đây chờ merge.
+	Bạn: Nghe như chuyện tình môn lập trình.
+	Khách Tham Quan Đã Commit: Mình khách tham quan thôi mà nhận luôn xung đột.
+- Commit là lưu thay đổi.
+	Khách Tham Quan Đã Commit: Vậy lưu giúp thay đổi địa điểm đi ăn từ 'chưa biết' thành 'ngay bây giờ'.
 => END
 
 ~ git_2
-Git Đổ Tại Máy Em: Mình vừa đặt tên nhánh là 'sửa-nhẹ'.
-Bạn: Có mấy thay đổi?
-Git Đổ Tại Máy Em: Bốn trăm tệp. Nhẹ là thái độ của mình lúc bắt đầu.
-=> END
-
-~ tab_1
-Tab Thứ Chín Mươi Chín: Đừng đóng cửa sổ đó!
-Bạn: Có bài quan trọng à?
-Tab Thứ Chín Mươi Chín: Không biết. Nhưng mình đã giữ nó mở ba tuần, chắc phải có lý do.
-=> END
-
-~ tab_2
-Tab Thứ Chín Mươi Chín: Có tab nào đang phát nhạc ấy.
-Bạn: Cậu tìm chưa?
-Tab Thứ Chín Mươi Chín: Tìm rồi. Tới lúc tìm ra mình thích bài đó luôn.
-=> END
-
-~ silent_1
-Chế Độ Im Lặng Rất To: Điện thoại mình để im lặng rồi.
-Bạn: Tiếng gì trong túi cậu vậy?
-Chế Độ Im Lặng Rất To: Bảy báo thức phản đối quyết định đó.
-=> END
-
-~ silent_2
-Chế Độ Im Lặng Rất To: Mình bật không làm phiền để tập trung.
-Bạn: Hiệu quả không?
-Chế Độ Im Lặng Rất To: Có. Không ai làm phiền mình lướt điện thoại nữa.
-=> END
-
-~ buffer_1
-Não Đang Buffer: Mình có câu trả lời rồi.
-Bạn: Nói đi.
-Não Đang Buffer: Đợi vòng tròn trong đầu mình quay xong đã.
-=> END
-
-~ buffer_2
-Não Đang Buffer: Mình vừa hiểu bài cũ rồi!
-Bạn: Bài nào?
-Não Đang Buffer: Bài mà lúc hiểu xong lớp đã chuyển sang chương khác.
-=> END
-
-~ bluetooth_1
-Bluetooth Ghép Nhầm Loa: Tai nghe mình kết nối rồi mà không có tiếng.
-Bạn: Ngoài sân đang mở nhạc giống cậu kìa.
-Bluetooth Ghép Nhầm Loa: Mình xin phép chuyển trường trong ba phút.
-=> END
-
-~ bluetooth_2
-Bluetooth Ghép Nhầm Loa: Mình đổi tên tai nghe thành 'Không phải của bạn'.
-Bạn: Có bớt kết nối nhầm không?
-Bluetooth Ghép Nhầm Loa: Không. Nhưng ai cũng đọc nó bằng giọng bị xúc phạm.
-=> END
-
-~ academic_1
-Học Thuật Hệ Tâm Linh: Mình ôn bằng cách đặt sách dưới gối.
-Bạn: Có nhớ bài không?
-Học Thuật Hệ Tâm Linh: Không. Nhưng thuộc chính xác sách dày bao nhiêu xăng-ti-mét.
-=> END
-
-~ academic_2
-Học Thuật Hệ Tâm Linh: Mình chọn đáp án theo trực giác.
-Bạn: Trực giác có đáng tin không?
-Học Thuật Hệ Tâm Linh: Nó từng bảo mình ngủ thêm năm phút. Mình vẫn đang tha thứ.
+Khách Tham Quan Đã Commit: Mình không học ở đây, nhưng đi ba tầng đã thấy mình có tín chỉ thể chất.
+- Bạn tìm thang máy à?
+	Khách Tham Quan Đã Commit: Mình tìm một lý do để không phải leo lại.
+- Đá của mình có tác dụng mở cổng.
+	Khách Tham Quan Đã Commit: Cổng nào cũng được, miễn phía sau có ghế.
 => END
 
 ~ focus_1
-Focus Mode Mở Quán Nước: Mình học theo phương pháp Pomodoro.
-Bạn: Nghe như món mì.
-Focus Mode Mở Quán Nước: Hai mươi lăm phút chọn nhạc, năm phút nhớ ra mình tới đây để học.
+Chế Độ Không Làm Phiền: Mình bật không làm phiền để học. Giờ không ai làm phiền, mình tự làm phiền bằng cách mở điện thoại.
+- Cất điện thoại đi?
+	Chế Độ Không Làm Phiền: Mình cất rồi. Trong đầu vẫn nghe thông báo.
+	Bạn: Hồi mình chỉ có rung điện thoại cục gạch.
+	Chế Độ Không Làm Phiền: Cục gạch của bạn bền, sự tập trung của mình thì không.
+- Bạn học ở phòng nào?
+	Chế Độ Không Làm Phiền: Đang tìm 417. Áo đỏ là sinh viên thật, mặt hoang mang cũng thật.
 => END
 
 ~ focus_2
-Focus Mode Mở Quán Nước: Mình cần không gian yên tĩnh.
-Bạn: Để tập trung à?
-Focus Mode Mở Quán Nước: Để nghe rõ tiếng deadline tới gần.
-=> END
-
-~ rubber_duck_1
-Vịt Cao Su Không Lương: Cứ giải thích lỗi cho mình nghe.
-Bạn: Cậu sửa được à?
-Vịt Cao Su Không Lương: Không. Nhưng cậu nói tới câu thứ ba thường tự phát hiện rồi. Mình rất giỏi ngồi yên.
-=> END
-
-~ rubber_duck_2
-Vịt Cao Su Không Lương: Mình là cố vấn kỹ thuật của nhóm.
-Bạn: Cậu có góp ý gì không?
-Vịt Cao Su Không Lương: Có. 'Cậu thử đọc lại lỗi chưa?' Phần lớn sự nghiệp của mình nằm trong câu đó.
+Chế Độ Không Làm Phiền: Mình đang manifest qua môn. Bước một là mở tài liệu. Hiện vẫn ở bước không.
+- Manifest là lệnh mới à?
+	Chế Độ Không Làm Phiền: Là ước cho đủ tự tin. Sau đó vẫn phải học.
+	Bạn: Vậy hồi mình gọi là cầu may.
+	Chế Độ Không Làm Phiền: Đổi tên cho hiện đại, học phí không giảm.
+- Cho mình xin vía tập trung.
+	Chế Độ Không Làm Phiền: Vía còn đang loading, bạn xếp hàng sau mình nhé.
 => END
 
 ~ slide_1
-Slide Chữ Tám Chấm: Mình cho hết tài liệu vào một slide.
-Bạn: Người ngồi cuối có đọc được không?
-Slide Chữ Tám Chấm: Có. Nếu người đó ngồi cuối... bàn mình.
+Slide Cuối Cùng Thật: Nhóm mình có 48 slide. Bạn thuyết trình bảo 'em nói ngắn gọn'. Đó là câu ngắn gọn duy nhất.
+- Rồi bao giờ xong?
+	Slide Cuối Cùng Thật: Khi máy chiếu tự đi ngủ. Nó quản lý thời gian tốt hơn nhóm.
+- Ngày xưa mình dùng PowerPoint 2003.
+	Slide Cuối Cùng Thật: Bản nào cũng có nút xóa slide mà. Tụi mình chỉ giả vờ không thấy.
 => END
 
 ~ slide_2
-Slide Chữ Tám Chấm: Slide của mình theo phong cách tối giản.
-Bạn: Nhưng toàn chữ mà.
-Slide Chữ Tám Chấm: Tối giản số slide. Đừng áp đặt gu thẩm mỹ.
-=> END
-
-~ cv_1
-CV Thành Thạo Mở Máy: Mình ghi 'chịu áp lực tốt' trong CV.
-Bạn: Có kinh nghiệm gì?
-CV Thành Thạo Mở Máy: Ngồi cạnh máy in hết giấy mà vẫn bình tĩnh giả vờ không biết.
-=> END
-
-~ cv_2
-CV Thành Thạo Mở Máy: Kỹ năng nổi bật của mình là thích nghi nhanh.
-Bạn: Ví dụ?
-CV Thành Thạo Mở Máy: Nhóm đổi đề tài lần ba rồi. Mình đổi tên thư mục trong hai giây.
-=> END
-
-~ manifest_1
-Manifest Qua Môn: Mình đang manifest điểm A.
-Bạn: Là đăng ký điểm trước à?
-Manifest Qua Môn: Không, là mong thật mạnh. Tối nay mình sẽ bổ sung phần học thật mạnh.
-=> END
-
-~ manifest_2
-Manifest Qua Môn: Mình viết mục tiêu lên giấy rồi.
-Bạn: Có thấy tiến triển chưa?
-Manifest Qua Môn: Có. Chữ mình đẹp hơn hồi viết công thức.
-=> END
-
-~ outfit_1
-Outfit Bảo Vệ Đồ Án: Áo này làm mình trông hiểu bài hơn không?
-Bạn: Cậu hiểu bài tới đâu?
-Outfit Bảo Vệ Đồ Án: Tới đoạn chọn áo.
-=> END
-
-~ outfit_2
-Outfit Bảo Vệ Đồ Án: Mình tập câu 'cảm ơn thầy cô đã lắng nghe' rất kỹ.
-Bạn: Còn nội dung chính?
-Outfit Bảo Vệ Đồ Án: Đang cố làm nó xứng đáng với câu kết.
+Slide Cuối Cùng Thật: Đá bạn sáng đẹp thế. Cho nhóm mình mượn làm hiệu ứng mở bài nhé?
+- Mượn xong có trả không?
+	Slide Cuối Cùng Thật: Trả cùng file gốc.
+	Bạn: Sao nghe nguy hiểm vậy?
+	Slide Cuối Cùng Thật: Vì file đang tên final_v17_chot_that_2.
+- Đây là vé về năm 2006 của mình.
+	Slide Cuối Cùng Thật: Nếu về rồi, nhắn nhóm mình bắt đầu làm bài sớm hai mươi năm nhé.
 => END

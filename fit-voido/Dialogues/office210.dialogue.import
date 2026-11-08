@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://dufiwhovg1abw"
+path="res://.godot/imported/office210.dialogue-f341a33d58027f3ba0ee4b511bb2af1e.tres"
+
+[deps]
+
+source_file="res://Dialogues/office210.dialogue"
+dest_files=["res://.godot/imported/office210.dialogue-f341a33d58027f3ba0ee4b511bb2af1e.tres"]
+
+[params]
+
+defaults=true

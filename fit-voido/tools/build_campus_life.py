@@ -4,10 +4,20 @@ Run from the project root. Only generated scenes/ambient/*_life.tscn and
 Dialogues/campus_banter.dialogue are overwritten; map placements remain editable.
 """
 import json
+import argparse
 from pathlib import Path
 
 root = Path(__file__).resolve().parents[1]
 cast = json.loads((root / "scenes/ambient/campus_cast.json").read_text(encoding="utf-8"))
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument('--location', choices=list(cast), help='Only rewrite this location scene; always refresh shared dialogue.')
+args = parser.parse_args()
+for location, people in cast.items():
+    walkers = [p for p in people if p['asset'] != 'T1']
+    stationary = [p for p in people if p['asset'] == 'T1']
+    assert 1 <= len(walkers) <= (8 if location == 'campus' else 2), location
+    assert all(p['asset'] in ('NPC_1', 'NPC_2', 'boykopho') and p.get('move') in ('patrol', 'wander') for p in walkers), 'Walkers must use animated skins'
+    assert len(stationary) <= 1 and all(location == 'campus' and p.get('move') == 'stationary' for p in stationary), 'T1 is the explicitly stationary campus guest'
 dialogue = ["# Optional campus conversations. No progression mutations.\n"]
 for location, people in cast.items():
     lines = ['[gd_scene format=3]', '',
@@ -41,9 +51,15 @@ for location, people in cast.items():
             lines += ['ping_pong = true', 'patrol_points = Array[Vector2]([' + ', '.join(f'Vector2({a}, {b})' for a, b in person['route']) + '])']
         if movement == 'wander':
             lines.append(f'wander_radius = {person["radius"]}.0')
+        if 'sprite_scale' in person:
+            scale = person['sprite_scale']
+            lines += ['', f'[node name="Sprite" parent="{ident}" index="0"]',
+                      f'position = Vector2(0, {person.get("sprite_y", -12)})',
+                      f'scale = Vector2({scale}, {scale})']
         lines.append('')
         for cue, exchange in zip(cues, person['lines']):
             dialogue += ['~ ' + cue, *exchange, '=> END', '']
-    (root / f'scenes/ambient/{location}_life.tscn').write_text('\n'.join(lines), encoding='utf-8')
+    if args.location is None or args.location == location:
+        (root / f'scenes/ambient/{location}_life.tscn').write_text('\n'.join(lines), encoding='utf-8')
 (root / 'Dialogues/campus_banter.dialogue').write_text('\n'.join(dialogue), encoding='utf-8')
 print(f'Built {sum(map(len, cast.values()))} NPCs and {sum(len(p["lines"]) for ps in cast.values() for p in ps)} conversations.')

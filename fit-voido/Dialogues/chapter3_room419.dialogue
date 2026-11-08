@@ -1,4 +1,4 @@
-# Lecturer speaks from behind the closed Room 419 door.
+# Thầy Tuấn steps outside 419 before this unlocked conversation.
 ~ start
 if not GameState.is_chapter_unlocked(3):
 	Bạn: Mình hoàn thành bài kiểm tra ở Phòng 417 trước đã.
@@ -8,19 +8,26 @@ if not GameState.has_flag("room416_rescue_complete"):
 	=> END
 if GameState.has_flag("room419_lead_received"):
 	=> reminder
-Bạn: Cốc cốc. Có thầy cô trong phòng không ạ?
-Giảng viên: Ai đấy?
-Bạn: Dạ, thầy ở Phòng 416 bảo em tới hỏi về Viên Đá Thời Gian.
-Giảng viên: À, em tìm thầy Tuấn ở sân thể thao nhé. Thầy ấy đang mặc áo marathon, chắc vẫn đang ở gần đường chạy.
-Bạn: Thầy không ra ngoài ạ?
-Giảng viên: Thầy đang xuất video. Còn ba phút nữa… từ hai mươi phút trước rồi.
+Bạn: Cốc cốc. Có thầy trong phòng không ạ?
+Thầy Tuấn: Có, thầy ra đây. Video đang xuất nên thầy tranh thủ hít thở khí trời thay vì nhìn thanh tiến trình.
+Bạn: Thầy ở phòng 416 bảo em tới hỏi về Viên Đá Thời Gian ạ.
+Thầy Tuấn: Em tìm [color=yellow]thầy Khánh[/color] ở sân thể thao, gần đường chạy nhé. Thầy ấy mặc áo marathon, đang giữ chương trình lễ kỷ niệm.
 set GameState.receive_room419_lead()
-- Dạ, em ra sân tìm thầy Tuấn.
-	Giảng viên: Ừ, em tìm chiếc áo marathon nhé. Chúc em may mắn!
+- Dạ, em ra sân gặp thầy Khánh.
+	Thầy Tuấn: Nhớ giữ sức. Thầy Khánh bảo chạy nhẹ thì chữ nhẹ thường chỉ áp dụng cho lời nói.
 	=> END
-- Thầy nhắc lại giúp em chỗ cần tìm với ạ.
+- Xuất video lâu lắm ạ? Thời em toàn chép ra đĩa CD.
+	Thầy Tuấn: Bây giờ gửi liên kết rồi em. Chỉ có câu "còn ba phút" là vẫn giống thời em.
+	Bạn: Vậy có thứ vẫn đứng yên suốt hai mươi năm.
+	Thầy Tuấn: Đúng, thanh tiến trình này.
+	=> END
+- Thầy nhắc lại chỗ cần tìm với ạ.
 	=> reminder
 
 ~ reminder
-Giảng viên: Thầy Tuấn ở sân thể thao, gần đường chạy. Thầy ấy mặc áo marathon nhé.
-=> END
+Thầy Tuấn: Thầy Khánh ở sân thể thao, gần đường chạy, mặc áo marathon nhé. Nhận chương trình từ thầy ấy rồi mang tới thầy Ngọc ngoài phòng 210C.
+- Dạ, em nhớ rồi ạ.
+	=> END
+- Thầy không chạy cùng ạ?
+	Thầy Tuấn: Thầy đang chạy. Chạy phần mềm xuất video. Máy đổ mồ hôi thay thầy rồi.
+	=> END

@@ -238,7 +238,7 @@ grow_vertical = 0
 mouse_filter = 0
 script = ExtResource("21_touch_btn")
 is_qte = true
-title_text = "🎯 QTE TAP"
+title_text = "🎯 CANH NHỊP"
 sub_text = "[ CHẠM TẠI TRẠM ]"
 
 [node name="Zones" type="Node" parent="Root"]

@@ -12,18 +12,22 @@ const PULSE_HALF: float = 0.25  ## hold/release pulse that keeps a tier latched 
 
 var positions: PackedFloat32Array = PackedFloat32Array()  ## position at tick i, time = i * DT
 var finish_time: float = 0.0
+var playback_speed: float = 1.0
 var walls_hit: int = 0
 
 var _tuning: FrTuning
 var _high: bool = false
 var _phase: float = 0.0
-var strategy: int = 0  ## 0 pace guide, 1 early leader, 2 steady, 3 late kick, 4 cautious, 5 challenger
+var strategy: int = 0  ## 0 guide, 1 leader, 2 steady, 3 late, 4 cautious, 5 challenger, 6 teacher Khánh
 
 
-static func build(tuning: FrTuning, race_strategy: int = 0) -> FrParBot:
+static func build(tuning: FrTuning, race_strategy: int = 0, race_speed: float = 0.94) -> FrParBot:
 	var bot := FrParBot.new()
 	bot.strategy = race_strategy
 	bot._run(tuning)
+	if race_strategy > 0:
+		bot.playback_speed = clampf(race_speed, 0.5, 1.0)
+		bot.finish_time /= bot.playback_speed
 	return bot
 
 
@@ -51,7 +55,7 @@ func _run(tuning: FrTuning) -> void:
 		var effort: float = input.update(DT, held, clampf(model.progress(), 0.0, 1.0))
 		var cp: int = model.poll_checkpoint()
 		if cp >= 0:
-			var perfect: bool = strategy == 0 or (cp + strategy) % 3 == 0
+			var perfect: bool = strategy in [0, 6] or (cp + strategy) % 3 == 0
 			model.add_stamina(35.0 if perfect else 20.0)
 			if perfect:
 				model.apply_speed_boost(tuning.boost_speed_mult, tuning.boost_duration)
@@ -103,7 +107,7 @@ func position_at(t: float) -> float:
 	var n: int = positions.size()
 	if n == 0:
 		return 0.0
-	var f: float = maxf(t, 0.0) / DT
+	var f: float = maxf(t, 0.0) * playback_speed / DT
 	var i: int = int(f)
 	if i >= n - 1:
 		return positions[n - 1]
@@ -116,7 +120,7 @@ func time_at(p: float) -> float:
 	if n < 2:
 		return 0.0
 	if p >= positions[n - 1]:
-		return float(n - 1) * DT
+		return float(n - 1) * DT / playback_speed
 	var lo: int = 0
 	var hi: int = n - 1
 	while lo < hi:
@@ -130,4 +134,4 @@ func time_at(p: float) -> float:
 	var prev: float = positions[lo - 1]
 	var cur: float = positions[lo]
 	var frac: float = (p - prev) / (cur - prev) if cur > prev else 0.0
-	return (float(lo - 1) + frac) * DT
+	return (float(lo - 1) + frac) * DT / playback_speed

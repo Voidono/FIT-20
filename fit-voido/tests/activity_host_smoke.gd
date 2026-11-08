@@ -84,6 +84,10 @@ func _run() -> void:
 			var result = load("res://Minigames/boss_fight/boss_fight_result.gd").new()
 			result.outcome = &"win"
 			host.call("_on_boss_finished", result)
+			if not is_instance_valid(host._result_screen) or host._exit_button.get_parent().visible:
+				push_error("Boss result must replace the corner overlay")
+				quit(1)
+				return
 		else:
 			var result_path := "res://Minigames/trash_train_v3/trash_train/run_result.gd" if id == "garbage_quest" else "res://Minigames/minigames/fit_runner/scripts/api/fit_runner_result.gd"
 			var result = load(result_path).new()
@@ -98,7 +102,10 @@ func _run() -> void:
 			push_error("Result did not complete quest: " + id)
 			quit(1)
 			return
-		host.call("_return_to_host")
+		if id == "boss_fight":
+			host._result_screen.return_button.pressed.emit()
+		else:
+			host.call("_return_to_host")
 		await create_timer(1.3).timeout
 		player = get_first_node_in_group("player") as Node2D
 		if player == null or player.global_position != Vector2(123, 456):

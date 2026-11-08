@@ -27,7 +27,7 @@ func run() -> void:
 			root.content_scale_size = root.size
 			camera.zoom = Vector2.ONE
 			var player = map.get_node("Map/Character")
-			var npc = map.get_node("CampusLife/pho_anh_hai")
+			var npc = map.get_node("CampusLife/wifi")
 			player.global_position = npc.global_position + Vector2(0, 26)
 			camera.global_position = npc.global_position + Vector2(100, 0)
 			await create_timer(0.3).timeout
@@ -46,7 +46,8 @@ func run() -> void:
 				await RenderingServer.frame_post_draw
 				root.get_texture().get_image().save_png("res://tests/ambient_food_dialogue.png")
 				while is_instance_valid(balloon) and balloon.dialogue_line != null:
-					balloon.next(balloon.dialogue_line.next_id)
+					var line = balloon.dialogue_line
+					balloon.next(line.next_id if line.responses.is_empty() else line.responses[0].next_id)
 					await create_timer(0.1).timeout
 				await create_timer(0.4).timeout
 			root.size = Vector2i(1600, 1000)

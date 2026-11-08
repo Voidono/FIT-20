@@ -1,0 +1,16 @@
+Godot Engine v4.7.stable.official.5b4e0cb0f - https://godotengine.org
+
+LIVE ["t_2", "StairsToFloor3"] -> t_3.tscn configured arrival (1500.5, 170.0) result=true
+  Arrival blocked=false
+LIVE ["t_3", "StaticBody2D2/CollisionShape2D/StairsToFloor4"] -> t_4.tscn configured arrival (1562.5, 170.0) result=true
+  Arrival blocked=false
+LIVE ["t_4", "StairsDownToFloor3"] -> t_3.tscn configured arrival (2037.5, 170.0) result=true
+  Arrival blocked=false
+LIVE ["t_3", "StaticBody2D2/CollisionShape2D/StairsToFloor4/StairsDownToFloor2"] -> t_2.tscn configured arrival (2000.5, 170.0) result=true
+  Arrival blocked=false
+LIVE ["phòng_máy_2", "SceneDoor"] -> t_4.tscn configured arrival (2723.0, 300.0) result=true
+  Arrival blocked=false
+LIVE ["nửa đầu", "Area/Area2D"] -> t_2.tscn configured arrival (2000.0, 100.0) result=true
+  Arrival blocked=false
+LIVE ["t_2", "CampusEntrance"] -> nửa đầu.tscn configured arrival (1258.0, -850.0) result=false
+LIVE FLOW failures: 1

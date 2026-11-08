@@ -1,11 +1,11 @@
 [gd_scene load_steps=3 format=3]
-[ext_resource type="Script" path="res://scenes/chapters/room419_door.gd" id="script"]
+[ext_resource type="Script" path="res://scenes/chapters/office210_entrance.gd" id="script"]
 [sub_resource type="RectangleShape2D" id="Range"]
 size = Vector2(80, 80)
 [node name="FacultyBossDoor" type="Area2D"]
 collision_layer = 0
+metadata/quest_marker_offset = Vector2(0, -94)
 script = ExtResource("script")
-dialogue_path = "res://Dialogues/minigame_battle.dialogue"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("Range")
 [node name="Sign" type="Label" parent="."]

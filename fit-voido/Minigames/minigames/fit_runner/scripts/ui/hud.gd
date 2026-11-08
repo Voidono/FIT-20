@@ -181,7 +181,7 @@ func _is_mobile() -> bool:
 
 func _spawn_keyboard_hint() -> void:
 	var label := Label.new()
-	label.text = "Space / W / Up Arrow : Push   |   Enter / J / Down Arrow : QTE   |   Esc / P: Pause"
+	label.text = "Space / W / ↑: Tăng tốc   ·   Enter / J / ↓: Canh nhịp tại trạm   ·   Esc / P: Tạm dừng"
 	label.add_theme_font_size_override("font_size", 13)
 	label.add_theme_color_override("font_color", Color(1, 1, 1, 0.72))
 	label.add_theme_color_override("font_outline_color", Color(0, 0, 0, 0.85))

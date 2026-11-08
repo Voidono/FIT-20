@@ -15,7 +15,6 @@
 [ext_resource type="Texture2D" uid="uid://boc1u8yawfei8" path="res://Minigames/trash_train_v3/trash_train/levels/temo/Sprite-0010.png" id="11_ge102"]
 [ext_resource type="Texture2D" uid="uid://i8as5bi1wu2k" path="res://Minigames/trash_train_v3/trash_train/levels/temo/Baseball.png" id="13_uw3ty"]
 [ext_resource type="Texture2D" uid="uid://dmv7e2pphmor7" path="res://Minigames/trash_train_v3/trash_train/levels/temo/d4a06e24-5955-4ff5-90fa-ef3c652baf60.png" id="14_igox6"]
-[ext_resource type="PackedScene" uid="uid://chwdbyiymrdr2" path="res://Minigames/trash_train_v3/trash_train/levels/temo/npc5.tscn" id="16_57664"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4wrgo"]
 size = Vector2(72, 131)
@@ -454,6 +453,12 @@ _data = {
 }
 point_count = 3
 
+[sub_resource type="Curve2D" id="Curve2D_1afr2"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 657, 466, 0, 0, 0, 0, 744, 699, 0, 0, 0, 0, 844, 606, 0, 0, 0, 0, 925, 592, 0, 0, 0, 0, 1010, 730)
+}
+point_count = 5
+
 [node name="LevelTemplate" type="Node2D" unique_id=1185626027]
 script = ExtResource("1_apg64")
 catalog = ExtResource("2_8hdmc")
@@ -748,5 +753,21 @@ position = Vector2(379.64557, 0)
 scale = Vector2(0.53417724, 1)
 curve = SubResource("Curve2D_0pitc")
 script = ExtResource("7_1afr2")
-npc_scene = ExtResource("16_57664")
 speed_scale = 0.8
+
+[node name="SouthSweep" type="Path2D" parent="." unique_id=1343805830]
+curve = SubResource("Curve2D_1afr2")
+script = ExtResource("7_1afr2")
+count = 2
+
+[node name="SouthSweep2" type="Path2D" parent="." unique_id=201459769]
+position = Vector2(-561, -6)
+curve = SubResource("Curve2D_1afr2")
+script = ExtResource("7_1afr2")
+count = 2
+
+[node name="SouthSweep3" type="Path2D" parent="." unique_id=168460195]
+position = Vector2(-556, -187)
+curve = SubResource("Curve2D_1afr2")
+script = ExtResource("7_1afr2")
+count = 2

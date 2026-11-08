@@ -1,17 +1,16 @@
 [gd_scene format=3 uid="uid://1q3un777h5y"]
 
 [ext_resource type="PackedScene" uid="uid://cjd51hpkjfo4d" path="res://scenes/mapsides/map.tscn" id="1_tqdoe"]
-[ext_resource type="Texture2D" uid="uid://b206awfu4cnl2" path="res://Minigames/trash_train_v3/trash_train/levels/sussu.png" id="22_2wedu"]
+[ext_resource type="Texture2D" uid="uid://dva84008awey6" path="res://Minigames/minigames/fit_runner/assets/character/khanh.png" id="11_61dte"]
 [ext_resource type="Script" uid="uid://dj85aueh40i2t" path="res://scenes/mapsides/area_2d.gd" id="41_kuesd"]
 [ext_resource type="Resource" uid="uid://7b1wjkdfsk7m" path="res://Dialogues/tutorial_arrival.dialogue" id="arrival"]
 [ext_resource type="PackedScene" path="res://scenes/ambient/campus_life.tscn" id="campus_life"]
 [ext_resource type="Script" uid="uid://dhpa62fnhs18p" path="res://scenes/chapters/chapter1.gd" id="chapter1"]
 [ext_resource type="Resource" uid="uid://butbhf7e54uy0" path="res://Dialogues/chapter3_tuan.dialogue" id="chapter3_tuan"]
 [ext_resource type="Resource" uid="uid://cqr0hddaxpm41" path="res://Dialogues/stage1_blind_bags.dialogue" id="lecturer"]
-[ext_resource type="Texture2D" uid="uid://cxj12dl41cuq8" path="res://assets/DrawAsset/NPC/NPC_1_down_Idle.png" id="minh_preview"]
+[ext_resource type="Texture2D" uid="uid://cj11xk34dhjis" path="res://assets/DrawAsset/NPC/Dũng.png" id="minh_preview"]
 [ext_resource type="PackedScene" uid="uid://c0gjtr6ij3dyy" path="res://scenes/Character/dialogue_npc.tscn" id="npc_template"]
-[ext_resource type="Texture2D" uid="uid://bmrkbm77sbroc" path="res://assets/DrawAsset/NPC/Thắng.png" id="npc_tex_thang"]
-[ext_resource type="Texture2D" uid="uid://dpeuwwhhawccf" path="res://assets/DrawAsset/NPC/Tuấn.png" id="npc_tex_tuan"]
+[ext_resource type="Texture2D" uid="uid://da882jd35otsq" path="res://assets/DrawAsset/NPC/Tùng.png" id="npc_tex_thang"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5h11f"]
 size = Vector2(696.5, 58)
@@ -30,10 +29,9 @@ metadata/_edit_horizontal_guides_ = [-2101.0, 1792.0]
 z_index = 2
 position = Vector2(380, 100)
 npc_sprite = ExtResource("minh_preview")
-npc_skin = "NPC_1"
 dialogue = ExtResource("arrival")
 prompt_text = "Hỏi chuyện"
-npc_name = "Minh"
+npc_name = "Thầy Dũng"
 mode = 0
 walk_bob_height = 0.0
 
@@ -43,21 +41,12 @@ position = Vector2(1158, -915)
 npc_sprite = ExtResource("npc_tex_thang")
 dialogue = ExtResource("lecturer")
 prompt_text = "Thử thách / Nhận đá"
-npc_name = "Giảng viên Nhà C"
+npc_name = "Thầy Tùng"
 mode = 0
 walk_bob_height = 0.0
 
 [node name="CampusLife" parent="." unique_id=928181532 instance=ExtResource("campus_life")]
-
-[node name="BuildingCSign" type="Label" parent="." unique_id=250271833]
-z_index = 3
-offset_left = 940.0
-offset_top = -865.0
-offset_right = 1380.0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 5
-text = "NHÀ C — GẶP GIẢNG VIÊN ↑"
-horizontal_alignment = 1
+position = Vector2(-174, 94)
 
 [node name="Area" type="Node2D" parent="." unique_id=1180033783]
 
@@ -68,6 +57,15 @@ script = ExtResource("41_kuesd")
 position = Vector2(1158.75, -1023)
 shape = SubResource("RectangleShape2D_5h11f")
 
+[node name="Area2" type="Node2D" parent="." unique_id=261336439]
+
+[node name="Area2D" type="Area2D" parent="Area2" unique_id=1368689213]
+script = ExtResource("41_kuesd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2/Area2D" unique_id=2125735366]
+position = Vector2(2228, -1000)
+shape = SubResource("RectangleShape2D_5h11f")
+
 [node name="Bounds" type="ReferenceRect" parent="." unique_id=174901145]
 offset_left = -2.0
 offset_top = -1833.0
@@ -75,16 +73,13 @@ offset_right = 5420.0
 offset_bottom = 1751.0
 metadata/_edit_lock_ = true
 
-[node name="Sussu" type="Sprite2D" parent="." unique_id=2140558345]
-position = Vector2(10, 4)
-texture = ExtResource("22_2wedu")
-
 [node name="DialogueNPC" parent="." unique_id=1779454905 instance=ExtResource("npc_template")]
 position = Vector2(3260, 359)
-npc_sprite = ExtResource("npc_tex_tuan")
+npc_sprite = ExtResource("11_61dte")
 dialogue = ExtResource("chapter3_tuan")
-npc_name = "Thầy Tuấn"
+npc_name = "Thầy Khánh"
 mode = 0
 walk_bob_height = 0.0
 
 [connection signal="body_entered" from="Area/Area2D" to="Area/Area2D" method="_on_body_entered"]
+[connection signal="body_entered" from="Area2/Area2D" to="Area2/Area2D" method="_on_body_entered"]

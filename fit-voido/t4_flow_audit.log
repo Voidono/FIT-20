@@ -1,0 +1,19 @@
+Godot Engine v4.7.stable.official.5b4e0cb0f - https://godotengine.org
+OpenGL API 3.3.0 NVIDIA 610.62 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 3050 Ti Laptop GPU
+
+LINK /root/t_2_c/StaticBody2D2/CollisionShape2D/StairsToFloor4 at (2040.0, 87.0) -> res://scenes/mapsides/t_4.tscn spawn (1562.5, 170.0)
+LINK /root/t_2_c/StaticBody2D2/CollisionShape2D/StairsToFloor4/StairsDownToFloor2 at (1548.0, 77.0) -> res://scenes/mapsides/t_2.tscn spawn (2000.5, 170.0)
+LINK /root/t_2_c/SceneDoor3 at (2786.0, 335.0) -> uid://chxm4eljsdfq5 spawn (567.0, 614.0)
+GUIDANCE enter_room_417 targets=0
+GUIDANCE reach_room_416 targets=1
+GUIDANCE reach_room_419 targets=1
+GUIDANCE find_thay_tuan targets=0
+GUIDANCE deliver_marathon_documents targets=0
+FLOOR connected cells 2211 / 2211
+POINT (1562.5, 170.0) clear=true near reachable floor=true
+POINT (2723.0, 300.0) clear=true near reachable floor=true
+POINT (2786.0, 305.0) clear=true near reachable floor=true
+POINT (3100.0, 175.0) clear=false near reachable floor=true
+POINT (2868.0, 443.0) clear=false near reachable floor=true
+POINT (2890.0, 451.0) clear=true near reachable floor=true
+POINT (2040.0, 170.0) clear=true near reachable floor=true

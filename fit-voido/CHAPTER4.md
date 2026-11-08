@@ -1,28 +1,47 @@
-# Chapter 4: CON BUG rescue
+# Chapter 4: Room 210 entrance and rescue
 
-Update: Spare now also rescues the head and earns Stone #4. The first boss
-resolution selects the normal or hidden ending; see `ENDING.md`. This supersedes
-the original defeat-only policy described below.
+The hallway 210 doors now enter `scenes/mapsides/phòng210.tscn`. The user's room
+art, corner position for thầy Thắng, and CON BUG sprite are used directly.
+Three stones and the saved room-417 skill remain the story prerequisites.
+Room 419 has its own talking-door scene, so its Chapter 3 clue is unaffected.
+The outdoor Nhà C lecturer is now thầy Tùng. Thắng appears only inside office 210.
 
-The interaction at `FacultyBossDoor` in `scenes/mapsides/t_2.tscn` is placed at
-`(2572, 270)` beside the 210C door artwork. It uses the shared talk-through-door
-script and `Dialogues/minigame_battle.dialogue`. The existing campus battle NPC
-uses the same dialogue and remains compatible.
+On first entry, the room camera frames the office and movement is locked. CON
+BUG rushes around the floor while thầy Thắng shakes and panics in the corner.
+The existing pixel dialogue bubble opens automatically. Lines advance after a
+reading delay, and the player can tap or press Enter to advance sooner.
+The cutscene contains no fight/leave choice. Once it finishes, the intro-seen
+flag is saved and the boss module opens directly at difficulty selection.
+Its pause menu still has the full how-to-play guide.
 
-Three stones and a saved FIST/POISON choice unlock the fight. The shared activity
-host passes that skill to the existing boss module; its difficulty, retry and
-quit controls remain available. A victory saves boss-quest completion before
-returning. Interacting with 210C after victory plays the faculty-head rescue and
-atomically saves Stone #4, rescue completion and the final-gate objective.
-Repeat interactions cannot duplicate rewards. Spare remains an unsuccessful
-story outcome, consistent with the existing defeat-required rule.
+The battle checkpoint is inside the office. After victory or Spare, returning
+plays the rescue automatically and awards Stone 4 through the existing guarded
+reward method. The room settles, thầy Thắng leaves the corner, and a spared
+CON BUG remains small and friendly. Talking to thầy Thắng opens the Time Gate
+or lets the player stay. The normal and hidden endings are preserved.
 
-The final-gate objective is the handoff to the next implementation task. No new
-office interior or final-gate scene is introduced here. Floor travel remains
-user-managed.
+Backing out or returning without victory allows free movement in the office.
+Interacting with thầy Thắng or CON BUG plays a short retry lead-in and launches
+the fight. The full introduction does not repeat and there is no automatic
+retry loop. The lower door returns to the hallway position used to enter.
+That session-local hallway return is separate from the saved boss checkpoint.
+The Time Gate's back button also returns inside the office.
 
-Verification: `tests/chapter4_test.gd` exercises both saved skill choices,
-prerequisites, Spare, victory, real rescue dialogue, persistence and repeat
-rewards. `tests/activity_host_smoke.gd` checks actual module launch and return
-using disposable progression and synthetic results; it is not a human boss
-playthrough. `tests/document_delivery_test.gd` covers the Chapter 3 handoff.
+Overlapping opposing hallway door ranges are resolved by proximity when E is
+pressed. This prevents an adjacent classroom from taking the office-door input.
+No hallway geometry, door positions, or duplicated door layout was changed.
+
+Implementation:
+- `scenes/chapters/office210.gd`: cinematic, automatic line timing, rampage,
+  panic, rescue, retry and exit.
+- `office210_entrance.gd`: gated hallway entrance.
+- `Dialogues/office210.dialogue`: new Vietnamese scene and handoffs.
+- `room419_talking_door.tscn`: independent Chapter 3 door.
+- `scene_loader.gd`: separate hallway return and closest-door selection.
+
+Verification: `tests/office210_flow_test.gd` exercises entry, automatic launch,
+win/Spare rescue and both endings through the teacher, retry, backing out,
+collision-free arrival and same-hallway return. The Chapter 3 room tests and
+quest-waypoint tests cover the unaffected clue chain and updated routing.
+Screenshots are saved as `tests/office210_intro.png`, `office210_rescued.png`
+and `office210_spared.png` when passing `-- render`.

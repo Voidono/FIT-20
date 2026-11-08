@@ -1,56 +1,27 @@
 # Campus life
 
-42 optional characters and 84 Vietnamese conversations are placed in the actual
-campus (`nửa đầu.tscn`) and Nhà C floors 2–4: 21 outside and seven on each floor.
+The current cast has fourteen optional walkers: eight in `nửa đầu.tscn` and two on each of Nhà C floors 2–4. Five additional university students are spread around the outdoor campus. A ninth outdoor NPC, **Chủ Tịch AFK**, is an explicitly stationary guest using `T1.png`, placed at `(3800, -290)` within `CampusLife`. His sprite is scaled to match the surrounding characters. All other ambient characters use animated skins and wander or follow short ping-pong routes.
 
-Every character has a funny nickname and two different exchanges. The first is
-chosen randomly; the next interaction avoids immediately repeating it. Topics
-are food, group assignments, AI prompts, Wi-Fi, photos, sleep, deadlines, and
-other student nonsense. A few replies let the player misunderstand modern slang;
-the conversations do not reveal the time-travel plot or change quest progress.
+Each ambient NPC has two Vietnamese conversations, selected randomly without an immediate repeat. Each conversation has two pickable replies: 30 conversations and 60 branches in total. Topics include HANU, deadlines, AI, Wi-Fi, modern slang, and the player's curious stones or old habits. These conversations do not change quest progression.
 
-Examples: Tiệm Phở Anh Hai, Bánh Mì Bách Khoa, Chủ Tịch Aura Âm,
-Nhóm Trưởng Đang Nhập, Git Đổ Tại Máy Em, Vịt Cao Su Không Lương.
+White-shirt `NPC_1` and red-shirt `NPC_2` are university students. The suited `boykopho` walkers are visitors or delivery guests, and speak accordingly.
 
-## Placement and artwork
-
-- All existing full-body campus NPC artwork is used. The main character frames,
-  object sheets, and Trash Train's floating-head icons are not used as students.
-- Existing `NPC_1` and `NPC_2` directional animations are reused. The numbered
-  `boykopho` frames now form a third walking skin, with its right walk mirrored
-  for left movement. Walkers wander locally or follow short ping-pong routes.
-- Static portraits remain stationary. Each of the six professor portraits has
-  one visible owner, including Tùng in the existing classroom. The copied floor-3 recipient uses
-  a generic student portrait instead of repeating the floor-2 professor.
-- Reused student sprites are at least 600 map units apart within the same map.
-- The entrance's nine old demo NPCs were replaced by the distributed ambient
-  cast. Minh, the Nhà C lecturer and Thầy Tuấn retain their story dialogues and
-  locations. Existing quest doors, quizzes and progression scripts are untouched.
+The six named professors have distinct story roles. See [NPC_CAST.md](NPC_CAST.md) for assignments and Khánh's expert race ghost. The room 417 teacher is an unnamed guest lecturer.
 
 ## Editing
 
-Each map has a `CampusLife` scene instance. Open the corresponding scene under
-`scenes/ambient/` to move characters or edit movement in the Godot Inspector:
+Each map has a `CampusLife` instance from `scenes/ambient/campus_life.tscn`, `t_2_life.tscn`, `t_3_life.tscn`, or `t_4_life.tscn`. Floor 3 uses its own scene.
 
-- `campus_life.tscn`
-- `t_2_life.tscn`, `t_3_life.tscn`, `t_4_life.tscn`
+Author the cast, coordinates, routes and choice dialogue in `scenes/ambient/campus_cast.json`, then run:
 
-The dialogue resource is `Dialogues/campus_banter.dialogue`. Its cue names match
-the character node IDs. Runtime selection and the additional walking skin live
-in `scenes/ambient/ambient_npc.gd`, which extends the existing NPC template and
-uses the existing pixel dialogue bubble.
+```text
+python tools/build_campus_life.py
+```
 
-`campus_cast.json` is the authored source used to generate these scenes and the
-dialogue. `python tools/build_campus_life.py` regenerates those files, overwriting
-direct edits to the generated scenes/dialogue; update the JSON first if using
-the generator. It does not rewrite the four map scenes.
+The generator validates population limits and animated skins, with T1 as the one permitted stationary campus guest. It overwrites the generated life scenes and `Dialogues/campus_banter.dialogue`; it preserves map-level instance transforms. Use `--location campus` to regenerate only the outdoor scene and shared dialogue. Runtime conversation selection and the extra walking skin are in `scenes/ambient/ambient_npc.gd`.
 
 ## Checks
 
-`tests/ambient_life_test.gd` checks all 84 exchanges, unique names and professor
-portraits, reuse spacing, walk frames, spawn clearance, patrol routes and wander
-envelopes. It runs movement, checks static characters stay still, and exercises
-real conversations to verify pause/resume and non-repeating dialogue selection.
+`tests/ambient_life_test.gd` checks every response branch, population limits, unique professor assignments, walking frames, spawn clearance, patrol and wander areas, actual movement, and pause/resume during real conversations.
 
-`tests/ambient_map_preview.gd` renders overviews and a real conversation using a
-disposable save. `tests/floor_stairs_test.gd` checks all four stair routes.
+`tests/npc_recast_preview.gd` renders the dialogue choices, Tuấn's doorway entrance, and Khánh's race ghost with disposable progress. `tests/reconnected_rooms_test.gd`, `tests/fit_runner_modes_test.gd`, and `tests/quest_waypoint_test.gd` cover their story and race integration.

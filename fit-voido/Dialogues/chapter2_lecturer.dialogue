@@ -18,7 +18,7 @@ if GameState.quiz_best_score("chapter2_fit_quiz") >= 5:
 if GameState.has_completed_quiz("chapter2_fit_quiz"):
 	Giảng viên: Điểm tốt nhất của em là {{GameState.quiz_best_score("chapter2_fit_quiz")}}/5. Mình thử lại nhé?
 	=> menu
-Giảng viên: Ổn định chỗ ngồi nhé. Bạn mới tới cũng làm cùng lớp luôn.
+Giảng viên: Thầy là giảng viên thỉnh giảng buổi hôm nay. Mình ổn định chỗ ngồi nhé, bạn mới tới cũng làm cùng lớp luôn.
 Bạn: Dạ, em mới tới hơi xa. Từ năm 2006 ạ.
 Giảng viên: Vậy câu lịch sử chắc em có lợi thế rồi.
 Giảng viên: Bài có 5 câu về FIT và chuyện học ở đây. Đúng cả 5 câu trong một lượt thì em nhận Viên Đá Thời Gian thứ hai.

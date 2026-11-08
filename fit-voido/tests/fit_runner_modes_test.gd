@@ -34,6 +34,16 @@ func run() -> void:
 	check(game.phase == FrRunState.Phase.READY, "Choose mode must return to the briefing")
 	game._hud._mode_buttons[1].pressed.emit()
 	check(game.rivals.size() == 5 and not game._ghost.visible, "Competition should replace guide with five rivals")
+	check(game.rivals[0].strategy == 6 and game.rivals[0].playback_speed == 1.0, "Khánh is the full-pace expert ghost")
+	var teacher_frames = game._rival_nodes[0]._sprite.sprite_frames
+	for animation in [&"run", &"jog", &"sprint"]:
+		check(teacher_frames.get_frame_count(animation) == 3, "Khánh has three running frames")
+		for index in 3:
+			check(teacher_frames.get_frame_texture(animation, index).resource_path.ends_with("khanhrun%d.png" % (index + 1)), "Correct Khánh frame")
+	check(game._runner._sprite.sprite_frames != teacher_frames, "Player keeps original animation")
+	for i in range(1, 5):
+		check(is_equal_approx(game.rivals[i].playback_speed, 0.94), "Other rivals retain easier pace")
+		check(game.rivals[0].finish_time < game.rivals[i].finish_time, "Khánh is the strongest opponent")
 	check(game._qte.settings.good_width < easy_width, "Practice timing should be more forgiving")
 	check(game.cutoff_time < easy_cutoff and game.tuning.rate_recover == practice_rate, "Modes share recovery but have different cutoff")
 	check(game._qte.preset_normal.good_width == normal_width, "Switching must not mutate the shared normal preset")

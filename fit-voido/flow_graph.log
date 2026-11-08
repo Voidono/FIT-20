@@ -1,0 +1,32 @@
+Godot Engine v4.7.stable.official.5b4e0cb0f - https://godotengine.org
+
+MAP: nửa đầu
+  Area/Area2D -> res://scenes/mapsides/t_2.tscn arrival=(2000.0, 100.0) chapter=2 activation=1
+MAP: t_2
+  CampusEntrance -> res://scenes/mapsides/nửa đầu.tscn arrival=(1258.0, -850.0) chapter=1 activation=1
+  STORY: DocumentRecipient @ (2314.0, 235.0) res://Dialogues/chapter3_delivery.dialogue
+  StairsToFloor3 -> res://scenes/mapsides/t_3.tscn arrival=(1500.5, 170.0) chapter=1 activation=1
+  Doors/Door1/Room417Door -> uid://chxm4eljsdfq5 arrival=(567.0, 614.0) chapter=2 activation=1
+  Doors/Door2/Room417Door -> uid://chxm4eljsdfq5 arrival=(567.0, 614.0) chapter=2 activation=1
+  Doors/Door3/Room417Door -> uid://chxm4eljsdfq5 arrival=(567.0, 614.0) chapter=2 activation=1
+  Doors/Door4/Room417Door -> uid://chxm4eljsdfq5 arrival=(567.0, 614.0) chapter=2 activation=1
+  Doors/Door5/Room417Door -> uid://chxm4eljsdfq5 arrival=(567.0, 614.0) chapter=2 activation=1
+  Doors/Door6/Room417Door -> uid://chxm4eljsdfq5 arrival=(567.0, 614.0) chapter=2 activation=1
+  Doors/Door7/Room417Door -> uid://chxm4eljsdfq5 arrival=(567.0, 614.0) chapter=2 activation=1
+  Doors/Door8/Room417Door -> uid://chxm4eljsdfq5 arrival=(567.0, 614.0) chapter=2 activation=1
+MAP: t_3
+  StaticBody2D2/CollisionShape2D/StairsToFloor4 -> res://scenes/mapsides/t_4.tscn arrival=(1562.5, 170.0) chapter=1 activation=1
+  StaticBody2D2/CollisionShape2D/StairsToFloor4/StairsDownToFloor2 -> res://scenes/mapsides/t_2.tscn arrival=(2000.5, 170.0) chapter=1 activation=1
+  Doors/Door1/Room417Door -> uid://chxm4eljsdfq5 arrival=(567.0, 614.0) chapter=2 activation=1
+  Doors/Door2/Room417Door -> uid://chxm4eljsdfq5 arrival=(567.0, 614.0) chapter=2 activation=1
+  Doors/Door3/Room417Door -> uid://chxm4eljsdfq5 arrival=(567.0, 614.0) chapter=2 activation=1
+  Doors/Door4/Room417Door -> uid://chxm4eljsdfq5 arrival=(567.0, 614.0) chapter=2 activation=1
+  Doors/Door5/Room417Door -> uid://chxm4eljsdfq5 arrival=(567.0, 614.0) chapter=2 activation=1
+  Doors/Door6/Room417Door -> uid://chxm4eljsdfq5 arrival=(567.0, 614.0) chapter=2 activation=1
+  Doors/Door7/Room417Door -> uid://chxm4eljsdfq5 arrival=(567.0, 614.0) chapter=2 activation=1
+  Doors/Door8/Room417Door -> uid://chxm4eljsdfq5 arrival=(567.0, 614.0) chapter=2 activation=1
+MAP: t_4
+  StairsDownToFloor3 -> res://scenes/mapsides/t_3.tscn arrival=(2037.5, 170.0) chapter=1 activation=1
+  StairsDownToFloor4 -> res://scenes/mapsides/t_3.tscn arrival=(2037.5, 170.0) chapter=1 activation=1
+MAP: phòng_máy_2
+  SceneDoor -> res://scenes/mapsides/t_4.tscn arrival=(2723.0, 300.0) chapter=1 activation=1

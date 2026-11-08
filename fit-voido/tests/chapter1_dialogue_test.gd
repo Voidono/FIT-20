@@ -10,6 +10,7 @@ func _run() -> void:
 	state.reset_progress()
 	var arrival = manager.create_resource_from_text(FileAccess.get_file_as_string("res://Dialogues/tutorial_arrival.dialogue"))
 	var line = await manager.get_next_dialogue_line(arrival, "start")
+	assert(line.character == "Thầy Dũng", "Entrance professor is Dũng")
 	var steps := 0
 	while line != null and steps < 40:
 		steps += 1
@@ -23,6 +24,7 @@ func _run() -> void:
 	state.select_stage1_activity("garbage_quest")
 	state.record_activity_result("garbage_quest", {"passed": true})
 	line = await manager.get_next_dialogue_line(lecturer, "start")
+	assert(line.character == "Thầy Tùng", "Nhà C professor is Tùng")
 	steps = 0
 	while line != null and steps < 20:
 		steps += 1
